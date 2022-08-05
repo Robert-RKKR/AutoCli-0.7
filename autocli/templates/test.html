@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+    <p id="output">{{ output }}</p>
+    </br>
+    </br>
+    <li>Action: {{ after_change.get_action_display }}</li>
+    <li>Model name: {{ after_change.model_name }}</li>
+    <li>Object name: {{ after_change.object_name }}</li>
+    <li>Updated: {{ after_change.updated }}</li>
+    </br>
+    {{ before_change.after }}
+    </br>
+    {{ after_change.after }}
+
+{% endblock %}

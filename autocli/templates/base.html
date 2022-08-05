@@ -1,0 +1,233 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="{{ LANGUAGE_CODE }}">
+
+    <head>
+
+        <!-- Basic page data -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Page title -->
+        <title>{{ page_title }}</title>
+        
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/topbar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/content.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css' %}">
+
+        <!-- Icons -->
+        <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+
+        <!-- Favicon links -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'ico/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'ico/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'ico/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'ico/favicon/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'ico/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+    </head>
+
+    <body>
+
+        <!-- All page content -->
+        <div id="page" class="">
+
+            <!-- Sidebar - left site of page (Left menu) -->
+            <header id="sidebar">
+
+                <!-- Sidebar - page logo and page name -->
+                <div id="sidebar_top">
+                
+                    <!-- Sidebar - main page logo -->
+                    <div id="sidebar_logo">
+                            
+                        <img src="{% static 'ico/logo/rkkr_logo.svg' %}" alt="Menu">
+                        <h1 id="page_title">AutoCLI</h1>
+                        <i id="block_sidebar" class="bx bxs-pin"></i>
+
+                    </div>
+
+                </div>
+
+                <!-- Sidebar - main menu and footer -->
+                <div id="sidebar_bottom">
+
+                    <!-- Sidebar - main menu -->
+                    <nav id="sidebar_menu">
+
+                        <ul>
+                            <li class="sidebar_menu_item">
+                                <a href="test.html" class="sidebar_menu_link">
+                                    <i class="sidebar_menu_link_icon bx bxs-dashboard" ></i>
+                                    <p class="sidebar_menu_link_text">Test</p>
+                                    <span class="sidebar_menu_link_info">23</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar_menu_item">
+                                <a href="base.html" class="sidebar_menu_link">
+                                    <i class="sidebar_menu_link_icon bx bxs-user" ></i>
+                                    <p class="sidebar_menu_link_text">Base</p>
+                                </a>
+                            </li>
+
+                            <li class="sidebar_menu_item">
+                                <a href="#" class="sidebar_menu_link sidebar_menu_submenu_link">
+                                    <i class="sidebar_menu_link_icon bx bx-world" ></i>
+                                    <p class="sidebar_menu_link_text">Automatization</p>
+                                    <i class="sidebar_menu_link_submenu_icon bx bx-chevron-up" ></i>
+                                </a>
+                                <ul class="sidebar_submenu submenu_hidden">
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Polices</p>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Scheduler</p>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Templates</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="sidebar_menu_item">
+                                <a href="#" class="sidebar_menu_link sidebar_menu_submenu_link">
+                                    <i class="sidebar_menu_link_icon bx bxs-package"></i>
+                                    <p class="sidebar_menu_link_text">Inventory</p>
+                                    <i class="sidebar_menu_link_submenu_icon bx bx-chevron-up" ></i>
+                                </a>
+                                <ul class="sidebar_submenu submenu_hidden">
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Devices</p>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Groups</p>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Credentials</p>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar_submenu_item">
+                                        <a href="#" class="sidebar_submenu_link">
+                                            <i class="sidebar_submenu_link_icon bx bxs-package"></i>
+                                            <p class="sidebar_submenu_link_text">Settings</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="sidebar_menu_item">
+                                <a href="#" class="sidebar_menu_link">
+                                    <i class="sidebar_menu_link_icon bx bxs-wrench" ></i>
+                                    <p class="sidebar_menu_link_text">Settings</p>
+                                </a>
+                            </li>
+
+                            <li class="sidebar_menu_item">
+                                <a href="#" class="sidebar_menu_link">
+                                    <i class="sidebar_menu_link_icon bx bxs-notepad" ></i>
+                                    <p class="sidebar_menu_link_text">Documentation</p>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                    <!-- Sidebar - footer -->
+                    <footer id="sidebar_footer">
+                        
+                        <img id="sidebar_user_photo" src="{% static 'ico/model/users/business-woman.svg' %}" alt="Menu">
+                        <div id="sidebar_user_info">
+                            <h3>Robert Kucharski</h3>
+                            <p>Administrator</p>
+                        </div>
+    
+                    </footer>
+
+                </div>
+
+            </header>
+
+            <!-- Main content - right site of page (Content) -->
+            <main id="page_content">
+                
+                <aside id="page_top">
+
+                    <!-- Page top - search panel -->
+                    <div id="page_top_search">
+                        <input type="search" id="site_search" placeholder="Search on the site..." name="q">
+                    </div>
+
+                    <!-- Page top - page title -->
+                    <div id="page_top_title">
+                        <h2>{{ page_title }}</h2>
+                    </div>
+
+                    <!-- Page top - actions and change page color -->
+                    <div  id="actions_and_colors">
+
+                        <!-- Page top - actions -->
+                        <div id="page_top_actions">
+                            <i class="animated_button object_action bx bxs-plus-circle"></i>
+                            <i class="animated_button object_action bx bxs-minus-circle"></i>
+                            <i class="animated_button object_action bx bxs-edit"></i>
+                        </div>
+                        
+                        <!-- Page top - change page color -->
+                        <div id="page_top_color">
+                            <i id="page_color_light" class='animated_button active bx bxs-sun'></i>
+                            <i id="page_color_dark" class='animated_button bx bxs-moon' ></i>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+                <div id="page_bottom">
+
+                    <div id="content">
+
+                        {% block content %}{% endblock content %}
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+        <!-- JavaScript scripts -->
+        <script src="{% static 'js/base_main.js' %}"></script>
+        <script src="{% static 'js/websocket.js' %}"></script>
+
+    </body>
+</html>

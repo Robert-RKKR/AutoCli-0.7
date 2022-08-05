@@ -1,0 +1,174 @@
+ /* --------------------------------------   */
+/*   ----        MAIN VALUES         ----   */
+#page {
+
+    /* Main page colors */
+    --color_first: #226acf;
+    --color_second: #e9ecef;
+    --color_third: #faf8f8;
+
+    /* Main font colors */
+    --color_font_first: #555656;
+    --color_font_second: #72777a;
+    --color_font_third: #e9e9e9;
+
+    /* Light colors */
+    --color_light_blue: #c3e0f7;
+    --color_light_green: #a8f0cc;
+    --color_light_yellow: #ffefce;
+    --color_light_violet: #d5a8f3;
+    --color_light_red: #f6c6d3;
+    --color_light_gray: #95a4c8;
+
+    /* Strong colors */
+    --color_strong_blue: #548be9;
+    --color_strong_green: #4db478;
+    --color_strong_yellow: #d29c30;
+    --color_strong_violet: #934bb7;
+    --color_strong_red: #f55e7a;
+    --color_strong_gray: #4e6f99;
+
+    /* Time */
+    --time_sidebar: 400ms;
+
+    /* Main values */
+    --main_border: 1px solid rgb(200, 200, 200);
+    --main_shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+
+    /* Main dimensions values */
+    --page_top: 60px;
+    --sidebar: 60px;
+    --bigbar: 260px;
+
+}
+
+#page.dark {
+
+    /* Main page colors */
+    --color_first: #1e467e;
+    --color_second: #434445;
+    --color_third: #6d6c6c;
+
+    /* Main font colors */
+    --color_font_first: #e6e9e9;
+    --color_font_second: #c9cbcc;
+    --color_font_third: #b2b0b0;
+    
+    /* Strong colors */
+    --color_strong_blue: #4e6b9d;
+    --color_strong_green: #479467;
+    --color_strong_yellow: #967b43;
+    --color_strong_violet: #6f4088;
+    --color_strong_red: #8a3a48;
+    --color_strong_gray: #41618c;
+
+    /* Main values */
+    --main_border: 1px solid rgb(68, 67, 67);
+    
+}
+
+ /* --------------------------------------   */
+/*   ----       MAIN SETTINGS        ----   */
+span, input, h1, h2, h3, h4, h5, h5, a, p, q, i {
+    font-family: "Alegreya Sans SC", sans-serif;
+    color: var(--color_font_first);
+    font-size: 1em;
+}
+
+.submenu_hidden {
+    display: none;
+}
+
+    /*   -----   PAGE SCROLL   -----   */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgb(244, 246, 246);
+        margin: var(--main_padding) 0px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgb(184, 186, 186);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(121, 123, 123);
+    }
+
+    /*   ----             ANIMATED BUTTON           ----   */
+    .animated_button {
+        cursor: pointer;
+        transition-duration: 200ms;
+        transition-property: transform;
+    }
+
+ /*   ------------------------------------   */
+/*   ----           SIDEBAR          ----   */
+#sidebar {
+    height: 100vh;
+    width: var(--sidebar);
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 100;
+}
+
+#page.animated #sidebar {
+    transition-timing-function: ease;
+    transition-duration: var(--time_sidebar);
+    transition-delay: 100ms;
+    transition-property: width;
+}
+
+#sidebar.bigbar, #sidebar.blocked_bigbar {
+    width: var(--bigbar);
+}
+
+#sidebar_top {
+    height: var(--page_top);
+    background: var(--color_first);
+}
+
+#sidebar_bottom {
+    height: calc(100vh - var(--page_top));
+    border-right: var(--main_border);
+    background: var(--color_third);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+
+/*   ------------------------------------   */
+/*   ----        PAGE CONTENT       ----   */
+#page_content {
+    position: absolute;
+    left: var(--sidebar);
+    width: calc(100% - 60px);
+}
+
+#page.animated #page_content {
+    transition-timing-function: ease;
+    transition-duration: var(--time_sidebar);
+    transition-property: width, left;
+}
+
+#sidebar.blocked_bigbar ~ #page_content {
+    left: var(--bigbar);
+    width: calc(100% - var(--bigbar));
+}
+
+#page_top {
+    height: var(--page_top);
+    background: var(--color_first);
+}
+
+#page_bottom {
+    height: calc(100vh - var(--page_top));
+    background: var(--color_second);
+}

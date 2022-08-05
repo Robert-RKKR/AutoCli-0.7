@@ -1,0 +1,70 @@
+ /*   ------------------------------------   */
+/*   ----       PAGE - TOPBAR        ----   */
+#page_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+    /*   ----           SEARCH           ----   */
+    #site_search {
+        border: none;
+        padding: 6px 30px;
+        border-radius: 10px;
+        width: 100%;
+        text-align: center;
+        color: var(--color_font_third);
+        background: rgba(253, 253, 253, 0.1);
+    }
+
+    #site_search::placeholder {
+        color: var(--color_font_third);
+    }
+
+    #site_search:focus {
+        outline: none;
+        background: rgba(253, 253, 253, 0.3);
+        color: var(--color_font_third);
+    }
+
+    /*   ----           PAGE TITLE           ----   */
+    #page_top_title {
+        font-size: 0.9em;
+        text-transform: uppercase;
+    }
+
+    #page_top_title h2 {
+        color: var(--color_font_third);
+    }
+
+    /*   ----           ACTIONS AND COLOR CHANGE           ----   */
+    #actions_and_colors {
+        display: flex;
+    }
+
+    #actions_and_colors i {
+        color: var(--color_font_third);
+        padding: 3px;
+    }
+
+        /*   ----           ACTIONS           ----   */
+        #page_top_actions {
+            font-size: 1.2em;
+        }
+
+        /*   ----           COLOR CHANGE           ----   */
+        #page_top_color {
+            margin-left: 25px;
+            font-size: 1.2em;
+        }
+
+        #page_top_color i {
+            border-radius: 10px;
+        }
+
+        #page_top_color .active {
+            background: var(--color_font_third);
+            color: var(--color_font_first)
+        }
