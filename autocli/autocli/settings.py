@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # AutoCLI apps:
     'testapp.apps.TestappConfig',
+    'change_log.apps.ChangeLogConfig',
 ]
 
 MIDDLEWARE = [

@@ -2,13 +2,17 @@ from django.db import models
 
 # Django Import:
 from django.db.models.signals import pre_save, post_save
+from django.forms.models import model_to_dict
 from django.dispatch import receiver
+
+# Change log Import:
+from change_log.models import ChangeLog
+
 
 # Create your models here.
 class TestModel(models.Model):
-
     class Meta:
-        
+
         # Model name values:
         verbose_name = 'TestModel'
         verbose_name_plural = 'TestModels'
@@ -49,24 +53,35 @@ class TestModel(models.Model):
         return f'{self.name}'
 
     def __str__(self) -> str:
-        return  f'{self.name}'
+        return f'{self.name}'
+
 
 # Signals:
 @receiver(pre_save, sender=TestModel)
 def re_signal(sender, instance, **kwargs):
-    # print(f'=============== RKKR message! - pre_save\n{sender, instance, kwargs}')
     print('=============== ', instance.description,
-        f'\nsender = {sender}',
-        f'\ninstance = {instance}',
-        f'\nkwargs = {kwargs}',
-    )
+          f'\nsender = {sender}',
+          f'\ninstance = {instance}',
+          f'\nkwargs = {kwargs}',
+          )
+
 
 @receiver(post_save, sender=TestModel)
 def post_signal(sender, instance, created, **kwargs):
-    # print(f'=============== RKKR message! - post_save\n{sender, instance, created, kwargs}')
     print('=============== ', instance.description,
-        f'\nsender = {sender}',
-        f'\ninstance = {instance}',
-        f'\ncreated = {created}',
-        f'\nkwargs = {kwargs}',
+          f'\nsender = {sender}',
+          f'\ninstance = {instance}',
+          f'\ncreated = {created}',
+          f'\nkwargs = {kwargs}',
+          )
+    action = 0
+    if created:
+        action = 1
+    else:
+        action = 2
+    change_log = ChangeLog.objects.create(
+        action=action,
+        model_name='TestModel',
+        object_name=instance.name,
+        after=model_to_dict(instance),
     )
