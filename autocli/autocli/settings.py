@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     # AutoCLI apps:
     'automation.apps.AutomationConfig',
     'change_log.apps.ChangeLogConfig',
-    'connection.apps.ConnectionConfig',
     'dataset.apps.DatasetConfig',
     'inventory.apps.InventoryConfig',
     'logger.apps.LoggerConfig',
