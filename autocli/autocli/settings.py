@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # AutoCLI apps:
-    'testapp.apps.TestappConfig',
-    'change_log.apps.ChangeLogConfig',
+    # 'change_log.apps.ChangeLogConfig',
 ]
 
 MIDDLEWARE = [
