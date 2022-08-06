@@ -1,5 +1,9 @@
 # Django Import:
+from django.core.exceptions import ValidationError
 from django.db import models
+
+# Managers Import:
+from .managers import ActiveManager
 
 # Base model Import:
 from .base_model import BaseModel
@@ -27,6 +31,9 @@ class ExtendedModel(BaseModel):
     
     # Class name value:
     class_name = Meta.verbose_name
+
+    # Model objects manager:
+    active_objects = ActiveManager()
 
     # Model status values:
     root = models.BooleanField(
@@ -65,6 +72,33 @@ class ExtendedModel(BaseModel):
             'invalid': 'Enter the correct description value. It must contain 8 to 256 digits, letters and special characters -, _, . or spaces.',
         },
     )
+
+    # Model Save override:
+    def save(self, *args, **kwargs):
+        
+        # Check if object root value is true:
+        if self.root is True:
+            raise ValidationError('Root object cannot be changed or deleted.')
+
+        super(ExtendedModel, self).save(*args, **kwargs)
+
+    # Model Save override:
+    def delete(self, *args, **kwargs):
+        
+        # Check if object root value is true:
+        if self.root is True:
+            raise ValidationError('Root object cannot be changed or deleted.')
+
+        super(ExtendedModel, self).delete(*args, **kwargs)
+
+    # Model Save override:
+    def update(self, *args, **kwargs):
+        
+        # Check if object root value is true:
+        if self.root is True:
+            raise ValidationError('Root object cannot be changed or deleted.')
+
+        super(ExtendedModel, self).update(*args, **kwargs)
 
     # Model representation:
     def __repr__(self) -> str:

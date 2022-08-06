@@ -10,3 +10,10 @@ class BasicManager(Manager):
             BasicManager, self
         ).get_queryset().filter(deleted=False)
 
+
+class ActiveManager(Manager):
+
+    def get_queryset(self):
+        return super(
+            BasicManager, self
+        ).get_queryset().filter(deleted=False, active=True)

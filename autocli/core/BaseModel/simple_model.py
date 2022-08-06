@@ -23,4 +23,3 @@ class SimpleModel(BaseModel):
 
     def __str__(self) -> str:
         return  f'{self.pk}: {self.updated}'
-
