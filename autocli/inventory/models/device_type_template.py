@@ -2,14 +2,14 @@
 from django.db import models
 
 # Extended Model Import:
-from core.base_model.simple_model import SimpleModel
+from core.base_model.extended_model import ExtendedModel
 
 # Other models Import:
 from inventory.models.device_type import DeviceType
 
 
 # Device type template model:
-class DeviceTypeTemplate(SimpleModel):
+class DeviceTypeTemplate(ExtendedModel):
     """
     CLI command template can be processed to receive CLI configurations commands.
     A TextFSM string or Regex expression can then be used to check that the received output is correct.

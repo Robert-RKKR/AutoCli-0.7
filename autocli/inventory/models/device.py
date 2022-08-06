@@ -5,7 +5,7 @@ from django.db import models
 from core.base_model.extended_model import ExtendedModel
 
 # Other models Import:
-from inventory.models.device_credential import DeviceCredential
+from inventory.models.credential import Credential
 from inventory.models.device_type import DeviceType
 
 # Validators Import:
@@ -80,7 +80,7 @@ class Device(ExtendedModel):
 
     # Security and credentials:
     credential = models.ForeignKey(
-        DeviceCredential,
+        Credential,
         verbose_name='Credential',
         help_text='Credential needed to establish SSH / HTTPS connection.',
         on_delete=models.PROTECT,
@@ -88,7 +88,7 @@ class Device(ExtendedModel):
         blank=True,
     )
     secret = models.CharField(
-        verbose_name='Secret',
+        verbose_name='Secret password',
         help_text='Network device secret password.',
         max_length=64,
         null=True,

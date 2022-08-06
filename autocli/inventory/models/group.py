@@ -5,12 +5,12 @@ from django.db import models
 from core.base_model.extended_model import ExtendedModel
 
 # Models Import:
-from inventory.models.device_credential import DeviceCredential
+from inventory.models.credential import Credential
 from inventory.models.device import Device
 
 
 # Folder model:
-class DeviceGroup(ExtendedModel):
+class Group(ExtendedModel):
     """ Folders allow you to group network devices. """
 
     class Meta:
@@ -40,13 +40,13 @@ class DeviceGroup(ExtendedModel):
 
     # Defaults main values:
     ssh_port = models.IntegerField(
-        verbose_name='SSH port',
+        verbose_name='Default SSH port',
         help_text='SSH protocol port number.',
         null=True,
         blank=True,
     )
     https_port = models.IntegerField(
-        verbose_name='HTTPS port',
+        verbose_name='Default HTTPS port',
         help_text='HTTPS protocol port number.',
         null=True,
         blank=True,
@@ -54,29 +54,29 @@ class DeviceGroup(ExtendedModel):
 
     # Default security and credentials values:
     credential = models.ForeignKey(
-        DeviceCredential,
-        verbose_name='Credential',
+        Credential,
+        verbose_name='Default credential',
         help_text='Credential needed to establish SSH / HTTPS connection.',
         on_delete=models.PROTECT,
         null=True,
         blank=True,
     )
     secret = models.CharField(
-        verbose_name='Secret',
+        verbose_name='Default secret password',
         help_text='Network device secret password.',
         max_length=64,
         null=True,
         blank=True,
     )
     token = models.CharField(
-        verbose_name='API token',
+        verbose_name='Default API token',
         help_text='Network device API key.',
         max_length=128,
         null=True,
         blank=True,
     )
     certificate = models.BooleanField(
-        verbose_name='Certificate',
+        verbose_name='Default certificate',
         help_text='Check network device certificate during HTTPS connection.',
         null=True,
         blank=True,

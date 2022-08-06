@@ -15,5 +15,5 @@ class ActiveManager(Manager):
 
     def get_queryset(self):
         return super(
-            BasicManager, self
+            ActiveManager, self
         ).get_queryset().filter(deleted=False, active=True)

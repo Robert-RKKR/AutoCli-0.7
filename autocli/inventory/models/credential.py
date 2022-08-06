@@ -6,7 +6,7 @@ from core.base_model.extended_model import ExtendedModel
 
 
 # Credential model:
-class DeviceCredential(ExtendedModel):
+class Credential(ExtendedModel):
     """ 
     The Credential specifies the login information (Login, password)
     needed in the login process when connecting to network devices.
