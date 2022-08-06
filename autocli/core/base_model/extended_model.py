@@ -38,21 +38,22 @@ class ExtendedModel(BaseModel):
     # Model status values:
     root = models.BooleanField(
         verbose_name='Root',
-        help_text=f'Root object cannot be deleted.',
-        default=False
+        help_text='Root object cannot be deleted.',
+        null=True,
+        blank=True,
     )
     active = models.BooleanField(
         verbose_name='Active',
-        help_text=f'Object status.',
-        default=True
+        help_text='Object status.',
+        null=True,
+        blank=True,
     )
 
     # Main model values:
     name = models.CharField(
         verbose_name='Name',
-        help_text=f'Object name.',
+        help_text='Object name.',
         max_length=32,
-        blank=False,
         unique=True,
         validators=[name_validator],
         error_messages={
@@ -64,13 +65,24 @@ class ExtendedModel(BaseModel):
     )
     description = models.CharField(
         verbose_name='Description',
-        help_text=f'Object description.',
+        help_text='Object description.',
         max_length=256,
-        default=f'Object default description.',
+        default='Object default description.',
         validators=[description_validator],
         error_messages={
             'invalid': 'Enter the correct description value. It must contain 8 to 256 digits, letters and special characters -, _, . or spaces.',
         },
+    )
+    ico = models.IntegerField(
+        verbose_name='Object ico',
+        help_text='Object graphical representation.',
+        default=1,
+    )
+    color = models.IntegerField(
+        verbose_name='Object color',
+        help_text='Color object mark.',
+        null=True,
+        blank=True,
     )
 
     # Model Save override:

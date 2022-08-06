@@ -26,18 +26,18 @@ class BaseModel(models.Model):
     # Deleted information:
     deleted = models.BooleanField(
         verbose_name='Deleted',
-        help_text=f'Is object deleted.',
+        help_text='Is object deleted.',
         default=False,
     )
 
     # Model data time information:
     created = models.DateTimeField(
         verbose_name='Created',
-        help_text=f'Object create date.',
+        help_text='Object create date.',
         auto_now_add=True,
     )
     updated = models.DateTimeField(
         verbose_name='Updated',
-        help_text=f'object last update date.',
+        help_text='object last update date.',
         auto_now=True,
     )
