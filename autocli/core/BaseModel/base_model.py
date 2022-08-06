@@ -1,8 +1,8 @@
 # Django Import:
 from django.db import models
 
-# Django Import:
-from django.db import models
+# Managers Import:
+from .managers import BasicManager
 
 # Import django User model:
 from django.contrib.auth.models import User
@@ -19,6 +19,9 @@ class BaseModel(models.Model):
 
         # Abstract class value:
         abstract = True
+
+    # Model objects manager:
+    objects = BasicManager()
 
     # Deleted information:
     deleted = models.BooleanField(

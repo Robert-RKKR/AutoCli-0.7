@@ -9,3 +9,4 @@ class BasicManager(Manager):
         return super(
             BasicManager, self
         ).get_queryset().filter(deleted=False)
+

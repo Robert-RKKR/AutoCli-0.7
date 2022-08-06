@@ -4,9 +4,6 @@ from django.db import models
 # Base model Import:
 from .base_model import BaseModel
 
-# Managers Import:
-from .managers import BasicManager
-
 # Validators Import:
 from .validators import DescriptionValueValidator
 from .validators import NameValueValidator
@@ -27,9 +24,6 @@ class ExtendedModel(BaseModel):
     # Model validators:
     name_validator = NameValueValidator()
     description_validator = DescriptionValueValidator()
-
-    # Model objects manager:
-    objects = BasicManager()
     
     # Class name value:
     class_name = Meta.verbose_name
