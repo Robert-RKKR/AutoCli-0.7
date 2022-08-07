@@ -5,15 +5,5 @@
 {% block content %}
 
     <p id="output">{{ output }}</p>
-    </br>
-    </br>
-    <li>Action: {{ after_change.get_action_display }}</li>
-    <li>Object name: {{ after_change.object_name }}</li>
-    <li>Item id: {{ after_change.item_id }}</li>
-    <li>changed date: {{ after_change.changed }}</li>
-    </br>
-    {{ before_change.after }}
-    </br>
-    {{ after_change.after }}
 
 {% endblock %}
