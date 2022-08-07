@@ -7,6 +7,9 @@ from core.base_model.simple_model import SimpleModel
 # Other models Import:
 from inventory.models.device_type import DeviceType
 
+# Change log Import:
+from change_log.follow_change_log import follow_change_log
+
 
 # Device type template model:
 class DeviceTypeTemplate(SimpleModel):
@@ -77,3 +80,6 @@ class DeviceTypeTemplate(SimpleModel):
 
     def __str__(self) -> str:
         return  f'{self.pk}: {self.command.capitalize()}'
+
+# Follow change log:
+follow_change_log(DeviceTypeTemplate)

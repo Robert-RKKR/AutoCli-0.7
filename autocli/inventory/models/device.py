@@ -11,6 +11,9 @@ from inventory.models.device_type import DeviceType
 # Validators Import:
 from inventory.validators import HostnameValueValidator
 
+# Change log Import:
+from change_log.follow_change_log import follow_change_log
+
 
 # Device model:
 class Device(ExtendedModel):
@@ -106,3 +109,6 @@ class Device(ExtendedModel):
         help_text='Check network device certificate during HTTPS connection.',
         default=False,
     )
+
+# Follow change log:
+follow_change_log(Device)

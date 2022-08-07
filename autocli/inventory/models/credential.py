@@ -4,6 +4,9 @@ from django.db import models
 # Extended Model Import:
 from core.base_model.extended_model import ExtendedModel
 
+# Change log Import:
+from change_log.follow_change_log import follow_change_log
+
 
 # Credential model:
 class Credential(ExtendedModel):
@@ -15,8 +18,8 @@ class Credential(ExtendedModel):
     class Meta:
         
         # Model name values:
-        verbose_name = 'Device credential'
-        verbose_name_plural = 'Device credentials'
+        verbose_name = 'Credential'
+        verbose_name_plural = 'Credentials'
 
     # Main model values:
     username = models.CharField(
@@ -34,3 +37,6 @@ class Credential(ExtendedModel):
         help_text='Local / remote user password.',
         max_length=64,
     )
+
+# Follow change log:
+follow_change_log(Credential)

@@ -8,6 +8,9 @@ from core.base_model.extended_model import ExtendedModel
 from inventory.models.credential import Credential
 from inventory.models.device import Device
 
+# Change log Import:
+from change_log.follow_change_log import follow_change_log
+
 
 # Folder model:
 class Group(ExtendedModel):
@@ -16,8 +19,8 @@ class Group(ExtendedModel):
     class Meta:
         
         # Model name values:
-        verbose_name = 'Device group'
-        verbose_name_plural = 'Device groups'
+        verbose_name = 'Group'
+        verbose_name_plural = 'Groups'
 
     # Corelation witch other folder model:
     root_folder = models.ForeignKey(
@@ -79,3 +82,6 @@ class Group(ExtendedModel):
         null=True,
         blank=True,
     )
+
+# Follow change log:
+follow_change_log(Group)

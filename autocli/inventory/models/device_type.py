@@ -4,6 +4,9 @@ from django.db import models
 # Extended Model Import:
 from core.base_model.extended_model import ExtendedModel
 
+# Change log Import:
+from change_log.follow_change_log import follow_change_log
+
 
 # Credential model:
 class DeviceType(ExtendedModel):
@@ -22,3 +25,6 @@ class DeviceType(ExtendedModel):
         max_length=32,
         unique=True
     )
+
+# Follow change log:
+follow_change_log(DeviceType)

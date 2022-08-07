@@ -11,7 +11,7 @@ from change_log.models.change_log import ChangeLog
 class ChangeLogAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'action', 'administrator', 'object_id',
+        'pk', 'action', 'content_type', 'object_id', 'administrator',
     )
     list_filter = (
         'administrator', 'action',

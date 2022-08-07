@@ -11,6 +11,9 @@ class ContentType(models.Model):
         verbose_name = 'Content type'
         verbose_name_plural = 'Content types'
 
+        # Unique values:
+        unique_together = [['app_name', 'model_name']]
+
     # Model information:
     app_name = models.CharField(
         verbose_name='Name',

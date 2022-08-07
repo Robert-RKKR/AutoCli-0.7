@@ -72,6 +72,8 @@ class ExtendedModel(BaseModel):
         error_messages={
             'invalid': 'Enter the correct description value. It must contain 8 to 256 digits, letters and special characters -, _, . or spaces.',
         },
+        null=True,
+        blank=True,
     )
     ico = models.IntegerField(
         verbose_name='Object ico',
