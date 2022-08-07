@@ -17,7 +17,7 @@ from inventory.models.group import Group
 class CredentialAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'username', 
+        'active', 'name', 'username', 
     )
     list_filter = (
         'active', 'color',
@@ -45,7 +45,7 @@ class CredentialAdmin(BaseAdmin):
 class DeviceTypeAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'netmiko_name', 
+        'active', 'name', 'netmiko_name', 
     )
     list_filter = (
         'active', 'color',
@@ -69,10 +69,10 @@ class DeviceTypeAdmin(BaseAdmin):
 class DeviceTypeTemplateAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'device_type', 'command',
+        'active', 'special', 'vrf', 'name', 'device_type', 'command',
     )
     list_filter = (
-        'active', 'color', 'device_type',
+        'active', 'special', 'vrf', 'color', 'device_type',
     )
     search_fields = (
         'name', 'command',
@@ -80,7 +80,7 @@ class DeviceTypeTemplateAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('active', 'name', 'description',)
+            'fields': ('active', 'special', 'vrf', 'name', 'description',)
         }),
         ('Template information', {
             'classes': ('collapse',),
@@ -97,7 +97,7 @@ class DeviceTypeTemplateAdmin(BaseAdmin):
 class DeviceAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'hostname', 'ssh_status', 'https_status', 'credential',
+        'active', 'name', 'hostname', 'ssh_status', 'https_status', 'credential',
     )
     list_filter = (
         'active', 'color', 'ssh_status', 'https_status', 'credential',
@@ -139,7 +139,7 @@ class DeviceAdmin(BaseAdmin):
 class GroupAdmin(BaseAdmin):
 
     list_display = (
-        'name', 'root_folder', 
+        'active', 'name', 'root_folder', 
     )
     list_filter = (
         'active', 'color',

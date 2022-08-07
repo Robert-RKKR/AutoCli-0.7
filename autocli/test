@@ -1,0 +1,119 @@
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$390000$qnyDNd79IEp7Aqvn7rs88I$tk5Lysbi4yhiL9zACzRkt5fQnLBu8HGH5zOXfCJoqdk=
+    last_login: 2022-08-07 07:42:42.809807+00:00
+    is_superuser: true
+    username: administrator
+    first_name: ''
+    last_name: ''
+    email: administrator@admin.com
+    is_staff: true
+    is_active: true
+    date_joined: 2022-08-07 07:42:24.632958+00:00
+    groups: []
+    user_permissions: []
+- model: inventory.devicetype
+  pk: 1
+  fields:
+    deleted: false
+    created: 2022-08-07 07:43:39.505924+00:00
+    updated: 2022-08-07 07:43:39.505967+00:00
+    root: true
+    active: true
+    name: Cisco IOS
+    description: Cisco IOS device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_ios
+- model: inventory.devicetype
+  pk: 2
+  fields:
+    deleted: false
+    created: 2022-08-07 07:44:06.129247+00:00
+    updated: 2022-08-07 07:44:06.129293+00:00
+    root: true
+    active: true
+    name: Cisco XE
+    description: Cisco XE device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_xe
+- model: inventory.devicetype
+  pk: 3
+  fields:
+    deleted: false
+    created: 2022-08-07 07:45:39.031064+00:00
+    updated: 2022-08-07 07:45:39.031111+00:00
+    root: true
+    active: true
+    name: Cisco XR
+    description: Cisco XR device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_xr
+- model: inventory.devicetype
+  pk: 4
+  fields:
+    deleted: false
+    created: 2022-08-07 07:45:56.915102+00:00
+    updated: 2022-08-07 07:45:56.915148+00:00
+    root: true
+    active: true
+    name: Cisco NXOS
+    description: Cisco NXOS device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_nxos
+- model: inventory.devicetype
+  pk: 5
+  fields:
+    deleted: false
+    created: 2022-08-07 07:46:17.415732+00:00
+    updated: 2022-08-07 07:46:17.415794+00:00
+    root: true
+    active: true
+    name: Cisco ASA
+    description: Cisco ASA device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_asa
+- model: inventory.devicetype
+  pk: 6
+  fields:
+    deleted: false
+    created: 2022-08-07 07:46:36.960656+00:00
+    updated: 2022-08-07 07:46:36.960710+00:00
+    root: true
+    active: true
+    name: Cisco WLC
+    description: Cisco WLC device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_wlc
+- model: inventory.devicetype
+  pk: 7
+  fields:
+    deleted: false
+    created: 2022-08-07 07:46:53.115774+00:00
+    updated: 2022-08-07 07:46:53.115835+00:00
+    root: true
+    active: true
+    name: FortiNet OS
+    description: FortiNet OS device
+    ico: 1
+    color: 1
+    netmiko_name: fortinet_os
+- model: inventory.devicetype
+  pk: 8
+  fields:
+    deleted: false
+    created: 2022-08-07 07:47:14.331791+00:00
+    updated: 2022-08-07 07:47:14.331864+00:00
+    root: true
+    active: true
+    name: Unsupported
+    description: Unsupported device
+    ico: 1
+    color: 1
+    netmiko_name: 'Null'

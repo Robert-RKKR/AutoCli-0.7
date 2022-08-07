@@ -4,6 +4,7 @@ from django.db import models
 
 # Managers Import:
 from .managers import ActiveManager
+from .managers import BasicManager
 
 # Base model Import:
 from .base_model import BaseModel
@@ -34,19 +35,18 @@ class ExtendedModel(BaseModel):
 
     # Model objects manager:
     active_objects = ActiveManager()
+    objects = BasicManager()
 
     # Model status values:
     root = models.BooleanField(
         verbose_name='Root',
         help_text='Root object cannot be deleted.',
-        null=True,
-        blank=True,
+        default=False,
     )
     active = models.BooleanField(
         verbose_name='Active',
         help_text='Object status.',
-        null=True,
-        blank=True,
+        default=True,
     )
 
     # Main model values:
@@ -81,8 +81,7 @@ class ExtendedModel(BaseModel):
     color = models.IntegerField(
         verbose_name='Object color',
         help_text='Color object mark.',
-        null=True,
-        blank=True,
+        default=1,
     )
 
     # Model Save override:

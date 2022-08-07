@@ -1,0 +1,1355 @@
+- model: inventory.devicetype
+  pk: 1
+  fields:
+    deleted: false
+    created: 2022-08-07 07:43:39.505924+00:00
+    updated: 2022-08-07 07:43:39.505967+00:00
+    root: false
+    active: true
+    name: Cisco IOS
+    description: Cisco IOS device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_ios
+- model: inventory.devicetype
+  pk: 2
+  fields:
+    deleted: false
+    created: 2022-08-07 07:44:06.129247+00:00
+    updated: 2022-08-07 07:44:06.129293+00:00
+    root: false
+    active: true
+    name: Cisco XE
+    description: Cisco XE device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_xe
+- model: inventory.devicetype
+  pk: 3
+  fields:
+    deleted: false
+    created: 2022-08-07 07:45:39.031064+00:00
+    updated: 2022-08-07 07:45:39.031111+00:00
+    root: false
+    active: true
+    name: Cisco XR
+    description: Cisco XR device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_xr
+- model: inventory.devicetype
+  pk: 4
+  fields:
+    deleted: false
+    created: 2022-08-07 07:45:56.915102+00:00
+    updated: 2022-08-07 07:45:56.915148+00:00
+    root: false
+    active: true
+    name: Cisco NXOS
+    description: Cisco NXOS device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_nxos
+- model: inventory.devicetype
+  pk: 5
+  fields:
+    deleted: false
+    created: 2022-08-07 07:46:17.415732+00:00
+    updated: 2022-08-07 07:46:17.415794+00:00
+    root: false
+    active: true
+    name: Cisco ASA
+    description: Cisco ASA device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_asa
+- model: inventory.devicetype
+  pk: 6
+  fields:
+    deleted: false
+    created: 2022-08-07 07:46:36.960656+00:00
+    updated: 2022-08-07 07:46:36.960710+00:00
+    root: false
+    active: true
+    name: Cisco WLC
+    description: Cisco WLC device
+    ico: 1
+    color: 1
+    netmiko_name: cisco_wlc
+- model: inventory.devicetype
+  pk: 7
+  fields:
+    deleted: false
+    created: 2022-08-07 07:46:53.115774+00:00
+    updated: 2022-08-07 07:46:53.115835+00:00
+    root: false
+    active: true
+    name: FortiNet OS
+    description: FortiNet OS device
+    ico: 1
+    color: 1
+    netmiko_name: fortinet_os
+- model: inventory.devicetype
+  pk: 8
+  fields:
+    deleted: false
+    created: 2022-08-07 07:47:14.331791+00:00
+    updated: 2022-08-07 07:47:14.331864+00:00
+    root: false
+    active: true
+    name: Unsupported
+    description: Unsupported device
+    ico: 1
+    color: 1
+    netmiko_name: 'Null'
+- model: inventory.devicetypetemplate
+  pk: 1
+  fields:
+    deleted: false
+    created: 2022-08-07 08:02:52.810901+00:00
+    updated: 2022-08-07 11:46:27.957655+00:00
+    root: false
+    active: true
+    name: Show version
+    description: Cli command "show version"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show version
+    sfm_expression: "Value VERSION (.+?)\r\nValue ROMMON (\\S+)\r\nValue HOSTNAME
+      (\\S+)\r\nValue UPTIME (.+)\r\nValue UPTIME_YEARS (\\d+)\r\nValue UPTIME_WEEKS
+      (\\d+)\r\nValue UPTIME_DAYS (\\d+)\r\nValue UPTIME_HOURS (\\d+)\r\nValue UPTIME_MINUTES
+      (\\d+)\r\nValue RELOAD_REASON (.+?)\r\nValue RUNNING_IMAGE (\\S+)\r\nValue List
+      HARDWARE (\\S+|\\S+\\d\\S+)\r\nValue List SERIAL (\\S+)\r\nValue CONFIG_REGISTER
+      (\\S+)\r\nValue List MAC ([0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5})\r\nValue RESTARTED
+      (.+)\r\n\r\nStart\r\n  ^.*Software\\s.+\\),\\sVersion\\s${VERSION},*\\s+RELEASE.*\r\n
+      \ ^ROM:\\s+${ROMMON}\r\n  ^\\s*${HOSTNAME}\\s+uptime\\s+is\\s+${UPTIME} -> Continue\r\n
+      \ ^.*\\s+uptime\\s+is.*\\s+${UPTIME_YEARS}\\syear -> Continue\r\n  ^.*\\s+uptime\\s+is.*\\s+${UPTIME_WEEKS}\\sweek
+      -> Continue\r\n  ^.*\\s+uptime\\s+is.*\\s+${UPTIME_DAYS}\\sday -> Continue\r\n
+      \ ^.*\\s+uptime\\s+is.*\\s+${UPTIME_HOURS}\\shour -> Continue\r\n  ^.*\\s+uptime\\s+is.*\\s+${UPTIME_MINUTES}\\sminute\r\n
+      \ ^[sS]ystem\\s+image\\s+file\\s+is\\s+\"(.*?):${RUNNING_IMAGE}\"\r\n  ^(?:[lL]ast\\s+reload\\s+reason:|System\\s+returned\\s+to\\s+ROM\\s+by)\\s+${RELOAD_REASON}\\s*$$\r\n
+      \ ^[Pp]rocessor\\s+board\\s+ID\\s+${SERIAL}\r\n  ^[Cc]isco\\s+${HARDWARE}\\s+\\(.+\\).+\r\n
+      \ ^[Cc]onfiguration\\s+register\\s+is\\s+${CONFIG_REGISTER}\r\n  ^Base\\s+[Ee]thernet\\s+MAC\\s+[Aa]ddress\\s+:\\s+${MAC}\r\n
+      \ ^System\\s+restarted\\s+at\\s+${RESTARTED}$$\r\n  ^Switch\\s+Port -> Stack\r\n
+      \ ^Switch\\s\\d+ -> Stack\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n\r\n\r\nStack\r\n
+      \ ^[Ss]ystem\\s+[Ss]erial\\s+[Nn]umber\\s+:\\s+${SERIAL}\r\n  ^[Mm]odel\\s+[Nn]umber\\s+:\\s+${HARDWARE}\\s*\r\n
+      \ ^[Cc]onfiguration\\s+register\\s+is\\s+${CONFIG_REGISTER}\r\n  ^Base [Ee]thernet
+      MAC [Aa]ddress\\s+:\\s+${MAC}"
+- model: inventory.devicetypetemplate
+  pk: 2
+  fields:
+    deleted: false
+    created: 2022-08-07 08:04:09.199170+00:00
+    updated: 2022-08-07 11:46:18.907546+00:00
+    root: false
+    active: true
+    name: Show interfaces
+    description: Cli command "show interfaces"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show interfaces
+    sfm_expression: "Value Required INTERFACE (\\S+)\r\nValue LINK_STATUS (.+?)\r\nValue
+      PROTOCOL_STATUS (.+?)\r\nValue HARDWARE_TYPE ([\\w ]+)\r\nValue ADDRESS ([a-fA-F0-9]{4}\\.[a-fA-F0-9]{4}\\.[a-fA-F0-9]{4})\r\nValue
+      BIA ([a-fA-F0-9]{4}\\.[a-fA-F0-9]{4}\\.[a-fA-F0-9]{4})\r\nValue DESCRIPTION
+      (.+?)\r\nValue IP_ADDRESS (\\d+\\.\\d+\\.\\d+\\.\\d+\\/\\d+)\r\nValue MTU (\\d+)\r\nValue
+      DUPLEX (([Ff]ull|[Aa]uto|[Hh]alf|[Aa]-).*?)\r\nValue SPEED (.*?)\r\nValue MEDIA_TYPE
+      (\\S+(\\s+\\S+)?)\r\nValue BANDWIDTH (\\d+\\s+\\w+)\r\nValue DELAY (\\d+\\s+\\S+)\r\nValue
+      ENCAPSULATION (.+?)\r\nValue LAST_INPUT (.+?)\r\nValue LAST_OUTPUT (.+?)\r\nValue
+      LAST_OUTPUT_HANG (.+?)\r\nValue QUEUE_STRATEGY (.+)\r\nValue INPUT_RATE (\\d+)\r\nValue
+      OUTPUT_RATE (\\d+)\r\nValue INPUT_PACKETS (\\d+)\r\nValue OUTPUT_PACKETS (\\d+)\r\nValue
+      INPUT_ERRORS (\\d+)\r\nValue CRC (\\d+)\r\nValue ABORT (\\d+)\r\nValue OUTPUT_ERRORS
+      (\\d+)\r\nValue VLAN_ID (\\d+)\r\nValue VLAN_ID_INNER (\\d+)\r\nValue VLAN_ID_OUTER
+      (\\d+)\r\n\r\nStart\r\n  ^\\S+\\s+is\\s+.+?,\\s+line\\s+protocol.*$$ -> Continue.Record\r\n
+      \ ^${INTERFACE}\\s+is\\s+${LINK_STATUS},\\s+line\\s+protocol\\s+is\\s+${PROTOCOL_STATUS}\\s*$$\r\n
+      \ ^\\s+Hardware\\s+is\\s+${HARDWARE_TYPE} -> Continue\r\n  ^.+address\\s+is\\s+${ADDRESS}\\s+\\(bia\\s+${BIA}\\)\\s*$$\r\n
+      \ ^\\s+Description:\\s+${DESCRIPTION}\\s*$$\r\n  ^\\s+Internet\\s+address\\s+is\\s+${IP_ADDRESS}\\s*$$\r\n
+      \ ^\\s+MTU\\s+${MTU}.*BW\\s+${BANDWIDTH}.*DLY\\s+${DELAY},\\s*$$\r\n  ^\\s+Encapsulation\\s+${ENCAPSULATION},
+      Vlan ID\\s+${VLAN_ID}.+$$\r\n  ^\\s+Encapsulation\\s+${ENCAPSULATION}, outer
+      ID\\s+${VLAN_ID_OUTER}, inner ID\\s+${VLAN_ID_INNER}.+$$\r\n  ^\\s+Encapsulation\\s+${ENCAPSULATION},.+$$\r\n
+      \ ^\\s+Last\\s+input\\s+${LAST_INPUT},\\s+output\\s+${LAST_OUTPUT},\\s+output\\s+hang\\s+${LAST_OUTPUT_HANG}\\s*$$\r\n
+      \ ^\\s+Queueing\\s+strategy:\\s+${QUEUE_STRATEGY}\\s*$$\r\n  ^\\s+${DUPLEX},\\s+${SPEED},.+media\\stype\\sis\\s${MEDIA_TYPE}$$\r\n
+      \ ^.*input\\s+rate\\s+${INPUT_RATE}.+$$\r\n  ^.*output\\s+rate\\s+${OUTPUT_RATE}.+$$\r\n
+      \ ^\\s+${INPUT_PACKETS}\\s+packets\\s+input,\\s+\\d+\\s+bytes,\\s+\\d+\\s+no\\s+buffer\\s*$$\r\n
+      \ ^\\s+${INPUT_ERRORS}\\s+input\\s+errors,\\s+${CRC}\\s+CRC,\\s+\\d+\\s+frame,\\s+\\d+\\s+overrun,\\s+\\d+\\s+ignored\\s*$$\r\n
+      \ ^\\s+${INPUT_ERRORS}\\s+input\\s+errors,\\s+${CRC}\\s+CRC,\\s+\\d+\\s+frame,\\s+\\d+\\s+overrun,\\s+\\d+\\s+ignored,\\s+${ABORT}\\s+abort\\s*$$\r\n
+      \ ^\\s+${OUTPUT_PACKETS}\\s+packets\\s+output,\\s+\\d+\\s+bytes,\\s+\\d+\\s+underruns\\s*$$\r\n
+      \ ^\\s+${OUTPUT_ERRORS}\\s+output\\s+errors,\\s+\\d+\\s+collisions,\\s+\\d+\\s+interface\\s+resets\\s*$$\r\n
+      \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 3
+  fields:
+    deleted: false
+    created: 2022-08-07 08:26:54.958323+00:00
+    updated: 2022-08-07 11:46:06.256846+00:00
+    root: false
+    active: true
+    name: Show interfaces switchport
+    description: Cli command "show interfaces switchport"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show interfaces switchport
+    sfm_expression: "Value Required INTERFACE (\\S+)\r\nValue SWITCHPORT (.+?)\r\nValue
+      SWITCHPORT_MONITOR (.+?)\r\nValue SWITCHPORT_NEGOTIATION (.+?)\r\nValue MODE
+      (.+?)\r\nValue ADMIN_MODE (.+?)\r\nValue ACCESS_VLAN (\\d+|unassigned)\r\nValue
+      NATIVE_VLAN (\\d+)\r\nValue VOICE_VLAN (\\S+)\r\nValue List TRUNKING_VLANS (\\S+?)\r\n\r\nStart\r\n
+      \ ^Name: -> Continue.Record\r\n  ^Name:\\s+${INTERFACE}\r\n  ^\\s*Switchport:\\s+${SWITCHPORT}$$\r\n
+      \ ^\\s*Switchport\\s+Monitor:\\s+${SWITCHPORT_MONITOR}$$\r\n  ^\\s*Operational\\s+Mode:\\s+${MODE}$$\r\n
+      \ ^\\s*Negotiation\\s+of\\s+Trunking:\\s+${SWITCHPORT_NEGOTIATION}$$\r\n  ^\\s*Access\\s+Mode\\s+VLAN:\\s+${ACCESS_VLAN}\r\n
+      \ ^\\s*Trunking\\s+Native\\s+Mode\\s+VLAN:\\s+${NATIVE_VLAN}\r\n  ^\\s*Voice\\s+VLAN:\\s+${VOICE_VLAN}\r\n
+      \ ^\\s*Trunking\\s+VLANs\\s+Enabled:\\s+${TRUNKING_VLANS},\\s*$$ -> Trunk\r\n
+      \ ^\\s*Trunking\\s+VLANs\\s+Enabled:\\s+${TRUNKING_VLANS}$$\r\n  ^\\s*Trunking\\s+VLANs\\s+Active\r\n
+      \ ^\\s*Administrative\\s+Mode:\\s+${ADMIN_MODE}$$\r\n  ^\\s*(?:Operational|Administrative)\\s+(?:Trunking|Native\\s+VLAN|private-vlan)\r\n
+      \ ^\\s*Voice\\s+VLAN:\r\n  ^\\s*Pruning\\s+VLANs\r\n  ^\\s*Capture\\s+(?:Mode|VLANs)\r\n
+      \ ^\\s*Autostate\\s+mode\\s+exclude\r\n  ^\\s*Protected\r\n  ^\\s*Unknown\\s+(unicast|multicast)\r\n
+      \ ^\\s*Vepa\\s+Enabled\r\n  ^\\s*App\\s+Interface\r\n  ^\\s*Appliance\\s+trust\r\n
+      \ ^\\s*Operational\\s+Dot1q\\s+Ethertype\r\n  ^\\s*Priority\\s+for\\s+untagged\\s+frames\r\n
+      \ ^\\s*Override\\s+vlan\\s+tag\\s+priority\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n
+      \ ^Time\\s+source\\s+is\r\n  ^. -> Error\r\n\r\nTrunk\r\n  ^\\s+${TRUNKING_VLANS},\\s*$$\r\n
+      \ ^\\s+${TRUNKING_VLANS}\\s*$$ -> Start\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 4
+  fields:
+    deleted: false
+    created: 2022-08-07 08:31:14.081979+00:00
+    updated: 2022-08-07 11:45:56.063032+00:00
+    root: false
+    active: true
+    name: Show ip interface
+    description: Cli command "show ip interface"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show ip interface
+    sfm_expression: "Value Required INTF (\\S+)\r\nValue LINK_STATUS (.+?)\r\nValue
+      PROTOCOL_STATUS (.+?)\r\nValue List IPADDR (\\S+?)\r\nValue List MASK (\\d*)\r\nValue
+      VRF (\\S+)\r\nValue MTU (\\d+)\r\nValue List IP_HELPER (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue
+      OUTGOING_ACL (.*?)\r\nValue INBOUND_ACL (.*?)\r\n\r\n\r\nStart\r\n  ^\\S ->
+      Continue.Record\r\n  ^${INTF}\\s+is\\s+${LINK_STATUS},\\s+line\\s+protocol\\s+is\\s+${PROTOCOL_STATUS}\\s*$$\r\n
+      \ ^\\s+Internet\\s+address\\s+is\\s+${IPADDR}/?${MASK}\\s*$$\r\n  ^\\s+Internet\\s+address\\s+will\\s+be\\s+negotiated\r\n
+      \ ^\\s+Secondary\\s+address\\s+${IPADDR}/?${MASK}\\s*$$\r\n  ^.+VPN\\s+Routing/Forwarding\\s+\"${VRF}\"\r\n
+      \ ^\\s+MTU\\s+is\\s+${MTU}\\s+bytes\r\n  ^\\s+Helper\\s+address(es|)\\s(is|are)\\s+${IP_HELPER}\\s*$$
+      -> HELPERS\r\n  ^\\s+Outgoing\\s+(?:Common\\s+)?access\\s+list\\s+is\\s+not\\s+set\r\n
+      \ ^\\s+Outgoing\\s+(?:Common\\s+)?access\\s+list\\s+is\\s+${OUTGOING_ACL}\\s*$$\r\n
+      \ ^\\s+Inbound\\s+(?:Common\\s+)?access\\s+list\\s+is\\s+not\\s+set\r\n  ^\\s+Inbound\\s+(?:Common\\s+)?access\\s+list\\s+is\\s+${INBOUND_ACL}\\s*$$\r\n
+      \ ^\\s+Internet\\s+protocol\r\n  ^\\s+Interface\\s+is\\s+unnumbered\r\n  ^\\s+Peer\\s+address\r\n
+      \ ^\\s+Dialer\r\n  ^\\s+Broadcast\r\n  ^\\s+Multicast\r\n  ^\\s+2[2-5]\\d\\.\r\n
+      \ ^\\s+Address\\s+determined\r\n  ^\\s+Peer\r\n  ^\\s+Directed\r\n  ^\\s+MTU\r\n
+      \ ^\\s+Helper\r\n  ^\\s+Directed\r\n  ^\\s+Outgoing\r\n  ^\\s+Inbound\r\n  ^\\s+.*Proxy\r\n
+      \ ^\\s+Security\r\n  ^\\s+Split\r\n  ^\\s+ICMP\r\n  ^\\s+IP\\s+(?:fast|Flow|CEF|Null|multicast|route|output|access)\r\n
+      \ ^\\s+Downstream\r\n  ^\\s+Associated\r\n  ^\\s+Topology\r\n  ^\\s+Router\r\n
+      \ ^\\s+TCP\r\n  ^\\s+RTP\r\n  ^\\s+Probe\r\n  ^\\s+Policy\r\n  ^\\s+Network\\s+address\\s+\r\n
+      \ ^\\s+BGP\r\n  ^\\s+Sampled\\s+Netflow\r\n  ^\\s+IP\\s+(Routed|Bridged)\\s+Flow\r\n
+      \ ^\\s+(Input|Output|Post)\\s+.*features\r\n  ^\\s+(IPv4\\s+)?WCCP\r\n  ^\\s+IP\\s+verify\\s+source\\s+reachable\r\n
+      \ ^\\s+\\d+\\s+(suppressed\\s+)?verification\\s+drop(s)?\r\n  ^\\s*IP\\s+Distributed\\s+switching\\s+is\r\n
+      \ ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error\r\n\r\nHELPERS\r\n
+      \ ^\\s+${IP_HELPER}\\s*$$\r\n  ^\\s+Directed -> Start\r\n  ^.* -> Error"
+- model: inventory.devicetypetemplate
+  pk: 5
+  fields:
+    deleted: false
+    created: 2022-08-07 08:31:34.769315+00:00
+    updated: 2022-08-07 11:45:43.250192+00:00
+    root: false
+    active: true
+    name: Show cdp neighbors detail
+    description: Cli command "show cdp neighbors detail"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show cdp neighbors detail
+    sfm_expression: "Value Required DESTINATION_HOST (\\S+)\r\nValue MANAGEMENT_IP
+      (\\d+\\.\\d+\\.\\d+\\.\\d+|\\w+\\.\\w+\\.\\w+)\r\nValue PLATFORM (.*)\r\nValue
+      REMOTE_PORT (.*)\r\nValue LOCAL_PORT (.*)\r\nValue SOFTWARE_VERSION (.*$)\r\nValue
+      CAPABILITIES (.+?)\r\n\r\nStart\r\n  ^Device ID: ${DESTINATION_HOST}\r\n  ^Entry
+      address\\(es\\)\\s*:\\s* -> ParseIP\r\n  ^Platform\\s*:\\s*${PLATFORM}\\s*,\\s*Capabilities\\s*:\\s*${CAPABILITIES}\\s+$$\r\n
+      \ ^Platform\\s*:\\s*${PLATFORM}\\s*,\\s*Capabilities\\s*:\\s*${CAPABILITIES}$$\r\n
+      \ ^Interface: ${LOCAL_PORT},  Port ID \\(outgoing port\\): ${REMOTE_PORT}\r\n
+      \ ^Version : -> GetVersion\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n\r\nParseIP\r\n
+      \ ^.*IP address: ${MANAGEMENT_IP} -> Start\r\n  ^Platform\\s*:\\s*${PLATFORM}\\s*,\\s*Capabilities\\s*:\\s*${CAPABILITIES}\\s+$$
+      -> Start\r\n  ^Platform\\s*:\\s*${PLATFORM}\\s*,\\s*Capabilities\\s*:\\s*${CAPABILITIES}$$
+      -> Start\r\n  ^.* -> Start\r\n\r\nGetVersion\r\n  ^${SOFTWARE_VERSION} -> Record
+      Start"
+- model: inventory.devicetypetemplate
+  pk: 6
+  fields:
+    deleted: false
+    created: 2022-08-07 08:32:07.776322+00:00
+    updated: 2022-08-07 11:45:31.546400+00:00
+    root: false
+    active: true
+    name: Show clock
+    description: Cli command "show clock"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show clock
+    sfm_expression: "Value TIME (\\d+:\\d+:\\d+\\.\\d+)\r\nValue TIMEZONE (\\w+)\r\nValue
+      DAYWEEK (\\w+)\r\nValue MONTH (\\w+)\r\nValue DAY (\\d+)\r\nValue YEAR (\\d+)\r\n\r\nStart\r\n
+      \ ^[\\*]?${TIME}\\s${TIMEZONE}\\s${DAYWEEK}\\s${MONTH}\\s${DAY}\\s${YEAR} ->
+      Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 7
+  fields:
+    deleted: false
+    created: 2022-08-07 10:07:55.744724+00:00
+    updated: 2022-08-07 11:45:22.836746+00:00
+    root: false
+    active: true
+    name: Show access-list
+    description: Cli command "show access-list"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show access-list
+    sfm_expression: "Value Filldown NAME (\\S+)\r\nValue Required SN (\\d+)\r\nValue
+      ACTION (\\w+)\r\nValue PROTOCOL (\\w+)\r\nValue SOURCE (host\\s\\d+\\.\\d+\\.\\d+\\.\\d+|any|\\d+\\.\\d+\\.\\d+\\.\\d+\\s\\d+\\.\\d+\\.\\d+\\.\\d+|\\d+\\.\\d+\\.\\d+\\.\\d+,\\s+wildcard
+      bits\\s\\d+\\.\\d+\\.\\d+\\.\\d+|\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue PORT (eq|gt|lt|neq|range)\r\nValue
+      RANGE ([(\\S+\\s\\S+)]+)\r\nValue DESTINATION (host\\s\\d+\\.\\d+\\.\\d+\\.\\d+|any|\\d+\\.\\d+\\.\\d+\\.\\d+\\s\\d+\\.\\d+\\.\\d+\\.\\d+|\\d+\\.\\d+\\.\\d+\\.\\d+,\\s+wildcard
+      bits\\s\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue MODIFIER (.*)\r\n\r\nStart\r\n  ^.*list\\s+${NAME}\r\n
+      \ ^\\s+${SN}\\s+${ACTION}\\s+${PROTOCOL}\\s+${SOURCE}(\\s+${PORT})*(\\s${RANGE})*\\s+${DESTINATION}(\\s+${MODIFIER})*
+      -> Record\r\n  ^\\s+${SN}\\s+${ACTION}\\s+${SOURCE}(\\s+${MODIFIER})* -> Record\r\n
+      \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 8
+  fields:
+    deleted: false
+    created: 2022-08-07 10:08:42.829948+00:00
+    updated: 2022-08-07 11:44:48.315117+00:00
+    root: false
+    active: true
+    name: Show ip access-list
+    description: Cli command "show ip access-list"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show ip access-list
+    sfm_expression: "Value Required,Filldown ACL_TYPE (Standard|Extended)\r\nValue
+      Required,Filldown ACL_NAME (\\S+)\r\nValue LINE_NUM (\\d+)\r\nValue ACTION (permit|deny)\r\nValue
+      PROTOCOL (\\S+)\r\nValue SRC_HOST (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue SRC_ANY
+      (any)\r\nValue SRC_NETWORK (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue SRC_WILDCARD
+      (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue SRC_NETWORK_OBJECT_GROUP_NAME (\\S+)\r\nValue
+      SRC_PORT_MATCH (eq|neq|precedence|range|tos|lt|gt)\r\nValue SRC_PORT ((?<!range\\s).+?)\r\nValue
+      SRC_PORT_RANGE_START ((?<=range\\s)\\S+)\r\nValue SRC_PORT_RANGE_END (\\S+)\r\nValue
+      DST_HOST (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue DST_ANY (any)\r\nValue DST_NETWORK
+      (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue DST_WILDCARD (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue
+      DST_NETWORK_OBJECT_GROUP_NAME (\\S+)\r\nValue DST_PORT_MATCH (eq|neq|precedence|range|tos|lt|gt)\r\nValue
+      DST_PORT ((?<!range\\s).+?)\r\nValue DST_PORT_RANGE_START ((?<=range\\s)\\S+)\r\nValue
+      DST_PORT_RANGE_END (\\S+)\r\nValue SERVICE_OBJECT_GROUP_NAME (\\S+)\r\nValue
+      FLAGS_MATCH (match-all|match-any)\r\nValue TCP_FLAG (((\\+|-|)ack(\\s*?)|(\\+|-|)established(\\s*?)|(\\+|-|)fin(\\s*?)|(\\+|-|)fragments(\\s*?)|(\\+|-|)psh(\\s*?)|(\\+|-|)rst(\\s*?)|(\\+|-|)syn(\\s*?)|urg(\\s*?))+)\r\nValue
+      LOG (log-input|log)\r\nValue LOG_TAG (\\S+)\r\nValue ICMP_TYPE (administratively-prohibited|echo|echo-reply|mask-request|packet-too-big|parameter-problem|port-unreachable|redirect|router-advertisement|router-solicitation|time-exceeded|ttl-exceeded|unreachable)\r\nValue
+      TIME (\\S+)\r\nValue STATE (inactive|active)\r\nValue MATCHES (\\d+)\r\n\r\nStart\r\n
+      \ ^(Standard|Extended) -> Continue.Clearall\r\n  ^${ACL_TYPE}\\s+IP\\s+access\\s+list\\s+${ACL_NAME}\\s*
+      -> Record\r\n  ^\\s+${LINE_NUM}\\s+${ACTION}\\s+(${PROTOCOL}|${SERVICE_OBJECT_GROUP_NAME})\\s+(host\\s+${SRC_HOST}|${SRC_ANY}|${SRC_NETWORK}\\s+${SRC_WILDCARD}|object-group\\s+${SRC_NETWORK_OBJECT_GROUP_NAME})(\\s+${SRC_PORT_MATCH}\\s+|)(${SRC_PORT_RANGE_START}\\s+${SRC_PORT_RANGE_END}|${SRC_PORT}|)\\s+(host\\s+${DST_HOST}|${DST_ANY}|${DST_NETWORK}\\s+${DST_WILDCARD}|object-group\\s+${DST_NETWORK_OBJECT_GROUP_NAME})(\\s+${DST_PORT_MATCH}\\s+(${DST_PORT_RANGE_START}\\s+${DST_PORT_RANGE_END}|${DST_PORT}|)|\\s+(${FLAGS_MATCH}\\s+|)${TCP_FLAG}|)(\\s+${ICMP_TYPE}|)(\\s+${LOG}|)(\\s+time-range\\s+${TIME}\\s+\\(${STATE}\\)|)(?:\\s+\\(${MATCHES}\\s+\\S+\\)|)(\\s+\\(tag\\s+=\\s+${LOG_TAG}\\)|)\\s*$$
+      -> Record\r\n  ^\\s+${LINE_NUM}\\s+${ACTION}\\s+(${SRC_NETWORK},\\s+wildcard\\s+bits\\s+${SRC_WILDCARD}|${SRC_HOST}|${SRC_ANY})(\\s+${LOG}|)(\\s+time-range\\s+${TIME}\\s+\\(${STATE}\\)|)(?:\\s+\\(${MATCHES}\\s+\\S+\\)|)(\\s+\\(tag\\s+=\\s+${LOG_TAG}\\)|)\\s*$$
+      -> Record\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n
+      \ ^.* -> Error \"Could not parse line:\"\r\n\r\nEOF"
+- model: inventory.devicetypetemplate
+  pk: 9
+  fields:
+    deleted: false
+    created: 2022-08-07 10:11:16.901893+00:00
+    updated: 2022-08-07 11:44:38.695848+00:00
+    root: false
+    active: true
+    name: Show ip route
+    description: Cli command "show ip route"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show ip route
+    sfm_expression: "Value Filldown PROTOCOL (\\w)\r\nValue Filldown TYPE (\\w{0,2})\r\nValue
+      Required,Filldown NETWORK (\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3})\r\nValue Filldown
+      MASK (\\d{1,2})\r\nValue DISTANCE (\\d+)\r\nValue METRIC (\\d+)\r\nValue NEXTHOP_IP
+      (\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3})\r\nValue NEXTHOP_IF ([A-Z][\\w\\-\\.:/]+)\r\nValue
+      UPTIME (\\d[\\w:\\.]+)\r\n\r\nStart\r\n  ^Gateway.* -> Routes\r\n  ^Load\\s+for\\s+\r\n
+      \ ^Time\\s+source\\s+is\r\n\r\nRoutes\r\n  \r\n  ^\\s+\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}\\/${MASK}\\sis
+      -> Clear\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\/${MASK}\\sis\\sdirectly\\sconnected,\\s${NEXTHOP_IF}
+      -> Record\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\sis\\sdirectly\\sconnected,\\s${NEXTHOP_IF}
+      -> Record\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\/${MASK}\\s\\[${DISTANCE}/${METRIC}\\]\\svia\\s${NEXTHOP_IP}(,\\s${UPTIME})?(,\\s${NEXTHOP_IF})?
+      -> Record\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\s\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP}(,\\s${UPTIME})?(,\\s${NEXTHOP_IF})?
+      -> Record\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\/${MASK}\\s\\[${DISTANCE}/${METRIC}\\],\\s${UPTIME},\\s${NEXTHOP_IF}
+      -> Record\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\/${MASK}\\sis\\sa\\ssummary,\\s${UPTIME},\\s${NEXTHOP_IF}
+      -> Record\r\n  ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK}\\/${MASK} -> Next\r\n
+      \ ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK} -> Next\r\n  ^\\s+\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP}(,\\s${UPTIME})?(,\\s${NEXTHOP_IF})?
+      -> Record\r\n  ^\\s+\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP} -> Record\r\n
+      \ ^\\s* -> Clearall\r\nEOF"
+- model: inventory.devicetypetemplate
+  pk: 10
+  fields:
+    deleted: false
+    created: 2022-08-07 10:12:01.190656+00:00
+    updated: 2022-08-07 11:43:32.901846+00:00
+    root: false
+    active: true
+    name: Show inventory
+    description: Cli command "show inventory"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show inventory
+    sfm_expression: "Value NAME (.*)\r\nValue DESCR (.*)\r\nValue PID (([\\S+]+|.*))\r\nValue
+      VID (.*)\r\nValue SN ([\\w+\\d+]+)\r\n\r\nStart\r\n  ^NAME:\\s+\"${NAME}\",\\s+DESCR:\\s+\"${DESCR}\"\r\n
+      \ ^PID:\\s+${PID}.*,.*VID:\\s+${VID},.*SN:\\s+${SN} -> Record\r\n  ^PID:\\s+,.*VID:\\s+${VID},.*SN:
+      -> Record\r\n  ^PID:\\s+${PID}.*,.*VID:\\s+${VID},.*SN: -> Record\r\n  ^PID:\\s+,.*VID:\\s+${VID},.*SN:\\s+${SN}
+      -> Record\r\n  ^PID:\\s+${PID}.*,.*VID:\\s+${VID}.*\r\n  ^PID:\\s+,.*VID:\\s+${VID}.*\r\n
+      \ ^.*SN:\\s+${SN} -> Record\r\n  ^.*SN: -> Record\r\n  ^Load\\s+for\\s+\r\n
+      \ ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 11
+  fields:
+    deleted: false
+    created: 2022-08-07 10:12:52.466023+00:00
+    updated: 2022-08-07 11:43:25.112475+00:00
+    root: false
+    active: true
+    name: Show vrf
+    description: Cli command "show vrf"
+    ico: 1
+    color: 1
+    special: true
+    vrf: true
+    device_type: 1
+    command: show vrf
+    sfm_expression: "Value Required NAME (\\S+)\r\nValue DEFAULT_RD ((\\d+|\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}):\\d+|<not
+      set>)\r\nValue PROTOCOLS (\\S+)\r\nValue List INTERFACES (\\S+)\r\n\r\nStart\r\n
+      \ ^\\s+Name\\s+Default RD\\s+Protocols\\s+Interfaces -> Start_record\r\n  ^Load\\s+for\\s+\r\n
+      \ ^Time\\s+source\\s+is\r\n\r\nStart_record\r\n  ^\\s{2}\\S+ -> Continue.Record\r\n
+      \ ^\\s{60}\\s+${INTERFACES}\r\n  ^\\s+${NAME}\\s+${DEFAULT_RD}\\s+${PROTOCOLS}\\s+${INTERFACES}\r\n
+      \ ^\\s+${NAME}\\s+${DEFAULT_RD}\\s+${PROTOCOLS}"
+- model: inventory.devicetypetemplate
+  pk: 12
+  fields:
+    deleted: false
+    created: 2022-08-07 10:14:41.186456+00:00
+    updated: 2022-08-07 11:43:16.744089+00:00
+    root: false
+    active: true
+    name: Show lldp neighbors detail
+    description: Cli command "show lldp neighbors detail"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show lldp neighbors detail
+    sfm_expression: "Value LOCAL_INTERFACE (\\S+)\r\nValue CHASSIS_ID ([^:]+)\r\nValue
+      NEIGHBOR_PORT_ID (.*)\r\nValue NEIGHBOR_INTERFACE (.*)\r\nValue NEIGHBOR (.+?)\r\nValue
+      SYSTEM_DESCRIPTION (.*)\r\nValue CAPABILITIES (.*)\r\nValue MANAGEMENT_IP (\\S+)\r\nValue
+      VLAN (\\d+)\r\nValue SERIAL (\\S+)\r\nValue POWER_PAIR (\\S+)\r\nValue POWER_CLASS
+      (\\d+)\r\nValue POWER_DEVICE_TYPE (\\S+)\r\nValue POWER_PRIORITY (\\S+)\r\nValue
+      POWER_SOURCE (\\S+)\r\nValue POWER_REQUESTED (\\d+)\r\n\r\nStart\r\n  ^.*not
+      advertised\r\n  ^.*Invalid input detected -> EOF\r\n  ^.*LLDP is not enabled
+      -> EOF\r\n  ^Local\\s+Intf:\\s+${LOCAL_INTERFACE}\\s*$$\r\n  ^Chassis\\s+id:\\s+${CHASSIS_ID}\\s*$$\r\n
+      \ ^Port\\s+id:\\s+${NEIGHBOR_PORT_ID}\\s*$$\r\n  ^Port\\s+Description:\\s+${NEIGHBOR_INTERFACE}\\s*$$\r\n
+      \ ^System\\s+Name(\\s+-\\s+not\\s+advertised)\\s*$$\r\n  ^System\\s+Name:?\\s*$$\r\n
+      \ ^System\\s+Name(:\\s+${NEIGHBOR})\\s*$$\r\n  ^System\\s+Description -> GetDescription\r\n
+      \ ^Time\r\n  ^System\\s+Capabilities\r\n  ^Enabled\\s+Capabilities:\\s+${CAPABILITIES}\\s*$$\r\n
+      \ ^Management\\s+Addresses\r\n  ^\\s+OID\r\n  ^\\s+[\\d+\\.]{8,}\r\n  ^.*IP:\\s+${MANAGEMENT_IP}\\s*$$\r\n
+      \ ^Auto\\s+Negotiation\r\n  ^Physical\\s+media\r\n  ^\\s+.+\\s*$$\r\n  ^Media\\s+Attachment\r\n
+      \ ^\\s+Inventory\r\n  ^\\s+Capabilities\r\n  ^\\s+Device\\s+type\r\n  ^\\s+Network\\s+Policies\r\n
+      \ ^\\s+Power\\s+requirements\r\n  ^\\s+Location\r\n  ^Time\\s+remaining\r\n
+      \ ^Vlan\\s+ID:\\s+(?:${VLAN}|-\\s+not\\s+advertised)\\s*$$\r\n  ^\\s+\\(\\S+\\)\r\n
+      \ ^(?:PoE|\\s+Power)\r\n  ^\\s*-+\\s*$$ -> Record\r\n  ^Power\\s+via\\s+MDI
+      -> PowerMDI\r\n  ^MED -> Med\r\n  ^\\s*\\^\\s*\r\n  ^\\s*Total\\s+entries\\s+displayed
+      -> Record\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n
+      \ ^.*$$ -> Error\r\n\r\nGetDescription\r\n  ^${SYSTEM_DESCRIPTION} -> IgnoreDescription\r\n\r\nIgnoreDescription\r\n
+      \ ^Time\\s+remaining -> Start\r\n  ^\\S*\r\n  ^\\s*$$\r\n  ^.* -> Error\r\n\r\nPowerMDI\r\n
+      \ ^\\s+Power\\s+Pair:\\s+${POWER_PAIR}\\s*$$\r\n  ^\\s+Power\\s+Class:\\s+${POWER_CLASS}\\s*$$\r\n
+      \ ^\\s+Power\\s+Device\\s+Type:\\s+${POWER_DEVICE_TYPE}\\s*$$\r\n  ^\\s+Power\\s+Source:\\s+${POWER_SOURCE}\\s*$$\r\n
+      \ ^\\s+Power\\s+Priority:\\s+${POWER_PRIORITY}\\s*$$\r\n  ^\\s+Power\\s+Requested:\\s+${POWER_REQUESTED}\\s+mW\\s*$$\r\n
+      \ ^\\s*$$ -> Start\r\n\r\nMed\r\n  ^\\s+Serial\\s+number:\\s+${SERIAL}\\s*$$\r\n
+      \ ^\\s+\\S+\r\n  ^\\s*$$\r\n  ^\\s*Total\\s+entries\\s+displayed -> Record\r\n
+      \ ^\\s*-+\\s*$$ -> Continue.Record\r\n  ^\\s*-+\\s*$$ -> Start\r\n  ^.* -> Error"
+- model: inventory.devicetypetemplate
+  pk: 13
+  fields:
+    deleted: false
+    created: 2022-08-07 10:15:41.920717+00:00
+    updated: 2022-08-07 11:43:00.191790+00:00
+    root: false
+    active: true
+    name: Show archive
+    description: CLI command "show archive"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show archive
+    sfm_expression: "Value STATE (\\w+\\s\\w+)\r\nValue NEXT_FILENAME (\\S+)\r\nValue
+      List FILENAMES (\\S+)\r\nValue CURRENT_INDEX (\\d+)\r\n\r\nStart\r\n  ^The\\s+maximum\\s+archive\\s+configurations\\s+allowed\\s+is\\s+\\d+.\r\n
+      \ ^There\\s+(are|is)\\s+currently\\s+\\d+\\s+archive\\s+configuration(s|)\\s+saved.\r\n
+      \ ^The\\s+next\\s+archive\\s+file\\s+will\\s+be\\s+named\\s+${NEXT_FILENAME}\r\n
+      \ ^\\s+Archive\\s+#\\s+Name\r\n  ^\\s+${CURRENT_INDEX}\\s+${FILENAMES}\\s+<-\\s+Most\\s+Recent\r\n
+      \ ^\\s+\\d+\\s+${FILENAMES}\r\n  ^\\s+\\d+ -> Record\r\n  ^\\sArchive feature
+      ${STATE} -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^.
+      -> Error"
+- model: inventory.devicetypetemplate
+  pk: 14
+  fields:
+    deleted: false
+    created: 2022-08-07 10:16:30.828765+00:00
+    updated: 2022-08-07 11:42:50.967703+00:00
+    root: false
+    active: true
+    name: Show dmvpn
+    description: CLI command "show dmvpn"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show dmvpn
+    sfm_expression: "Value PEER_NBMA (\\S*?)\r\nValue PEER_TUNNEL (\\S*?)\r\nValue
+      STATE (\\S*?)\r\nValue UPTIME (\\S*?)\r\nValue ATTRIBUTE (\\S*?)\r\n\r\nStart\r\n
+      \ ^\\s+\\d+\\s+${PEER_NBMA}\\s+${PEER_TUNNEL}\\s+${STATE}\\s+${UPTIME}\\s+${ATTRIBUTE}$$
+      -> Record\r\n  ^Legend.*\r\n  ^\\s+\\D.*.*$$\r\n  ^=*$$\r\n  ^Interface.*$$\r\n
+      \ ^Type.*$$\r\n  ^\\s*$$\r\n  ^\\s+#\\s+Ent\\s+Peer\\s+NBMA\\s+Addr\\s+Peer\\s+Tunnel\\s+Add\\s+State\\s+UpDn\\s+Tm\\s+Attrb\r\n
+      \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 15
+  fields:
+    deleted: false
+    created: 2022-08-07 10:18:02.968716+00:00
+    updated: 2022-08-07 11:42:39.552593+00:00
+    root: false
+    active: true
+    name: Show ip arp
+    description: CLI command "show ip arp"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show ip arp
+    sfm_expression: "Value Required PROTOCOL (\\S+)\r\nValue Required ADDRESS (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue
+      Required AGE (\\S+)\r\nValue Required MAC (\\S+)\r\nValue Required TYPE (\\S+)\r\nValue
+      INTERFACE (\\S+)\r\n\r\nStart\r\n  ^Protocol\\s+Address\\s+Age\\s*\\(min\\)\\s+Hardware
+      Addr\\s+Type\\s+Interface\r\n  ^${PROTOCOL}\\s+${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${TYPE}\\s+${INTERFACE}
+      -> Record\r\n  ^${PROTOCOL}\\s+${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${TYPE} ->
+      Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 16
+  fields:
+    deleted: false
+    created: 2022-08-07 10:19:01.859323+00:00
+    updated: 2022-08-07 10:19:01.859368+00:00
+    root: false
+    active: true
+    name: Show etherchannel summary
+    description: CLI command "show etherchannel summary"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show etherchannel summary
+    sfm_expression: "Value Required GROUP (\\d+)\r\nValue PO_NAME (\\S+)\r\nValue
+      PO_STATUS (\\D+)\r\nValue PROTOCOL (\\S+)\r\nValue List INTERFACES ([\\w\\.\\/]+)\r\nValue
+      List INTERFACES_STATUS (\\D+)\r\n\r\nStart\r\n  ^Group\\s+Port-channel\\s+Protocol
+      -> PortChannel\r\n  ^\\s*$$\r\n  \r\n\t\r\n\r\nPortChannel\r\n  ^\\d+ -> Continue.Record\r\n
+      \ ^${GROUP}\\s+${PO_NAME}\\(${PO_STATUS}\\)\\s+${PROTOCOL}\\s* -> Continue\r\n
+      \ ^.+(-|LACP|PAgP)\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\) -> Continue\r\n
+      \ ^.+(-|LACP|PAgP)\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
+      -> Continue\r\n  ^.+(-|LACP|PAgP)\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
+      -> Continue\r\n  ^.+(-|LACP|PAgP)\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
+      -> Continue\r\n  ^\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\) -> Continue\r\n
+      \ ^\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\) -> Continue\r\n
+      \ ^\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
+      -> Continue\r\n  ^\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
+      -> Continue\r\n  ^\\d+\r\n  ^\\s+\r\n  ^-+\\++\r\n  ^\\s*$$\r\n  ^(RU|SU)\\s+-\\s+L(2|3)\\s+port-channel\\s+UP\\s+(s|S)tate\r\n
+      \ ^(P|S)/(bndl|susp)\\s+-\\s+(Bundled|Suspended)\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 17
+  fields:
+    deleted: false
+    created: 2022-08-07 10:20:02.253064+00:00
+    updated: 2022-08-07 11:42:24.341459+00:00
+    root: false
+    active: true
+    name: Show ip cef detail
+    description: CLI command "show ip cef detail"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show ip cef detail
+    sfm_expression: "Value Required PREFIX ((?:\\d{1,3}\\.){3}\\d{1,3}\\/\\d{1,2})\r\nValue
+      List NEXTHOP ((?:no\\s)?\\S+)\r\nValue List INTERFACE ([A-Za-z][A-Za-z0-9\\.\\/-]+)\r\n\r\nStart\r\n
+      \ ^%IPv4\\s+CEF\\s+not\\s+running$$ -> End\r\n  ^\\s+Invalid\\s+prefix/mask
+      -> End\r\n  ^IP(?:v4)?\\s+CEF\r\n  ^VRF|Adjacency\r\n  ^\\s+\\d+\\s+(?:routes|instant|leaves|load|prefixes|in-place)\r\n
+      \ ^\\s+(?:Default|Table|Database|Resolution|Non-stop|Switchover)\r\n  ^\\s+(?:universal|refcounts)\r\n
+      \ ^.*?CEF\\s+resets\r\n  ^(?:\\d{1,3}\\.){3}\\d{1,3}\\/\\d{1,2} -> Continue.Record\r\n
+      \ ^${PREFIX},\\s+epoch\r\n  ^\\s+recursive\\s+via\\s+${NEXTHOP} -> Recursive\r\n
+      \ ^\\s+${NEXTHOP}(?<=receive)\\s+for\\s+${INTERFACE}\r\n  ^\\s+${NEXTHOP}(?<=attached)\\s+to\\s+${INTERFACE}\r\n
+      \ ^\\s+${NEXTHOP}(?<=drop)$$\r\n  ^\\s+${NEXTHOP}(?<=no route)$$\r\n  ^\\s+${NEXTHOP}(?<=receive)$$\r\n
+      \ ^\\s+${NEXTHOP}(?<=multicast)$$\r\n  ^\\s+nexthop\\s+${NEXTHOP}\\s+${INTERFACE}\r\n
+      \ ^${PREFIX},\\s+version -> Continue\r\n  ^.*?epoch\\s+\\d+,.+?${NEXTHOP}(?<=receive)\r\n
+      \ ^.*?epoch\\s+\\d+,.+?${NEXTHOP}(?<=attached)\r\n  ^.*?epoch.*?$$\r\n  ^\\s+via\\s+${INTERFACE},\\s+\\d+\\s+depend\r\n
+      \ ^.*?depend\r\n  ^\\s+next\\s+hop\\s+${NEXTHOP},\\s+${INTERFACE}\r\n  ^\\s+next\\s+hop\r\n
+      \ ^\\s+valid\\s+${NEXTHOP}(?<=drop)\\s+adjacency$$\r\n  ^\\s+valid.+adjacency\r\n
+      \ ^\\s+Adj\\s+source\r\n  ^\\s+Special\\s+source\r\n  ^\\s+Interface\\s+source\r\n
+      \ ^\\s+DefNet\\s+source\r\n  ^\\s+Q[Oo]S\r\n  ^\\s+Covered\\s+dependent\r\n
+      \ ^\\s+need\\s+deagg\r\n  ^\\s+notify\\s+cover\r\n  ^\\s+Dependent\\s+covered\r\n
+      \ ^.*?RR\\s+source\r\n  ^\\s+(?:Net)?Flow:\r\n  ^\\s+Interest\\s+List:\r\n  ^\\s+-\\s+\r\n
+      \ ^\\s+BFD\\s+state\r\n  ^\\s+\\d+\\s+IPL\\s+source\r\n  ^\\d+\\s+packets\r\n
+      \ ^\\s*$$\r\n  ^. -> Error\r\n\r\nRecursive\r\n  ^\\s+attached\\s+to\\s+${INTERFACE}
+      -> Start\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 18
+  fields:
+    deleted: false
+    created: 2022-08-07 10:58:53.353188+00:00
+    updated: 2022-08-07 11:06:58.502131+00:00
+    root: false
+    active: true
+    name: Show ip nat translations
+    description: CLI command "show ip nat translations"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show ip nat translations
+    sfm_expression: "Value PROTOCOL (tcp|udp|icmp|---)\r\nValue INSIDE_GLOBAL_IP (\\d+\\.\\d+\\.\\d+\\.\\d+|---)\r\nValue
+      INSIDE_GLOBAL_PORT (\\S+)\r\nValue INSIDE_LOCAL_IP (\\d+\\.\\d+\\.\\d+\\.\\d+|---)\r\nValue
+      INSIDE_LOCAL_PORT (\\S+)\r\nValue OUTSIDE_LOCAL_IP (\\d+\\.\\d+\\.\\d+\\.\\d+|---)\r\nValue
+      OUTSIDE_LOCAL_PORT (\\S+)\r\nValue OUTSIDE_GLOBAL_IP (\\d+\\.\\d+\\.\\d+\\.\\d+|---)\r\nValue
+      OUTSIDE_GLOBAL_PORT (\\S+)\r\n\r\nStart\r\n  ^Pro\\s+Inside\\sglobal\\s+Inside\\slocal\\s+Outside\\slocal\\s+Outside\\sglobal\r\n
+      \ ^${PROTOCOL}\\s+${INSIDE_GLOBAL_IP}:${INSIDE_GLOBAL_PORT}\\s+${INSIDE_LOCAL_IP}:${INSIDE_LOCAL_PORT}\\s+${OUTSIDE_LOCAL_IP}:${OUTSIDE_GLOBAL_PORT}\\s+${OUTSIDE_GLOBAL_IP}:${OUTSIDE_LOCAL_PORT}
+      -> Record\r\n  ^${PROTOCOL}\\s+${INSIDE_GLOBAL_IP}\\s+${INSIDE_LOCAL_IP}\\s+${OUTSIDE_LOCAL_IP}\\s+${OUTSIDE_GLOBAL_IP}
+      -> Record"
+- model: inventory.devicetypetemplate
+  pk: 19
+  fields:
+    deleted: false
+    created: 2022-08-07 10:59:59.584141+00:00
+    updated: 2022-08-07 11:15:11.834305+00:00
+    root: false
+    active: true
+    name: Show license
+    description: CLI command "show license"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show license
+    sfm_expression: "Value FEATURE (\\S+)\r\nValue PERIOD_LEFT (.*)\r\nValue PERIOD_USED
+      (.*)\r\nValue LICENSE_TYPE (.*)\r\nValue LICENSE_STATE (.*)\r\nValue LICENSE_COUNT
+      (.*)\r\nValue LICENSE_PRIORITY (.*)\r\n\r\nStart\r\n  ^Index\\s+\\d+\\s+Feature:
+      -> Continue.Record\r\n  ^Index\\s+\\d+\\s+Feature:\\s+${FEATURE}\\s*$$\r\n  ^\\s+Period\\s+left:\\s+${PERIOD_LEFT}$$\r\n
+      \ ^\\s+Period\\s+Used:\\s+${PERIOD_USED}$$\r\n  ^\\s+License\\s+Type:\\s+${LICENSE_TYPE}$$\r\n
+      \ ^\\s+License\\s+State:\\s+${LICENSE_STATE}$$\r\n  ^\\s+License\\s+Count:\\s+${LICENSE_COUNT}$$\r\n
+      \ ^\\s+License\\s+Priority:\\s+${LICENSE_PRIORITY}$$\r\n  ^\\s*$$\r\n  ^. ->
+      Error"
+- model: inventory.devicetypetemplate
+  pk: 20
+  fields:
+    deleted: false
+    created: 2022-08-07 11:01:01.830355+00:00
+    updated: 2022-08-07 11:15:07.918061+00:00
+    root: false
+    active: true
+    name: Show logging
+    description: CLI command "show logging"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show logging
+    sfm_expression: "Value NUMBER (\\d+)\r\nValue MONTH (\\S+)\r\nValue DAY (\\d{1,2})\r\nValue
+      TIME ((\\d+:\\d+:\\d+\\.\\d+)|(\\d+:\\d+:\\d+)|(\\d{1,2}:\\d{1,2}))\r\nValue
+      TIMEZONE (\\S{3})\r\nValue FACILITY (\\w+)\r\nValue SEVERITY (\\d)\r\nValue
+      MNEMONIC (\\S+)\r\nValue List MESSAGE (.+)\r\n\r\nStart\r\n  ^Log\\s+Buffer\r\n
+      \ ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  # 022701: Jun 19 03:02:31: %LINEPROTO-5-UPDOWN: Line protocol
+      on Interface GigabitEthernet2/0/3, changed state to down\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  # 000024: Dec  2 12:09:21.207: CEF-HWIDB: EDSP0 LES switching
+      vector set to Null\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> DateLogs\r\n  # Jan 30 14:11:11.354: %ILPOWER-7-DETECT: Interface Gi4/3:
+      Power Device detected: IEEE PD\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> DateLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> DateLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> DateLogs\r\n  # 7:04: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2/0/3,
+      changed state to up\r\n  ^${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> TimeLogs\r\n  ^${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$ -> TimeLogs\r\n\r\n\r\nNumberLogs\r\n
+      \ ^(\\d{6}):\\s+(\\D\\D\\D)\\s+(\\d{1,2})\\s+((\\d+:\\d+:\\d+\\.\\d+)|(\\d+:\\d+:\\d+))
+      -> Continue.Record\r\n  ^(\\D\\D\\D)\\s+(\\d{1,2})\\s+((\\d+:\\d+:\\d+\\.\\d+)|(\\d+:\\d+:\\d+))
+      -> Continue.Record\r\n  ^\\d{1,2}:\\d{1,2}: -> Continue.Record\r\n  # NUMBER
+      LOGS\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$\r\n
+      \ ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$\r\n
+      \ # NUMBER LOGS NO SEVERITY\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$\r\n
+      \ ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$\r\n
+      \ # DATE LOGS\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  # DATE LOGS NO SEVERITY\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  # TIME LOGS\r\n  ^${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> TimeLogs\r\n  # TIME LOGS NO SEVERITY\r\n  ^${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> TimeLogs\r\n  ^${MESSAGE}$$\r\n  ^\\s*$$\r\n  ^. -> Error\r\n\r\nDateLogs\r\n
+      \ ^(\\D\\D\\D)\\s+(\\d{1,2})\\s+((\\d+:\\d+:\\d+\\.\\d+)|(\\d+:\\d+:\\d+)) ->
+      Continue.Record\r\n  ^(\\d{6}):\\s+(\\D\\D\\D)\\s+(\\d{1,2})\\s+((\\d+:\\d+:\\d+\\.\\d+)|(\\d+:\\d+:\\d+))
+      -> Continue.Record\r\n  ^\\d{1,2}:\\d{1,2}: -> Continue.Record\r\n  # DATE LOGS\r\n
+      \ ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}\r\n
+      \ ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}\r\n
+      \ # DATE LOGS NO SEVERITY\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}\r\n
+      \ ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}\r\n
+      \ # NUMBER LOGS\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  # NUMBER LOGS NO SEVERITY\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  # TIME LOGS\r\n  ^${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> TimeLogs\r\n  # TIME LOGS NO SEVERITY\r\n  ^${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> TimeLogs\r\n  ^${MESSAGE}$$\r\n  ^\\s*$$\r\n  ^. -> Error\r\n\r\nTimeLogs\r\n
+      \ ^\\d{1,2}:\\d{1,2}: -> Continue.Record\r\n  ^(\\D\\D\\D)\\s+(\\d{1,2})\\s+((\\d+:\\d+:\\d+\\.\\d+)|(\\d+:\\d+:\\d+))
+      -> Continue.Record\r\n  ^\\d+:\\s+\\S+ -> Continue.Record\r\n  # TIME LOGS\r\n
+      \ ^${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$\r\n  #
+      TIME LOGS NO SEVERITY\r\n  ^${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$\r\n
+      \ # DATE LOGS\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  # DATE LOGS NO SEVERITY\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  ^${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}
+      -> DateLogs\r\n  # NUMBER LOGS\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+%${FACILITY}-${SEVERITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  # NUMBER LOGS NO SEVERITY\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
+      -> NumberLogs\r\n  ^${MESSAGE}$$\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 21
+  fields:
+    deleted: false
+    created: 2022-08-07 11:05:40.668544+00:00
+    updated: 2022-08-07 11:40:33.705883+00:00
+    root: false
+    active: true
+    name: Show mac-address-table
+    description: CLI command "show mac-address-table"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show mac-address-table
+    sfm_expression: "Value DESTINATION_ADDRESS ([0-9a-fA-F]{4}\\.[0-9a-fA-F]{4}\\.[0-9a-fA-F]{4})\r\nValue
+      TYPE (\\S+)\r\nValue VLAN (\\S+)\r\nValue List DESTINATION_PORT ([^,\\s]+)\r\n\r\nStart\r\n
+      \ ^Destination\\s+Address\\s+Address\\s+Type\\s+VLAN\\s+Destination\\s+Port
+      -> TYPE1\r\n  ^\\s+vlan\\s+mac address\\s+type\\s+learn\\s+age\\s+ports -> TYPE2\r\n
+      \ ^\\s+vlan\\s+mac address\\s+type\\s+protocols\\s+port -> TYPE3\r\n  ^Vlan\\s+Mac
+      Address\\s+Type\\s+Ports -> TYPE4\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n\r\nTYPE1\r\n
+      \ ^${DESTINATION_ADDRESS}\\s+${TYPE}\\s+${VLAN}\\s+${DESTINATION_PORT}$$ ->
+      Record\r\n  ^-+\\s+-+\r\n  ^Displaying\\s+entries\r\n  ^Destination\\s+Address\\s+Address\\s+Type\\s+VLAN\\s+Destination\\s+Port\r\n
+      \ ^\\s*$$\r\n  ^Multicast\\s+Entries -> End\r\n  ^. -> Error\r\n\r\nTYPE2\r\n
+      \ # Order of the group in brackets here matters\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*(\\d+|-+|[Nn]/[Aa])
+      -> Continue.Record\r\n  ^\\s{20}\\s+${DESTINATION_PORT}(\\s+|,\\s*)\\S -> Continue\r\n
+      \ ^\\s{20}\\s+${DESTINATION_PORT},*\\s*$$\r\n  ^\\s{20}\\s+[^,\\s]+(\\s+|,\\s*)${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s{20}\\s+[^,\\s]+(\\s+|,\\s*)${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){2}${DESTINATION_PORT}(\\s+|,\\s*)\\S ->
+      Continue\r\n  ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){2}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){3}${DESTINATION_PORT}(\\s+|,\\s*)\\S ->
+      Continue\r\n  ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){3}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){4}${DESTINATION_PORT}(\\s+|,\\s*)\\S ->
+      Continue\r\n  ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){4}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){5}${DESTINATION_PORT}(\\s+|,\\s*)\\S ->
+      Continue\r\n  ^\\s{20}\\s+([^,\\s]+(\\s+|,\\s*)){5}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+[^,\\s]+(\\s+|,\\s*)${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+[^,\\s]+?(\\s+|,\\s*)${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){2}${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){2}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){3}${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){3}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){4}${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){4}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){5}${DESTINATION_PORT}(\\s+|,\\s*)\\S
+      -> Continue\r\n  ^\\s*(\\*\\s+R|\\*|R|\\s)\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+\\S+\\s+([^,\\s]+(\\s+|,\\s*)){5}${DESTINATION_PORT},*\\s*$$\r\n
+      \ ^-+\\+-+\r\n  ^Displaying\\s+entries\r\n  ^\\s+vlan\\s+mac address\\s+type\\s+learn\\s+age\\s+ports\r\n
+      \ ^\\s*$$\r\n  ^Multicast\\s+Entries -> End\r\n  ^. -> Error\r\n\r\nTYPE3\r\n
+      \ ^\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+\\S+\\s+${DESTINATION_PORT}(?:\\s|$$)
+      -> Record\r\n  ^-+\\+-+\r\n  ^Displaying\\s+entries\r\n  ^\\s+vlan\\s+mac address\\s+type\\s+protocols\\s+port\r\n
+      \ ^\\s*$$\r\n  ^Multicast\\s+Entries -> End\r\n  ^. -> Error\r\n\r\nTYPE4\r\n
+      \ ^\\s*${VLAN}\\s+${DESTINATION_ADDRESS}\\s+${TYPE}\\s+${DESTINATION_PORT}(?:\\s|$$)
+      -> Record\r\n  ^-+\\s+-+\r\n  ^Displaying\\s+entries\r\n  ^Vlan\\s+Mac Address\\s+Type\\s+Ports\r\n
+      \ ^\\s*$$\r\n  ^Total\\s+Mac\\s+Addresses\r\n  ^MultiCast\\s+Entries -> End\r\n
+      \ ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 22
+  fields:
+    deleted: false
+    created: 2022-08-07 11:11:35.425220+00:00
+    updated: 2022-08-07 11:39:54.154259+00:00
+    root: false
+    active: true
+    name: Show module
+    description: CLI command "show module"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show module
+    sfm_expression: "Value Key MODULE (\\d+)\r\nValue PORT (\\d+)\r\nValue CARDTYPE
+      (\\S.+?)\r\nValue MODEL (\\S+)\r\nValue SERIAL (\\w+)\r\n\r\n\r\nStart\r\n  ^Mod\\s+Ports\\s+Card\\s+Type\\s+Model\\s+Serial
+      -> Status\r\n  ^Chassis\\sType\\s?:\\s\r\n  ^Power\\sconsumed\\sby\\sbackplane\\s:\\s\r\n
+      \ ^Switch\\s+Ports\\s+Model\\s+Serial\\sNo\\.\\s+MAC\\saddress\\s+Hw\\sVer\\.\\s+Sw\\sVer\\.
+      -> SwitchStack\r\n  ^. -> Error NoMatchInStart\r\n\r\nStatus\r\n  ^---+\r\n
+      \ ^\\s*${MODULE}\\s+(${PORT}\\s+)?${CARDTYPE}(\\s+${MODEL})?(\\s+${SERIAL})?\\s*$$
+      -> Record\r\n  ^(?:Mod|\\s+M)\\s+MAC\\s+addresses\\s+Hw\\s+Fw\\s+Sw\\s+Status
+      -> End\r\n  ^Mod\\s+Sub-Module\\s+Model\\s+Serial\\s+Hw\\s+Status -> End\r\n
+      \ ^Mod\\s+Redundancy\\s+Role\\s+Operating\\s+Redundancy\\s+Mode\\s+Configured\\s+Redundancy\\s+Mode
+      -> End\r\n  ^Mod\\s+Redundancy\\s+Role\\s+Operating\\s+Mode\\s+Configured\\s+Mode\\s+Redundancy\\s+Status
+      -> End\r\n  ^Mod\\s+Online\\s+Diag\\s+Status -> End\r\n  ^\\s*$$\r\n  ^. ->
+      Error NoMatchInStatus\r\n\r\nSwitchStack\r\n  ^---+\r\n  # #1083 C9200L-24T\r\n
+      \ ^\\s*${MODULE}\\s+${PORT}\\s+${MODEL}\\s+${SERIAL}\\s+ -> Record\r\n  ^\\s*$$\r\n
+      \ ^. -> Error NoMatchInSwitch\r\n\r\nEnd"
+- model: inventory.devicetypetemplate
+  pk: 23
+  fields:
+    deleted: false
+    created: 2022-08-07 11:13:20.677632+00:00
+    updated: 2022-08-07 11:13:30.442080+00:00
+    root: false
+    active: true
+    name: Show port-security interface int
+    description: CLI command "show port-security interface interface"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show port-security interface interface
+    sfm_expression: "Value PORT_SECURITY (\\w+)\r\nValue PORT_STATUS (\\S+)\r\nValue
+      VIOLATION_MODE ([Pp]rotect|[Rr]estrict|[Ss]hutdown)\r\nValue AGING_TIME (\\d{1,4}\\smins)\r\nValue
+      AGING_TYPE ([Aa]bsolute|[Ii]nactivity)\r\nValue SS_ADDR_AGING (\\w+)\r\nValue
+      MAX_MAC_ADDRS (\\d+)\r\nValue TOTAL_MAC_ADDRS (\\d+)\r\nValue CONFIG_MAC_ADDRS
+      (\\d+)\r\nValue STICKY_MAC_ADDRS (\\d+)\r\nValue LAST_SRC_MAC_ADDR_VLAN (\\d.+:\\d+)\r\nValue
+      VIOLATION_COUNT (\\d+)\r\n\r\nStart\r\n  ^Port Security\\s+:\\s+${PORT_SECURITY}\r\n
+      \ ^Port Status\\s+:\\s+${PORT_STATUS}\r\n  ^Violation Mode\\s+:\\s+${VIOLATION_MODE}\r\n
+      \ ^Aging Time\\s+:\\s+${AGING_TIME}\r\n  ^Aging Type\\s+:\\s+${AGING_TYPE}\r\n
+      \ ^SecureStatic Address Aging\\s+:\\s+${SS_ADDR_AGING}\r\n  ^Maximum MAC Addresses\\s+:\\s+${MAX_MAC_ADDRS}\r\n
+      \ ^Total MAC Addresses\\s+:\\s+${TOTAL_MAC_ADDRS}\r\n  ^Configured MAC Addresses\\s+:\\s+${CONFIG_MAC_ADDRS}\r\n
+      \ ^Sticky MAC Addresses\\s+:\\s+${STICKY_MAC_ADDRS}\r\n  ^Last Source Address:Vlan\\s+:\\s+${LAST_SRC_MAC_ADDR_VLAN}\r\n
+      \ ^Security Violation Count\\s+:\\s+${VIOLATION_COUNT}\r\n  ^\\s*$$\r\n  ^.
+      -> Error"
+- model: inventory.devicetypetemplate
+  pk: 24
+  fields:
+    deleted: false
+    created: 2022-08-07 11:14:25.699048+00:00
+    updated: 2022-08-07 11:39:23.413880+00:00
+    root: false
+    active: true
+    name: Show processes cpu
+    description: CLI command "show processes cpu"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show processes cpu
+    sfm_expression: "Value CPU_5_SEC (\\d+)\r\nValue CPU_1_MIN (\\d+)\r\nValue CPU_5_MIN
+      (\\d+)\r\nValue INTERRUPTS (\\d+)\r\n\r\nStart\r\n  ^CPU utilization for five
+      seconds:\\W+${CPU_5_SEC}%/${INTERRUPTS}%; one minute:\\W+${CPU_1_MIN}%; five
+      minutes:\\W+${CPU_5_MIN}% -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 25
+  fields:
+    deleted: false
+    created: 2022-08-07 11:16:10.573818+00:00
+    updated: 2022-08-07 11:16:10.573873+00:00
+    root: false
+    active: true
+    name: Show processes memory sorted
+    description: CLI command "show processes memory sorted"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 1
+    command: show processes memory sorted
+    sfm_expression: "Value MEMORY_TOTAL (\\d+)\r\nValue MEMORY_USED (\\d+)\r\nValue
+      MEMORY_FREE (\\d+)\r\nValue List PROCESS_ID (\\d+)\r\nValue List PROCESS_ALLOCATED
+      (\\d+)\r\nValue List PROCESS_FREED (\\d+)\r\nValue List PROCESS_HOLDING (\\d+)\r\nValue
+      List PROCESS (.+?)\r\n\r\nStart\r\n  ^Processor\\s+Pool\\s+Total:\\s+${MEMORY_TOTAL}\\s+Used:\\s+${MEMORY_USED}\\s+Free:\\s+${MEMORY_FREE}\r\n
+      \ ^\\s*lsmpi_io\\s+Pool\r\n  ^\\s*PID\\s+TTY\\s+Allocated\\s+Freed\\s+Holding\\s+Getbufs\\s+Retbufs\\s+Process\\s*$$
+      -> Process\r\n  ^\\s*$$\r\n  ^. -> Error\r\n\r\nProcess\r\n  ^\\s*${PROCESS_ID}\\s+\\d+\\s+${PROCESS_ALLOCATED}\\s+${PROCESS_FREED}\\s+${PROCESS_HOLDING}\\s+\\d+\\s+\\d+\\s+${PROCESS}\\s*$$\r\n
+      \ ^\\s*\\d+\\s+Total\\s*$$\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 26
+  fields:
+    deleted: false
+    created: 2022-08-07 11:16:57.772348+00:00
+    updated: 2022-08-07 11:39:10.747683+00:00
+    root: false
+    active: true
+    name: Show snmp community
+    description: CLI command "show snmp community"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show snmp community
+    sfm_expression: "Value NAME (\\S+)\r\nValue INDEX (\\S+)\r\nValue SECURITY_NAME
+      (\\S+)\r\nValue STORAGE_TYPE (\\S+)\r\n\r\nStart\r\n  ^Community\\s+name:\\s+${NAME}.*\r\n
+      \ ^Community\\sIndex:\\s+${INDEX}\r\n  ^Community\\sSecurityName:\\s+${SECURITY_NAME}\r\n
+      \ ^storage-type:\\s${STORAGE_TYPE} -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 27
+  fields:
+    deleted: false
+    created: 2022-08-07 11:17:33.017621+00:00
+    updated: 2022-08-07 11:39:03.321372+00:00
+    root: false
+    active: true
+    name: Show snmp user
+    description: CLI command "show snmp user"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show snmp user
+    sfm_expression: "Value Required USER_NAME (\\S+)\r\nValue ENGINE_ID (\\S+)\r\nValue
+      STORAGE_TYPE (\\S+)\r\nValue ACCESS_LIST (.*)\r\nValue AUTHENTICATION_PROTOCOL
+      (\\S+)\r\nValue PRIVACY_PROTOCOL (\\S+)\r\nValue GROUP_NAME (\\S+)\r\n\r\nStart\r\n
+      \ ^User\\s+name:\\s+${USER_NAME}$$\r\n  ^Engine\\s+ID:\\s+${ENGINE_ID}$$\r\n
+      \ ^storage-type:\\s${STORAGE_TYPE}\\s+active\\s+access-list:\\s+${ACCESS_LIST}$$\r\n
+      \ ^storage-type:\\s${STORAGE_TYPE}\\s+active$$\r\n  ^Authentication\\s+Protocol:\\s+${AUTHENTICATION_PROTOCOL}$$\r\n
+      \ ^Privacy\\s+Protocol:\\s+${PRIVACY_PROTOCOL}$$\r\n  ^Group-name:\\s+${GROUP_NAME}$$
+      -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n
+      \ ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 28
+  fields:
+    deleted: false
+    created: 2022-08-07 11:18:33.801756+00:00
+    updated: 2022-08-07 11:38:56.283676+00:00
+    root: false
+    active: true
+    name: Show spanning-tree
+    description: CLI command "show spanning-tree"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show spanning-tree
+    sfm_expression: "Value Filldown VLAN_ID (\\d+)\r\nValue Required INTERFACE (\\S+)\r\nValue
+      ROLE (\\w+)\r\nValue STATUS (\\w+)\r\nValue COST (\\d+)\r\nValue PORT_PRIORITY
+      (\\w+)\r\nValue PORT_ID (\\w+)\r\nValue TYPE (.*)\r\n\r\nStart\r\n  ^VLAN(0*)?${VLAN_ID}\r\n
+      \ ^${INTERFACE}\\s+${ROLE}\\s+${STATUS}\\s+${COST}\\s+${PORT_PRIORITY}.${PORT_ID}\\s+${TYPE}
+      -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 29
+  fields:
+    deleted: false
+    created: 2022-08-07 11:19:42.775777+00:00
+    updated: 2022-08-07 11:38:45.918346+00:00
+    root: false
+    active: true
+    name: Show standby
+    description: CLI command "show standby"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show standby
+    sfm_expression: "Value INTERFACE (\\S+)\r\nValue GROUP (\\d+)\r\nValue VERSION
+      (\\d+)\r\nValue STATE (\\w+)\r\nValue STATE_CHANGES (\\d+)\r\nValue STATE_LAST_CHANGE
+      (\\S+)\r\nValue VIRTUAL_IP (\\S+)\r\nValue List SECONDARY_IPS (\\S+)\r\nValue
+      ACTIVE_VIRTUAL_MAC (\\S+)\r\nValue LOCAL_VIRTUAL_MAC (\\S+)\r\nValue HELLO_TIME
+      (\\d+)\r\nValue HOLD_TIME (\\d+)\r\nValue AUTHENTICATION (\\w+)\r\nValue PREEMPTION
+      (\\w+)\r\nValue ACTIVE_ROUTER (\\d+\\.\\d+\\.\\d+\\.\\d+|local|unknown)\r\nValue
+      ACTIVE_ROUTER_PRIORITY (\\d+)\r\nValue ACTIVE_ROUTER_MAC (\\S+)\r\nValue STANDBY_ROUTER
+      (\\d+\\.\\d+\\.\\d+\\.\\d+|local|unknown)\r\nValue STANDBY_ROUTER_PRIORITY (\\d+)\r\nValue
+      PRIORITY (\\d+)\r\nValue GROUP_NAME (\\S+)\r\nValue FLAGS (\\S+)\r\nValue TRACK_ITEM
+      (\\S+)\r\nValue TRACK_TYPE (object|interface)\r\nValue TRACK_STATE (\\S+)\r\nValue
+      TRACK_DECREMENT_TIME (\\d+)\r\n\r\nStart\r\n  ^\\S+ -> Continue.Record\r\n  ^\\s*${INTERFACE}\\s+-\\s+Group\\s+${GROUP}\\s*(\\(version\\s+${VERSION}\\))?$$\r\n
+      \ ^.*State\\s+is\\s+${STATE}\r\n  ^.*Virtual\\s+IP\\s+address\\s+is\\s+${VIRTUAL_IP}\r\n
+      \ ^.*Secondary\\s+virtual\\s+IP\\s+address\\s+${SECONDARY_IPS}\r\n  ^.*Active\\s+virtual\\s+MAC\\s+address\\s+is\\s+${ACTIVE_VIRTUAL_MAC}\r\n
+      \ ^.*Local\\s+virtual\\s+MAC\\s+address\\s+is\\s+${LOCAL_VIRTUAL_MAC}\r\n  ^.*Hello\\s+time\\s+${HELLO_TIME}.*hold\\s+time\\s+${HOLD_TIME}\r\n
+      \ ^.*Next\\s+hello\\s+sent\\s+in.*secs\r\n  ^.*Authentication\\s+${AUTHENTICATION}\r\n
+      \ ^.*Preemption\\s+${PREEMPTION}\r\n  ^.*Active\\s+router\\s+is\\s+${ACTIVE_ROUTER}(,\\s+priority\\s+${ACTIVE_ROUTER_PRIORITY})?\r\n
+      \ ^\\s+MAC\\s+address\\s+is\\s+${ACTIVE_ROUTER_MAC}\r\n  ^.*Standby\\s+router\\s+is\\s+${STANDBY_ROUTER}(,\\s+priority\\s+${STANDBY_ROUTER_PRIORITY})?\r\n
+      \ ^.*Priority\\s+${PRIORITY}\r\n  ^\\s*Track\\s+${TRACK_TYPE}(\\s+${TRACK_ITEM})?(\\(unknown\\))?(\\s+state\\s+${TRACK_STATE}(\\s+decrement\\s+${TRACK_DECREMENT_TIME})?)?\r\n
+      \ ^.*${STATE_CHANGES}\\s+state\\s+(change|changes),\\s+last\\s+state\\s+change\\s+${STATE_LAST_CHANGE}\r\n
+      \ ^.*Group\\s+name\\s+is\\s+\"${GROUP_NAME}\"\r\n  ^.*FLAGS:\\s+${FLAGS}\r\n
+      \ ^.*IP\\s+redundancy\\s+name\\s+is\\s+\\\"${GROUP_NAME}\\\"(\\s+\\(default\\))?\r\n
+      \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 30
+  fields:
+    deleted: false
+    created: 2022-08-07 11:21:03.880827+00:00
+    updated: 2022-08-07 11:21:03.880903+00:00
+    root: false
+    active: true
+    name: Show vlan
+    description: CLI command "show vlan"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show vlan
+    sfm_expression: "Value Required VLAN_ID (\\d+)\r\nValue NAME (\\S+)\r\nValue STATUS
+      (\\S+)\r\nValue List INTERFACES ([\\w\\./]+)\r\n\r\nStart\r\n  ^\\s*$$\r\n  ^\\w+\\s+[NnAaMmEe]{4}.*$$
+      -> VLANS\r\n  # Capture time-stamp if vty line has command time-stamping turned
+      on\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n\r\nVLANS\r\n  ^\\d+
+      -> Continue.Record\r\n  ^${VLAN_ID}\\s+${NAME}\\s+${STATUS}\\s*$$\r\n  ^${VLAN_ID}\\s+${NAME}\\s+${STATUS}\\s+${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){3}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){4}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){5}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){6}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){7}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){8}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){9}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){10}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){11}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){12}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){13}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){14}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){15}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){16}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){17}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){18}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){19}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){20}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){21}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){22}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){23}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){24}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){25}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){26}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){27}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){28}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){29}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){30}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){31}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){32}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){33}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){34}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){35}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){36}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){37}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){38}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){39}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){40}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){41}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){42}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){43}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){44}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){45}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){46}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){47}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){48}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){49}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){50}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){51}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){52}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){53}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){54}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){55}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){56}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){57}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){58}${INTERFACES},*
+      -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){59}${INTERFACES},* -> Continue\r\n  ^\\d+\\s+(?:\\S+\\s+){60}${INTERFACES},*
+      -> Continue\r\n  ^\\s+${INTERFACES},* -> Continue\r\n  ^\\s+\\S+\\s+${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){2}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){3}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){4}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){5}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){6}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){7}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){8}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){9}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){10}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){11}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){12}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){13}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){14}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){15}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){16}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){17}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){18}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){19}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){20}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){21}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){22}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){23}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){24}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){25}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){26}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){27}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){28}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){29}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){30}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){31}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){32}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){33}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){34}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){35}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){36}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){37}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){38}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){39}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){40}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){41}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){42}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){43}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){44}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){45}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){46}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){47}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){48}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){49}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){50}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){51}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){52}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){53}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){54}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){55}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){56}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){57}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){58}${INTERFACES},* -> Continue\r\n  ^\\s+(?:\\S+\\s+){59}${INTERFACES},*
+      -> Continue\r\n  ^\\s+(?:\\S+\\s+){60}${INTERFACES},* -> Continue\r\n  ^\\d+\r\n
+      \ ^\\s+\r\n  ^-+\r\n  ^\\S+\\s+[TtYyPpEe]{4} -> Done\r\n  ^.+ -> Error\r\n\r\nDone\r\n
+      \ ^.*"
+- model: inventory.devicetypetemplate
+  pk: 31
+  fields:
+    deleted: false
+    created: 2022-08-07 11:21:46.245317+00:00
+    updated: 2022-08-07 11:38:26.446950+00:00
+    root: false
+    active: true
+    name: Show vtp status
+    description: CLI command "show vtp status"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show vtp status
+    sfm_expression: "Value VERSION (\\d)\r\nValue DOMAIN (\\S+)\r\nValue PRUNING (\\S+)\r\nValue
+      TRAPS (\\S+)\r\nValue DEVICE_ID (\\S+)\r\nValue LAST_MODIFIED_SERVER (\\d+.\\d+.\\d+.\\d+)\r\nValue
+      LAST_MODIFIED_DATE (\\d+-\\d+-\\d+\\s\\d+:\\d+:\\d+)\r\nValue LOCAL_UPDATER_ADDR
+      (\\d+.\\d+.\\d+.\\d+)\r\nValue LOCAL_UPDATER_IFACE (\\S+)\r\nValue MODE (\\w+)\r\nValue
+      MAX_VLANS (\\d+)\r\nValue EXISTING_VLAN_COUNT (\\d+)\r\nValue REVISION_NUMBER
+      (\\d+)\r\n\r\nStart\r\n  ^VTP\\s+[v,V]ersion\\s+[r,R]unning\\s+:\\s${VERSION}\r\n
+      \ ^VTP\\s+[d,D]omain\\s+[n,N]ame\\s+:\\s${DOMAIN}\r\n  ^VTP\\s+[p,P]runing\\s+[m,M]ode\\s+:\\s${PRUNING}\r\n
+      \ ^VTP\\s+[t,T]raps\\s+[g,G]eneration\\s+:\\s${TRAPS}\r\n  ^[d,D]evice\\s+ID\\s+:\\s${DEVICE_ID}\r\n
+      \ ^\\w+\\s\\w+\\s\\w+\\s\\w+\\s${LAST_MODIFIED_SERVER}\\s\\w+\\s${LAST_MODIFIED_DATE}\r\n
+      \ ^\\w+\\s\\w+\\s\\w+\\s\\w+\\s${LOCAL_UPDATER_ADDR}\\s\\w+\\s\\w+\\s${LOCAL_UPDATER_IFACE}\\s.*\r\n
+      \ ^VTP\\s[o,O]perating\\s[m,M]ode\\s+:\\s${MODE}\r\n  ^Maximum\\sVLANs\\s[s,S]upported\\s[l,L]ocally\\s+:\\s${MAX_VLANS}\r\n
+      \ ^Number\\sof\\sexisting\\sVLANs\\s+:\\s${EXISTING_VLAN_COUNT}\r\n  ^Configuration\\s[r,R]evision\\s+:\\s${REVISION_NUMBER}
+      -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
+- model: inventory.devicetypetemplate
+  pk: 32
+  fields:
+    deleted: false
+    created: 2022-08-07 11:22:43.881712+00:00
+    updated: 2022-08-07 11:38:16.975694+00:00
+    root: false
+    active: true
+    name: Show vrrp all
+    description: CLI command "show vrrp all"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show vrrp all
+    sfm_expression: "Value IFACE (\\S+)\r\nValue GROUP (\\d+)\r\nValue ADDR_FAMILY
+      (\\S+)\r\nValue STATE (\\w+)\r\nValue STATE_DURATION (.+)\r\nValue VIRTUALIP
+      ([a-fA-F\\d\\.\\:]+)\r\nValue VIRTUAL_MAC ([a-fA-F\\d\\.\\:]+)\r\nValue ADV_INTERVAL
+      (\\S+)\r\nValue PREEMPT (\\w+)\r\nValue PRIORITY (\\d+)\r\nValue PRIORITY_CONFIGURED
+      (\\d+)\r\nValue TRACK_OBJ (\\d+)\r\nValue TRACK_STATUS (\\S+)\r\nValue TRACK_ACTION
+      (\\S+(\\s+\\S+)?)\r\nValue MASTER_IP (\\S+)\r\nValue MASTER_PRIORITY (\\S+)\r\nValue
+      MASTER_ADV_INTERVAL (\\S+)\r\nValue MASTER_DOWN_INTERVAL (\\S+)\r\n\r\nStart\r\n
+      \ ^\\S+\\s+-\\s+Group\\s+\\d+.*$$ -> Continue.Record\r\n  ^\\s*${IFACE}\\s+-\\s+Group\\s+${GROUP}(\\s+-\\s+Address-Family\\s+${ADDR_FAMILY})?\\s*$$\r\n
+      \ ^\\s+State is\\s+${STATE}.*\\s*$$\r\n  ^\\s*State duration\\s+${STATE_DURATION}\\s*$$\r\n
+      \ ^\\s+Virtual IP address is\\s+${VIRTUALIP}\\s*$$\r\n  ^\\s+Virtual MAC address
+      is\\s+${VIRTUAL_MAC}\\s*$$\r\n  ^\\s+Advertisement interval is\\s+${ADV_INTERVAL}\r\n
+      \ ^\\s+Preemption\\s+${PREEMPT}\\s*$$\r\n  ^\\s+Priority is\\s+${PRIORITY}(\\s+\\((cfgd|[cC]onfigured)\\s+${PRIORITY_CONFIGURED}\\))?\\s*$$\r\n
+      \ ^\\s*Track object\\s+${TRACK_OBJ}\\s+state\\s+${TRACK_STATUS}\\s+${TRACK_ACTION}\\s*$$\r\n
+      \ ^\\s+Authentication\\s\r\n  ^\\s+Master Router is\\s+${MASTER_IP}(\\s+\\(local\\))?,
+      priority is\\s+${MASTER_PRIORITY}\\s*$$\r\n  ^\\s+Master Advertisement interval
+      is\\s+${MASTER_ADV_INTERVAL}\r\n  ^\\s+Master Down interval is\\s+${MASTER_DOWN_INTERVAL}\r\n
+      \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 33
+  fields:
+    deleted: false
+    created: 2022-08-07 11:23:39.570986+00:00
+    updated: 2022-08-07 11:37:59.447060+00:00
+    root: false
+    active: true
+    name: Show hosts summary
+    description: CLI command "show hosts summary"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 1
+    command: show hosts summary
+    sfm_expression: "Value DEFAULT_DOMAIN (\\S+)\r\nValue NAME_SERVERS (.+)\r\nValue
+      LOCAL_CACHE_ENTRIES (\\d+)\r\nValue DYNAMIC_CACHE_ENTRIES (\\d+)\r\n\r\nStart\r\n
+      \ ^Default\\s*domain\\s*is\\s*${DEFAULT_DOMAIN}\r\n  ^Name\\s*servers\\s*are\\s*${NAME_SERVERS}\r\n
+      \ ^Local\\s*cache\\s*entries:\\s*${LOCAL_CACHE_ENTRIES}\r\n  ^Dynamic\\s*cache\\s*entries:\\s*${DYNAMIC_CACHE_ENTRIES}\r\n
+      \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 34
+  fields:
+    deleted: false
+    created: 2022-08-07 11:26:49.111525+00:00
+    updated: 2022-08-07 11:28:50.498989+00:00
+    root: false
+    active: true
+    name: Get router info bgp summary
+    description: CLI command "get router info bgp summary"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 7
+    command: get router info bgp summary
+    sfm_expression: "Value BGP_NEIGH (\\d+?\\.\\d+?\\.\\d+?\\.\\d+?)\r\nValue NEIGH_AS
+      (\\d+)\r\nValue UP_DOWN (\\S+)\r\nValue STATE_PFXRCD (\\w+)\r\n\r\nStart\r\n
+      \ ^BGP\\s+router\\s+identifier\\s+\\d+?\\.\\d+?\\.\\d+?\\.\\d+?,\\s+local\\s+AS\\s+number\\s+\\d+\\s*$$\r\n
+      \ ^BGP\\s+table\\s+version\\s+is\\s+\\d+?$$\r\n  ^\\d+\\s+BGP\\s+AS-PATH\\s+entries\\s*$$\r\n
+      \ ^\\d+\\s+BGP\\s+community\\s+entries\\s*$$\r\n  ^Neighbor\\s+V\\s+AS\\s+MsgRcvd\\s+MsgSent\\s+TblVer\\s+InQ\\s+OutQ\\s+Up\\/Down\\s+State\\/PfxRcd.*$$\r\n
+      \ ^${BGP_NEIGH}\\s+\\S+\\s+${NEIGH_AS}(?:\\s+\\S+\\s+){5}${UP_DOWN}\\s+${STATE_PFXRCD}\\s*$$
+      -> Record\r\n  ^Total number\\s+of\\s+neighbors\\s+\\d*\\s*$$\r\n  ^\\s*$$\r\n
+      \ ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 35
+  fields:
+    deleted: false
+    created: 2022-08-07 11:27:32.616343+00:00
+    updated: 2022-08-07 11:28:44.988135+00:00
+    root: false
+    active: true
+    name: Get system arp
+    description: CLI command "get system arp"
+    ico: 1
+    color: 1
+    special: true
+    vrf: false
+    device_type: 7
+    command: get system arp
+    sfm_expression: "Value ADDRESS (\\d+\\.\\d+\\.\\d+\\.\\d+)\r\nValue AGE (\\d+)\r\nValue
+      MAC (\\S+)\r\nValue INTERFACE (.*)\r\n\r\nStart\r\n  ^${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${INTERFACE}
+      -> Record\r\n  ^Address\\s+Age(min)\\s+Hardware\\s+Addr\\s+Interface\\s*$$\r\n
+      \ ^\\s*\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 36
+  fields:
+    deleted: false
+    created: 2022-08-07 11:28:29.075577+00:00
+    updated: 2022-08-07 11:37:38.115861+00:00
+    root: false
+    active: true
+    name: Get system ha status
+    description: CLI command "get system ha status"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 7
+    command: get system ha status
+    sfm_expression: "Value HA_HEALTH (\\S+)\r\nValue MODEL (\\S+)\r\nValue HA_MODE
+      ([\\S\\s]+)\r\nValue HA_GROUP (\\S+)\r\nValue CLUSTER_UPTIME ([\\S\\s]+)\r\nValue
+      CLUSTER_STATE_CHANGED_TIME ([\\S\\s]+)\r\nValue HA_SESSION_PICKUP_STATUS (\\S+)\r\nValue
+      HA_SESSION_PICKUP_DELAY (\\S+)\r\nValue HA_OVERRIDE_STATUS (\\S+)\r\nValue HA_MASTER_UNIT_NAME
+      (\\S+)\r\nValue HA_SLAVE_UNIT_NAME (\\S+)\r\nValue HA_MASTER_UNIT_SERIAL (\\S+)\r\nValue
+      HA_SLAVE_UNIT_SERIAL (\\S+)\r\nValue HA_MASTER_UNIT_INDEX (\\S+)\r\nValue HA_SLAVE_UNIT_INDEX
+      (\\S+)\r\n\r\nStart\r\n  ^HA\\s+Health\\s+Status:\\s+${HA_HEALTH}\r\n  ^Model:\\s+${MODEL}\r\n
+      \ ^Mode:\\s+${HA_MODE}\r\n  ^Group:\\s+${HA_GROUP}\r\n  ^Debug:\\s+\\d+\r\n
+      \ ^Cluster\\s+Uptime:\\s+${CLUSTER_UPTIME}\r\n  ^Cluster\\s+state\\s+change\\s+time:\\s+${CLUSTER_STATE_CHANGED_TIME}\r\n
+      \ ^Master\\s+selected\\s+using:\r\n  ^\\s+\\<\\S+\r\n  ^ses_pickup:\\s+${HA_SESSION_PICKUP_STATUS},\\s+ses_pickup_delay=${HA_SESSION_PICKUP_DELAY}\r\n
+      \ ^override:\\s+${HA_OVERRIDE_STATUS}\r\n  ^Configuration\\s+Status:\r\n  ^\\s+\\S+\\([\\S\\s]+\\):\r\n
+      \ ^System\\s+Usage\\s+stats:\r\n  ^\\s+\\S+:\\s+\r\n  ^\\s+sessions=\r\n  ^HBDEV\\s+stats:\r\n
+      \ ^\\s+\\S+:\\s+\r\n  ^\\sha:+\\S+:\\s+\r\n  ^MONDEV\\s+stats:\r\n  ^\\s+\\S+:\\s+\r\n
+      \ ^\\s:+\\S+:\\s+\r\n  ^Master\\s*:\\s+${HA_MASTER_UNIT_NAME}\\s*,\\s+${HA_MASTER_UNIT_SERIAL},\\s+(HA\\s+cluster\\s+index|cluster\\s+index)\\s+=\\s+${HA_MASTER_UNIT_INDEX}\r\n
+      \ ^Slave\\s*:\\s+${HA_SLAVE_UNIT_NAME}\\s*,\\s+${HA_SLAVE_UNIT_SERIAL},\\s+(|HA)\\s*cluster\\s+index\\s+=\\s+${HA_SLAVE_UNIT_INDEX}\r\n
+      \ ^number\\s+of\\s+vcluster:\\s+\\d+\r\n  ^vcluster\\s+\\d+:\r\n  ^(Master|Slave)\\s*:\\s+\\S+,\\s+(operating\\s+cluster\\s+index|HA\\s+operating\\s+index)\\s+=\\s+\\d+
+      -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 37
+  fields:
+    deleted: false
+    created: 2022-08-07 11:29:37.284507+00:00
+    updated: 2022-08-07 11:37:26.414348+00:00
+    root: false
+    active: true
+    name: Get system interface physical
+    description: CLI command "get system interface physical"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 7
+    command: get system interface physical
+    sfm_expression: "Value Required NAME (\\S+)\r\nValue MODE (\\S+)\r\nValue IP (\\d+?\\.\\d+?\\.\\d+?\\.\\d+?)\r\nValue
+      NETMASK (\\S+)\r\nValue IPV6 (\\S+)\r\nValue IPV6NETMASK (\\S+)\r\nValue STATUS
+      (\\S+)\r\nValue SPEED (\\d+|n\\/a)\r\nValue DUPLEX (\\S+)\r\n\r\nStart\r\n  ^==\\s+\\[onboard\\]$$\r\n
+      \ ^\\s+==\\[${NAME}\\]$$\r\n  ^\\s+mode:\\s+${MODE}$$\r\n  ^\\s+ip:\\s+${IP}\\s+${NETMASK}$$\r\n
+      \ ^\\s+ipv6:\\s+${IPV6}/${IPV6NETMASK}$$\r\n  ^\\s+status:\\s+${STATUS}$$\r\n
+      \ ^\\s+speed:\\s+${SPEED}(|Mbps)\\s+\\(Duplex:\\s+${DUPLEX}\\)$$ -> Record\r\n
+      \ ^\\s+speed:\\s+${SPEED}$$ -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 38
+  fields:
+    deleted: false
+    created: 2022-08-07 11:30:34.190184+00:00
+    updated: 2022-08-07 11:37:15.906133+00:00
+    root: false
+    active: true
+    name: Get system interface
+    description: CLI command "get system interface"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 7
+    command: get system interface
+    sfm_expression: "Value Required NAME (\\S+)\r\nValue MODE (\\S+)\r\nValue MANAGEMENT_IP
+      (\\d+?\\.\\d+?\\.\\d+?\\.\\d+?)\r\nValue MANAGEMENT_NETMASK (\\d+?\\.\\d+?\\.\\d+?\\.\\d+?)\r\nValue
+      IP (\\d+?\\.\\d+?\\.\\d+?\\.\\d+?)\r\nValue NETMASK (\\d+?\\.\\d+?\\.\\d+?\\.\\d+?)\r\nValue
+      STATUS (\\S+)\r\nValue NETBIOS_FORWARD (\\S+)\r\nValue TYPE (\\S+)\r\nValue
+      NETFLOW_SAMPLER (\\S+)\r\nValue SFLOW_SAMPLER (\\S+)\r\nValue SCAN_BOTNET_CONNECTIONS
+      (\\S+)\r\nValue SRC_CHECK (\\S+)\r\nValue EXPLICIT_WEB_PROXY (\\S+)\r\nValue
+      EXPLICIT_FTP_PROXY (\\S+)\r\nValue PROXY_CAPTIVE_PORTAL (\\S+)\r\nValue MTU_OVERRIDE
+      (\\S+)\r\nValue WCCP (\\S+)\r\nValue DROP_OVERLAPPED_FRAGMENT (\\S+)\r\nValue
+      DROP_FRAGMENT (\\S+)\r\n\r\nStart\r\n  ^==\\s+\\[\\s+\\S+\\s\\]$$\r\n  \r\n
+      \ \r\n  ^name:\\s+${NAME}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+scan-botnet-connections:\\s+${SCAN_BOTNET_CONNECTIONS}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+mtu-override:\\s+${MTU_OVERRIDE}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+scan-botnet-connections:\\s+${SCAN_BOTNET_CONNECTIONS}\\s+src-check:\\s+${SRC_CHECK}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+mtu-override:\\s+${MTU_OVERRIDE}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+mtu-override:\\s+${MTU_OVERRIDE}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+scan-botnet-connections:\\s+${SCAN_BOTNET_CONNECTIONS}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+mtu-override:\\s+${MTU_OVERRIDE}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+mtu-override:\\s+${MTU_OVERRIDE}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+scan-botnet-connections:\\s+${SCAN_BOTNET_CONNECTIONS}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+wccp:\\s+${WCCP}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+status:\\s+${STATUS}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+mtu-override:\\s+${MTU_OVERRIDE}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+scan-botnet-connections:\\s+${SCAN_BOTNET_CONNECTIONS}\\s+src-check:\\s+${SRC_CHECK}\\s+wccp:\\s+${WCCP}\\sv$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+wccp:\\s+${WCCP}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+scan-botnet-connections:\\s+${SCAN_BOTNET_CONNECTIONS}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s*$$
+      -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
+      -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
+- model: inventory.devicetypetemplate
+  pk: 39
+  fields:
+    deleted: false
+    created: 2022-08-07 11:31:12.235402+00:00
+    updated: 2022-08-07 11:33:27.130019+00:00
+    root: false
+    active: true
+    name: Get system status
+    description: CLI command "get system status"
+    ico: 1
+    color: 1
+    special: false
+    vrf: false
+    device_type: 7
+    command: get system status
+    sfm_expression: "Value Required HOSTNAME (\\S+)\r\nValue VERSION (.*)\r\nValue
+      SIGNATURE (.*)\r\nValue VIRUS_DB (.*)\r\nValue EXTENDED_DB (.*)\r\nValue EXTREME_DB
+      (.*)\r\nValue IPS_DB (.*)\r\nValue IPS_ETDB (.*)\r\nValue APP_DB (.*)\r\nValue
+      INDUSTRIAL_DB (.*)\r\nValue SERIAL_NUMBER (\\S+)\r\nValue IPS_MALICIOUS_URL_DATABASE
+      (.*)\r\nValue BOTNET_DB (.*)\r\nValue BIOS_VERSION (\\S+)\r\nValue SYSTEM_PART_NUMBER
+      (\\S+)\r\nValue LOG_HARD_DISK (\\S+)\r\nValue PRIVATE_ENCRYPTION (\\S+)\r\nValue
+      OPERATION_MODE (\\S+)\r\nValue CURRENT_VIRTUAL_DOMAIN (\\S+)\r\nValue MAX_NUMBER_OF_VIRTUAL_DOMAINS
+      (\\d+)\r\nValue VIRTUAL_DOMAINS_STATUS (.*)\r\nValue VIRTUAL_DOMAIN_CONFIGURATION
+      (\\S+)\r\nValue FIPS_CC_MODE (\\S+)\r\nValue CURRENT_HA_MODE (.*)\r\nValue CLUSTER_UPTIME
+      (.*)\r\nValue CLUSTER_STATE_CHANGE_TIME (.*)\r\nValue BRANCH_POINT (\\S+)\r\nValue
+      RELEASE_VERSION_INFORMATION (\\S+)\r\nValue FORTIOS_X86_64 (\\S+)\r\nValue SYSTEM_TIME
+      (.*)\r\n\r\nStart\r\n  ^Version:\\s+${VERSION}\r\n  ^Firmware Signature:\\s+${SIGNATURE}\r\n
+      \ ^Virus-DB:\\s+${VIRUS_DB}\r\n  ^Extended\\s+DB:\\s+${EXTENDED_DB}\r\n  ^Extreme\\s+DB:\\s+${EXTREME_DB}\r\n
+      \ ^IPS-DB:\\s+${IPS_DB}\r\n  ^IPS-ETDB:\\s+${IPS_ETDB}\r\n  ^APP-DB:\\s+${APP_DB}\r\n
+      \ ^INDUSTRIAL-DB:\\s+${INDUSTRIAL_DB}\r\n  ^Serial-Number:\\s+${SERIAL_NUMBER}\r\n
+      \ ^IPS\\s+Malicious\\s+URL\\s+Database:\\s+${IPS_MALICIOUS_URL_DATABASE}\r\n
+      \ ^Botnet\\s+DB:\\s+${BOTNET_DB}\r\n  ^BIOS\\s+version:\\s+${BIOS_VERSION}\r\n
+      \ ^System\\s+Part-Number:\\s+${SYSTEM_PART_NUMBER}\r\n  ^Log\\s+hard\\s+disk:\\s+${LOG_HARD_DISK}\r\n
+      \ ^Hostname:\\s+${HOSTNAME}\r\n  ^Private\\s+Encryption:\\s+${PRIVATE_ENCRYPTION}\r\n
+      \ ^Operation\\s+Mode:\\s+${OPERATION_MODE}\r\n  ^Current\\s+virtual\\s+domain:\\s+${CURRENT_VIRTUAL_DOMAIN}\r\n
+      \ ^Max\\s+number\\s+of\\s+virtual\\s+domains:\\s+${MAX_NUMBER_OF_VIRTUAL_DOMAINS}\r\n
+      \ ^Virtual\\s+domains\\s+status:\\s+${VIRTUAL_DOMAINS_STATUS}\r\n  ^Virtual\\s+domain\\s+configuration:\\s+${VIRTUAL_DOMAIN_CONFIGURATION}\r\n
+      \ ^FIPS-CC\\s+mode:\\s+${FIPS_CC_MODE}\r\n  ^Current\\s+HA\\s+mode:\\s+${CURRENT_HA_MODE}\r\n
+      \ ^Cluster\\s+uptime:\\s+${CLUSTER_UPTIME}\r\n  ^Cluster\\s+state\\s+change\\s+time:\\s+${CLUSTER_STATE_CHANGE_TIME}\r\n
+      \ ^Branch\\s+point:\\s+${BRANCH_POINT}\r\n  ^Release\\s+Version\\s+Information:\\s+${RELEASE_VERSION_INFORMATION}\r\n
+      \ ^FortiOS\\s+x86-64:\\s+${FORTIOS_X86_64}\r\n  ^System\\s+time:\\s+${SYSTEM_TIME}
+      -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"

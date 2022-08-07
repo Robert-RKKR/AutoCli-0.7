@@ -24,6 +24,18 @@ class DeviceTypeTemplate(ExtendedModel):
         # Unique values:
         unique_together = [['command', 'device_type']]
 
+    # Spacial type of Device type template object:
+    special = models.BooleanField(
+        verbose_name='Special template',
+        help_text='Spacial type of Device type template object.',
+        default=False,
+    )
+    vrf = models.BooleanField(
+        verbose_name='VRF template',
+        help_text='VRF cli command template.',
+        default=False,
+    )
+
     # Device type corelation:
     device_type = models.ForeignKey(
         DeviceType,
@@ -36,7 +48,7 @@ class DeviceTypeTemplate(ExtendedModel):
     command = models.CharField(
         verbose_name='CLI command',
         help_text='CLI command that will be executed on network device.',
-        max_length=32,
+        max_length=64,
         null=True,
         blank=True
     )
