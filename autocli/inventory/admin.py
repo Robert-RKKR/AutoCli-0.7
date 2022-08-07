@@ -3,6 +3,7 @@ from django.contrib import admin
 
 # Base Admin Import:
 from core.base_admin.base_admin import BaseAdmin
+from core.base_admin.base_simple_admin import BaseSimpleAdmin
 
 # Models Imports:
 from inventory.models.credential import Credential
@@ -13,6 +14,30 @@ from inventory.models.group import Group
 
 
 # Admin panel class:
+@admin.register(DeviceTypeTemplate)
+class DeviceTypeTemplateAdmin(BaseSimpleAdmin):
+
+    list_display = (
+        'pk', 'active', 'special', 'vrf', 'device_type', 'command',
+    )
+    list_filter = (
+        'active', 'special', 'vrf', 'device_type',
+    )
+    search_fields = (
+        'command',
+    )
+    fieldsets = (
+        ('Basic information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('active', 'special', 'vrf',)
+        }),
+        ('Template information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('device_type', 'command', 'sfm_expression',),
+        }),
+    )
+
+
 @admin.register(Credential)
 class CredentialAdmin(BaseAdmin):
 
@@ -57,34 +82,6 @@ class DeviceTypeAdmin(BaseAdmin):
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('active', 'name', 'description', 'netmiko_name',)
-        }),
-        ('Additional information', {
-            'classes': ('collapse',),
-            'fields': ('ico', 'color',),
-        }),
-    )
-
-
-@admin.register(DeviceTypeTemplate)
-class DeviceTypeTemplateAdmin(BaseAdmin):
-
-    list_display = (
-        'active', 'special', 'vrf', 'name', 'device_type', 'command',
-    )
-    list_filter = (
-        'active', 'special', 'vrf', 'color', 'device_type',
-    )
-    search_fields = (
-        'name', 'command',
-    )
-    fieldsets = (
-        ('Basic information', {
-            'classes': ('wide', 'extrapretty',),
-            'fields': ('active', 'special', 'vrf', 'name', 'description',)
-        }),
-        ('Template information', {
-            'classes': ('collapse',),
-            'fields': ('device_type', 'command', 'sfm_expression',),
         }),
         ('Additional information', {
             'classes': ('collapse',),

@@ -2,14 +2,14 @@
 from django.db import models
 
 # Extended Model Import:
-from core.base_model.extended_model import ExtendedModel
+from core.base_model.simple_model import SimpleModel
 
 # Other models Import:
 from inventory.models.device_type import DeviceType
 
 
 # Device type template model:
-class DeviceTypeTemplate(ExtendedModel):
+class DeviceTypeTemplate(SimpleModel):
     """
     CLI command template can be processed to receive CLI configurations commands.
     A TextFSM string or Regex expression can then be used to check that the received output is correct.
@@ -23,6 +23,18 @@ class DeviceTypeTemplate(ExtendedModel):
 
         # Unique values:
         unique_together = [['command', 'device_type']]
+
+    # Model status values:
+    root = models.BooleanField(
+        verbose_name='Root',
+        help_text='Root object cannot be deleted.',
+        default=False,
+    )
+    active = models.BooleanField(
+        verbose_name='Active',
+        help_text='Object status.',
+        default=True,
+    )
 
     # Spacial type of Device type template object:
     special = models.BooleanField(
@@ -58,3 +70,10 @@ class DeviceTypeTemplate(ExtendedModel):
         null=True,
         blank=True
     )
+
+    # Model representation:
+    def __repr__(self) -> str:
+        return f'{self.pk}: {self.command.capitalize()}'
+
+    def __str__(self) -> str:
+        return  f'{self.pk}: {self.command.capitalize()}'

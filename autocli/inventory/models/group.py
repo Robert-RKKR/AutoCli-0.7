@@ -34,8 +34,6 @@ class Group(ExtendedModel):
         Device,
         verbose_name='Devices',
         help_text='All devices that belongs to current folder.',
-        null=True,
-        blank=True,
     )
 
     # Defaults main values:

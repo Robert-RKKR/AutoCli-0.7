@@ -110,10 +110,6 @@
     updated: 2022-08-07 11:46:27.957655+00:00
     root: false
     active: true
-    name: Show version
-    description: Cli command "show version"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -145,10 +141,6 @@
     updated: 2022-08-07 11:46:18.907546+00:00
     root: false
     active: true
-    name: Show interfaces
-    description: Cli command "show interfaces"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -188,10 +180,6 @@
     updated: 2022-08-07 11:46:06.256846+00:00
     root: false
     active: true
-    name: Show interfaces switchport
-    description: Cli command "show interfaces switchport"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -222,10 +210,6 @@
     updated: 2022-08-07 11:45:56.063032+00:00
     root: false
     active: true
-    name: Show ip interface
-    description: Cli command "show ip interface"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -261,10 +245,6 @@
     updated: 2022-08-07 11:45:43.250192+00:00
     root: false
     active: true
-    name: Show cdp neighbors detail
-    description: Cli command "show cdp neighbors detail"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -289,10 +269,6 @@
     updated: 2022-08-07 11:45:31.546400+00:00
     root: false
     active: true
-    name: Show clock
-    description: Cli command "show clock"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -309,10 +285,6 @@
     updated: 2022-08-07 11:45:22.836746+00:00
     root: false
     active: true
-    name: Show access-list
-    description: Cli command "show access-list"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -333,10 +305,6 @@
     updated: 2022-08-07 11:44:48.315117+00:00
     root: false
     active: true
-    name: Show ip access-list
-    description: Cli command "show ip access-list"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -369,10 +337,6 @@
     updated: 2022-08-07 11:44:38.695848+00:00
     root: false
     active: true
-    name: Show ip route
-    description: Cli command "show ip route"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -401,10 +365,6 @@
     updated: 2022-08-07 11:43:32.901846+00:00
     root: false
     active: true
-    name: Show inventory
-    description: Cli command "show inventory"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -424,10 +384,6 @@
     updated: 2022-08-07 11:43:25.112475+00:00
     root: false
     active: true
-    name: Show vrf
-    description: Cli command "show vrf"
-    ico: 1
-    color: 1
     special: true
     vrf: true
     device_type: 1
@@ -446,10 +402,6 @@
     updated: 2022-08-07 11:43:16.744089+00:00
     root: false
     active: true
-    name: Show lldp neighbors detail
-    description: Cli command "show lldp neighbors detail"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -490,10 +442,6 @@
     updated: 2022-08-07 11:43:00.191790+00:00
     root: false
     active: true
-    name: Show archive
-    description: CLI command "show archive"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -514,10 +462,6 @@
     updated: 2022-08-07 11:42:50.967703+00:00
     root: false
     active: true
-    name: Show dmvpn
-    description: CLI command "show dmvpn"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -536,10 +480,6 @@
     updated: 2022-08-07 11:42:39.552593+00:00
     root: false
     active: true
-    name: Show ip arp
-    description: CLI command "show ip arp"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -558,10 +498,6 @@
     updated: 2022-08-07 10:19:01.859368+00:00
     root: false
     active: true
-    name: Show etherchannel summary
-    description: CLI command "show etherchannel summary"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -589,10 +525,6 @@
     updated: 2022-08-07 11:42:24.341459+00:00
     root: false
     active: true
-    name: Show ip cef detail
-    description: CLI command "show ip cef detail"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -626,10 +558,6 @@
     updated: 2022-08-07 11:06:58.502131+00:00
     root: false
     active: true
-    name: Show ip nat translations
-    description: CLI command "show ip nat translations"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -650,10 +578,6 @@
     updated: 2022-08-07 11:15:11.834305+00:00
     root: false
     active: true
-    name: Show license
-    description: CLI command "show license"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -674,10 +598,6 @@
     updated: 2022-08-07 11:15:07.918061+00:00
     root: false
     active: true
-    name: Show logging
-    description: CLI command "show logging"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -749,10 +669,6 @@
     updated: 2022-08-07 11:40:33.705883+00:00
     root: false
     active: true
-    name: Show mac-address-table
-    description: CLI command "show mac-address-table"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -808,10 +724,6 @@
     updated: 2022-08-07 11:39:54.154259+00:00
     root: false
     active: true
-    name: Show module
-    description: CLI command "show module"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -838,10 +750,6 @@
     updated: 2022-08-07 11:13:30.442080+00:00
     root: false
     active: true
-    name: Show port-security interface int
-    description: CLI command "show port-security interface interface"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -867,10 +775,6 @@
     updated: 2022-08-07 11:39:23.413880+00:00
     root: false
     active: true
-    name: Show processes cpu
-    description: CLI command "show processes cpu"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -887,10 +791,6 @@
     updated: 2022-08-07 11:16:10.573873+00:00
     root: false
     active: true
-    name: Show processes memory sorted
-    description: CLI command "show processes memory sorted"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 1
@@ -910,10 +810,6 @@
     updated: 2022-08-07 11:39:10.747683+00:00
     root: false
     active: true
-    name: Show snmp community
-    description: CLI command "show snmp community"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -930,10 +826,6 @@
     updated: 2022-08-07 11:39:03.321372+00:00
     root: false
     active: true
-    name: Show snmp user
-    description: CLI command "show snmp user"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -955,10 +847,6 @@
     updated: 2022-08-07 11:38:56.283676+00:00
     root: false
     active: true
-    name: Show spanning-tree
-    description: CLI command "show spanning-tree"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -976,10 +864,6 @@
     updated: 2022-08-07 11:38:45.918346+00:00
     root: false
     active: true
-    name: Show standby
-    description: CLI command "show standby"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -1014,10 +898,6 @@
     updated: 2022-08-07 11:21:03.880903+00:00
     root: false
     active: true
-    name: Show vlan
-    description: CLI command "show vlan"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -1097,10 +977,6 @@
     updated: 2022-08-07 11:38:26.446950+00:00
     root: false
     active: true
-    name: Show vtp status
-    description: CLI command "show vtp status"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -1126,10 +1002,6 @@
     updated: 2022-08-07 11:38:16.975694+00:00
     root: false
     active: true
-    name: Show vrrp all
-    description: CLI command "show vrrp all"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -1159,10 +1031,6 @@
     updated: 2022-08-07 11:37:59.447060+00:00
     root: false
     active: true
-    name: Show hosts summary
-    description: CLI command "show hosts summary"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 1
@@ -1180,10 +1048,6 @@
     updated: 2022-08-07 11:28:50.498989+00:00
     root: false
     active: true
-    name: Get router info bgp summary
-    description: CLI command "get router info bgp summary"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 7
@@ -1204,10 +1068,6 @@
     updated: 2022-08-07 11:28:44.988135+00:00
     root: false
     active: true
-    name: Get system arp
-    description: CLI command "get system arp"
-    ico: 1
-    color: 1
     special: true
     vrf: false
     device_type: 7
@@ -1224,10 +1084,6 @@
     updated: 2022-08-07 11:37:38.115861+00:00
     root: false
     active: true
-    name: Get system ha status
-    description: CLI command "get system ha status"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 7
@@ -1257,10 +1113,6 @@
     updated: 2022-08-07 11:37:26.414348+00:00
     root: false
     active: true
-    name: Get system interface physical
-    description: CLI command "get system interface physical"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 7
@@ -1280,10 +1132,6 @@
     updated: 2022-08-07 11:37:15.906133+00:00
     root: false
     active: true
-    name: Get system interface
-    description: CLI command "get system interface"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 7
@@ -1318,10 +1166,6 @@
     updated: 2022-08-07 11:33:27.130019+00:00
     root: false
     active: true
-    name: Get system status
-    description: CLI command "get system status"
-    ico: 1
-    color: 1
     special: false
     vrf: false
     device_type: 7
