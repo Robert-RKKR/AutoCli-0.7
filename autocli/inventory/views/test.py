@@ -12,9 +12,9 @@ def test(request):
         'output': 'Welcome!',
     }
 
-    device = Device.objects.get(pk=1)
+    device = Device.objects.get_device_type_templates(device_pk=1)
 
-    data['output'] = device.get_device_type_templates()
+    data['output'] = device
     
     # GET method:
     return render(request, 'test.html', data)
