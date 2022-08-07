@@ -5,8 +5,9 @@ from django.db import models
 from core.base_model.extended_model import ExtendedModel
 
 # Other models Import:
-from inventory.models.credential import Credential
+from inventory.models.device_type_template import DeviceTypeTemplate
 from inventory.models.device_type import DeviceType
+from inventory.models.credential import Credential
 
 # Validators Import:
 from inventory.validators import HostnameValueValidator
@@ -109,6 +110,13 @@ class Device(ExtendedModel):
         help_text='Check network device certificate during HTTPS connection.',
         default=False,
     )
+
+    def get_device_type_templates(self):
+        device_type = self.device_type
+        device_type_templates = DeviceTypeTemplate.objects.filter(
+            device_type=device_type,
+        )
+        return device_type_templates
 
 # Follow change log:
 follow_change_log(Device)

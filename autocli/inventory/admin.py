@@ -94,7 +94,7 @@ class DeviceTypeAdmin(BaseAdmin):
 class DeviceAdmin(BaseAdmin):
 
     list_display = (
-        'active', 'name', 'hostname', 'ssh_status', 'https_status', 'credential',
+        'active', 'name', 'hostname', 'device_type', 'ssh_status', 'https_status', 'credential',
     )
     list_filter = (
         'active', 'color', 'ssh_status', 'https_status', 'credential',
@@ -111,7 +111,7 @@ class DeviceAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('active', 'name', 'hostname', 'description',)
+            'fields': ('active', 'name', 'hostname', 'device_type', 'description',)
         }),
         ('Connection information', {
             'classes': ('wide', 'extrapretty',),

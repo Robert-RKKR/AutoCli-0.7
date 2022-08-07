@@ -1,6 +1,9 @@
 # Django Import:
 from django.shortcuts import render
 
+# Application model Import:
+from inventory.models.device import Device
+
 def test(request):
 
     # Collect data to display:
@@ -8,6 +11,10 @@ def test(request):
         'page_title': 'Test RKKR',
         'output': 'Welcome!',
     }
+
+    device = Device.objects.get(pk=1)
+
+    data['output'] = device.get_device_type_templates()
     
     # GET method:
     return render(request, 'test.html', data)
