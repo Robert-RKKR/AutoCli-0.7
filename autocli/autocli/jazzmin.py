@@ -88,6 +88,7 @@ JAZZMIN_SETTINGS = {
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
         "logger.Log": "fas fa-barcode",
+        "logger.Extension": "fas fa-barcode",
         "inventory.PolicyTemplate": "fas fa-sticky-note",
         "inventory.PolicyTask": "fas fa-tasks",
         "inventory.PolicyRunner": "fas fa-tasks",
