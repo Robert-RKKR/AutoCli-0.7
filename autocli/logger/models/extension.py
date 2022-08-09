@@ -12,7 +12,7 @@ class Extension(models.Model):
         
         # Model name values:
         verbose_name = 'Extension'
-        verbose_name_plural = 'Extensions',
+        verbose_name_plural = 'Extensions'
 
     # Log corelation:
     log = models.ForeignKey(

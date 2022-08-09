@@ -17,7 +17,7 @@ class Log(models.Model):
         
         # Model name values:
         verbose_name = 'Log'
-        verbose_name_plural = 'Logs',
+        verbose_name_plural = 'Logs'
 
     # Log timestamp:
     timestamp = models.DateTimeField(
@@ -32,22 +32,26 @@ class Log(models.Model):
         help_text='Name of the application which triggered the log.',
         max_length=64,
     )
-    correlated_object = models.CharField(
+    correlated = models.CharField(
         verbose_name='Correlated object',
         help_text='Name of log related object.',
-        max_length=64, null=True,
+        max_length=64,
+        null=True,
+        blank=True,
     )
     code_id = models.CharField(
         verbose_name='Code ID',
         help_text='ID indicating the location of the log call in the code.',
         max_length=64,
         null=True,
+        blank=True,
     )
     task_id = models.CharField(
         verbose_name='Task ID',
         help_text='ID of the task associated with the log.',
         max_length=64,
         null=True,
+        blank=True,
     )
 
     # Log severity:
@@ -63,9 +67,11 @@ class Log(models.Model):
         help_text='Log message.',
         max_length=128,
     )
-    execution_time = models.FloatField(
+    execution = models.FloatField(
         verbose_name='Execution time',
         help_text='Log task completion time.',
+        null=True,
+        blank=True,
     )
 
     # Model representation:

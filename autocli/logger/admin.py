@@ -23,7 +23,7 @@ class ExtensionAdmin(admin.ModelAdmin):
         }),
         ('Data', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('Data',)
+            'fields': ('data',)
         }),
     )
 
@@ -32,21 +32,21 @@ class ExtensionAdmin(admin.ModelAdmin):
 class LogAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'application', 'severity', 'correlated_object', 'task_id', 'message',
+        'pk', 'application', 'severity', 'correlated', 'task_id', 'message',
     )
     list_filter = (
-        'application', 'correlated_object', 'severity',
+        'application', 'correlated', 'severity',
     )
     search_fields = (
         'message', 'task_id',
     )
     readonly_fields = (
-        'application', 'correlated_object', 'task_id', 'severity', 'message', 'code_id', 'execution_time', 'timestamp',
+        'application', 'correlated', 'task_id', 'severity', 'message', 'code_id', 'execution', 'timestamp',
     )
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('timestamp', 'severity', 'application', 'correlated_object', 'task_id',)
+            'fields': ('timestamp', 'severity', 'application', 'correlated', 'task_id',)
         }),
         ('Message', {
             'classes': ('wide', 'extrapretty',),
@@ -54,6 +54,6 @@ class LogAdmin(admin.ModelAdmin):
         }),
         ('Additional information', {
             'classes': ('collapse',),
-            'fields': ('code_id', 'execution_time'),
+            'fields': ('code_id', 'execution'),
         }),
     )
