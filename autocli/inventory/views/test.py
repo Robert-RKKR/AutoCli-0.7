@@ -33,10 +33,11 @@ def test(request):
     })
 
     
+    device = Device.objects.get(pk=1)
+    templates = Device.objects.get_device_type_templates(device)
+    extensions = Log.objects.get_log_extensions(log)
 
-    device = Device.objects.get_device_type_templates(1)
-
-    data['output'] = Log.objects.get_log_extensions(log)
+    data['output'] = templates, extensions
     
     # GET method:
     return render(request, 'test.html', data)
