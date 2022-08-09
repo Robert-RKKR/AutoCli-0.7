@@ -42,7 +42,7 @@ class DeviceTypeTemplateAdmin(BaseSimpleAdmin):
 class CredentialAdmin(BaseAdmin):
 
     list_display = (
-        'active', 'name', 'username', 
+        'pk', 'active', 'name', 'username', 
     )
     list_filter = (
         'active', 'color',
@@ -70,7 +70,7 @@ class CredentialAdmin(BaseAdmin):
 class DeviceTypeAdmin(BaseAdmin):
 
     list_display = (
-        'active', 'name', 'netmiko_name', 
+        'pk', 'active', 'name', 'netmiko_name', 
     )
     list_filter = (
         'active', 'color',
@@ -94,7 +94,7 @@ class DeviceTypeAdmin(BaseAdmin):
 class DeviceAdmin(BaseAdmin):
 
     list_display = (
-        'active', 'name', 'hostname', 'device_type', 'ssh_status', 'https_status', 'credential',
+        'pk', 'active', 'name', 'hostname', 'device_type', 'ssh_status', 'https_status', 'credential',
     )
     list_filter = (
         'active', 'color', 'ssh_status', 'https_status', 'credential',
@@ -136,7 +136,7 @@ class DeviceAdmin(BaseAdmin):
 class GroupAdmin(BaseAdmin):
 
     list_display = (
-        'active', 'name', 'root_folder', 
+        'pk', 'active', 'name', 'root_folder', 
     )
     list_filter = (
         'active', 'color',

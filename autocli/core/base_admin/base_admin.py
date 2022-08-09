@@ -1,20 +1,18 @@
 # Django Import
 from django.contrib import admin
 
-@admin.action(description='Change status to active')
-def change_status_to_true(modeladmin, request, queryset):
-    queryset.update(active=True)
+# Import actions:
+from core.base_admin.actions import change_status_to_true
+from core.base_admin.actions import change_status_to_false
 
-@admin.action(description='Change status to passive')
-def change_status_to_false(modeladmin, request, queryset):
-    queryset.update(active=False)
 
+# Admin class:
 class BaseAdmin(admin.ModelAdmin):
 
     exclude = ('deleted',)
     readonly_fields = ('root',)
     empty_value_display = '-None-'
-    list_display_links = ('name',)
+    list_display_links = ('pk',)
     list_per_page = 10
     list_max_show_all = 100
     actions = [
