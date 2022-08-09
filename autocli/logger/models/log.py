@@ -1,6 +1,9 @@
 # Django Import:
 from django.db import models
 
+# Manager Import:
+from logger.managers.device_manager import LogManager
+
 # Constants:
 SEVERITY = (
     (1, 'CRITICAL'),
@@ -10,6 +13,7 @@ SEVERITY = (
     (5, 'DEBUG'),
 )
 
+
 # Logger models:
 class Log(models.Model):
 
@@ -18,6 +22,9 @@ class Log(models.Model):
         # Model name values:
         verbose_name = 'Log'
         verbose_name_plural = 'Logs'
+
+    # Model objects manager:
+    objects = LogManager()
 
     # Log timestamp:
     timestamp = models.DateTimeField(

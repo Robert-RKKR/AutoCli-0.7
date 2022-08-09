@@ -2,7 +2,7 @@
 __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '2.0'
 
-# Model Import:
+# Application model Import:
 from logger.models.extension import Extension
 from logger.models.log import Log
 
