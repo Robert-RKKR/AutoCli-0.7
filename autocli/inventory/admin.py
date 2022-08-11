@@ -2,8 +2,8 @@
 from django.contrib import admin
 
 # Base Admin Import:
-from core.base_admin.base_admin import BaseAdmin
-from core.base_admin.base_simple_admin import BaseSimpleAdmin
+from .base_admin.base_admin import BaseAdmin
+from .base_admin.base_simple_admin import BaseSimpleAdmin
 
 # Models Imports:
 from inventory.models.credential import Credential

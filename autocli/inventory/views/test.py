@@ -8,7 +8,7 @@ from inventory.models.device import Device
 # from logger.models.log import Log
 
 # Import logger:
-# from logger.logger import Logger
+from message_system.logger.logger import Logger
 
 def test(request):
 
@@ -18,13 +18,13 @@ def test(request):
         'output': 'Welcome!',
     }
 
-    # logger = Logger('Test page')
-    # log = logger.debug('Hello world!', **{
-    #     'object_id': 123,
-    #     'code_id': '3747292928490293',
-    #     'task_id': 'ISJ@8uw8@*Sh@s2qdijq',
-    #     'execution': 394.24,
-    # })
+    logger = Logger('Test page')
+    log = logger.debug('Hello world!', **{
+        'object_id': 123,
+        'code_id': '3747292928490293',
+        'task_id': 'ISJ@8uw8@*Sh@s2qdijq',
+        'execution': 394.24,
+    })
 
     
     device = Device.objects.get(pk=1)

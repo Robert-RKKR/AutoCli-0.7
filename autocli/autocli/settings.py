@@ -71,9 +71,22 @@ WSGI_APPLICATION = 'autocli.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db1.sqlite3',
     }
 }
+
+# docker run --name AutoCLI-DB -p 5005:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=autocli postgres
+# Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'autocli',
+#         'USER': 'postgres',
+#         'PASSWORD': 'password',
+#         'HOST': '127.0.0.1',
+#         'PORT': 5005,
+#     }
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

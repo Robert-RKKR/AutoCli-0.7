@@ -2,7 +2,7 @@
 from django.db import models
 
 # Extended Model Import:
-from core.base_model.extended_model import ExtendedModel
+from inventory.base_model.extended_model import ExtendedModel
 
 # Change log Import:
 from message_system.change_log.follow_change_log import follow_change_log

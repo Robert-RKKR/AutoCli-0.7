@@ -2,7 +2,7 @@
 from django.db import models
 
 # Extended Model Import:
-from core.base_model.simple_model import SimpleModel
+from inventory.base_model.simple_model import SimpleModel
 
 # Other models Import:
 from inventory.models.device_type import DeviceType

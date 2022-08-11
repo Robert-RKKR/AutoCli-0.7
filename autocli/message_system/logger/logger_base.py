@@ -7,7 +7,7 @@ from message_system.models_log.extension import Extension
 from message_system.models_log.log import Log
 
 # Application model Import:
-from core.models.content_type import ContentType
+from message_system.models_content.content_type import ContentType
 
 # Main Logger class:
 class LoggerBase:
@@ -80,7 +80,8 @@ class LoggerBase:
 
         # Exclude dictionary:
         exclude = {
-            'correlated',
+            'content_type',
+            'object_id',
             'code_id',
             'task_id',
             'execution',
@@ -135,7 +136,8 @@ class LoggerBase:
         # Collect all log data:
         self.log_data = {
             'application': self.application,
-            'correlated': kwargs.get('correlated', None),
+            'content_type': kwargs.get('content_type', None),
+            'object_id': kwargs.get('object_id', None),
             'code_id': kwargs.get('code_id', None),
             'task_id': kwargs.get('task_id', None),
             'severity': kwargs.get('severity', None),

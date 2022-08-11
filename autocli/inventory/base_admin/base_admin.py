@@ -2,12 +2,12 @@
 from django.contrib import admin
 
 # Import actions:
-from core.base_admin.actions import change_status_to_true
-from core.base_admin.actions import change_status_to_false
+from .actions import change_status_to_true
+from .actions import change_status_to_false
 
 
 # Admin class:
-class BaseSimpleAdmin(admin.ModelAdmin):
+class BaseAdmin(admin.ModelAdmin):
 
     exclude = ('deleted',)
     readonly_fields = ('root',)

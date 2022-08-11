@@ -2,7 +2,7 @@
 from django.db import models
 
 # Extended Model Import:
-from core.base_model.extended_model import ExtendedModel
+from inventory.base_model.extended_model import ExtendedModel
 
 # Models Import:
 from inventory.models.credential import Credential
