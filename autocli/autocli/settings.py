@@ -33,8 +33,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # AutoCLI apps:
-    'automation.apps.AutomationConfig',
     'change_log.apps.ChangeLogConfig',
+    'automation.apps.AutomationConfig',
+    'core.apps.CoreConfig',
     'dataset.apps.DatasetConfig',
     'inventory.apps.InventoryConfig',
     'logger.apps.LoggerConfig',

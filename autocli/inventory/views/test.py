@@ -19,12 +19,12 @@ def test(request):
     }
 
     logger = Logger('Test page')
-    # log = logger.debug('Hello world!', **{
-    #     'correlated': 'chsthrtr-123',
-    #     'code_id': '3747292928490293',
-    #     'task_id': 'ISJ@8uw8@*Sh@s2qdijq',
-    #     'execution': 394.24,
-    # })
+    log = logger.debug('Hello world!', **{
+        'object_id': 123,
+        'code_id': '3747292928490293',
+        'task_id': 'ISJ@8uw8@*Sh@s2qdijq',
+        'execution': 394.24,
+    })
 
     
     device = Device.objects.get(pk=1)

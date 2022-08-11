@@ -32,21 +32,25 @@ class ExtensionAdmin(admin.ModelAdmin):
 class LogAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'timestamp', 'application', 'severity', 'correlated', 'task_id', 'message',
+        'pk', 'timestamp', 'application', 'severity', 'object_id', 'task_id', 'message',
     )
     list_filter = (
-        'application', 'correlated', 'severity',
+        'application', 'content_type', 'severity',
     )
     search_fields = (
         'message', 'task_id',
     )
     readonly_fields = (
-        'application', 'correlated', 'task_id', 'severity', 'message', 'code_id', 'execution', 'timestamp',
+        'application', 'object_id', 'task_id', 'severity', 'message', 'code_id', 'execution', 'timestamp',
     )
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('timestamp', 'severity', 'application', 'correlated', 'task_id',)
+            'fields': ('timestamp', 'severity', 'application', 'task_id',)
+        }),
+        ('Change object information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('content_type', 'object_id',),
         }),
         ('Message', {
             'classes': ('wide', 'extrapretty',),

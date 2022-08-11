@@ -4,6 +4,9 @@ from django.db import models
 # Manager Import:
 from logger.managers.device_manager import LogManager
 
+# Application model Import:
+from core.models.content_type import ContentType
+
 # Constants:
 SEVERITY = (
     (1, 'CRITICAL'),
@@ -26,11 +29,27 @@ class Log(models.Model):
     # Model objects manager:
     objects = LogManager()
 
-    # Log timestamp:
+    # Model data time information:
     timestamp = models.DateTimeField(
         verbose_name='Timestamp',
-        help_text='Time of log occurrence.',
+        help_text='Time of the log creation.',
         auto_now_add=True,
+    )
+
+    # Information about correlated object:
+    content_type = models.ForeignKey(
+        ContentType,
+        verbose_name='Content type',
+        help_text='Administrator responsible for change.',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+    )
+    object_id = models.IntegerField(
+        verbose_name='Object ID',
+        help_text='Correlated object ID representation.',
+        null=True,
+        blank=True,
     )
 
     # Log corelation:
@@ -38,13 +57,6 @@ class Log(models.Model):
         verbose_name='Application',
         help_text='Name of the application which triggered the log.',
         max_length=64,
-    )
-    correlated = models.CharField(
-        verbose_name='Correlated object',
-        help_text='Name of log related object.',
-        max_length=64,
-        null=True,
-        blank=True,
     )
     code_id = models.CharField(
         verbose_name='Code ID',

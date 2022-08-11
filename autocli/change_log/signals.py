@@ -4,7 +4,7 @@ from django.forms.models import model_to_dict
 from django.dispatch import receiver
 
 # Application change log Import:
-from change_log.models.content_type import ContentType
+from core.models.content_type import ContentType
 from change_log.models.change_log import ChangeLog
 
 # Application model Import:

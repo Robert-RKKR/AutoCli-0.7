@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Application model Import:
-from change_log.models.content_type import ContentType
+from core.models.content_type import ContentType
 
 # Constants declaration:
 ACTION = (
@@ -26,10 +26,22 @@ class ChangeLog(models.Model):
         verbose_name_plural = 'Change logs'
 
     # Model data time information:
-    changed = models.DateTimeField(
-        verbose_name='Changed',
-        help_text='Change create date.',
-        auto_now_add=True
+    timestamp = models.DateTimeField(
+        verbose_name='Timestamp',
+        help_text='Time of the change creation.',
+        auto_now_add=True,
+    )
+
+    # Information about correlated object:
+    content_type = models.ForeignKey(
+        ContentType,
+        verbose_name='Content type',
+        help_text='Administrator responsible for change.',
+        on_delete=models.PROTECT,
+    )
+    object_id = models.IntegerField(
+        verbose_name='Object ID',
+        help_text='Correlated object ID representation.',
     )
 
     # Correlation witch user model:
@@ -48,18 +60,6 @@ class ChangeLog(models.Model):
         help_text='The action that was performed on a given model.',
         choices=ACTION,
         default=0,
-    )
-
-    # Change object details:
-    content_type = models.ForeignKey(
-        ContentType,
-        verbose_name='Content type',
-        help_text='Administrator responsible for change.',
-        on_delete=models.PROTECT,
-    )
-    object_id = models.IntegerField(
-        verbose_name='Object ID',
-        help_text='Object ID representation.'
     )
 
     # Change details:

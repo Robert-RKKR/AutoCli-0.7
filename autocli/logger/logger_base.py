@@ -6,6 +6,9 @@ __version__ = '2.0'
 from logger.models.extension import Extension
 from logger.models.log import Log
 
+# Application model Import:
+from core.models.content_type import ContentType
+
 # Main Logger class:
 class LoggerBase:
     """
@@ -29,19 +32,12 @@ class LoggerBase:
     def _run(self, **kwargs):
         """ Run process of log and details log creation. """
 
-        correlated = kwargs.get('correlated', False)
+        object_id = kwargs.get('object_id', False)
+        content_type = kwargs.get('content_type', False)
         code_id = kwargs.get('code_id', False)
         task_id = kwargs.get('task_id', False)
         execution = kwargs.get('execution', False)
         message = kwargs.get('message', False)
-
-        # Verify if the correlated variable is a valid sting:
-        if correlated:        
-            if isinstance(correlated, str):
-                if len(correlated) > 64:
-                    raise ValueError('The provided correlated variable is to long (Allowed max 64 signs).')
-            else:
-                raise TypeError('The provided correlated variable must be string.')
 
         # Verify if the code_id variable is a valid sting:
         if code_id:        
@@ -66,6 +62,16 @@ class LoggerBase:
                     raise ValueError('The provided message variable is to long (Allowed max 64 signs).')
             else:
                 raise TypeError('The provided message variable must be string.')
+
+        # Verify if the correlated variable is a valid sting:
+        if object_id:        
+            if not isinstance(object_id, int):
+                raise TypeError('The provided object ID variable must be integer.')
+
+        # Verify if the correlated variable is a valid sting:
+        if content_type:        
+            if not isinstance(content_type, ContentType):
+                raise TypeError('The provided content type variable must be content type object.')
 
         # Verify if the task_id variable is a valid sting:
         if execution:        

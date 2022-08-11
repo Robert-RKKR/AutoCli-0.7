@@ -2,39 +2,36 @@
 from django.contrib import admin
 
 # Models Imports:
-from change_log.models.change_log import ChangeLog
+from notification.models.notification import Notification
 
 
 # Admin panel class:
-@admin.register(ChangeLog)
-class ChangeLogAdmin(admin.ModelAdmin):
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'timestamp', 'action', 'content_type', 'object_id', 'administrator',
+        'pk', 'timestamp', 'object_id', 'type', 'message',
     )
     list_filter = (
-        'administrator', 'action', 'content_type',
+        'content_type', 'type',
     )
     search_fields = (
-        'object_id',
-    )
-    list_select_related = (
-        'content_type',
+        'message',
     )
     readonly_fields = (
-        'action', 'administrator', 'content_type', 'object_id', 'after',
+        'object_id', 'message', 'timestamp', 'type', 'content_type', 
     )
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('timestamp', 'action', 'administrator',)
+            'fields': ('timestamp', 'type',)
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('content_type', 'object_id',),
         }),
-        ('Change information', {
+        ('Message', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('after',),
+            'fields': ('message',),
         }),
     )
