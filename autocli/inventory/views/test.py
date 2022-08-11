@@ -19,25 +19,18 @@ def test(request):
     }
 
     logger = Logger('Test page')
-    log = logger.debug('Hello world!', **{
-        'correlated': 'chsthrtr-123',
-        'code_id': '3747292928490293',
-        'task_id': 'ISJ@8uw8@*Sh@s2qdijq',
-        'execution': 394.24,
-        'additional information11': 'This is a message from another world.',
-        'additional information12': 'This is a message from another world.',
-        'additional information21': 'This is a message from another world.',
-        'additional information22': 'This is a message from another world.',
-        'additional information31': 'This is a message from another world.',
-        'additional information32': 'This is a message from another world.',
-    })
+    # log = logger.debug('Hello world!', **{
+    #     'correlated': 'chsthrtr-123',
+    #     'code_id': '3747292928490293',
+    #     'task_id': 'ISJ@8uw8@*Sh@s2qdijq',
+    #     'execution': 394.24,
+    # })
 
     
     device = Device.objects.get(pk=1)
     templates = Device.objects.get_device_type_templates(device)
-    extensions = Log.objects.get_log_extensions(log)
 
-    data['output'] = templates, extensions
+    data['output'] = templates
     
     # GET method:
     return render(request, 'test.html', data)
