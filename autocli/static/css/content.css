@@ -1,5 +1,288 @@
  /*   ------------------------------------   */
 /*   ----       PAGE - CONTENT       ----   */
-#content {
-    padding: 15px;
+#page_content {
+    position: absolute;
+    left: var(--sidebar);
+    width: calc(100% - 60px);
 }
+
+#page.animated #page_content {
+    transition: var(--main_transition);
+    transition-property: width, left;
+}
+
+#sidebar.blocked_bigbar ~ #page_content {
+    left: var(--bigbar);
+    width: calc(100% - var(--bigbar));
+}
+
+#page_top {
+    height: var(--page_top);
+    background: var(--color_first);
+}
+
+#page_bottom {
+    height: calc(100vh - var(--page_top));
+    background: var(--color_second);
+    overflow-y: auto;
+}
+
+#content {
+    padding: 30px;
+}
+
+
+
+/*   ------------------------------------   */
+/*   ----        BOX CONTAINER       ----   */
+[class^="box_container"] {
+   display: grid;
+   column-gap: 15px;
+   row-gap: 15px;
+   margin-bottom: 30px;
+}
+
+    /*   ----        OPTIONS LIST        ----   */
+    .options_list {
+        position: relative;
+    }
+
+    .options_list_button {
+        font-size: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .options_list_menu {
+        opacity: 0;
+        position: absolute;
+        display: none;
+        top: 30px;
+        right: 0px;
+        width: 150px;
+        border-radius: 10px;
+        box-shadow: var(--main_shadow_strong);
+        user-select: none;
+
+        transition-timing-function: ease;
+        transition-duration: 1000ms;
+        transition-property: opacity;
+    }
+
+    .options_list_menu a {
+        display: block;
+        padding: 10px 15px;
+        background: var(--color_third);
+        cursor: pointer;
+    }
+
+    .options_list_menu a:first-child {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .options_list_menu a:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .options_list_menu a:hover {
+        background: var(--color_light_blue);
+    }
+
+    .options_list_topline {
+        border-top: var(--main_border);
+    }
+
+    /*   ----        BOX ITEM        ----   */
+    [class^="box_item_object"] {
+        background: var(--color_third);
+        border-radius: 10px;
+        box-shadow: var(--main_shadow_light);
+    }
+
+    /*   ----        BOX ITEM - HEADER        ----   */
+    .box_item_heder {
+        border-bottom: var(--main_border);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+
+        /*   ----        BOX ITEM HEADER - TITLE        ----   */
+        .box_item_title {
+            text-transform: uppercase;
+            height: 15px;
+        }
+
+    /*   ----        BOX ITEM - FOOTER        ----   */
+    .box_item_footer {
+        border-top: var(--main_border);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 15px;
+    }
+
+    .box_item_footer p {
+        font-size: 0.9em;
+        padding: 15px;
+    }
+
+    .table_paggination {
+        display: flex;
+    }
+
+    .table_paggination .current_page {
+        font-weight: bold;
+        color: var(--color_strong_blue);;
+    }
+
+    .box_item_footer a {
+        padding: 15px;
+    }
+
+    .box_item_footer a:hover {
+        background: var(--color_table_first);
+    }
+
+
+
+    /*   ---------------------------------------------------   */
+    /*   ----        BOX CONTAINER - GRID OBJECT       ----   */
+
+        /*   ----        BOX ITEM CONTENT        ----   */
+        .box_item_object_grid .box_item_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .box_item_object_grid .box_item_content img {
+            width: 60px;
+            opacity: var(--main_img_opacity);
+            margin-bottom: 20px;
+        }
+
+        .box_item_object_grid .box_item_content table {
+            width: 100%;
+        }
+
+        .box_item_object_grid .box_item_content table th {
+            text-align: start;
+            padding: 15px;
+        }
+
+        .box_item_object_grid .box_item_content table td {
+            text-align: end;
+            padding: 15px;
+        }
+
+        .box_item_object_grid .box_item_content table tr {
+            border-top: var(--main_border);
+        }
+
+        /*   ----        BOX ITEM - FOOTER        ----   */
+        .box_item_object_grid .box_item_footer {
+            border-top: var(--main_border);
+        }
+
+
+
+        /*   ---------------------------------------------------   */
+        /*   ----        BOX CONTAINER - TABLE OBJECT       ----   */
+    
+            /*   ----        BOX ITEM CONTENT        ----   */
+            .box_item_object_table .box_item_content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .box_item_object_table .box_item_content table {
+                width: 100%;
+            }
+    
+            .box_item_object_table .box_item_content table th {
+                text-align: start;
+                padding: 15px;
+            }
+    
+            .box_item_object_table .box_item_content table td {
+                text-align: start;
+                padding: 15px;
+            }
+    
+            .box_item_object_table .box_item_content thead tr {
+                background: var(--color_table_second);
+            }
+    
+            .box_item_object_table .box_item_content tbody tr:nth-child(2n) {
+                background: var(--color_table_first);
+            }
+
+
+
+        /*   ---------------------------------------------------   */
+        /*   ----        BOX CONTAINER - FORM OBJECT       ----   */
+    
+            /*   ----        BOX ITEM CONTENT        ----   */
+            .box_item_object_form .box_item_content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+
+            .box_item_object_form .box_item_content form {
+                display: grid;
+                grid-template-columns: repeat(1, auto);
+                column-gap: 30px;
+                row-gap: 20px;
+                width: 100%;
+            }
+
+            .box_item_object_form .box_item_content form > div {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .box_item_object_form .box_item_content label {
+                margin-bottom: 10px;
+            }
+
+            .box_item_object_form .box_item_content input,
+            .box_item_object_form .box_item_content select {
+                border: var(--main_border);
+                border-radius: 5px;
+                padding: 7px 15px;
+                background: var(--color_table_first);
+            }
+ 
+            .box_item_object_form .box_item_content input:focus,
+            .box_item_object_form .box_item_content select:focus {
+                outline: 2px solid var(--color_strong_blue);
+                border: var(--main_border);
+                border-color: var(--color_strong_blue);
+            }
+
+            .box_item_object_form .box_item_content .checkbox {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .box_item_object_form .box_item_content .checkbox label {
+                margin-bottom: 0px;
+            }
+
+            .box_item_object_form .box_item_content .checkbox input {
+                margin-left: 30px;
+            }
+
+            .box_item_object_form .box_item_content .checkbox input:focus {
+                outline: none;
+            }

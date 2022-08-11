@@ -5,12 +5,12 @@
     /* Main page colors */
     --color_first: #226acf;
     --color_second: #e9ecef;
-    --color_third: #faf8f8;
+    --color_third: #ffffff;
 
     /* Main font colors */
-    --color_font_first: #555656;
-    --color_font_second: #72777a;
-    --color_font_third: #e9e9e9;
+    --color_font_first: #4c4c4c;
+    --color_font_second: #6f6f6f;
+    --color_font_third: #eff1f6;
 
     /* Light colors */
     --color_light_blue: #c3e0f7;
@@ -28,12 +28,25 @@
     --color_strong_red: #f55e7a;
     --color_strong_gray: #4e6f99;
 
+    /* Main table colors */
+    --color_table_first: #f2f2f2;
+    --color_table_second: #e4e4e4;
+  
+    /* Main scrollbar colors */
+    --color_scrollbar_first: rgb(244, 246, 246);
+    --color_scrollbar_second: rgb(184, 186, 186);
+    --color_scrollbar_third: rgb(121, 123, 123);
+
     /* Time */
-    --time_sidebar: 400ms;
+    --time_sidebar: 300ms;
 
     /* Main values */
     --main_border: 1px solid rgb(200, 200, 200);
-    --main_shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+    --main_shadow_light: 0 0 0.2rem 0.1rem rgb(0 0 0 / 5%);
+    --main_shadow_strong: 0 0 0.2rem 0.1rem rgb(0 0 0 / 10%);
+    --main_transition: transform 400ms ease;
+    --main_sidebar_transition: transform 300ms ease 100ms;
+    --main_img_opacity: 1;
 
     /* Main dimensions values */
     --page_top: 60px;
@@ -45,14 +58,14 @@
 #page.dark {
 
     /* Main page colors */
-    --color_first: #1e467e;
-    --color_second: #434445;
-    --color_third: #6d6c6c;
+    --color_first: #2b2a2a;
+    --color_second: #000000;
+    --color_third: #1f1f1f;
 
     /* Main font colors */
-    --color_font_first: #e6e9e9;
-    --color_font_second: #c9cbcc;
-    --color_font_third: #b2b0b0;
+    --color_font_first: #e2e2e2;
+    --color_font_second: #dbdada;
+    --color_font_third: #c7c7c7;
     
     /* Strong colors */
     --color_strong_blue: #4e6b9d;
@@ -62,14 +75,26 @@
     --color_strong_red: #8a3a48;
     --color_strong_gray: #41618c;
 
+    /* Main table colors */
+    --color_table_first: #2b2b2b;
+    --color_table_second: #0a0a0a;
+  
+    /* Main scrollbar colors */
+    --color_scrollbar_first: rgb(89, 89, 89);
+    --color_scrollbar_second: rgb(50, 50, 50);
+    --color_scrollbar_third: rgb(27, 27, 27);
+
     /* Main values */
-    --main_border: 1px solid rgb(68, 67, 67);
+    --main_border: none;
+    --main_shadow_light: 0 0 0.2rem 0.1rem rgba(155, 155, 155, 0.1);
+    --main_shadow_strong: 0 0 0.2rem 0.1rem rgba(84, 84, 84, 0.2);
+    --main_img_opacity: 0.7;
     
 }
 
  /* --------------------------------------   */
 /*   ----       MAIN SETTINGS        ----   */
-span, input, h1, h2, h3, h4, h5, h5, a, p, q, i {
+span, input, label, input, option, select, h1, h2, h3, h4, h5, h5, a, p, q, i, li, td, th {
     font-family: "Alegreya Sans SC", sans-serif;
     color: var(--color_font_first);
     font-size: 1em;
@@ -79,6 +104,20 @@ span, input, h1, h2, h3, h4, h5, h5, a, p, q, i {
     display: none;
 }
 
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.show {
+    opacity: 1!Important;
+    display: block!Important;
+}
+
     /*   -----   PAGE SCROLL   -----   */
     ::-webkit-scrollbar {
         width: 6px;
@@ -86,89 +125,27 @@ span, input, h1, h2, h3, h4, h5, h5, a, p, q, i {
     }
 
     ::-webkit-scrollbar-track {
-        background: rgb(244, 246, 246);
+        background: var(--color_scrollbar_first);
         margin: var(--main_padding) 0px;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: rgb(184, 186, 186);
+        background: var(--color_scrollbar_second);
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: rgb(121, 123, 123);
+        background: var(--color_scrollbar_third);
     }
 
     /*   ----             ANIMATED BUTTON           ----   */
     .animated_button {
         cursor: pointer;
-        transition-duration: 200ms;
-        transition-property: transform;
     }
 
- /*   ------------------------------------   */
-/*   ----           SIDEBAR          ----   */
-#sidebar {
-    height: 100vh;
-    width: var(--sidebar);
-    position: absolute;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 100;
-}
+    .animated_button:hover {
+        transform: scale(1.2)
+    }
 
-#page.animated #sidebar {
-    transition-timing-function: ease;
-    transition-duration: var(--time_sidebar);
-    transition-delay: 100ms;
-    transition-property: width;
-}
-
-#sidebar.bigbar, #sidebar.blocked_bigbar {
-    width: var(--bigbar);
-}
-
-#sidebar_top {
-    height: var(--page_top);
-    background: var(--color_first);
-}
-
-#sidebar_bottom {
-    height: calc(100vh - var(--page_top));
-    border-right: var(--main_border);
-    background: var(--color_third);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-
-
-
-/*   ------------------------------------   */
-/*   ----        PAGE CONTENT       ----   */
-#page_content {
-    position: absolute;
-    left: var(--sidebar);
-    width: calc(100% - 60px);
-}
-
-#page.animated #page_content {
-    transition-timing-function: ease;
-    transition-duration: var(--time_sidebar);
-    transition-property: width, left;
-}
-
-#sidebar.blocked_bigbar ~ #page_content {
-    left: var(--bigbar);
-    width: calc(100% - var(--bigbar));
-}
-
-#page_top {
-    height: var(--page_top);
-    background: var(--color_first);
-}
-
-#page_bottom {
-    height: calc(100vh - var(--page_top));
-    background: var(--color_second);
-}
+    .animated_button:active {
+        transform: scale(0.9)
+    }
