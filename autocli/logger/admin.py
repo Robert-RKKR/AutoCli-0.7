@@ -32,7 +32,7 @@ class ExtensionAdmin(admin.ModelAdmin):
 class LogAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'application', 'severity', 'correlated', 'task_id', 'message',
+        'pk', 'timestamp', 'application', 'severity', 'correlated', 'task_id', 'message',
     )
     list_filter = (
         'application', 'correlated', 'severity',
