@@ -33,14 +33,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # AutoCLI apps:
-    'change_log.apps.ChangeLogConfig',
-    'automation.apps.AutomationConfig',
-    'core.apps.CoreConfig',
-    'dataset.apps.DatasetConfig',
+    # 'automation.apps.AutomationConfig',
+    # 'core.apps.CoreConfig',
+    # 'dataset.apps.DatasetConfig',
     'inventory.apps.InventoryConfig',
-    'logger.apps.LoggerConfig',
-    'notification.apps.NotificationConfig',
-    'settings.apps.SettingsConfig',
+    'message_system.apps.MessageSystemConfig',
+    # 'settings.apps.SettingsConfig',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

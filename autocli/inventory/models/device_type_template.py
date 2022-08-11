@@ -8,7 +8,7 @@ from core.base_model.simple_model import SimpleModel
 from inventory.models.device_type import DeviceType
 
 # Change log Import:
-from change_log.follow_change_log import follow_change_log
+from message_system.change_log.follow_change_log import follow_change_log
 
 
 # Device type template model:

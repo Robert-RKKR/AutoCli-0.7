@@ -2,7 +2,7 @@
 from django.db.utils import OperationalError
 
 # Application change log Import:
-from core.models.content_type import ContentType
+from message_system.models_content.content_type import ContentType
 
 # Follow function:
 def follow_change_log(model):

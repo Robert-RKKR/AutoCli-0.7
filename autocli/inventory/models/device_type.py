@@ -5,7 +5,7 @@ from django.db import models
 from core.base_model.extended_model import ExtendedModel
 
 # Change log Import:
-from change_log.follow_change_log import follow_change_log
+from message_system.change_log.follow_change_log import follow_change_log
 
 
 # Credential model:

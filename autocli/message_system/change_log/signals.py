@@ -4,8 +4,8 @@ from django.forms.models import model_to_dict
 from django.dispatch import receiver
 
 # Application change log Import:
-from core.models.content_type import ContentType
-from change_log.models.change_log import ChangeLog
+from message_system.models_content.content_type import ContentType
+from message_system.models_change.change_log import ChangeLog
 
 # Application model Import:
 from inventory.models.credential import Credential

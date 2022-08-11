@@ -2,10 +2,10 @@
 from django.db import models
 
 # Manager Import:
-from logger.managers.device_manager import LogManager
+from message_system.logger.managers.device_manager import LogManager
 
 # Application model Import:
-from core.models.content_type import ContentType
+from message_system.models_content.content_type import ContentType
 
 # Constants:
 SEVERITY = (

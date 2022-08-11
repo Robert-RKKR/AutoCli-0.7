@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class LoggerConfig(AppConfig):
+class MessageSystemConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'logger'
+    name = 'message_system'

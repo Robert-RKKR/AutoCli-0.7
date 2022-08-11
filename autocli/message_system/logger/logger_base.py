@@ -3,8 +3,8 @@ __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '2.0'
 
 # Application model Import:
-from logger.models.extension import Extension
-from logger.models.log import Log
+from message_system.models_log.extension import Extension
+from message_system.models_log.log import Log
 
 # Application model Import:
 from core.models.content_type import ContentType

@@ -2,7 +2,7 @@
 from django.db import models
 
 # Application models Import:
-from logger.models.log import Log
+from message_system.models_log.log import Log
 
 
 # Logger models:

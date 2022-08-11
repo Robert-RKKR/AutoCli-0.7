@@ -9,7 +9,7 @@ from inventory.models.credential import Credential
 from inventory.models.device import Device
 
 # Change log Import:
-from change_log.follow_change_log import follow_change_log
+from message_system.change_log.follow_change_log import follow_change_log
 
 
 # Folder model:

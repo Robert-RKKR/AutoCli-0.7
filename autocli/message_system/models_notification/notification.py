@@ -2,7 +2,7 @@
 from django.db import models
 
 # Application model Import:
-from core.models.content_type import ContentType
+from message_system.models_content.content_type import ContentType
 
 # Constants:
 TYPE = (
