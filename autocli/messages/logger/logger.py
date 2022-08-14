@@ -220,38 +220,33 @@ class Logger:
     def _verification(self, **kwargs):
         """ Provided data verification. """
 
-        code_id = kwargs.get('code_id', False)
-        task_id = kwargs.get('task_id', False)
-        execution = kwargs.get('execution', False)
-        message = kwargs.get('message', False)
-
         # Verify if the code_id variable is a valid sting:
-        if code_id:        
-            if isinstance(code_id, str):
-                if len(code_id) > 64:
+        if kwargs.get('code_id', False):        
+            if isinstance(kwargs['code_id'], str):
+                if len(kwargs['code_id']) > 64:
                     raise ValueError('The provided code ID variable is to long (Allowed max 64 signs).')
             else:
                 raise TypeError('The provided code ID variable must be string.')
 
         # Verify if the task_id variable is a valid sting:
-        if task_id:        
-            if isinstance(task_id, str):
-                if len(task_id) > 64:
+        if kwargs.get('task_id', False):        
+            if isinstance(kwargs['task_id'], str):
+                if len(kwargs['task_id']) > 64:
                     raise ValueError('The provided task ID variable is to long (Allowed max 64 signs).')
             else:
                 raise TypeError('The provided task ID variable must be string.')
 
         # Verify if the task_id variable is a valid sting:
-        if message:        
-            if isinstance(message, str):
-                if len(message) > 64:
+        if kwargs.get('message', False):        
+            if isinstance(kwargs['message'], str):
+                if len(kwargs['message']) > 64:
                     raise ValueError('The provided message variable is to long (Allowed max 64 signs).')
             else:
                 raise TypeError('The provided message variable must be string.')
 
         # Verify if the task_id variable is a valid sting:
-        if execution:        
-            if not isinstance(execution, float):
+        if kwargs.get('execution', False):        
+            if not isinstance(kwargs['execution'], float):
                 raise TypeError('The provided message variable must be float.')
     
     def _run(self, **kwargs):
