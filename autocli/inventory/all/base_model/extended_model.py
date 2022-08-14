@@ -23,6 +23,9 @@ class ExtendedModel(BaseModel):
         verbose_name = 'Extended model'
         verbose_name_plural = 'Extended models'
 
+        # Default ordering:
+        ordering = ['name']
+
         # Abstract class value:
         abstract = True
 

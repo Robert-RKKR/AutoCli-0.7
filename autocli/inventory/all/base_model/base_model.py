@@ -17,6 +17,9 @@ class BaseModel(models.Model):
         verbose_name = 'Base model'
         verbose_name_plural = 'Base models'
 
+        # Default permissions:
+        permissions = [('read_only', 'read_write')]
+
         # Abstract class value:
         abstract = True
 

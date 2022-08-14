@@ -24,6 +24,9 @@ class DeviceTypeTemplate(SimpleModel):
         verbose_name = 'Device type template'
         verbose_name_plural = 'Device type templates'
 
+        # Default ordering:
+        ordering = ['pk']
+
         # Unique values:
         unique_together = [['command', 'device_type']]
 

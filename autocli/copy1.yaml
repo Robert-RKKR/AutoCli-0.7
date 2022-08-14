@@ -1,114 +1,114 @@
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 1
   fields:
     deleted: false
     created: 2022-08-07 07:43:39.505924+00:00
     updated: 2022-08-07 07:43:39.505967+00:00
-    root: false
+    root: true
     active: true
     name: Cisco IOS
     description: Cisco IOS device
     ico: 1
     color: 1
     netmiko_name: cisco_ios
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 2
   fields:
     deleted: false
     created: 2022-08-07 07:44:06.129247+00:00
     updated: 2022-08-07 07:44:06.129293+00:00
-    root: false
+    root: true
     active: true
     name: Cisco XE
     description: Cisco XE device
     ico: 1
     color: 1
     netmiko_name: cisco_xe
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 3
   fields:
     deleted: false
     created: 2022-08-07 07:45:39.031064+00:00
     updated: 2022-08-07 07:45:39.031111+00:00
-    root: false
+    root: true
     active: true
     name: Cisco XR
     description: Cisco XR device
     ico: 1
     color: 1
     netmiko_name: cisco_xr
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 4
   fields:
     deleted: false
     created: 2022-08-07 07:45:56.915102+00:00
     updated: 2022-08-07 07:45:56.915148+00:00
-    root: false
+    root: true
     active: true
     name: Cisco NXOS
     description: Cisco NXOS device
     ico: 1
     color: 1
     netmiko_name: cisco_nxos
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 5
   fields:
     deleted: false
     created: 2022-08-07 07:46:17.415732+00:00
     updated: 2022-08-07 07:46:17.415794+00:00
-    root: false
+    root: true
     active: true
     name: Cisco ASA
     description: Cisco ASA device
     ico: 1
     color: 1
     netmiko_name: cisco_asa
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 6
   fields:
     deleted: false
     created: 2022-08-07 07:46:36.960656+00:00
     updated: 2022-08-07 07:46:36.960710+00:00
-    root: false
+    root: true
     active: true
     name: Cisco WLC
     description: Cisco WLC device
     ico: 1
     color: 1
     netmiko_name: cisco_wlc
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 7
   fields:
     deleted: false
     created: 2022-08-07 07:46:53.115774+00:00
     updated: 2022-08-07 07:46:53.115835+00:00
-    root: false
+    root: true
     active: true
     name: FortiNet OS
     description: FortiNet OS device
     ico: 1
     color: 1
     netmiko_name: fortinet_os
-- model: inventory.devicetype
+- model: devices.devicetype
   pk: 8
   fields:
     deleted: false
     created: 2022-08-07 07:47:14.331791+00:00
     updated: 2022-08-07 07:47:14.331864+00:00
-    root: false
+    root: true
     active: true
     name: Unsupported
     description: Unsupported device
     ico: 1
     color: 1
     netmiko_name: 'Null'
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 1
   fields:
     deleted: false
     created: 2022-08-07 08:02:52.810901+00:00
     updated: 2022-08-07 11:46:27.957655+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -133,13 +133,13 @@
       \ ^[Ss]ystem\\s+[Ss]erial\\s+[Nn]umber\\s+:\\s+${SERIAL}\r\n  ^[Mm]odel\\s+[Nn]umber\\s+:\\s+${HARDWARE}\\s*\r\n
       \ ^[Cc]onfiguration\\s+register\\s+is\\s+${CONFIG_REGISTER}\r\n  ^Base [Ee]thernet
       MAC [Aa]ddress\\s+:\\s+${MAC}"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 2
   fields:
     deleted: false
     created: 2022-08-07 08:04:09.199170+00:00
     updated: 2022-08-07 11:46:18.907546+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -172,13 +172,13 @@
       \ ^\\s+${OUTPUT_PACKETS}\\s+packets\\s+output,\\s+\\d+\\s+bytes,\\s+\\d+\\s+underruns\\s*$$\r\n
       \ ^\\s+${OUTPUT_ERRORS}\\s+output\\s+errors,\\s+\\d+\\s+collisions,\\s+\\d+\\s+interface\\s+resets\\s*$$\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 3
   fields:
     deleted: false
     created: 2022-08-07 08:26:54.958323+00:00
     updated: 2022-08-07 11:46:06.256846+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -202,13 +202,13 @@
       \ ^\\s*Override\\s+vlan\\s+tag\\s+priority\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n
       \ ^Time\\s+source\\s+is\r\n  ^. -> Error\r\n\r\nTrunk\r\n  ^\\s+${TRUNKING_VLANS},\\s*$$\r\n
       \ ^\\s+${TRUNKING_VLANS}\\s*$$ -> Start\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 4
   fields:
     deleted: false
     created: 2022-08-07 08:31:14.081979+00:00
     updated: 2022-08-07 11:45:56.063032+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -237,13 +237,13 @@
       \ ^\\s+\\d+\\s+(suppressed\\s+)?verification\\s+drop(s)?\r\n  ^\\s*IP\\s+Distributed\\s+switching\\s+is\r\n
       \ ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error\r\n\r\nHELPERS\r\n
       \ ^\\s+${IP_HELPER}\\s*$$\r\n  ^\\s+Directed -> Start\r\n  ^.* -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 5
   fields:
     deleted: false
     created: 2022-08-07 08:31:34.769315+00:00
     updated: 2022-08-07 11:45:43.250192+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -261,13 +261,13 @@
       -> Start\r\n  ^Platform\\s*:\\s*${PLATFORM}\\s*,\\s*Capabilities\\s*:\\s*${CAPABILITIES}$$
       -> Start\r\n  ^.* -> Start\r\n\r\nGetVersion\r\n  ^${SOFTWARE_VERSION} -> Record
       Start"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 6
   fields:
     deleted: false
     created: 2022-08-07 08:32:07.776322+00:00
     updated: 2022-08-07 11:45:31.546400+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -277,13 +277,13 @@
       DAYWEEK (\\w+)\r\nValue MONTH (\\w+)\r\nValue DAY (\\d+)\r\nValue YEAR (\\d+)\r\n\r\nStart\r\n
       \ ^[\\*]?${TIME}\\s${TIMEZONE}\\s${DAYWEEK}\\s${MONTH}\\s${DAY}\\s${YEAR} ->
       Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 7
   fields:
     deleted: false
     created: 2022-08-07 10:07:55.744724+00:00
     updated: 2022-08-07 11:45:22.836746+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -297,13 +297,13 @@
       \ ^\\s+${SN}\\s+${ACTION}\\s+${PROTOCOL}\\s+${SOURCE}(\\s+${PORT})*(\\s${RANGE})*\\s+${DESTINATION}(\\s+${MODIFIER})*
       -> Record\r\n  ^\\s+${SN}\\s+${ACTION}\\s+${SOURCE}(\\s+${MODIFIER})* -> Record\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 8
   fields:
     deleted: false
     created: 2022-08-07 10:08:42.829948+00:00
     updated: 2022-08-07 11:44:48.315117+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -329,13 +329,13 @@
       -> Record\r\n  ^\\s+${LINE_NUM}\\s+${ACTION}\\s+(${SRC_NETWORK},\\s+wildcard\\s+bits\\s+${SRC_WILDCARD}|${SRC_HOST}|${SRC_ANY})(\\s+${LOG}|)(\\s+time-range\\s+${TIME}\\s+\\(${STATE}\\)|)(?:\\s+\\(${MATCHES}\\s+\\S+\\)|)(\\s+\\(tag\\s+=\\s+${LOG_TAG}\\)|)\\s*$$
       -> Record\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n
       \ ^.* -> Error \"Could not parse line:\"\r\n\r\nEOF"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 9
   fields:
     deleted: false
     created: 2022-08-07 10:11:16.901893+00:00
     updated: 2022-08-07 11:44:38.695848+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -357,13 +357,13 @@
       \ ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK} -> Next\r\n  ^\\s+\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP}(,\\s${UPTIME})?(,\\s${NEXTHOP_IF})?
       -> Record\r\n  ^\\s+\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP} -> Record\r\n
       \ ^\\s* -> Clearall\r\nEOF"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 10
   fields:
     deleted: false
     created: 2022-08-07 10:12:01.190656+00:00
     updated: 2022-08-07 11:43:32.901846+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -376,13 +376,13 @@
       -> Record\r\n  ^PID:\\s+${PID}.*,.*VID:\\s+${VID}.*\r\n  ^PID:\\s+,.*VID:\\s+${VID}.*\r\n
       \ ^.*SN:\\s+${SN} -> Record\r\n  ^.*SN: -> Record\r\n  ^Load\\s+for\\s+\r\n
       \ ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 11
   fields:
     deleted: false
     created: 2022-08-07 10:12:52.466023+00:00
     updated: 2022-08-07 11:43:25.112475+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: true
@@ -394,13 +394,13 @@
       \ ^Time\\s+source\\s+is\r\n\r\nStart_record\r\n  ^\\s{2}\\S+ -> Continue.Record\r\n
       \ ^\\s{60}\\s+${INTERFACES}\r\n  ^\\s+${NAME}\\s+${DEFAULT_RD}\\s+${PROTOCOLS}\\s+${INTERFACES}\r\n
       \ ^\\s+${NAME}\\s+${DEFAULT_RD}\\s+${PROTOCOLS}"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 12
   fields:
     deleted: false
     created: 2022-08-07 10:14:41.186456+00:00
     updated: 2022-08-07 11:43:16.744089+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -434,13 +434,13 @@
       \ ^\\s*$$ -> Start\r\n\r\nMed\r\n  ^\\s+Serial\\s+number:\\s+${SERIAL}\\s*$$\r\n
       \ ^\\s+\\S+\r\n  ^\\s*$$\r\n  ^\\s*Total\\s+entries\\s+displayed -> Record\r\n
       \ ^\\s*-+\\s*$$ -> Continue.Record\r\n  ^\\s*-+\\s*$$ -> Start\r\n  ^.* -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 13
   fields:
     deleted: false
     created: 2022-08-07 10:15:41.920717+00:00
     updated: 2022-08-07 11:43:00.191790+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -454,13 +454,13 @@
       \ ^\\s+\\d+\\s+${FILENAMES}\r\n  ^\\s+\\d+ -> Record\r\n  ^\\sArchive feature
       ${STATE} -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^.
       -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 14
   fields:
     deleted: false
     created: 2022-08-07 10:16:30.828765+00:00
     updated: 2022-08-07 11:42:50.967703+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -472,13 +472,13 @@
       -> Record\r\n  ^Legend.*\r\n  ^\\s+\\D.*.*$$\r\n  ^=*$$\r\n  ^Interface.*$$\r\n
       \ ^Type.*$$\r\n  ^\\s*$$\r\n  ^\\s+#\\s+Ent\\s+Peer\\s+NBMA\\s+Addr\\s+Peer\\s+Tunnel\\s+Add\\s+State\\s+UpDn\\s+Tm\\s+Attrb\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 15
   fields:
     deleted: false
     created: 2022-08-07 10:18:02.968716+00:00
     updated: 2022-08-07 11:42:39.552593+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -490,13 +490,13 @@
       Addr\\s+Type\\s+Interface\r\n  ^${PROTOCOL}\\s+${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${TYPE}\\s+${INTERFACE}
       -> Record\r\n  ^${PROTOCOL}\\s+${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${TYPE} ->
       Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 16
   fields:
     deleted: false
     created: 2022-08-07 10:19:01.859323+00:00
     updated: 2022-08-07 10:19:01.859368+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -517,13 +517,13 @@
       -> Continue\r\n  ^\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
       -> Continue\r\n  ^\\d+\r\n  ^\\s+\r\n  ^-+\\++\r\n  ^\\s*$$\r\n  ^(RU|SU)\\s+-\\s+L(2|3)\\s+port-channel\\s+UP\\s+(s|S)tate\r\n
       \ ^(P|S)/(bndl|susp)\\s+-\\s+(Bundled|Suspended)\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 17
   fields:
     deleted: false
     created: 2022-08-07 10:20:02.253064+00:00
     updated: 2022-08-07 11:42:24.341459+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -550,13 +550,13 @@
       \ ^\\s+BFD\\s+state\r\n  ^\\s+\\d+\\s+IPL\\s+source\r\n  ^\\d+\\s+packets\r\n
       \ ^\\s*$$\r\n  ^. -> Error\r\n\r\nRecursive\r\n  ^\\s+attached\\s+to\\s+${INTERFACE}
       -> Start\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 18
   fields:
     deleted: false
     created: 2022-08-07 10:58:53.353188+00:00
     updated: 2022-08-07 11:06:58.502131+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -570,13 +570,13 @@
       \ ^${PROTOCOL}\\s+${INSIDE_GLOBAL_IP}:${INSIDE_GLOBAL_PORT}\\s+${INSIDE_LOCAL_IP}:${INSIDE_LOCAL_PORT}\\s+${OUTSIDE_LOCAL_IP}:${OUTSIDE_GLOBAL_PORT}\\s+${OUTSIDE_GLOBAL_IP}:${OUTSIDE_LOCAL_PORT}
       -> Record\r\n  ^${PROTOCOL}\\s+${INSIDE_GLOBAL_IP}\\s+${INSIDE_LOCAL_IP}\\s+${OUTSIDE_LOCAL_IP}\\s+${OUTSIDE_GLOBAL_IP}
       -> Record"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 19
   fields:
     deleted: false
     created: 2022-08-07 10:59:59.584141+00:00
     updated: 2022-08-07 11:15:11.834305+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -590,13 +590,13 @@
       \ ^\\s+License\\s+State:\\s+${LICENSE_STATE}$$\r\n  ^\\s+License\\s+Count:\\s+${LICENSE_COUNT}$$\r\n
       \ ^\\s+License\\s+Priority:\\s+${LICENSE_PRIORITY}$$\r\n  ^\\s*$$\r\n  ^. ->
       Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 20
   fields:
     deleted: false
     created: 2022-08-07 11:01:01.830355+00:00
     updated: 2022-08-07 11:15:07.918061+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -661,13 +661,13 @@
       -> NumberLogs\r\n  # NUMBER LOGS NO SEVERITY\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
       -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
       -> NumberLogs\r\n  ^${MESSAGE}$$\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 21
   fields:
     deleted: false
     created: 2022-08-07 11:05:40.668544+00:00
     updated: 2022-08-07 11:40:33.705883+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -716,13 +716,13 @@
       -> Record\r\n  ^-+\\s+-+\r\n  ^Displaying\\s+entries\r\n  ^Vlan\\s+Mac Address\\s+Type\\s+Ports\r\n
       \ ^\\s*$$\r\n  ^Total\\s+Mac\\s+Addresses\r\n  ^MultiCast\\s+Entries -> End\r\n
       \ ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 22
   fields:
     deleted: false
     created: 2022-08-07 11:11:35.425220+00:00
     updated: 2022-08-07 11:39:54.154259+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -742,13 +742,13 @@
       Error NoMatchInStatus\r\n\r\nSwitchStack\r\n  ^---+\r\n  # #1083 C9200L-24T\r\n
       \ ^\\s*${MODULE}\\s+${PORT}\\s+${MODEL}\\s+${SERIAL}\\s+ -> Record\r\n  ^\\s*$$\r\n
       \ ^. -> Error NoMatchInSwitch\r\n\r\nEnd"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 23
   fields:
     deleted: false
     created: 2022-08-07 11:13:20.677632+00:00
     updated: 2022-08-07 11:13:30.442080+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -767,13 +767,13 @@
       \ ^Sticky MAC Addresses\\s+:\\s+${STICKY_MAC_ADDRS}\r\n  ^Last Source Address:Vlan\\s+:\\s+${LAST_SRC_MAC_ADDR_VLAN}\r\n
       \ ^Security Violation Count\\s+:\\s+${VIOLATION_COUNT}\r\n  ^\\s*$$\r\n  ^.
       -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 24
   fields:
     deleted: false
     created: 2022-08-07 11:14:25.699048+00:00
     updated: 2022-08-07 11:39:23.413880+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -783,13 +783,13 @@
       (\\d+)\r\nValue INTERRUPTS (\\d+)\r\n\r\nStart\r\n  ^CPU utilization for five
       seconds:\\W+${CPU_5_SEC}%/${INTERRUPTS}%; one minute:\\W+${CPU_1_MIN}%; five
       minutes:\\W+${CPU_5_MIN}% -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 25
   fields:
     deleted: false
     created: 2022-08-07 11:16:10.573818+00:00
     updated: 2022-08-07 11:16:10.573873+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -802,13 +802,13 @@
       \ ^\\s*lsmpi_io\\s+Pool\r\n  ^\\s*PID\\s+TTY\\s+Allocated\\s+Freed\\s+Holding\\s+Getbufs\\s+Retbufs\\s+Process\\s*$$
       -> Process\r\n  ^\\s*$$\r\n  ^. -> Error\r\n\r\nProcess\r\n  ^\\s*${PROCESS_ID}\\s+\\d+\\s+${PROCESS_ALLOCATED}\\s+${PROCESS_FREED}\\s+${PROCESS_HOLDING}\\s+\\d+\\s+\\d+\\s+${PROCESS}\\s*$$\r\n
       \ ^\\s*\\d+\\s+Total\\s*$$\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 26
   fields:
     deleted: false
     created: 2022-08-07 11:16:57.772348+00:00
     updated: 2022-08-07 11:39:10.747683+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -818,13 +818,13 @@
       (\\S+)\r\nValue STORAGE_TYPE (\\S+)\r\n\r\nStart\r\n  ^Community\\s+name:\\s+${NAME}.*\r\n
       \ ^Community\\sIndex:\\s+${INDEX}\r\n  ^Community\\sSecurityName:\\s+${SECURITY_NAME}\r\n
       \ ^storage-type:\\s${STORAGE_TYPE} -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 27
   fields:
     deleted: false
     created: 2022-08-07 11:17:33.017621+00:00
     updated: 2022-08-07 11:39:03.321372+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -839,13 +839,13 @@
       \ ^Privacy\\s+Protocol:\\s+${PRIVACY_PROTOCOL}$$\r\n  ^Group-name:\\s+${GROUP_NAME}$$
       -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n
       \ ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 28
   fields:
     deleted: false
     created: 2022-08-07 11:18:33.801756+00:00
     updated: 2022-08-07 11:38:56.283676+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -856,13 +856,13 @@
       (\\w+)\r\nValue PORT_ID (\\w+)\r\nValue TYPE (.*)\r\n\r\nStart\r\n  ^VLAN(0*)?${VLAN_ID}\r\n
       \ ^${INTERFACE}\\s+${ROLE}\\s+${STATUS}\\s+${COST}\\s+${PORT_PRIORITY}.${PORT_ID}\\s+${TYPE}
       -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 29
   fields:
     deleted: false
     created: 2022-08-07 11:19:42.775777+00:00
     updated: 2022-08-07 11:38:45.918346+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -890,13 +890,13 @@
       \ ^.*Group\\s+name\\s+is\\s+\"${GROUP_NAME}\"\r\n  ^.*FLAGS:\\s+${FLAGS}\r\n
       \ ^.*IP\\s+redundancy\\s+name\\s+is\\s+\\\"${GROUP_NAME}\\\"(\\s+\\(default\\))?\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 30
   fields:
     deleted: false
     created: 2022-08-07 11:21:03.880827+00:00
     updated: 2022-08-07 11:21:03.880903+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -969,13 +969,13 @@
       -> Continue\r\n  ^\\s+(?:\\S+\\s+){60}${INTERFACES},* -> Continue\r\n  ^\\d+\r\n
       \ ^\\s+\r\n  ^-+\r\n  ^\\S+\\s+[TtYyPpEe]{4} -> Done\r\n  ^.+ -> Error\r\n\r\nDone\r\n
       \ ^.*"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 31
   fields:
     deleted: false
     created: 2022-08-07 11:21:46.245317+00:00
     updated: 2022-08-07 11:38:26.446950+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -994,13 +994,13 @@
       \ ^VTP\\s[o,O]perating\\s[m,M]ode\\s+:\\s${MODE}\r\n  ^Maximum\\sVLANs\\s[s,S]upported\\s[l,L]ocally\\s+:\\s${MAX_VLANS}\r\n
       \ ^Number\\sof\\sexisting\\sVLANs\\s+:\\s${EXISTING_VLAN_COUNT}\r\n  ^Configuration\\s[r,R]evision\\s+:\\s${REVISION_NUMBER}
       -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 32
   fields:
     deleted: false
     created: 2022-08-07 11:22:43.881712+00:00
     updated: 2022-08-07 11:38:16.975694+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -1023,13 +1023,13 @@
       priority is\\s+${MASTER_PRIORITY}\\s*$$\r\n  ^\\s+Master Advertisement interval
       is\\s+${MASTER_ADV_INTERVAL}\r\n  ^\\s+Master Down interval is\\s+${MASTER_DOWN_INTERVAL}\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 33
   fields:
     deleted: false
     created: 2022-08-07 11:23:39.570986+00:00
     updated: 2022-08-07 11:37:59.447060+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -1040,13 +1040,13 @@
       \ ^Default\\s*domain\\s*is\\s*${DEFAULT_DOMAIN}\r\n  ^Name\\s*servers\\s*are\\s*${NAME_SERVERS}\r\n
       \ ^Local\\s*cache\\s*entries:\\s*${LOCAL_CACHE_ENTRIES}\r\n  ^Dynamic\\s*cache\\s*entries:\\s*${DYNAMIC_CACHE_ENTRIES}\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 34
   fields:
     deleted: false
     created: 2022-08-07 11:26:49.111525+00:00
     updated: 2022-08-07 11:28:50.498989+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -1060,13 +1060,13 @@
       \ ^${BGP_NEIGH}\\s+\\S+\\s+${NEIGH_AS}(?:\\s+\\S+\\s+){5}${UP_DOWN}\\s+${STATE_PFXRCD}\\s*$$
       -> Record\r\n  ^Total number\\s+of\\s+neighbors\\s+\\d*\\s*$$\r\n  ^\\s*$$\r\n
       \ ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 35
   fields:
     deleted: false
     created: 2022-08-07 11:27:32.616343+00:00
     updated: 2022-08-07 11:28:44.988135+00:00
-    root: false
+    root: true
     active: true
     special: true
     vrf: false
@@ -1076,13 +1076,13 @@
       MAC (\\S+)\r\nValue INTERFACE (.*)\r\n\r\nStart\r\n  ^${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${INTERFACE}
       -> Record\r\n  ^Address\\s+Age(min)\\s+Hardware\\s+Addr\\s+Interface\\s*$$\r\n
       \ ^\\s*\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 36
   fields:
     deleted: false
     created: 2022-08-07 11:28:29.075577+00:00
     updated: 2022-08-07 11:37:38.115861+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -1105,13 +1105,13 @@
       \ ^Slave\\s*:\\s+${HA_SLAVE_UNIT_NAME}\\s*,\\s+${HA_SLAVE_UNIT_SERIAL},\\s+(|HA)\\s*cluster\\s+index\\s+=\\s+${HA_SLAVE_UNIT_INDEX}\r\n
       \ ^number\\s+of\\s+vcluster:\\s+\\d+\r\n  ^vcluster\\s+\\d+:\r\n  ^(Master|Slave)\\s*:\\s+\\S+,\\s+(operating\\s+cluster\\s+index|HA\\s+operating\\s+index)\\s+=\\s+\\d+
       -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 37
   fields:
     deleted: false
     created: 2022-08-07 11:29:37.284507+00:00
     updated: 2022-08-07 11:37:26.414348+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -1124,13 +1124,13 @@
       \ ^\\s+ipv6:\\s+${IPV6}/${IPV6NETMASK}$$\r\n  ^\\s+status:\\s+${STATUS}$$\r\n
       \ ^\\s+speed:\\s+${SPEED}(|Mbps)\\s+\\(Duplex:\\s+${DUPLEX}\\)$$ -> Record\r\n
       \ ^\\s+speed:\\s+${SPEED}$$ -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 38
   fields:
     deleted: false
     created: 2022-08-07 11:30:34.190184+00:00
     updated: 2022-08-07 11:37:15.906133+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
@@ -1158,13 +1158,13 @@
       -> Record\r\n  ^name:\\s+${NAME}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s*$$
       -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
       -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: inventory.devicetypetemplate
+- model: devices.devicetypetemplate
   pk: 39
   fields:
     deleted: false
     created: 2022-08-07 11:31:12.235402+00:00
     updated: 2022-08-07 11:33:27.130019+00:00
-    root: false
+    root: true
     active: true
     special: false
     vrf: false
