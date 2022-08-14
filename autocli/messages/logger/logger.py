@@ -9,6 +9,10 @@ from messages.logger.models.log import Log
 # Application model Import:
 from messages.content.models.content_type import ContentType
 
+# Content import:
+from messages.content.collect import collect_content_from_name
+
+
 # Settings import:
 from django.conf import settings
 
@@ -68,10 +72,16 @@ class Logger:
             Logging message string value.
         kwargs: dictionary
             It takes the following values:
-                -correlated: Name of log related object.
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
+                -Information about content:
+                    -option I:
+                        -app_name: Model application name.
+                        -model_name: Model name.
+                        -object_id: ID of log related object.
+                    -Option II:
+                        -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -93,10 +103,16 @@ class Logger:
             Logging message string value.
         kwargs: dictionary
             It takes the following values:
-                -correlated: Name of log related object.
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
+                -Information about content:
+                    -option I:
+                        -app_name: Model application name.
+                        -model_name: Model name.
+                        -object_id: ID of log related object.
+                    -Option II:
+                        -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -118,10 +134,16 @@ class Logger:
             Logging message string value.
         kwargs: dictionary
             It takes the following values:
-                -correlated: Name of log related object.
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
+                -Information about content:
+                    -option I:
+                        -app_name: Model application name.
+                        -model_name: Model name.
+                        -object_id: ID of log related object.
+                    -Option II:
+                        -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -143,10 +165,16 @@ class Logger:
             Logging message string value.
         kwargs: dictionary
             It takes the following values:
-                -correlated: Name of log related object.
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
+                -Information about content:
+                    -option I:
+                        -app_name: Model application name.
+                        -model_name: Model name.
+                        -object_id: ID of log related object.
+                    -Option II:
+                        -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -168,10 +196,16 @@ class Logger:
             Logging message string value.
         kwargs: dictionary
             It takes the following values:
-                -correlated: Name of log related object.
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
+                -Information about content:
+                    -option I:
+                        -app_name: Model application name.
+                        -model_name: Model name.
+                        -object_id: ID of log related object.
+                    -Option II:
+                        -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -182,12 +216,10 @@ class Logger:
         # Run process of log and details log creation:
         if settings.DEBUG:
             return self._run(**kwargs)
-    
-    def _run(self, **kwargs):
-        """ Run process of log and details log creation. """
 
-        object_id = kwargs.get('object_id', False)
-        content_type = kwargs.get('content_type', False)
+    def _verification(self, **kwargs):
+        """ Provided data verification. """
+
         code_id = kwargs.get('code_id', False)
         task_id = kwargs.get('task_id', False)
         execution = kwargs.get('execution', False)
@@ -217,31 +249,60 @@ class Logger:
             else:
                 raise TypeError('The provided message variable must be string.')
 
-        # Verify if the correlated variable is a valid sting:
-        if object_id:        
-            if not isinstance(object_id, int):
-                raise TypeError('The provided object ID variable must be integer.')
-
-        # Verify if the correlated variable is a valid sting:
-        if content_type:        
-            if not isinstance(content_type, ContentType):
-                raise TypeError('The provided content type variable must be content type object.')
-
         # Verify if the task_id variable is a valid sting:
         if execution:        
             if not isinstance(execution, float):
                 raise TypeError('The provided message variable must be float.')
+    
+    def _run(self, **kwargs):
+        """ Run process of log and details log creation. """
+
+        # Verify provided data:
+        self._verification(**kwargs)
+
+        # Collect content type object if app_name and model_name was provided:
+        if kwargs.get('object', False):
+            # Collect content type based on object information:
+            content_type = collect_content_from_name(
+                app_name=kwargs['object'].__class__._meta.app_label,
+                model_name=kwargs['object'].__class__.__name__,
+            )
+            # Add collected content type to dictionary:
+            if content_type:
+                kwargs['content_type'] = content_type
+            else:
+                raise TypeError('The provided object variable must be django model object.')
+            # Collect object ID:
+            try:
+                kwargs['object_id'] = kwargs['object'].pk
+            except:
+                raise TypeError('The provided object variable must be django model object.')
+        elif kwargs.get('app_name', False) and kwargs.get('model_name', False):
+            # Collect content type based on provided information:
+            content_type = collect_content_from_name(
+                app_name=kwargs['app_name'],
+                model_name=kwargs['model_name'],
+            )
+            # Add collected content type to dictionary:
+            if content_type:
+                kwargs['content_type'] = content_type
+            else:
+                raise TypeError('The provided object variable must be django model object.')
 
         # Exclude dictionary:
         exclude = {
             'content_type',
+            'app_name',
+            'model_name',
             'object_id',
+            'object',
             'code_id',
             'task_id',
             'execution',
             'message',
             'severity',
         }
+
         # Run exclude dictionary to exclude used data:
         after_exclude = {x: kwargs[x] for x in kwargs if x not in exclude}
 

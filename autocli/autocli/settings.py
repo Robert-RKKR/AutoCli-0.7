@@ -32,6 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Celery and channels pps:
+    'django_celery_beat',
+    'channels',
+
     # AutoCLI inventory apps:
     'inventory.automation.apps.AutomationConfig',
     'inventory.datasets.apps.DatasetsConfig',
@@ -72,9 +76,30 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = 'autocli.wsgi.application'
 
-# Database
+# WSGI and ASGI configuration:
+WSGI_APPLICATION = 'autocli.wsgi.application'
+ASGI_APPLICATION = 'autocli.asgi.application'
+
+# Celery configuration:
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# Channels configuration:
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+# Database configuration:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -95,7 +120,7 @@ DATABASES = {
 #     }
 # }
 
-# Password validation
+# Password validation:
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
