@@ -11,9 +11,6 @@ class ContentType(models.Model):
         verbose_name = 'Content type'
         verbose_name_plural = 'Content types'
 
-        # Default permissions:
-        permissions = [('full')]
-
         # Default ordering:
         ordering = ['pk']
 

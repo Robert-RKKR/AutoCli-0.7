@@ -23,9 +23,6 @@ class Notification(models.Model):
         verbose_name = 'Notification'
         verbose_name_plural = 'Notifications'
 
-        # Default permissions:
-        permissions = [('full')]
-
         # Default ordering:
         ordering = ['-pk']
     

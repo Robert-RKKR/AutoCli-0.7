@@ -26,9 +26,6 @@ class Log(models.Model):
         verbose_name = 'Log'
         verbose_name_plural = 'Logs'
 
-        # Default permissions:
-        permissions = [('full')]
-
         # Default ordering:
         ordering = ['-pk']
 

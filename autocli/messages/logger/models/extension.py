@@ -14,9 +14,6 @@ class Extension(models.Model):
         verbose_name = 'Extension'
         verbose_name_plural = 'Extensions'
 
-        # Default permissions:
-        permissions = [('full')]
-
         # Default ordering:
         ordering = ['-pk']
 

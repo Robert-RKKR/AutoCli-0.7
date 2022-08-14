@@ -25,9 +25,6 @@ class ChangeLog(models.Model):
         verbose_name = 'Change log'
         verbose_name_plural = 'Change logs'
 
-        # Default permissions:
-        permissions = [('full')]
-
         # Default ordering:
         ordering = ['-pk']
 
