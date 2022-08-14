@@ -32,15 +32,15 @@ class Logger:
     Methods:
     --------
     critical:
-        Critical severity log.
+        Create critical severity log.
     error:
-        Error severity log.
+        Create error severity log.
     warning:
-        Warning severity log.
+        Create warning severity log.
     info:
-        Info severity log.
+        Create info severity log.
     debug:
-        Debug severity log.
+        Create debug severity log.
     """
 
     def __init__(self, application: str = '--NoName--') -> None:
