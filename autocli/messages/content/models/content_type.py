@@ -11,6 +11,12 @@ class ContentType(models.Model):
         verbose_name = 'Content type'
         verbose_name_plural = 'Content types'
 
+        # Default permissions:
+        permissions = [('full')]
+
+        # Default ordering:
+        ordering = ['pk']
+
         # Unique values:
         unique_together = [['app_name', 'model_name']]
 

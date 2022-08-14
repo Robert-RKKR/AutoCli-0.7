@@ -22,6 +22,12 @@ class Notification(models.Model):
         # Model name values:
         verbose_name = 'Notification'
         verbose_name_plural = 'Notifications'
+
+        # Default permissions:
+        permissions = [('full')]
+
+        # Default ordering:
+        ordering = ['-pk']
     
     # Model data time information:
     timestamp = models.DateTimeField(

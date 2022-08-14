@@ -22,6 +22,12 @@ class Group(ExtendedModel):
         verbose_name = 'Group'
         verbose_name_plural = 'Groups'
 
+        # Default permissions:
+        permissions = [('read_only', 'read_write')]
+
+        # Default ordering:
+        ordering = ['name']
+
     # Corelation witch other folder model:
     root_folder = models.ForeignKey(
         'self',

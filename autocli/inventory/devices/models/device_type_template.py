@@ -24,6 +24,9 @@ class DeviceTypeTemplate(SimpleModel):
         verbose_name = 'Device type template'
         verbose_name_plural = 'Device type templates'
 
+        # Default permissions:
+        permissions = [('read_only', 'read_write')]
+
         # Default ordering:
         ordering = ['pk']
 

@@ -14,9 +14,6 @@ class SimpleModel(BaseModel):
         verbose_name = 'Simple model'
         verbose_name_plural = 'Simple models'
 
-        # Default ordering:
-        ordering = ['pk']
-
         # Abstract class value:
         abstract = True
 
