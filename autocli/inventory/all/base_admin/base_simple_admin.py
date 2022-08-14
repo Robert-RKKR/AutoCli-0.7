@@ -2,8 +2,8 @@
 from django.contrib import admin
 
 # Import actions:
-from inventory.base_admin.actions import change_status_to_true
-from inventory.base_admin.actions import change_status_to_false
+from .actions import change_status_to_true
+from .actions import change_status_to_false
 
 
 # Admin class:

@@ -2,7 +2,7 @@
 from django.db.models import Manager
 
 # Other models Import:
-from inventory.models.device_type_template import DeviceTypeTemplate
+from inventory.devices.models.device_type_template import DeviceTypeTemplate
 
 
 # Managers class:

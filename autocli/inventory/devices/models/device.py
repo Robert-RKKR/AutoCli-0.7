@@ -2,17 +2,17 @@
 from django.db import models
 
 # Extended Model Import:
-from inventory.base_model.extended_model import ExtendedModel
+from inventory.all.base_model.extended_model import ExtendedModel
 
 # Application models Import:
-from inventory.models.device_type import DeviceType
-from inventory.models.credential import Credential
+from inventory.devices.models.device_type import DeviceType
+from inventory.devices.models.credential import Credential
 
 # Manager Import:
-from inventory.managers.device_manager import DeviceManager
+from inventory.devices.managers.device_manager import DeviceManager
 
 # Validators Import:
-from inventory.validators import HostnameValueValidator
+from inventory.devices.validators import HostnameValueValidator
 
 # Change log Import:
 from messages.changes.follow_change_log import follow_change_log

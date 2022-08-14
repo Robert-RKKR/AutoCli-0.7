@@ -2,10 +2,10 @@
 from django.db import models
 
 # Extended Model Import:
-from inventory.base_model.simple_model import SimpleModel
+from inventory.all.base_model.simple_model import SimpleModel
 
 # Other models Import:
-from inventory.models.device_type import DeviceType
+from inventory.devices.models.device_type import DeviceType
 
 # Change log Import:
 from messages.changes.follow_change_log import follow_change_log

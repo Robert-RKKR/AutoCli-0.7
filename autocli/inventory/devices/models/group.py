@@ -2,11 +2,11 @@
 from django.db import models
 
 # Extended Model Import:
-from inventory.base_model.extended_model import ExtendedModel
+from inventory.all.base_model.extended_model import ExtendedModel
 
 # Models Import:
-from inventory.models.credential import Credential
-from inventory.models.device import Device
+from inventory.devices.models.credential import Credential
+from inventory.devices.models.device import Device
 
 # Change log Import:
 from messages.changes.follow_change_log import follow_change_log

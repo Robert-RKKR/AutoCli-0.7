@@ -2,15 +2,15 @@
 from django.contrib import admin
 
 # Base Admin Import:
-from .base_admin.base_admin import BaseAdmin
-from .base_admin.base_simple_admin import BaseSimpleAdmin
+from inventory.all.base_admin.base_admin import BaseAdmin
+from inventory.all.base_admin.base_simple_admin import BaseSimpleAdmin
 
 # Models Imports:
-from inventory.models.credential import Credential
-from inventory.models.device_type import DeviceType
-from inventory.models.device_type_template import DeviceTypeTemplate
-from inventory.models.device import Device
-from inventory.models.group import Group
+from inventory.devices.models.credential import Credential
+from inventory.devices.models.device_type import DeviceType
+from inventory.devices.models.device_type_template import DeviceTypeTemplate
+from inventory.devices.models.device import Device
+from inventory.devices.models.group import Group
 
 
 # Admin panel class:

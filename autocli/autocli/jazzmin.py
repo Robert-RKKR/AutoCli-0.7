@@ -93,13 +93,21 @@ JAZZMIN_SETTINGS = {
         "inventory.PolicyTask": "fas fa-tasks",
         "inventory.PolicyRunner": "fas fa-tasks",
         "inventory.Policy": "fas fa-clipboard",
-        "inventory.Device": "fas fa-desktop",
-        "inventory.DeviceType": "fas fa-keyboard",
-        "inventory.DeviceTypeTemplate": "fas fa-sticky-note",
-        "inventory.Group": "fas fa-users",
-        "inventory.Credential": "fas fa-user-secret",
         "inventory.DeviceCollectedData": "fas fa-database",
         "inventory.DeviceUpdate": "fas fa-spinner",
+
+        # Inventory:
+        "devices.Device": "fas fa-desktop",
+        "devices.DeviceType": "fas fa-keyboard",
+        "devices.DeviceTypeTemplate": "fas fa-sticky-note",
+        "devices.Group": "fas fa-users",
+        "devices.Credential": "fas fa-user-secret",
+
+        # Messages:
+        "logger.Log": "fas fa-barcode",
+        "logger.Extension": "fas fa-barcode",
+        "notifications.Notification": "fas fa-barcode",
+        "changes.ChangeLog": "fas fa-barcode",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",

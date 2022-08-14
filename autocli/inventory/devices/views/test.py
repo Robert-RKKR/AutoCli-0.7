@@ -2,7 +2,7 @@
 from django.shortcuts import render
 
 # Application model Import:
-from inventory.models.device import Device
+from inventory.devices.models.device import Device
 
 # Application models Import:
 # from logger.models.log import Log

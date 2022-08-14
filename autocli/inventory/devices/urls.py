@@ -2,9 +2,9 @@
 from django.urls import path
 
 # Application Import:
-from inventory.views.test import test
+from inventory.devices.views.test import test
 
-app_name = 'inventory'
+app_name = 'inventory.devices.'
 
 urlpatterns = [
     path('test', test, name='test'),
