@@ -5,6 +5,9 @@ __version__ = '2.0'
 # Import base logger:
 from .logger_base import LoggerBase
 
+# Settings import:
+from django.conf import settings
+
 # Severity constants declaration:
 DEBUG = 5
 INFO = 4
@@ -58,7 +61,8 @@ class Logger(LoggerBase):
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        return self._run(**kwargs)
+        if settings.DEBUG:
+            return self._run(**kwargs)
 
     def error(self, message: str, **kwargs):
         """
@@ -82,7 +86,8 @@ class Logger(LoggerBase):
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        return self._run(**kwargs)
+        if settings.DEBUG:
+            return self._run(**kwargs)
 
     def warning(self, message: str, **kwargs):
         """
@@ -106,7 +111,8 @@ class Logger(LoggerBase):
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        return self._run(**kwargs)
+        if settings.DEBUG:
+            return self._run(**kwargs)
 
     def info(self, message: str, **kwargs):
         """
@@ -130,7 +136,8 @@ class Logger(LoggerBase):
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        return self._run(**kwargs)
+        if settings.DEBUG:
+            return self._run(**kwargs)
 
     def debug(self, message: str, **kwargs):
         """
@@ -154,4 +161,5 @@ class Logger(LoggerBase):
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        return self._run(**kwargs)
+        if settings.DEBUG:
+            return self._run(**kwargs)
