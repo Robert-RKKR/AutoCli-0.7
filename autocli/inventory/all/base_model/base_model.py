@@ -2,7 +2,7 @@
 from django.db import models
 
 # Managers Import:
-from .managers import BasicManager
+from .all.managers import BasicManager
 
 # Import django User model:
 from django.contrib.auth.models import User

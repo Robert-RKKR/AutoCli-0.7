@@ -2,8 +2,8 @@
 from django.contrib import admin
 
 # Import actions:
-from .actions import change_status_to_true
-from .actions import change_status_to_false
+from .all.actions import change_status_to_true
+from .all.actions import change_status_to_false
 
 
 # Admin class:

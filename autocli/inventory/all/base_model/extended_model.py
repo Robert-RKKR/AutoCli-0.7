@@ -3,15 +3,15 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 # Managers Import:
-from .managers import ActiveManager
-from .managers import BasicManager
+from .all.managers import ActiveManager
+from .all.managers import BasicManager
 
 # Base model Import:
 from .base_model import BaseModel
 
 # Validators Import:
-from .validators import DescriptionValueValidator
-from .validators import NameValueValidator
+from .all.validators import DescriptionValueValidator
+from .all.validators import NameValueValidator
 
 
 # Base models class:

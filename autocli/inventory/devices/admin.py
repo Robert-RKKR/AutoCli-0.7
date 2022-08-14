@@ -3,7 +3,6 @@ from django.contrib import admin
 
 # Base Admin Import:
 from inventory.all.base_admin.base_admin import BaseAdmin
-from inventory.all.base_admin.base_simple_admin import BaseSimpleAdmin
 
 # Models Imports:
 from inventory.devices.models.credential import Credential
@@ -15,7 +14,7 @@ from inventory.devices.models.group import Group
 
 # Admin panel class:
 @admin.register(DeviceTypeTemplate)
-class DeviceTypeTemplateAdmin(BaseSimpleAdmin):
+class DeviceTypeTemplateAdmin(BaseAdmin):
 
     list_display = (
         'pk', 'active', 'special', 'vrf', 'device_type', 'command',
