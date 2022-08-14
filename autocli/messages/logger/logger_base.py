@@ -3,11 +3,11 @@ __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '2.0'
 
 # Application model Import:
-from message_system.models_log.extension import Extension
-from message_system.models_log.log import Log
+from messages.logger.models.extension import Extension
+from messages.logger.models.log import Log
 
 # Application model Import:
-from message_system.models_content.content_type import ContentType
+from messages.content.models.content_type import ContentType
 
 # Main Logger class:
 class LoggerBase:

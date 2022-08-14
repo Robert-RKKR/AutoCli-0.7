@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     # 'core.apps.CoreConfig',
     # 'dataset.apps.DatasetConfig',
     'inventory.apps.InventoryConfig',
-    'message_system.apps.MessageSystemConfig',
+    'messages.changes.apps.ChangesConfig',
+    'messages.content.apps.ContentConfig',
+    'messages.logger.apps.LoggerConfig',
+    'messages.notifications.apps.NotificationsConfig',
     # 'settings.apps.SettingsConfig',
 ]
 MIDDLEWARE = [

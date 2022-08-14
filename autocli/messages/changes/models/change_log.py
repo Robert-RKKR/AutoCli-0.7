@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Application model Import:
-from message_system.models_content.content_type import ContentType
+from messages.content.models.content_type import ContentType
 
 # Constants declaration:
 ACTION = (

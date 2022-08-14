@@ -8,7 +8,7 @@ from inventory.models.device import Device
 # from logger.models.log import Log
 
 # Import logger:
-from message_system.logger.logger import Logger
+from messages.logger.logger import Logger
 
 def test(request):
 

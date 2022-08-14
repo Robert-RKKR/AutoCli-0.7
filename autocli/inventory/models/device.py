@@ -15,7 +15,7 @@ from inventory.managers.device_manager import DeviceManager
 from inventory.validators import HostnameValueValidator
 
 # Change log Import:
-from message_system.change_log.follow_change_log import follow_change_log
+from messages.changes.follow_change_log import follow_change_log
 
 
 # Device model:
