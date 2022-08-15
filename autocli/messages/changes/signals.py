@@ -1,7 +1,5 @@
 # Django signals import:
-from django.db.models.signals import post_save
 from django.forms.models import model_to_dict
-from django.dispatch import receiver
 
 # Application change log import:
 from messages.changes.models.change_log import ChangeLog
@@ -10,7 +8,6 @@ from messages.changes.models.change_log import ChangeLog
 from .follow_change_log import content_types
 
 # Post save signal:
-# @receiver(post_save)
 def base_post_signal(sender, instance=None, created=False, **kwargs):
     
     change_log_action = 0

@@ -7,6 +7,8 @@ from messages.notifications.notification import Notification
 from inventory.devices.models.credential import Credential
 from messages.logger.models.log import Log
 
+from messages.all.collect import collect_object
+
 # Application models Import:
 # from logger.models.log import Log
 
@@ -48,7 +50,9 @@ def test(request):
     #     'execution': 394.24,
     # })
 
-    data['output'] = 'RKKR'
+    collected_object = collect_object('devices', 'Device', 2)
+
+    data['output'] = collected_object
     
     # GET method:
     return render(request, 'test.html', data)
