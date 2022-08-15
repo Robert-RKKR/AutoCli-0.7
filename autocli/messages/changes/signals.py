@@ -10,7 +10,7 @@ from messages.changes.models.change_log import ChangeLog
 from .follow_change_log import content_types
 
 # Post save signal:
-@receiver(post_save)
+# @receiver(post_save)
 def base_post_signal(sender, instance=None, created=False, **kwargs):
     
     change_log_action = 0
