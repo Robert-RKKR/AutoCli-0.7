@@ -4,9 +4,6 @@ from django.db import models
 # Manager Import:
 from messages.logger.managers.device_manager import LogManager
 
-# Application model Import:
-from messages.content.models.content_type import ContentType
-
 # Constants:
 SEVERITY = (
     (1, 'CRITICAL'),
@@ -40,13 +37,15 @@ class Log(models.Model):
     )
 
     # Information about correlated object:
-    content_type = models.ForeignKey(
-        ContentType,
-        verbose_name='Content type',
-        help_text='Administrator responsible for change.',
-        on_delete=models.PROTECT,
-        null=True,
-        blank=True,
+    app_name = models.CharField(
+        verbose_name='Object application name',
+        help_text='Name of the object application.',
+        max_length=64,
+    )
+    model_name = models.CharField(
+        verbose_name='Object model name',
+        help_text='Name of the object model.',
+        max_length=64,
     )
     object_id = models.IntegerField(
         verbose_name='Object ID',

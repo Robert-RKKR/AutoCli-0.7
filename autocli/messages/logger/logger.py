@@ -3,14 +3,7 @@ __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '2.0'
 
 # Application model Import:
-from messages.logger.models.extension import Extension
 from messages.logger.models.log import Log
-
-# Application model Import:
-from messages.content.models.content_type import ContentType
-
-# Content import:
-from messages.content.collect import collect_content_from_name
 
 
 # Settings import:
@@ -257,85 +250,14 @@ class Logger:
 
         # Collect content type object if app_name and model_name was provided:
         if kwargs.get('object', False):
-            # Collect content type based on object information:
-            content_type = collect_content_from_name(
-                app_name=kwargs['object'].__class__._meta.app_label,
-                model_name=kwargs['object'].__class__.__name__,
-            )
-            # Add collected content type to dictionary:
-            if content_type:
-                kwargs['content_type'] = content_type
-            else:
-                raise TypeError('The provided object variable must be django model object.')
+            # Collect app and model name based on object information:
+            kwargs['app_name'] = kwargs['object'].__class__._meta.app_label
+            kwargs['model_name'] = kwargs['object'].__class__.__name__
             # Collect object ID:
-            try:
-                kwargs['object_id'] = kwargs['object'].pk
-            except:
-                raise TypeError('The provided object variable must be django model object.')
-        elif kwargs.get('app_name', False) and kwargs.get('model_name', False):
-            # Collect content type based on provided information:
-            content_type = collect_content_from_name(
-                app_name=kwargs['app_name'],
-                model_name=kwargs['model_name'],
-            )
-            # Add collected content type to dictionary:
-            if content_type:
-                kwargs['content_type'] = content_type
-            else:
-                raise TypeError('The provided object variable must be django model object.')
-
-        # Exclude dictionary:
-        exclude = {
-            'content_type',
-            'app_name',
-            'model_name',
-            'object_id',
-            'object',
-            'code_id',
-            'task_id',
-            'execution',
-            'message',
-            'severity',
-        }
-
-        # Run exclude dictionary to exclude used data:
-        after_exclude = {x: kwargs[x] for x in kwargs if x not in exclude}
+            kwargs['object_id'] = kwargs['object'].id
 
         # Create new log based on provided data:
-        log = self._create_log(**kwargs)
-
-        # Create log extension if additional data was provided:
-        if after_exclude:
-            # Create new log extension/s based on provided data:
-            all_extensions = self._create_log_extensions(log, **after_exclude)
-
-        # return log:
-        return log
-
-    def _create_log_extensions(self, log, **kwargs):
-        """ Create new log extension in Database. """
-
-        # New log extensions status dictionary:
-        all_extensions = {}
-
-        # Loop thru all provided data:
-        for extension in kwargs:
-        
-            try: # Tyr to create a new log:
-                new_extension = Extension.objects.create(
-                    log=log,
-                    name=extension,
-                    data=kwargs[extension],
-                )
-            except:
-                # If there was a problem during log creation process, return False:
-                all_extensions[extension] = False
-            else:
-                # Return created log object:
-                all_extensions[extension] = new_extension
-
-        # Return all created log extensions:
-        return all_extensions
+        return self._create_log(**kwargs)
 
     def _create_log(self, **kwargs):
         """ Create new log in Database. """
@@ -346,7 +268,8 @@ class Logger:
         # Collect all log data:
         self.log_data = {
             'application': self.application,
-            'content_type': kwargs.get('content_type', None),
+            'app_name': kwargs.get('app_name', None),
+            'model_name': kwargs.get('model_name', None),
             'object_id': kwargs.get('object_id', None),
             'code_id': kwargs.get('code_id', None),
             'task_id': kwargs.get('task_id', None),

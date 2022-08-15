@@ -9,19 +9,13 @@ from messages.changes.models.change_log import ChangeLog
 class ChangeLogAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'timestamp', 'action', 'content_type', 'object_id', 'administrator',
+        'pk', 'timestamp', 'action', 'app_name', 'model_name', 'object_id', 'administrator',
     )
     list_filter = (
-        'administrator', 'action', 'content_type',
+        'administrator', 'action', 'app_name', 'model_name',
     )
     search_fields = (
         'object_id',
-    )
-    list_select_related = (
-        'content_type',
-    )
-    readonly_fields = (
-        'action', 'administrator', 'content_type', 'object_id', 'after',
     )
     fieldsets = (
         ('Basic information', {
@@ -30,7 +24,7 @@ class ChangeLogAdmin(admin.ModelAdmin):
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('content_type', 'object_id',),
+            'fields': ('app_name', 'model_name', 'object_id',),
         }),
         ('Change information', {
             'classes': ('wide', 'extrapretty',),

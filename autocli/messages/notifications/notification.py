@@ -8,9 +8,6 @@ from channels.layers import get_channel_layer
 # Async import:
 from asgiref.sync import async_to_sync
 
-# Content import:
-from messages.content.collect import collect_content_from_name
-
 # Notification model import:
 from messages.notifications.models.notification import Notification as NotificationModel
 
@@ -72,32 +69,11 @@ class Notification:
 
         # Collect content type object if app_name and model_name was provided:
         if kwargs.get('object', False):
-            # Collect content type based on object information:
-            content_type = collect_content_from_name(
-                app_name=kwargs['object'].__class__._meta.app_label,
-                model_name=kwargs['object'].__class__.__name__,
-            )
-            # Add collected content type to dictionary:
-            if content_type:
-                kwargs['content_type'] = content_type
-            else:
-                raise TypeError('The provided object variable must be django model object.')
+            # Collect app and model name based on object information:
+            kwargs['app_name'] = kwargs['object'].__class__._meta.app_label
+            kwargs['model_name'] = kwargs['object'].__class__.__name__
             # Collect object ID:
-            try:
-                kwargs['object_id'] = kwargs['object'].pk
-            except:
-                raise TypeError('The provided object variable must be django model object.')
-        elif kwargs.get('app_name', False) and kwargs.get('model_name', False):
-            # Collect content type based on provided information:
-            content_type = collect_content_from_name(
-                app_name=kwargs['app_name'],
-                model_name=kwargs['model_name'],
-            )
-            # Add collected content type to dictionary:
-            if content_type:
-                kwargs['content_type'] = content_type
-            else:
-                raise TypeError('The provided object variable must be django model object.')
+            kwargs['object_id'] = kwargs['object'].id
 
         # Try to create notification:
         try:

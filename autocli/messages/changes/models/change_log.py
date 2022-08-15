@@ -4,9 +4,6 @@ from django.db import models
 # Django user model Import:
 from django.contrib.auth.models import User
 
-# Application model Import:
-from messages.content.models.content_type import ContentType
-
 # Constants declaration:
 ACTION = (
     (0, '---'),
@@ -36,11 +33,15 @@ class ChangeLog(models.Model):
     )
 
     # Information about correlated object:
-    content_type = models.ForeignKey(
-        ContentType,
-        verbose_name='Content type',
-        help_text='Administrator responsible for change.',
-        on_delete=models.PROTECT,
+    app_name = models.CharField(
+        verbose_name='Object application name',
+        help_text='Name of the object application.',
+        max_length=64,
+    )
+    model_name = models.CharField(
+        verbose_name='Object model name',
+        help_text='Name of the object model.',
+        max_length=64,
     )
     object_id = models.IntegerField(
         verbose_name='Object ID',

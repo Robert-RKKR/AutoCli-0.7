@@ -12,13 +12,10 @@ class NotificationAdmin(admin.ModelAdmin):
         'pk', 'timestamp', 'object_id', 'type', 'message',
     )
     list_filter = (
-        'content_type', 'type',
+        'app_name', 'model_name', 'type',
     )
     search_fields = (
         'message',
-    )
-    readonly_fields = (
-        'object_id', 'message', 'timestamp', 'type', 'content_type', 
     )
     fieldsets = (
         ('Basic information', {
@@ -27,7 +24,7 @@ class NotificationAdmin(admin.ModelAdmin):
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('content_type', 'object_id',),
+            'fields': ('app_name', 'model_name', 'object_id',),
         }),
         ('Message', {
             'classes': ('wide', 'extrapretty',),

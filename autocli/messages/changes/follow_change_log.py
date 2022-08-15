@@ -1,17 +1,12 @@
 # Django Import:
 from django.db.utils import OperationalError
 
-# Application change log Import:
-from messages.content.models.content_type import ContentType
+content_types = []
 
 # Follow function:
 def follow_change_log(model):
 
     # Try to register new model if not exist:
-    try:
-        all_content_types = ContentType.objects.get_or_create(
-            app_name=model._meta.app_label,
-            model_name=model.__name__,
-        )
-    except OperationalError:
-        pass
+    content_type = (model._meta.app_label, model.__name__)
+    if not content_type in content_types:
+        content_types.append(content_type)
