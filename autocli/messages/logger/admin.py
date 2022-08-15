@@ -20,7 +20,7 @@ class LogAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('timestamp', 'severity', 'application', 'task_id',)
+            'fields': ('severity', 'application', 'task_id',)
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),

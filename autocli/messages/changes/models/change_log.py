@@ -76,8 +76,8 @@ class ChangeLog(models.Model):
 
     # Model representation:
     def __repr__(self) -> str:
-        return f'{self.pk}: {self.changed}'
+        return f'{self.pk}: {self.action}'
 
     def __str__(self) -> str:
-        return f'{self.pk}: {self.changed}'
+        return f'{self.pk}: {self.action}'
 

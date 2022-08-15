@@ -20,7 +20,7 @@ class NotificationAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('timestamp', 'type',)
+            'fields': ('type',)
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),

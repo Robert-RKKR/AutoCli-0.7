@@ -34,15 +34,29 @@ class Notification:
             Notification message string value.
         kwargs: dictionary
             It takes the following values:
-                -object_id: xxx.
                 -type: xxx.
+            -Information about content:
+                -option I:
+                    -app_name: Model application name.
+                    -model_name: Model name.
+                    -object_id: ID of log related object.
+                -Option II:
+                    -object: correlated object.
         """
 
-        async_to_sync(self.channel_layer.group_send)('notifications', {
-            'type': 'send_collect',
-            'message': message,
-            'link': 'For Future Use',
-        })
+        if kwargs.get('object', False):
+            correlated_object = kwargs['object']
+            async_to_sync(self.channel_layer.group_send)('notifications', {
+                'type': 'send_collect',
+                'message': message,
+                'link': f'{correlated_object.__class__._meta.app_label}.'\
+                        f'{correlated_object.__class__.__name__}',
+            })
+        else:
+            async_to_sync(self.channel_layer.group_send)('notifications', {
+                'type': 'send_collect',
+                'message': message,
+            })
 
     def database_notification(self, message: str, **kwargs):
         """
@@ -69,11 +83,12 @@ class Notification:
 
         # Collect content type object if app_name and model_name was provided:
         if kwargs.get('object', False):
+            correlated_object = kwargs['object']
             # Collect app and model name based on object information:
-            kwargs['app_name'] = kwargs['object'].__class__._meta.app_label
-            kwargs['model_name'] = kwargs['object'].__class__.__name__
+            kwargs['app_name'] = correlated_object.__class__._meta.app_label
+            kwargs['model_name'] = correlated_object.__class__.__name__
             # Collect object ID:
-            kwargs['object_id'] = kwargs['object'].id
+            kwargs['object_id'] = correlated_object.id
 
         # Try to create notification:
         try:

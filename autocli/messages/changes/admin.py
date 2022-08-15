@@ -20,7 +20,7 @@ class ChangeLogAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('timestamp', 'action', 'administrator',)
+            'fields': ('action', 'administrator',)
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),

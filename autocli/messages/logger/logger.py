@@ -262,9 +262,6 @@ class Logger:
     def _create_log(self, **kwargs):
         """ Create new log in Database. """
 
-        # Define new log:
-        new_log = None
-
         # Collect all log data:
         self.log_data = {
             'application': self.application,
