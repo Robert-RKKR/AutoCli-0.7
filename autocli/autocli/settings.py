@@ -36,6 +36,10 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'channels',
 
+    # AutoCLI system apps:
+    'system.administration.apps.AdministrationConfig',
+    'system.settings.apps.SettingsConfig',
+
     # AutoCLI inventory apps:
     'inventory.automation.apps.AutomationConfig',
     'inventory.datasets.apps.DatasetsConfig',
@@ -43,12 +47,11 @@ INSTALLED_APPS = [
     'inventory.updates.apps.UpdatesConfig',
 
     # AutoCLI messages apps:
+    'messages.notifications.apps.NotificationsConfig',
     'messages.changes.apps.ChangesConfig',
     'messages.logger.apps.LoggerConfig',
-    'messages.notifications.apps.NotificationsConfig',
 
     # AutoCLI other apps:
-    # 'settings.apps.SettingsConfig',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
