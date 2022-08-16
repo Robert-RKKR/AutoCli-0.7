@@ -32,9 +32,6 @@ class Device(ExtendedModel):
         verbose_name = 'Device'
         verbose_name_plural = 'Devices'
 
-        # Default permissions:
-        permissions = [('read_only', 'read_write')]
-
         # Default ordering:
         ordering = ['name']
 

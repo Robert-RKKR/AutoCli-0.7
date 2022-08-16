@@ -1,8 +1,8 @@
-# Django Import:
+# Django import:
 from django.db import models
 
-# Django user model Import:
-from django.contrib.auth.models import User
+# Administrator model import:
+from system.administration.models.administrator import Administrator
 
 # Constants declaration:
 ACTION = (
@@ -50,7 +50,7 @@ class ChangeLog(models.Model):
 
     # Correlation witch user model:
     administrator = models.ForeignKey(
-        User,
+        Administrator,
         verbose_name='Administrator',
         help_text='Administrator responsible for change.',
         on_delete=models.SET_NULL,

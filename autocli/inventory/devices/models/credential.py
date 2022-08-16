@@ -21,9 +21,6 @@ class Credential(ExtendedModel):
         verbose_name = 'Credential'
         verbose_name_plural = 'Credentials'
 
-        # Default permissions:
-        permissions = [('read_only', 'read_write')]
-
         # Default ordering:
         ordering = ['name']
 

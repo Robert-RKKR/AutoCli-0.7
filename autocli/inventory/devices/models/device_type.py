@@ -18,9 +18,6 @@ class DeviceType(ExtendedModel):
         verbose_name = 'Device type'
         verbose_name_plural = 'Device types'
 
-        # Default permissions:
-        permissions = [('read_only', 'read_write')]
-
         # Default ordering:
         ordering = ['name']
 
