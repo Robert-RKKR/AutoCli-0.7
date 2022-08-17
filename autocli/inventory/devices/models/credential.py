@@ -29,11 +29,6 @@ class Credential(ExtendedModel):
         verbose_name='Username',
         help_text='Local / remote user name.',
         max_length=64,
-        error_messages={
-            'null': 'Username field is mandatory.',
-            'blank': 'Username field is mandatory.',
-            'invalid': 'Enter the correct username value.',
-        },
     )
     password = models.CharField(
         verbose_name='Password',

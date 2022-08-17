@@ -96,6 +96,11 @@ JAZZMIN_SETTINGS = {
         "inventory.DeviceCollectedData": "fas fa-database",
         "inventory.DeviceUpdate": "fas fa-spinner",
 
+        # System:
+        "administration.Administrator": "fas fa-user",
+        "settings.UserSetting": "fas fa-users-cog",
+        "settings.Setting": "fas fa-users-cog",
+
         # Inventory:
         "devices.Device": "fas fa-desktop",
         "devices.DeviceType": "fas fa-keyboard",
@@ -140,4 +145,5 @@ JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
     # override change forms on a per modeladmin basis
     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+    "order_with_respect_to": ["administration", "settings", "devices", "notifications", "changes", "logger"],
 }

@@ -124,6 +124,7 @@ DATABASES = {
 
 # Default user model:
 AUTH_USER_MODEL = 'administration.Administrator'
+AUTH_GROUP_MODEL = 'administration.Profile'
 
 # Password validation:
 AUTH_PASSWORD_VALIDATORS = [

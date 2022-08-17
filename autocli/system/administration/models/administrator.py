@@ -1,16 +1,23 @@
-# Django Import:
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+# Django import:
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
+# Signals import:
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Validator import:
-from system.administration.validators import UsernameValidator
+from system.administration.validators import NameValidator
 
 # Manager import:
 from system.administration.managers import AdministratorManager
 
+# Permissions import:
+from system.administration.permissions import AdministratorPermissions
+
 
 # Administrator model:
-class Administrator(AbstractBaseUser, PermissionsMixin):
+class Administrator(AbstractBaseUser, AdministratorPermissions):
 
     class Meta:
         
@@ -58,7 +65,7 @@ class Administrator(AbstractBaseUser, PermissionsMixin):
         help_text='Administrator username.',
         max_length=32,
         unique=True,
-        validators=[UsernameValidator],
+        validators=[NameValidator],
         error_messages={
             'null': 'Name field is mandatory.',
             'blank': 'Name field is mandatory.',
@@ -85,3 +92,16 @@ class Administrator(AbstractBaseUser, PermissionsMixin):
     # Model representation:
     def __str__(self) -> str:
         return f'{self.pk} - {self.name}'
+
+
+@receiver(post_save, sender=Administrator)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        # Try to create user settings:
+        try:
+            from system.settings.models.user_setting import UserSetting
+            new_user_setting = UserSetting.objects.create(
+                administrator=instance,
+            )
+        except:
+            pass

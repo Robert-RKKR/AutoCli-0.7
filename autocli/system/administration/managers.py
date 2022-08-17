@@ -1,5 +1,7 @@
 # Django Import:
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.base_user import BaseUserManager
+from django.db import models
 from django.apps import apps
 
 
