@@ -1,14 +1,14 @@
 # Django signals import:
 from django.forms.models import model_to_dict
 
-# Application change log import:
-from messages.changes.models.change_log import ChangeLog
-
 # Content type import:
 from .follow_change_log import content_types
 
 # Post save signal:
 def base_post_signal(sender, instance=None, created=False, **kwargs):
+
+    # Application change log import:
+    from messages.changes.models.change_log import ChangeLog
     
     change_log_action = 0
     # Check if object was created

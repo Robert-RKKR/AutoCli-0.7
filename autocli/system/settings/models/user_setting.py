@@ -2,7 +2,7 @@
 from django.db import models
 
 # Administrator model import:
-from system.administration.models.administrator import Administrator
+from django.contrib.auth.models import User
 
 
 # Administrator model:
@@ -18,10 +18,11 @@ class UserSetting(models.Model):
         ordering = ['pk']
 
     # Administrator corelation:
-    administrator = models.ManyToManyField(
-        Administrator,
+    administrator = models.ForeignKey(
+        User,
         verbose_name='Administrator',
         help_text='Settings related administrator account.',
+        on_delete=models.CASCADE,
     )
 
     # Settings values:

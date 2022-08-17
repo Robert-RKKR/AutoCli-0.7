@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'channels',
 
     # AutoCLI system apps:
-    'system.administration.apps.AdministrationConfig',
+    # 'system.administration.apps.AdministrationConfig',
     'system.settings.apps.SettingsConfig',
 
     # AutoCLI inventory apps:
@@ -123,8 +123,7 @@ DATABASES = {
 # }
 
 # Default user model:
-AUTH_USER_MODEL = 'administration.Administrator'
-AUTH_GROUP_MODEL = 'administration.Profile'
+# AUTH_USER_MODEL = 'administration.Administrator'
 
 # Password validation:
 AUTH_PASSWORD_VALIDATORS = [
