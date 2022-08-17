@@ -2,10 +2,7 @@
 from django.db import models
 
 # Managers Import:
-from .all.managers import BasicManager
-
-# Import django User model:
-from django.contrib.auth.models import User
+from .all.managers import BaseManager
 
 
 # Base models class:
@@ -21,7 +18,7 @@ class BaseModel(models.Model):
         abstract = True
 
     # Model objects manager:
-    objects = BasicManager()
+    objects = BaseManager()
 
     # Deleted information:
     deleted = models.BooleanField(

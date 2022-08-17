@@ -10,6 +10,9 @@ from inventory.devices.models.device_type import DeviceType
 # Change log Import:
 from messages.changes.follow_change_log import follow_change_log
 
+# manager import:
+from inventory.devices.managers.device_type_template import DeviceTypeTemplateManager
+
 
 # Device type template model:
 class DeviceTypeTemplate(SimpleModel):
@@ -29,6 +32,9 @@ class DeviceTypeTemplate(SimpleModel):
 
         # Unique values:
         unique_together = [['command', 'device_type']]
+
+    # Model objects manager:
+    objects = DeviceTypeTemplateManager()
 
     # Model status values:
     root = models.BooleanField(

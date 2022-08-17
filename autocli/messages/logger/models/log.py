@@ -2,7 +2,10 @@
 from django.db import models
 
 # Manager Import:
-from messages.logger.managers.device_manager import LogManager
+from messages.logger.managers import LogManager
+
+# Base model import:
+from messages.all.base_model.base_model import BaseModel
 
 # Constants:
 SEVERITY = (
@@ -15,7 +18,7 @@ SEVERITY = (
 
 
 # Logger models:
-class Log(models.Model):
+class Log(BaseModel):
 
     class Meta:
         
@@ -28,31 +31,6 @@ class Log(models.Model):
 
     # Model objects manager:
     objects = LogManager()
-
-    # Model data time information:
-    timestamp = models.DateTimeField(
-        verbose_name='Timestamp',
-        help_text='Time of the log creation.',
-        auto_now_add=True,
-    )
-
-    # Information about correlated object:
-    app_name = models.CharField(
-        verbose_name='Object application name',
-        help_text='Name of the object application.',
-        max_length=64,
-    )
-    model_name = models.CharField(
-        verbose_name='Object model name',
-        help_text='Name of the object model.',
-        max_length=64,
-    )
-    object_id = models.IntegerField(
-        verbose_name='Object ID',
-        help_text='Correlated object ID representation.',
-        null=True,
-        blank=True,
-    )
 
     # Log corelation:
     application = models.CharField(

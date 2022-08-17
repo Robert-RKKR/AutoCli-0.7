@@ -11,6 +11,9 @@ from inventory.devices.models.device import Device
 # Change log Import:
 from messages.changes.follow_change_log import follow_change_log
 
+# manager import:
+from inventory.devices.managers.group import GroupManager
+
 
 # Folder model:
 class Group(ExtendedModel):
@@ -24,6 +27,9 @@ class Group(ExtendedModel):
 
         # Default ordering:
         ordering = ['name']
+
+    # Model objects manager:
+    objects = GroupManager()
 
     # Corelation witch other folder model:
     root_folder = models.ForeignKey(

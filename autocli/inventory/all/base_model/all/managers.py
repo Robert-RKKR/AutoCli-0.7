@@ -3,11 +3,11 @@ from django.db.models import Manager
 
 
 # Managers class:
-class BasicManager(Manager):
+class BaseManager(Manager):
 
     def get_queryset(self):
         return super(
-            BasicManager, self
+            BaseManager, self
         ).get_queryset().filter(deleted=False)
 
 

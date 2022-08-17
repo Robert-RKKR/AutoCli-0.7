@@ -1,6 +1,12 @@
 # Django Import:
 from django.db import models
 
+# Base model import:
+from messages.all.base_model.base_model import BaseModel
+
+# Manager Import:
+from messages.notifications.managers import NotificationManager
+
 # Constants:
 TYPE = (
     (1, 'CRITICAL'),
@@ -12,7 +18,7 @@ TYPE = (
 
 
 # Logger models:
-class Notification(models.Model):
+class Notification(BaseModel):
 
     class Meta:
         
@@ -22,31 +28,9 @@ class Notification(models.Model):
 
         # Default ordering:
         ordering = ['-pk']
-    
-    # Model data time information:
-    timestamp = models.DateTimeField(
-        verbose_name='Timestamp',
-        help_text='Time of the change creation.',
-        auto_now_add=True,
-    )
 
-    # Information about correlated object:
-    app_name = models.CharField(
-        verbose_name='Object application name',
-        help_text='Name of the object application.',
-        max_length=64,
-    )
-    model_name = models.CharField(
-        verbose_name='Object model name',
-        help_text='Name of the object model.',
-        max_length=64,
-    )
-    object_id = models.IntegerField(
-        verbose_name='Object ID',
-        help_text='Correlated object ID representation.',
-        null=True,
-        blank=True,
-    )
+    # Model objects manager:
+    objects = NotificationManager()
 
     # Notification type:
     type = models.IntegerField(

@@ -9,7 +9,7 @@ from inventory.devices.models.device_type import DeviceType
 from inventory.devices.models.credential import Credential
 
 # Manager Import:
-from inventory.devices.managers.device_manager import DeviceManager
+from inventory.devices.managers.device import DeviceManager
 
 # Validators Import:
 from inventory.devices.validators import HostnameValueValidator

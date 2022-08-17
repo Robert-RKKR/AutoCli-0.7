@@ -4,6 +4,12 @@ from django.db import models
 # Administrator model import:
 from django.contrib.auth.models import User
 
+# Manager Import:
+from messages.changes.managers import ChangeLogManager
+
+# Base model import:
+from messages.all.base_model.base_model import BaseModel
+
 # Constants declaration:
 ACTION = (
     (0, '---'),
@@ -14,7 +20,7 @@ ACTION = (
 
 
 # Device model:
-class ChangeLog(models.Model):
+class ChangeLog(BaseModel):
     """ Xxx. """
 
     class Meta:
@@ -25,28 +31,8 @@ class ChangeLog(models.Model):
         # Default ordering:
         ordering = ['-pk']
 
-    # Model data time information:
-    timestamp = models.DateTimeField(
-        verbose_name='Timestamp',
-        help_text='Time of the change creation.',
-        auto_now_add=True,
-    )
-
-    # Information about correlated object:
-    app_name = models.CharField(
-        verbose_name='Object application name',
-        help_text='Name of the object application.',
-        max_length=64,
-    )
-    model_name = models.CharField(
-        verbose_name='Object model name',
-        help_text='Name of the object model.',
-        max_length=64,
-    )
-    object_id = models.IntegerField(
-        verbose_name='Object ID',
-        help_text='Correlated object ID representation.',
-    )
+    # Model objects manager:
+    objects = ChangeLogManager()
 
     # Correlation witch user model:
     administrator = models.ForeignKey(

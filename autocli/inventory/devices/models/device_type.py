@@ -7,6 +7,9 @@ from inventory.all.base_model.extended_model import ExtendedModel
 # Change log Import:
 from messages.changes.follow_change_log import follow_change_log
 
+# manager import:
+from inventory.devices.managers.device_type import DeviceTypeManager
+
 
 # Credential model:
 class DeviceType(ExtendedModel):
@@ -20,6 +23,9 @@ class DeviceType(ExtendedModel):
 
         # Default ordering:
         ordering = ['name']
+
+    # Model objects manager:
+    objects = DeviceTypeManager()
 
     # Main model values:
     netmiko_name = models.CharField(
