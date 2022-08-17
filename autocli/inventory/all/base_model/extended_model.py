@@ -4,7 +4,7 @@ from django.db import models
 
 # Managers Import:
 from .all.managers import ActiveManager
-from .all.managers import BasicManager
+from .all.managers import BaseManager
 
 # Base model Import:
 from .base_model import BaseModel
@@ -35,7 +35,7 @@ class ExtendedModel(BaseModel):
 
     # Model objects manager:
     active_objects = ActiveManager()
-    objects = BasicManager()
+    objects = BaseManager()
 
     # Model status values:
     root = models.BooleanField(
