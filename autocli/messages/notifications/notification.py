@@ -49,8 +49,10 @@ class Notification:
             async_to_sync(self.channel_layer.group_send)('notifications', {
                 'type': 'send_collect',
                 'message': message,
-                'link': f'{correlated_object.__class__._meta.app_label}.'\
-                        f'{correlated_object.__class__.__name__}',
+                'app_name': correlated_object.__class__._meta.app_label,
+                'model_name': correlated_object.__class__.__name__,
+                'object_id': correlated_object.pk,
+                'link': 'None'
             })
         else:
             async_to_sync(self.channel_layer.group_send)('notifications', {
