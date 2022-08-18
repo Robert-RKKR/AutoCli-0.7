@@ -1,6 +1,3 @@
-# Django Import:
-from django.db.models import Manager
-
 # Base manager import:
 from inventory.all.base_model.all.managers import BaseManager
 
@@ -8,4 +5,5 @@ from inventory.all.base_model.all.managers import BaseManager
 # Managers class:
 class DeviceTypeTemplateManager(BaseManager):
 
-    pass
+    def get_by_natural_key(self, command, device_type):
+        return self.get(command=command, device_type=device_type)

@@ -1,4 +1,8 @@
+# Python import:
+import json
+
 # Django signals import:
+from django.core.serializers import serialize
 from django.forms.models import model_to_dict
 
 # Content type import:
@@ -26,14 +30,17 @@ def base_post_signal(sender, instance=None, created=False, **kwargs):
         model_name = None
     
     if (app_name, model_name) in content_types:
+        # Collect object content:
+        json_str = serialize('json', [instance], indent=2, use_natural_foreign_keys=True, use_natural_primary_keys=True)
+        data = json.loads(json_str)[0]['fields']
+        # Try to create a new change log:
         try:
-            # Create a new change log:
             ChangeLog.objects.create(
                 action=change_log_action,
                 app_name=sender._meta.app_label,
                 model_name=sender.__name__,
                 object_id=instance.pk,
-                after=model_to_dict(instance),
+                after=data,
             )
         except: # Pass if sender was not register:
             pass

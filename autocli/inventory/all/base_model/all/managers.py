@@ -10,10 +10,5 @@ class BaseManager(Manager):
             BaseManager, self
         ).get_queryset().filter(deleted=False)
 
-
-class ActiveManager(Manager):
-
-    def get_queryset(self):
-        return super(
-            ActiveManager, self
-        ).get_queryset().filter(deleted=False, active=True)
+    def get_by_natural_key(self, name):
+        return self.get(name=name)

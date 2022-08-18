@@ -1,5 +1,7 @@
 # Django Import:
 from django.shortcuts import render
+from django.core.serializers import serialize
+import json
 
 # Application model Import:
 from inventory.devices.models.device import Device
@@ -50,7 +52,10 @@ def test(request):
     #     'execution': 394.24,
     # })
 
-    collected_object = collect_object('devices', 'Device', 2)
+    json_str = serialize('json', [device], use_natural_foreign_keys=True, use_natural_primary_keys=True)
+    data = json.loads(json_str)[0]['fields']
+
+    collected_object = data
 
     data['output'] = collected_object
     

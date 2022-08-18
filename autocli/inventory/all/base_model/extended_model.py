@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 # Managers Import:
-from .all.managers import ActiveManager
 from .all.managers import BaseManager
 
 # Base model Import:
@@ -34,7 +33,6 @@ class ExtendedModel(BaseModel):
     class_name = Meta.verbose_name
 
     # Model objects manager:
-    active_objects = ActiveManager()
     objects = BaseManager()
 
     # Model status values:
@@ -113,9 +111,13 @@ class ExtendedModel(BaseModel):
 
         super(ExtendedModel, self).update(*args, **kwargs)
 
-    # Model representation:
+    # object representation:
     def __repr__(self) -> str:
         return f'{self.pk}: {self.name}'
 
     def __str__(self) -> str:
         return  f'{self.pk}: {self.name}'
+
+    # Natural key representation:
+    def natural_key(self):
+        return f'{self.pk}: {self.name}'

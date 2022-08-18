@@ -1,12 +1,12 @@
-# Django Import:
-from django.db.models import Manager
+# Base manager import:
+from inventory.all.base_model.all.managers import BaseManager
 
 # Other models Import:
 from inventory.devices.models.device_type_template import DeviceTypeTemplate
 
 
 # Managers class:
-class DeviceManager(Manager):
+class DeviceManager(BaseManager):
 
     def get_device_type_templates(self, device):
         device_type = device.device_type
@@ -22,3 +22,6 @@ class DeviceManager(Manager):
             device_type=device_type,
         )
         return device_type_templates
+
+    def get_by_natural_key(self, name):
+        return self.get(name=name)
