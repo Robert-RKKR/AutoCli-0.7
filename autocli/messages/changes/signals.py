@@ -31,7 +31,7 @@ def base_post_signal(sender, instance=None, created=False, **kwargs):
     
     if (app_name, model_name) in content_types:
         # Collect object content:
-        json_str = serialize('json', [instance], indent=2, use_natural_foreign_keys=True, use_natural_primary_keys=True)
+        json_str = serialize('json', [instance], use_natural_foreign_keys=True, use_natural_primary_keys=True)
         data = json.loads(json_str)[0]['fields']
         # Try to create a new change log:
         try:

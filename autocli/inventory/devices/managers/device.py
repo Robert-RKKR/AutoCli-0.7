@@ -22,6 +22,3 @@ class DeviceManager(BaseManager):
             device_type=device_type,
         )
         return device_type_templates
-
-    def get_by_natural_key(self, name):
-        return self.get(name=name)

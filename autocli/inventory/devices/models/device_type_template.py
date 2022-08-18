@@ -85,10 +85,14 @@ class DeviceTypeTemplate(SimpleModel):
 
     # Model representation:
     def __repr__(self) -> str:
-        return f'{self.pk}: {self.command.capitalize()}'
+        return f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
 
     def __str__(self) -> str:
-        return  f'{self.pk}: {self.command.capitalize()}'
+        return  f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
+
+    # Natural key representation:
+    def natural_key(self):
+        return f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
 
 # Follow change log:
 follow_change_log(DeviceTypeTemplate)
