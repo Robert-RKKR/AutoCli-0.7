@@ -1,5 +1,5 @@
 # Base manager import:
-from inventory.all.base_model.all.managers import BaseManager
+from inventory.all.base_model.managers.base_manager import BaseManager
 
 # Other models Import:
 from inventory.devices.models.device_type_template import DeviceTypeTemplate

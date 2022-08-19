@@ -2,7 +2,7 @@
 from django.db import models
 
 # Managers Import:
-from .all.managers import BaseManager
+from .managers.base_manager import BaseManager
 
 
 # Base models class:

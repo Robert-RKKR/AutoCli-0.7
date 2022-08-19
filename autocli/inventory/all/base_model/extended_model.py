@@ -3,14 +3,17 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 # Managers Import:
-from .all.managers import BaseManager
+from .managers.base_manager import BaseManager
 
 # Base model Import:
 from .base_model import BaseModel
 
 # Validators Import:
-from .all.validators import DescriptionValueValidator
-from .all.validators import NameValueValidator
+from .validators.base_validators import DescriptionValueValidator
+from .validators.base_validators import NameValueValidator
+
+# Import colors:
+from .variables.colors import COLORS, COLOR_BLUE
 
 
 # Base models class:
@@ -78,10 +81,12 @@ class ExtendedModel(BaseModel):
         help_text='Object graphical representation.',
         default=1,
     )
-    color = models.IntegerField(
+    color = models.CharField(
         verbose_name='Object color',
         help_text='Color object mark.',
-        default=1,
+        max_length=6,
+        choices=COLORS,
+        default=COLOR_BLUE,
     )
 
     # Model Save override:
