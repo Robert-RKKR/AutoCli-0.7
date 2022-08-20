@@ -67,4 +67,4 @@ class IdentificationModel(models.Model):
 
     # Natural key representation:
     def natural_key(self):
-        return f'{self.pk}: {self.name}'
+        return str(self.name)

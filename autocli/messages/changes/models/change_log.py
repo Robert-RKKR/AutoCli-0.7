@@ -34,6 +34,15 @@ class ChangeLog(BaseModel):
     # Model objects manager:
     objects = ChangeLogManager()
 
+    # Object representation:
+    object_representation = models.CharField(
+        verbose_name='Object representation',
+        help_text='Object representation.',
+        max_length=256,
+        null=True,
+        blank=True,
+    )
+
     # Correlation witch user model:
     administrator = models.ForeignKey(
         User,

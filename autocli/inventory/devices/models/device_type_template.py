@@ -78,4 +78,4 @@ class DeviceTypeTemplate(DataTimeModel, StatusModel):
 
     # Natural key representation:
     def natural_key(self):
-        return f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
+        return f'{self.device_type}/{self.command.capitalize()}'

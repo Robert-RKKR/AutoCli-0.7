@@ -71,3 +71,14 @@ class Tag(DataTimeModel, StatusModel):
         default=COLOR_BLUE,
         choices=COLORS,
     )
+
+    # object representation:
+    def __repr__(self) -> str:
+        return f'{self.pk}: {self.name}'
+
+    def __str__(self) -> str:
+        return  f'{self.pk}: {self.name}'
+
+    # Natural key representation:
+    def natural_key(self):
+        return str(self.name)
