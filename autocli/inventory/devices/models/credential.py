@@ -1,19 +1,18 @@
-# Django Import:
+# Django import:
 import imp
 from django.db import models
 
-# Extended Model Import:
-from inventory.all.base_model.extended_model import ExtendedModel
-
-# Change log Import:
-from messages.changes.follow_change_log import follow_change_log
+# Basic models import:
+from inventory.all.base_model.models.identification import IdentificationModel
+from inventory.all.base_model.models.data_time import DataTimeModel
+from inventory.all.base_model.models.status import StatusModel
 
 # manager import:
 from inventory.devices.managers.credential import CredentialManager
 
 
 # Credential model:
-class Credential(ExtendedModel):
+class Credential(DataTimeModel, StatusModel, IdentificationModel):
     """ 
     The Credential specifies the login information (Login, password)
     needed in the login process when connecting to network devices.
@@ -42,6 +41,3 @@ class Credential(ExtendedModel):
         help_text='Local / remote user password.',
         max_length=64,
     )
-
-# Follow change log:
-follow_change_log(Credential)

@@ -187,3 +187,12 @@ JAZZMIN_SETTINGS = JAZZMIN_SETTINGS
 JAZZMIN_UI_TWEAKS = {
     "theme": "cosmo",
 }
+
+# Change log models:
+CHANGE_LOG_MODELS = [
+    ('devices', 'Device'),
+    ('devices', 'DeviceType'),
+    ('devices', 'DeviceTypeTemplate'),
+    ('devices', 'Group'),
+    ('devices', 'Credential'),
+]

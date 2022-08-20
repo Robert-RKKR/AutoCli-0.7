@@ -1,18 +1,17 @@
-# Django Import:
+# Django import:
 from django.db import models
 
-# Extended Model Import:
-from inventory.all.base_model.extended_model import ExtendedModel
-
-# Change log Import:
-from messages.changes.follow_change_log import follow_change_log
+# Basic models import:
+from inventory.all.base_model.models.identification import IdentificationModel
+from inventory.all.base_model.models.data_time import DataTimeModel
+from inventory.all.base_model.models.status import StatusModel
 
 # manager import:
 from inventory.devices.managers.device_type import DeviceTypeManager
 
 
 # Credential model:
-class DeviceType(ExtendedModel):
+class DeviceType(DataTimeModel, StatusModel, IdentificationModel):
     """ Xxx. """
 
     class Meta:
@@ -34,6 +33,3 @@ class DeviceType(ExtendedModel):
         max_length=32,
         unique=True
     )
-
-# Follow change log:
-follow_change_log(DeviceType)

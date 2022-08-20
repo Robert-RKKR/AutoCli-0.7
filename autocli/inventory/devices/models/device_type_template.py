@@ -1,21 +1,19 @@
-# Django Import:
+# Django import:
 from django.db import models
 
-# Extended Model Import:
-from inventory.all.base_model.simple_model import SimpleModel
+# Basic models import:
+from inventory.all.base_model.models.data_time import DataTimeModel
+from inventory.all.base_model.models.status import StatusModel
 
-# Other models Import:
+# Other models import:
 from inventory.devices.models.device_type import DeviceType
-
-# Change log Import:
-from messages.changes.follow_change_log import follow_change_log
 
 # manager import:
 from inventory.devices.managers.device_type_template import DeviceTypeTemplateManager
 
 
 # Device type template model:
-class DeviceTypeTemplate(SimpleModel):
+class DeviceTypeTemplate(DataTimeModel, StatusModel):
     """
     CLI command template can be processed to receive CLI configurations commands.
     A TextFSM string or Regex expression can then be used to check that the received output is correct.
@@ -35,18 +33,6 @@ class DeviceTypeTemplate(SimpleModel):
 
     # Model objects manager:
     objects = DeviceTypeTemplateManager()
-
-    # Model status values:
-    root = models.BooleanField(
-        verbose_name='Root',
-        help_text='Root object cannot be deleted.',
-        default=False,
-    )
-    active = models.BooleanField(
-        verbose_name='Active',
-        help_text='Object status.',
-        default=True,
-    )
 
     # Spacial type of Device type template object:
     special = models.BooleanField(
@@ -93,6 +79,3 @@ class DeviceTypeTemplate(SimpleModel):
     # Natural key representation:
     def natural_key(self):
         return f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
-
-# Follow change log:
-follow_change_log(DeviceTypeTemplate)

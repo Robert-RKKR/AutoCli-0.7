@@ -1,22 +1,21 @@
-# Django Import:
+# Django import:
 from django.db import models
 
-# Extended Model Import:
-from inventory.all.base_model.extended_model import ExtendedModel
+# Basic models import:
+from inventory.all.base_model.models.identification import IdentificationModel
+from inventory.all.base_model.models.data_time import DataTimeModel
+from inventory.all.base_model.models.status import StatusModel
 
-# Models Import:
+# Models import:
 from inventory.devices.models.credential import Credential
 from inventory.devices.models.device import Device
-
-# Change log Import:
-from messages.changes.follow_change_log import follow_change_log
 
 # manager import:
 from inventory.devices.managers.group import GroupManager
 
 
 # Folder model:
-class Group(ExtendedModel):
+class Group(DataTimeModel, StatusModel, IdentificationModel):
     """ Folders allow you to group network devices. """
 
     class Meta:
@@ -91,6 +90,3 @@ class Group(ExtendedModel):
         null=True,
         blank=True,
     )
-
-# Follow change log:
-follow_change_log(Group)

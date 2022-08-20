@@ -5,8 +5,8 @@ import json
 from django.core.serializers import serialize
 from django.forms.models import model_to_dict
 
-# Content type import:
-from .follow_change_log import content_types
+# Settings import:
+from django.conf import settings
 
 # Post save signal:
 def base_post_signal(sender, instance=None, created=False, **kwargs):
@@ -29,7 +29,7 @@ def base_post_signal(sender, instance=None, created=False, **kwargs):
         app_name = None
         model_name = None
     
-    if (app_name, model_name) in content_types:
+    if (app_name, model_name) in settings.CHANGE_LOG_MODELS:
         # Collect object content:
         json_str = serialize('json', [instance], use_natural_foreign_keys=True, use_natural_primary_keys=True)
         data = json.loads(json_str)[0]['fields']

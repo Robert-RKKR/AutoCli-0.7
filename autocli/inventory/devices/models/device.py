@@ -1,25 +1,24 @@
-# Django Import:
+# Django import:
 from django.db import models
 
-# Extended Model Import:
-from inventory.all.base_model.extended_model import ExtendedModel
+# Basic models import:
+from inventory.all.base_model.models.identification import IdentificationModel
+from inventory.all.base_model.models.data_time import DataTimeModel
+from inventory.all.base_model.models.status import StatusModel
 
-# Application models Import:
+# Application models import:
 from inventory.devices.models.device_type import DeviceType
 from inventory.devices.models.credential import Credential
 
-# Manager Import:
+# Manager import:
 from inventory.devices.managers.device import DeviceManager
 
-# Validators Import:
+# Validators import:
 from inventory.devices.validators import HostnameValueValidator
-
-# Change log Import:
-from messages.changes.follow_change_log import follow_change_log
 
 
 # Device model:
-class Device(ExtendedModel):
+class Device(DataTimeModel, StatusModel, IdentificationModel):
     """ 
     Devices is the main component of the AutoCli application,
     it contains basic network Information about devices that
@@ -118,6 +117,3 @@ class Device(ExtendedModel):
         help_text='Check network device certificate during HTTPS connection.',
         default=False,
     )
-
-# Follow change log:
-follow_change_log(Device)

@@ -44,7 +44,7 @@ class CredentialAdmin(BaseAdmin):
         'pk', 'active', 'name', 'username', 
     )
     list_filter = (
-        'active', 'color',
+        'active',
     )
     search_fields = (
         'name',
@@ -58,10 +58,10 @@ class CredentialAdmin(BaseAdmin):
             'classes': ('collapse',),
             'fields': ('username', 'password',),
         }),
-        ('Additional information', {
-            'classes': ('collapse',),
-            'fields': ('ico', 'color',),
-        }),
+        # ('Additional information', {
+        #     'classes': ('collapse',),
+        #     'fields': ('ico', 'color',),
+        # }),
     )
 
 
@@ -72,7 +72,7 @@ class DeviceTypeAdmin(BaseAdmin):
         'pk', 'active', 'name', 'netmiko_name', 
     )
     list_filter = (
-        'active', 'color',
+        'active',
     )
     search_fields = (
         'name',
@@ -82,10 +82,10 @@ class DeviceTypeAdmin(BaseAdmin):
             'classes': ('wide', 'extrapretty',),
             'fields': ('active', 'name', 'description', 'netmiko_name',)
         }),
-        ('Additional information', {
-            'classes': ('collapse',),
-            'fields': ('ico', 'color',),
-        }),
+        # ('Additional information', {
+        #     'classes': ('collapse',),
+        #     'fields': ('ico', 'color',),
+        # }),
     )
 
 
@@ -96,7 +96,7 @@ class DeviceAdmin(BaseAdmin):
         'pk', 'active', 'name', 'hostname', 'device_type', 'ssh_status', 'https_status', 'credential',
     )
     list_filter = (
-        'active', 'color', 'ssh_status', 'https_status', 'credential',
+        'active', 'ssh_status', 'https_status', 'credential',
     )
     search_fields = (
         'name', 'hostname',
@@ -124,10 +124,10 @@ class DeviceAdmin(BaseAdmin):
             'classes': ('collapse',),
             'fields': ('credential', 'secret', 'token', 'certificate',),
         }),
-        ('Additional information', {
-            'classes': ('collapse',),
-            'fields': ('ico', 'color',),
-        }),
+        # ('Additional information', {
+        #     'classes': ('collapse',),
+        #     'fields': ('ico', 'color',),
+        # }),
     )
 
 
@@ -138,7 +138,7 @@ class GroupAdmin(BaseAdmin):
         'pk', 'active', 'name', 'root_folder', 
     )
     list_filter = (
-        'active', 'color',
+        'active',
     )
     search_fields = (
         'name',
@@ -156,8 +156,8 @@ class GroupAdmin(BaseAdmin):
             'classes': ('wide', 'extrapretty',),
             'fields': ('root_folder',),
         }),
-        ('Additional information', {
-            'classes': ('collapse',),
-            'fields': ('ico', 'color',),
-        }),
+        # ('Additional information', {
+        #     'classes': ('collapse',),
+        #     'fields': ('ico', 'color',),
+        # }),
     )
