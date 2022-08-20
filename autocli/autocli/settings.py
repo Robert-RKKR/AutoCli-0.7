@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'inventory.automation.apps.AutomationConfig',
     'inventory.datasets.apps.DatasetsConfig',
     'inventory.devices.apps.DevicesConfig',
+    'inventory.tags.apps.TagsConfig',
     'inventory.updates.apps.UpdatesConfig',
 
     # AutoCLI messages apps:
@@ -195,4 +196,5 @@ CHANGE_LOG_MODELS = [
     ('devices', 'DeviceTypeTemplate'),
     ('devices', 'Group'),
     ('devices', 'Credential'),
+    ('tags', 'Tag'),
 ]

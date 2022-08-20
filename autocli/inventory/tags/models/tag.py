@@ -1,21 +1,36 @@
-# Django Import:
+# Django import:
+from asyncio import constants
 from django.db import models
 
+# Basic models import:
+from inventory.all.base_model.models.data_time import DataTimeModel
+from inventory.all.base_model.models.status import StatusModel
+
 # Validators Import:
-from ..validators.base_validators import DescriptionValueValidator
-from ..validators.base_validators import NameValueValidator
+from inventory.all.base_model.validators.base_validators import DescriptionValueValidator
+from inventory.all.base_model.validators.base_validators import NameValueValidator
 
-# Tag model import:
-from inventory.tags.models.tag import Tag
+# Manager import:
+from inventory.tags.managers.tag import TagManager
+
+# Color constants import:
+from inventory.tags.constants.colors import COLORS, COLOR_BLUE
 
 
-# Base models class:
-class IdentificationModel(models.Model):
+# Device type template model:
+class Tag(DataTimeModel, StatusModel):
 
     class Meta:
+        
+        # Model name values:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
 
-        # Abstract class value:
-        abstract = True
+        # Default ordering:
+        ordering = ['pk']
+
+    # Model objects manager:
+    objects = TagManager()
 
     # Model validators:
     name_validator = NameValueValidator()
@@ -47,24 +62,12 @@ class IdentificationModel(models.Model):
         null=True,
         blank=True,
     )
-    ico = models.IntegerField(
-        verbose_name='Object ico',
-        help_text='Object graphical representation.',
-        default=1,
+
+    # Related color:
+    color = models.CharField(
+        verbose_name='Color',
+        help_text='Tag related color.',
+        max_length=6,
+        default=COLOR_BLUE,
+        choices=COLORS,
     )
-    tag = models.ManyToManyField(
-        Tag,
-        verbose_name='Tag',
-        help_text='Related tags.',
-    )
-
-    # object representation:
-    def __repr__(self) -> str:
-        return f'{self.pk}: {self.name}'
-
-    def __str__(self) -> str:
-        return  f'{self.pk}: {self.name}'
-
-    # Natural key representation:
-    def natural_key(self):
-        return f'{self.pk}: {self.name}'
