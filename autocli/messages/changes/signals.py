@@ -91,7 +91,7 @@ def post_save_change_signal(sender, instance=None, created=False, **kwargs):
             pass
 
 # Post delete signal:
-def post_delete_change_signal(sender, instance=None, **kwargs):
+def post_delete_change_signal(sender, instance=None, origin=None, **kwargs):
     """
     When application will receive a new post delete signal in case of new object creation,
     the function will check if provided object model belongs to the group

@@ -45,6 +45,7 @@ class Group(DataTimeModel, StatusModel, IdentificationModel):
         Device,
         verbose_name='Devices',
         help_text='All devices that belongs to current folder.',
+        blank=True,
     )
 
     # Defaults main values:

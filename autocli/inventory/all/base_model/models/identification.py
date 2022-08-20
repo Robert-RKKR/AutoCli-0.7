@@ -56,6 +56,7 @@ class IdentificationModel(models.Model):
         Tag,
         verbose_name='Tag',
         help_text='Related tags.',
+        blank=True,
     )
 
     # object representation:

@@ -2,7 +2,7 @@
 from django.db import models
 
 # Manager Import:
-from messages.logger.managers import LogManager
+from messages.logger.managers.log import LogManager
 
 # Base model import:
 from messages.all.base_model.base_model import BaseModel

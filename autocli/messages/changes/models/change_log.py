@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Manager Import:
-from messages.changes.managers import ChangeLogManager
+from messages.changes.managers.change_log import ChangeLogManager
 
 # Base model import:
 from messages.all.base_model.base_model import BaseModel
@@ -16,6 +16,12 @@ ACTION = (
     (1, 'Create'),
     (2, 'Update'),
     (3, 'Delete')
+)
+SOURCE = (
+    (0, '---'),
+    (1, 'GUI'),
+    (2, 'API'),
+    (3, 'Code')
 )
 
 
@@ -53,11 +59,17 @@ class ChangeLog(BaseModel):
         blank=True,
     )
 
-    # Action:
+    # Action and source:
     action = models.IntegerField(
         verbose_name='Change log action',
         help_text='The action that was performed on a given model.',
         choices=ACTION,
+        default=0,
+    )
+    source = models.IntegerField(
+        verbose_name='Source of action',
+        help_text='Source of action.',
+        choices=SOURCE,
         default=0,
     )
 

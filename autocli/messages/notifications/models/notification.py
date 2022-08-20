@@ -5,7 +5,7 @@ from django.db import models
 from messages.all.base_model.base_model import BaseModel
 
 # Manager Import:
-from messages.notifications.managers import NotificationManager
+from messages.notifications.managers.notification import NotificationManager
 
 # Constants:
 TYPE = (
