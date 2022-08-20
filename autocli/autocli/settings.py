@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # Celery and channels pps:
     'django_celery_beat',
     'channels',
+    'django_filters',
 
     # AutoCLI system apps:
     # 'system.administration.apps.AdministrationConfig',

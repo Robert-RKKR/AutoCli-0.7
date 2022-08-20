@@ -59,14 +59,10 @@ class DeviceTypeTemplate(DataTimeModel, StatusModel):
         verbose_name='CLI command',
         help_text='CLI command that will be executed on network device.',
         max_length=64,
-        null=True,
-        blank=True
     )
     sfm_expression = models.TextField(
         verbose_name='SFM expression',
         help_text='SFM expression used to check if CLI command/s output is correct.',
-        null=True,
-        blank=True
     )
 
     # Model representation:
