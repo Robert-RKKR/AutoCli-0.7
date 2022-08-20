@@ -34,7 +34,7 @@ def test(request):
 
 
     notification = Notification()
-    notification.send('RKKR notification test', **{
+    notify = notification.send('RKKR notification test', **{
         'object': device,
     })
     
@@ -52,12 +52,7 @@ def test(request):
     #     'execution': 394.24,
     # })
 
-    json_str = serialize('json', [device], use_natural_foreign_keys=True, use_natural_primary_keys=True)
-    data = json.loads(json_str)[0]['fields']
-
-    collected_object = data
-
-    data['output'] = collected_object
+    data['output'] = notify
     
     # GET method:
     return render(request, 'test.html', data)

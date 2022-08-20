@@ -34,14 +34,14 @@ class Notification:
             Notification message string value.
         kwargs: dictionary
             It takes the following values:
-                -type: xxx.
+                -type (Int): Type of notification.
             -Information about content:
                 -option I:
-                    -app_name: Model application name.
-                    -model_name: Model name.
-                    -object_id: ID of log related object.
+                    -app_name (Str): Model application name.
+                    -model_name (Str): Model name.
+                    -object_id (Int): ID of log related object.
                 -Option II:
-                    -object: correlated object.
+                    -object (Device object): correlated object.
         """
 
         if kwargs.get('object', False):
@@ -70,14 +70,14 @@ class Notification:
             Notification message string value.
         kwargs: dictionary
             It takes the following values:
-                -type: xxx.
+                -type (Int): Type of notification.
             -Information about content:
                 -option I:
-                    -app_name: Model application name.
-                    -model_name: Model name.
-                    -object_id: ID of log related object.
+                    -app_name (Str): Model application name.
+                    -model_name (Str): Model name.
+                    -object_id (Int): ID of log related object.
                 -Option II:
-                    -object: correlated object.
+                    -object (Device object): correlated object.
         """
 
         # Verify provided data:
@@ -91,14 +91,14 @@ class Notification:
             kwargs['model_name'] = correlated_object.__class__.__name__
             # Collect object ID:
             kwargs['object_id'] = correlated_object.id
-
         # Try to create notification:
         try:
             notification = NotificationModel.objects.create(
-                content_type=kwargs.get('content_type', None),
+                app_name=kwargs.get('app_name', None),
+                model_name=kwargs.get('model_name', None),
                 object_id=kwargs.get('object_id', None),
-                type=kwargs.get('type', None),
-                message=kwargs.get('message', None),
+                type=kwargs.get('type', 0),
+                message=message,
             )
         except:
             return False
@@ -115,14 +115,14 @@ class Notification:
             Notification message string value.
         kwargs: dictionary
             It takes the following values:
-                -type: xxx.
+                -type (Int): Type of notification.
             -Information about content:
                 -option I:
-                    -app_name: Model application name.
-                    -model_name: Model name.
-                    -object_id: ID of log related object.
+                    -app_name (Str): Model application name.
+                    -model_name (Str): Model name.
+                    -object_id (Int): ID of log related object.
                 -Option II:
-                    -object: correlated object.
+                    -object (Device object): correlated object.
         """
 
         self.channel_notification(message, **kwargs)
