@@ -17,9 +17,9 @@ services:
     depends_on:
       - redis
 
-  celery:
+  celery-collect_data:
     build: ./project
-    command: celery worker --app=core --loglevel=info --logfile=logs/celery.log
+    command: celery -A autocli worker -Q collect_data -l INFO
     volumes:
       - ./project:/usr/src/app
     environment:
