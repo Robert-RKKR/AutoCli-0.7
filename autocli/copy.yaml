@@ -9,7 +9,6 @@
     name: Cisco IOS
     description: Cisco IOS device
     ico: 1
-    color: 1
     netmiko_name: cisco_ios
 - model: devices.devicetype
   pk: 2
@@ -22,7 +21,6 @@
     name: Cisco XE
     description: Cisco XE device
     ico: 1
-    color: 1
     netmiko_name: cisco_xe
 - model: devices.devicetype
   pk: 3
@@ -35,7 +33,6 @@
     name: Cisco XR
     description: Cisco XR device
     ico: 1
-    color: 1
     netmiko_name: cisco_xr
 - model: devices.devicetype
   pk: 4
@@ -48,7 +45,6 @@
     name: Cisco NXOS
     description: Cisco NXOS device
     ico: 1
-    color: 1
     netmiko_name: cisco_nxos
 - model: devices.devicetype
   pk: 5
@@ -61,7 +57,6 @@
     name: Cisco ASA
     description: Cisco ASA device
     ico: 1
-    color: 1
     netmiko_name: cisco_asa
 - model: devices.devicetype
   pk: 6
@@ -74,7 +69,6 @@
     name: Cisco WLC
     description: Cisco WLC device
     ico: 1
-    color: 1
     netmiko_name: cisco_wlc
 - model: devices.devicetype
   pk: 7
@@ -87,7 +81,6 @@
     name: FortiNet OS
     description: FortiNet OS device
     ico: 1
-    color: 1
     netmiko_name: fortinet_os
 - model: devices.devicetype
   pk: 8
@@ -100,7 +93,6 @@
     name: Unsupported
     description: Unsupported device
     ico: 1
-    color: 1
     netmiko_name: 'Null'
 - model: devices.devicetypetemplate
   pk: 1

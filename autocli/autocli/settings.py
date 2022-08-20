@@ -9,6 +9,12 @@ from pathlib import Path
 # Jazzmin Import:
 from .jazzmin import JAZZMIN_SETTINGS
 
+"""
+python manage.py dumpdata --format yaml --exclude=auth --exclude=admin --exclude=contenttypes --exclude=sessions --output test
+celery -A autocli worker -Q collect_data -l INFO
+python manage.py loaddata --format yaml copy.yaml
+"""
+
 # Build paths inside the project like this:
 BASE_DIR = Path(__file__).resolve().parent.parent
 

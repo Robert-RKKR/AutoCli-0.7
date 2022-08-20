@@ -17,7 +17,7 @@ from inventory.devices.models.group import Group
 class DeviceTypeTemplateAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'active', 'special', 'vrf', 'device_type', 'command',
+        'pk', 'deleted', 'root', 'active', 'special', 'vrf', 'device_type', 'command',
     )
     list_filter = (
         'active', 'special', 'vrf', 'device_type',

@@ -35,27 +35,30 @@ class StatusModel(models.Model):
         
         # Check if object root value is true:
         if self.root is True:
-            raise ValidationError('Root object cannot be changed or deleted.')
-
-        super(StatusModel, self).save(*args, **kwargs)
+            pass
+            # raise ValidationError('Root object cannot be changed or deleted.')
+        else:
+            super(StatusModel, self).save(*args, **kwargs)
 
     # Model Save override:
     def delete(self, *args, **kwargs):
         
         # Check if object root value is true:
         if self.root is True:
-            raise ValidationError('Root object cannot be changed or deleted.')
-
-        super(StatusModel, self).delete(*args, **kwargs)
+            pass
+            # raise ValidationError('Root object cannot be changed or deleted.')
+        else:
+            super(StatusModel, self).delete(*args, **kwargs)
 
     # Model Save override:
     def update(self, *args, **kwargs):
         
         # Check if object root value is true:
         if self.root is True:
-            raise ValidationError('Root object cannot be changed or deleted.')
-
-        super(StatusModel, self).update(*args, **kwargs)
+            pass
+            # raise ValidationError('Root object cannot be changed or deleted.')
+        else:
+            super(StatusModel, self).update(*args, **kwargs)
 
     # object representation:
     def __repr__(self) -> str:

@@ -7,6 +7,7 @@ import json
 from inventory.devices.models.device import Device
 from messages.notifications.notification import Notification
 from inventory.devices.models.credential import Credential
+from inventory.devices.models.device_type_template import DeviceTypeTemplate
 from messages.logger.models.log import Log
 
 from messages.all.collect import collect_object
@@ -30,7 +31,8 @@ def test(request):
     credentials = Credential.objects.get(pk=1)
     templates = Device.objects.get_device_type_templates(device)
 
-
+    template = DeviceTypeTemplate.objects.get(pk=5)
+    template.delete()
 
 
     notification = Notification()
