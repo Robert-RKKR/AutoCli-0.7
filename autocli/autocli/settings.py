@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'channels',
     'django_filters',
+    'rest_framework',
 
     # AutoCLI system apps:
     # 'system.administration.apps.AdministrationConfig',
@@ -205,3 +206,9 @@ CHANGE_LOG_MODELS = [
     ('devices', 'Credential'),
     ('tags', 'Tag'),
 ]
+
+# API:
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+}
