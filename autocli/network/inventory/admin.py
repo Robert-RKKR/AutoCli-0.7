@@ -150,11 +150,15 @@ class GroupAdmin(BaseAdmin):
         }),
         ('Devices information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('inventory',),
+            'fields': ('devices',),
         }),
         ('Root folder information', {
             'classes': ('wide', 'extrapretty',),
             'fields': ('root_folder',),
+        }),
+        ('Default data information', {
+            'classes': ('wide', 'extrapretty',),
+            'fields': ('ssh_port', 'https_port','credential', 'secret', 'token', 'certificate',),
         }),
         ('Additional information', {
             'classes': ('collapse',),

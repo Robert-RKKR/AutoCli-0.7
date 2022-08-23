@@ -17,12 +17,6 @@ ACTION = (
     (2, 'Update'),
     (3, 'Delete')
 )
-SOURCE = (
-    (0, '---'),
-    (1, 'GUI'),
-    (2, 'API'),
-    (3, 'Code')
-)
 
 
 # Device model:
@@ -64,12 +58,6 @@ class ChangeLog(BaseModel):
         verbose_name='Change log action',
         help_text='The action that was performed on a given model.',
         choices=ACTION,
-        default=0,
-    )
-    source = models.IntegerField(
-        verbose_name='Source of action',
-        help_text='Source of action.',
-        choices=SOURCE,
         default=0,
     )
 

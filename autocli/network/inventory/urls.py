@@ -5,7 +5,7 @@ from django.urls import path
 from network.inventory.views.test import test
 
 # App name registration:
-app_name = 'network.inventory.'
+app_name = 'inventory'
 
 # URLs registration:
 urlpatterns = [

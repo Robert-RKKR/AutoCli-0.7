@@ -4,30 +4,35 @@ from rest_framework import serializers
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
 
+# Model import:
+from network.inventory.models.group import Group
+
 # Other serializer import:
-from .device_type import DeviceTypeSerializer
 from .credential import CredentialSerializer
 
-# Model import:
-from network.inventory.models.device import Device
+# Other serializer import:
+from .device_simple import SimpleDeviceSerializer
 
 
 # Serializer class:
-class DeviceSerializer(BaseSerializer):
+class GroupSerializer(BaseSerializer):
 
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:device-detail'
+        view_name='api-inventory:group-detail'
     )
     credential = CredentialSerializer(
-        many=False
+        many=False,
+        read_only=True,
     )
-    device_type = DeviceTypeSerializer(
-        many=False
+    devices = SimpleDeviceSerializer(
+        many=True,
+        read_only=True,
     )
+    root_folder = serializers.StringRelatedField(many=False)
 
     class Meta:
 
-        model = Device
+        model = Group
         fields = [
             'pk',
             'url',
@@ -37,12 +42,10 @@ class DeviceSerializer(BaseSerializer):
             'updated',
             'name',
             'description',
-            'hostname',
+            'root_folder',
+            'devices',
             'ssh_port',
             'https_port',
-            'device_type',
-            'ssh_status',
-            'https_status',
             'credential',
             'secret',
             'token',
@@ -52,6 +55,4 @@ class DeviceSerializer(BaseSerializer):
             'root',
             'created',
             'updated',
-            'ssh_status',
-            'https_status',
         ]

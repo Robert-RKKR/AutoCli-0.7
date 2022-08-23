@@ -4,25 +4,17 @@ from rest_framework import serializers
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
 
-# Other serializer import:
-from .device_type import DeviceTypeSerializer
-from .credential import CredentialSerializer
-
 # Model import:
 from network.inventory.models.device import Device
 
 
 # Serializer class:
-class DeviceSerializer(BaseSerializer):
+class SimpleDeviceSerializer(BaseSerializer):
 
+    credential = serializers.StringRelatedField(many=False)
+    device_type = serializers.StringRelatedField(many=False)
     url = serializers.HyperlinkedIdentityField(
         view_name='api-inventory:device-detail'
-    )
-    credential = CredentialSerializer(
-        many=False
-    )
-    device_type = DeviceTypeSerializer(
-        many=False
     )
 
     class Meta:
@@ -47,11 +39,4 @@ class DeviceSerializer(BaseSerializer):
             'secret',
             'token',
             'certificate',
-        ]
-        read_only_fields = [
-            'root',
-            'created',
-            'updated',
-            'ssh_status',
-            'https_status',
         ]

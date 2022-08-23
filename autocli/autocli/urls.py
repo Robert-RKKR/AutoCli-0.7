@@ -10,7 +10,7 @@ urlpatterns = [
 
     # Inventory/device registration:
     path('network/test/', include('network.inventory.urls')),
-    path('api/network/', include('network.inventory.api.urls')),
+    path('api/inventory/', include('network.inventory.api.urls')),
 
     # Rest framework registration:
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))

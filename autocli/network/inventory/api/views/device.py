@@ -11,6 +11,7 @@ from network.inventory.models.device import Device
 
 # Serializer import:
 from ..serializers.device import DeviceSerializer
+from ..serializers.device_simple import SimpleDeviceSerializer
 
 
 class DeviceView(viewsets.ModelViewSet):
@@ -22,6 +23,10 @@ class DeviceView(viewsets.ModelViewSet):
     pagination_class = BaseSmallPaginator
 
 
-"""
-zmien device na network a network na cos innego.!!!!!!!!!!!!!!!!!
-"""
+class SimpleDeviceView(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing accounts.
+    """
+    queryset = Device.objects.all()
+    serializer_class = SimpleDeviceSerializer
+    pagination_class = BaseSmallPaginator

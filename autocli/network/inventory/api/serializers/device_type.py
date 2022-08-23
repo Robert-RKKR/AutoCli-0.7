@@ -5,27 +5,19 @@ from rest_framework import serializers
 from network.all.base_api.base_serializer import BaseSerializer
 
 # Model import:
-from network.inventory.models.credential import Credential
-from network.inventory.models.device import Device
-
-# Other serializer import:
-from .device_simple import SimpleDeviceSerializer
+from network.inventory.models.device_type import DeviceType
 
 
 # Serializer class:
-class CredentialSerializer(BaseSerializer):
+class DeviceTypeSerializer(BaseSerializer):
 
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:credential-detail'
-    )
-    devices = SimpleDeviceSerializer(
-        many=True,
-        read_only=True,
+        view_name='api-inventory:device_type-detail'
     )
 
     class Meta:
 
-        model = Credential
+        model = DeviceType
         fields = [
             'pk',
             'url',
@@ -35,8 +27,7 @@ class CredentialSerializer(BaseSerializer):
             'updated',
             'name',
             'description',
-            'password',
-            'devices',
+            'netmiko_name',
         ]
         read_only_fields = [
             'root',

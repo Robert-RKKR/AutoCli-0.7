@@ -92,6 +92,7 @@ class Device(DataTimeModel, StatusModel, IdentificationModel):
     # Security and credentials:
     credential = models.ForeignKey(
         Credential,
+        related_name='devices',
         verbose_name='Credential',
         help_text='Credential needed to establish SSH / HTTPS connection.',
         on_delete=models.PROTECT,
