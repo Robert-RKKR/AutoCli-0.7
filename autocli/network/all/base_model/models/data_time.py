@@ -21,14 +21,3 @@ class DataTimeModel(models.Model):
         help_text='object last update date.',
         auto_now=True,
     )
-
-    # object representation:
-    def __repr__(self) -> str:
-        return str(self.pk)
-
-    def __str__(self) -> str:
-        return  str(self.pk)
-
-    # Natural key representation:
-    def natural_key(self):
-        return str(self.pk)

@@ -10,9 +10,10 @@ from pathlib import Path
 from .jazzmin import JAZZMIN_SETTINGS
 
 """
-python manage.py dumpdata --format yaml --exclude=auth --exclude=admin --exclude=contenttypes --exclude=sessions --output test
+python manage.py dumpdata --format yaml --exclude=auth --exclude=admin --exclude=contenttypes --exclude=sessions --output dat2
 celery -A autocli worker -Q collect_data -l INFO
 python manage.py loaddata --format yaml copy.yaml
+docker run --name AutoCLI-DB -p 5005:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=autocli postgres
 """
 
 # Build paths inside the project like this:
@@ -118,7 +119,6 @@ DATABASES = {
     }
 }
 
-# docker run --name AutoCLI-DB -p 5005:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=autocli postgres
 # Database
 # DATABASES = {
 #     'default': {

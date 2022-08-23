@@ -25,14 +25,14 @@ class IdentificationModel(models.Model):
     name = models.CharField(
         verbose_name='Name',
         help_text='Object name.',
-        max_length=32,
+        max_length=64,
         unique=True,
         validators=[name_validator],
         error_messages={
             'null': 'Name field is mandatory.',
             'blank': 'Name field is mandatory.',
             'unique': 'Object with this name already exists.',
-            'invalid': 'Enter the correct name value. It must contain 3 to 32 digits, letters or special characters -, _ or spaces.',
+            'invalid': 'Enter the correct name value. It must contain 3 to 64 digits, letters or special characters -, _ or spaces.',
         },
     )
     description = models.CharField(
