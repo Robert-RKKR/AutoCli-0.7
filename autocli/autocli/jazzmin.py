@@ -79,7 +79,7 @@ JAZZMIN_SETTINGS = {
     "hide_models": [],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["auth", "inventory", "logger"],
+    "order_with_respect_to": ["auth", "network", "logger"],
 
     # Custom icons for side menu apps/models
     # for the full list of 5.13.0 free icon classes
@@ -89,12 +89,12 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "logger.Log": "fas fa-barcode",
         "logger.Extension": "fas fa-barcode",
-        "inventory.PolicyTemplate": "fas fa-sticky-note",
-        "inventory.PolicyTask": "fas fa-tasks",
-        "inventory.PolicyRunner": "fas fa-tasks",
-        "inventory.Policy": "fas fa-clipboard",
-        "inventory.DeviceCollectedData": "fas fa-database",
-        "inventory.DeviceUpdate": "fas fa-spinner",
+        "network.PolicyTemplate": "fas fa-sticky-note",
+        "network.PolicyTask": "fas fa-tasks",
+        "network.PolicyRunner": "fas fa-tasks",
+        "network.Policy": "fas fa-clipboard",
+        "network.DeviceCollectedData": "fas fa-database",
+        "network.DeviceUpdate": "fas fa-spinner",
 
         # System:
         "administration.Administrator": "fas fa-user",
@@ -102,11 +102,11 @@ JAZZMIN_SETTINGS = {
         "settings.Setting": "fas fa-users-cog",
 
         # Inventory:
-        "devices.Device": "fas fa-desktop",
-        "devices.DeviceType": "fas fa-keyboard",
-        "devices.DeviceTypeTemplate": "fas fa-sticky-note",
-        "devices.Group": "fas fa-users",
-        "devices.Credential": "fas fa-user-secret",
+        "inventory.Device": "fas fa-desktop",
+        "inventory.DeviceType": "fas fa-keyboard",
+        "inventory.DeviceTypeTemplate": "fas fa-sticky-note",
+        "inventory.Group": "fas fa-users",
+        "inventory.Credential": "fas fa-user-secret",
 
         # Messages:
         "logger.Log": "fas fa-barcode",
@@ -145,5 +145,5 @@ JAZZMIN_SETTINGS = {
     "changeform_format": "horizontal_tabs",
     # override change forms on a per modeladmin basis
     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
-    "order_with_respect_to": ["administration", "settings", "devices", "notifications", "changes", "logger"],
+    "order_with_respect_to": ["administration", "settings", "inventory", "notifications", "changes", "logger"],
 }

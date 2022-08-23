@@ -1,4 +1,4 @@
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 1
   fields:
     deleted: false
@@ -10,7 +10,7 @@
     description: Cisco IOS device
     ico: 1
     netmiko_name: cisco_ios
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 2
   fields:
     deleted: false
@@ -22,7 +22,7 @@
     description: Cisco XE device
     ico: 1
     netmiko_name: cisco_xe
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 3
   fields:
     deleted: false
@@ -34,7 +34,7 @@
     description: Cisco XR device
     ico: 1
     netmiko_name: cisco_xr
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 4
   fields:
     deleted: false
@@ -46,7 +46,7 @@
     description: Cisco NXOS device
     ico: 1
     netmiko_name: cisco_nxos
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 5
   fields:
     deleted: false
@@ -58,7 +58,7 @@
     description: Cisco ASA device
     ico: 1
     netmiko_name: cisco_asa
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 6
   fields:
     deleted: false
@@ -70,7 +70,7 @@
     description: Cisco WLC device
     ico: 1
     netmiko_name: cisco_wlc
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 7
   fields:
     deleted: false
@@ -82,7 +82,7 @@
     description: FortiNet OS device
     ico: 1
     netmiko_name: fortinet_os
-- model: devices.devicetype
+- model: inventory.devicetype
   pk: 8
   fields:
     deleted: false
@@ -94,7 +94,7 @@
     description: Unsupported device
     ico: 1
     netmiko_name: 'Null'
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 1
   fields:
     deleted: false
@@ -125,7 +125,7 @@
       \ ^[Ss]ystem\\s+[Ss]erial\\s+[Nn]umber\\s+:\\s+${SERIAL}\r\n  ^[Mm]odel\\s+[Nn]umber\\s+:\\s+${HARDWARE}\\s*\r\n
       \ ^[Cc]onfiguration\\s+register\\s+is\\s+${CONFIG_REGISTER}\r\n  ^Base [Ee]thernet
       MAC [Aa]ddress\\s+:\\s+${MAC}"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 2
   fields:
     deleted: false
@@ -164,7 +164,7 @@
       \ ^\\s+${OUTPUT_PACKETS}\\s+packets\\s+output,\\s+\\d+\\s+bytes,\\s+\\d+\\s+underruns\\s*$$\r\n
       \ ^\\s+${OUTPUT_ERRORS}\\s+output\\s+errors,\\s+\\d+\\s+collisions,\\s+\\d+\\s+interface\\s+resets\\s*$$\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 3
   fields:
     deleted: false
@@ -194,7 +194,7 @@
       \ ^\\s*Override\\s+vlan\\s+tag\\s+priority\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n
       \ ^Time\\s+source\\s+is\r\n  ^. -> Error\r\n\r\nTrunk\r\n  ^\\s+${TRUNKING_VLANS},\\s*$$\r\n
       \ ^\\s+${TRUNKING_VLANS}\\s*$$ -> Start\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 4
   fields:
     deleted: false
@@ -229,7 +229,7 @@
       \ ^\\s+\\d+\\s+(suppressed\\s+)?verification\\s+drop(s)?\r\n  ^\\s*IP\\s+Distributed\\s+switching\\s+is\r\n
       \ ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error\r\n\r\nHELPERS\r\n
       \ ^\\s+${IP_HELPER}\\s*$$\r\n  ^\\s+Directed -> Start\r\n  ^.* -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 5
   fields:
     deleted: false
@@ -253,7 +253,7 @@
       -> Start\r\n  ^Platform\\s*:\\s*${PLATFORM}\\s*,\\s*Capabilities\\s*:\\s*${CAPABILITIES}$$
       -> Start\r\n  ^.* -> Start\r\n\r\nGetVersion\r\n  ^${SOFTWARE_VERSION} -> Record
       Start"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 6
   fields:
     deleted: false
@@ -269,7 +269,7 @@
       DAYWEEK (\\w+)\r\nValue MONTH (\\w+)\r\nValue DAY (\\d+)\r\nValue YEAR (\\d+)\r\n\r\nStart\r\n
       \ ^[\\*]?${TIME}\\s${TIMEZONE}\\s${DAYWEEK}\\s${MONTH}\\s${DAY}\\s${YEAR} ->
       Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 7
   fields:
     deleted: false
@@ -289,7 +289,7 @@
       \ ^\\s+${SN}\\s+${ACTION}\\s+${PROTOCOL}\\s+${SOURCE}(\\s+${PORT})*(\\s${RANGE})*\\s+${DESTINATION}(\\s+${MODIFIER})*
       -> Record\r\n  ^\\s+${SN}\\s+${ACTION}\\s+${SOURCE}(\\s+${MODIFIER})* -> Record\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 8
   fields:
     deleted: false
@@ -321,7 +321,7 @@
       -> Record\r\n  ^\\s+${LINE_NUM}\\s+${ACTION}\\s+(${SRC_NETWORK},\\s+wildcard\\s+bits\\s+${SRC_WILDCARD}|${SRC_HOST}|${SRC_ANY})(\\s+${LOG}|)(\\s+time-range\\s+${TIME}\\s+\\(${STATE}\\)|)(?:\\s+\\(${MATCHES}\\s+\\S+\\)|)(\\s+\\(tag\\s+=\\s+${LOG_TAG}\\)|)\\s*$$
       -> Record\r\n  ^\\s*$$\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n
       \ ^.* -> Error \"Could not parse line:\"\r\n\r\nEOF"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 9
   fields:
     deleted: false
@@ -349,7 +349,7 @@
       \ ^${PROTOCOL}(\\s|\\*)${TYPE}\\s+${NETWORK} -> Next\r\n  ^\\s+\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP}(,\\s${UPTIME})?(,\\s${NEXTHOP_IF})?
       -> Record\r\n  ^\\s+\\[${DISTANCE}\\/${METRIC}\\]\\svia\\s${NEXTHOP_IP} -> Record\r\n
       \ ^\\s* -> Clearall\r\nEOF"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 10
   fields:
     deleted: false
@@ -360,7 +360,7 @@
     special: false
     vrf: false
     device_type: 1
-    command: show inventory
+    command: show network
     sfm_expression: "Value NAME (.*)\r\nValue DESCR (.*)\r\nValue PID (([\\S+]+|.*))\r\nValue
       VID (.*)\r\nValue SN ([\\w+\\d+]+)\r\n\r\nStart\r\n  ^NAME:\\s+\"${NAME}\",\\s+DESCR:\\s+\"${DESCR}\"\r\n
       \ ^PID:\\s+${PID}.*,.*VID:\\s+${VID},.*SN:\\s+${SN} -> Record\r\n  ^PID:\\s+,.*VID:\\s+${VID},.*SN:
@@ -368,7 +368,7 @@
       -> Record\r\n  ^PID:\\s+${PID}.*,.*VID:\\s+${VID}.*\r\n  ^PID:\\s+,.*VID:\\s+${VID}.*\r\n
       \ ^.*SN:\\s+${SN} -> Record\r\n  ^.*SN: -> Record\r\n  ^Load\\s+for\\s+\r\n
       \ ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 11
   fields:
     deleted: false
@@ -386,7 +386,7 @@
       \ ^Time\\s+source\\s+is\r\n\r\nStart_record\r\n  ^\\s{2}\\S+ -> Continue.Record\r\n
       \ ^\\s{60}\\s+${INTERFACES}\r\n  ^\\s+${NAME}\\s+${DEFAULT_RD}\\s+${PROTOCOLS}\\s+${INTERFACES}\r\n
       \ ^\\s+${NAME}\\s+${DEFAULT_RD}\\s+${PROTOCOLS}"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 12
   fields:
     deleted: false
@@ -426,7 +426,7 @@
       \ ^\\s*$$ -> Start\r\n\r\nMed\r\n  ^\\s+Serial\\s+number:\\s+${SERIAL}\\s*$$\r\n
       \ ^\\s+\\S+\r\n  ^\\s*$$\r\n  ^\\s*Total\\s+entries\\s+displayed -> Record\r\n
       \ ^\\s*-+\\s*$$ -> Continue.Record\r\n  ^\\s*-+\\s*$$ -> Start\r\n  ^.* -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 13
   fields:
     deleted: false
@@ -446,7 +446,7 @@
       \ ^\\s+\\d+\\s+${FILENAMES}\r\n  ^\\s+\\d+ -> Record\r\n  ^\\sArchive feature
       ${STATE} -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^.
       -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 14
   fields:
     deleted: false
@@ -464,7 +464,7 @@
       -> Record\r\n  ^Legend.*\r\n  ^\\s+\\D.*.*$$\r\n  ^=*$$\r\n  ^Interface.*$$\r\n
       \ ^Type.*$$\r\n  ^\\s*$$\r\n  ^\\s+#\\s+Ent\\s+Peer\\s+NBMA\\s+Addr\\s+Peer\\s+Tunnel\\s+Add\\s+State\\s+UpDn\\s+Tm\\s+Attrb\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 15
   fields:
     deleted: false
@@ -482,7 +482,7 @@
       Addr\\s+Type\\s+Interface\r\n  ^${PROTOCOL}\\s+${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${TYPE}\\s+${INTERFACE}
       -> Record\r\n  ^${PROTOCOL}\\s+${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${TYPE} ->
       Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 16
   fields:
     deleted: false
@@ -509,7 +509,7 @@
       -> Continue\r\n  ^\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+[\\w\\.\\/\\(\\)]+\\s+${INTERFACES}\\(${INTERFACES_STATUS}\\)
       -> Continue\r\n  ^\\d+\r\n  ^\\s+\r\n  ^-+\\++\r\n  ^\\s*$$\r\n  ^(RU|SU)\\s+-\\s+L(2|3)\\s+port-channel\\s+UP\\s+(s|S)tate\r\n
       \ ^(P|S)/(bndl|susp)\\s+-\\s+(Bundled|Suspended)\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 17
   fields:
     deleted: false
@@ -542,7 +542,7 @@
       \ ^\\s+BFD\\s+state\r\n  ^\\s+\\d+\\s+IPL\\s+source\r\n  ^\\d+\\s+packets\r\n
       \ ^\\s*$$\r\n  ^. -> Error\r\n\r\nRecursive\r\n  ^\\s+attached\\s+to\\s+${INTERFACE}
       -> Start\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 18
   fields:
     deleted: false
@@ -562,7 +562,7 @@
       \ ^${PROTOCOL}\\s+${INSIDE_GLOBAL_IP}:${INSIDE_GLOBAL_PORT}\\s+${INSIDE_LOCAL_IP}:${INSIDE_LOCAL_PORT}\\s+${OUTSIDE_LOCAL_IP}:${OUTSIDE_GLOBAL_PORT}\\s+${OUTSIDE_GLOBAL_IP}:${OUTSIDE_LOCAL_PORT}
       -> Record\r\n  ^${PROTOCOL}\\s+${INSIDE_GLOBAL_IP}\\s+${INSIDE_LOCAL_IP}\\s+${OUTSIDE_LOCAL_IP}\\s+${OUTSIDE_GLOBAL_IP}
       -> Record"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 19
   fields:
     deleted: false
@@ -582,7 +582,7 @@
       \ ^\\s+License\\s+State:\\s+${LICENSE_STATE}$$\r\n  ^\\s+License\\s+Count:\\s+${LICENSE_COUNT}$$\r\n
       \ ^\\s+License\\s+Priority:\\s+${LICENSE_PRIORITY}$$\r\n  ^\\s*$$\r\n  ^. ->
       Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 20
   fields:
     deleted: false
@@ -653,7 +653,7 @@
       -> NumberLogs\r\n  # NUMBER LOGS NO SEVERITY\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}\\s+${TIMEZONE}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
       -> NumberLogs\r\n  ^${NUMBER}:\\s+${MONTH}\\s+${DAY}\\s+${TIME}:\\s+${FACILITY}-${MNEMONIC}:\\s+${MESSAGE}$$
       -> NumberLogs\r\n  ^${MESSAGE}$$\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 21
   fields:
     deleted: false
@@ -708,7 +708,7 @@
       -> Record\r\n  ^-+\\s+-+\r\n  ^Displaying\\s+entries\r\n  ^Vlan\\s+Mac Address\\s+Type\\s+Ports\r\n
       \ ^\\s*$$\r\n  ^Total\\s+Mac\\s+Addresses\r\n  ^MultiCast\\s+Entries -> End\r\n
       \ ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 22
   fields:
     deleted: false
@@ -734,7 +734,7 @@
       Error NoMatchInStatus\r\n\r\nSwitchStack\r\n  ^---+\r\n  # #1083 C9200L-24T\r\n
       \ ^\\s*${MODULE}\\s+${PORT}\\s+${MODEL}\\s+${SERIAL}\\s+ -> Record\r\n  ^\\s*$$\r\n
       \ ^. -> Error NoMatchInSwitch\r\n\r\nEnd"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 23
   fields:
     deleted: false
@@ -759,7 +759,7 @@
       \ ^Sticky MAC Addresses\\s+:\\s+${STICKY_MAC_ADDRS}\r\n  ^Last Source Address:Vlan\\s+:\\s+${LAST_SRC_MAC_ADDR_VLAN}\r\n
       \ ^Security Violation Count\\s+:\\s+${VIOLATION_COUNT}\r\n  ^\\s*$$\r\n  ^.
       -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 24
   fields:
     deleted: false
@@ -775,7 +775,7 @@
       (\\d+)\r\nValue INTERRUPTS (\\d+)\r\n\r\nStart\r\n  ^CPU utilization for five
       seconds:\\W+${CPU_5_SEC}%/${INTERRUPTS}%; one minute:\\W+${CPU_1_MIN}%; five
       minutes:\\W+${CPU_5_MIN}% -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 25
   fields:
     deleted: false
@@ -794,7 +794,7 @@
       \ ^\\s*lsmpi_io\\s+Pool\r\n  ^\\s*PID\\s+TTY\\s+Allocated\\s+Freed\\s+Holding\\s+Getbufs\\s+Retbufs\\s+Process\\s*$$
       -> Process\r\n  ^\\s*$$\r\n  ^. -> Error\r\n\r\nProcess\r\n  ^\\s*${PROCESS_ID}\\s+\\d+\\s+${PROCESS_ALLOCATED}\\s+${PROCESS_FREED}\\s+${PROCESS_HOLDING}\\s+\\d+\\s+\\d+\\s+${PROCESS}\\s*$$\r\n
       \ ^\\s*\\d+\\s+Total\\s*$$\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 26
   fields:
     deleted: false
@@ -810,7 +810,7 @@
       (\\S+)\r\nValue STORAGE_TYPE (\\S+)\r\n\r\nStart\r\n  ^Community\\s+name:\\s+${NAME}.*\r\n
       \ ^Community\\sIndex:\\s+${INDEX}\r\n  ^Community\\sSecurityName:\\s+${SECURITY_NAME}\r\n
       \ ^storage-type:\\s${STORAGE_TYPE} -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 27
   fields:
     deleted: false
@@ -831,7 +831,7 @@
       \ ^Privacy\\s+Protocol:\\s+${PRIVACY_PROTOCOL}$$\r\n  ^Group-name:\\s+${GROUP_NAME}$$
       -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n
       \ ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 28
   fields:
     deleted: false
@@ -848,7 +848,7 @@
       (\\w+)\r\nValue PORT_ID (\\w+)\r\nValue TYPE (.*)\r\n\r\nStart\r\n  ^VLAN(0*)?${VLAN_ID}\r\n
       \ ^${INTERFACE}\\s+${ROLE}\\s+${STATUS}\\s+${COST}\\s+${PORT_PRIORITY}.${PORT_ID}\\s+${TYPE}
       -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 29
   fields:
     deleted: false
@@ -882,7 +882,7 @@
       \ ^.*Group\\s+name\\s+is\\s+\"${GROUP_NAME}\"\r\n  ^.*FLAGS:\\s+${FLAGS}\r\n
       \ ^.*IP\\s+redundancy\\s+name\\s+is\\s+\\\"${GROUP_NAME}\\\"(\\s+\\(default\\))?\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 30
   fields:
     deleted: false
@@ -961,7 +961,7 @@
       -> Continue\r\n  ^\\s+(?:\\S+\\s+){60}${INTERFACES},* -> Continue\r\n  ^\\d+\r\n
       \ ^\\s+\r\n  ^-+\r\n  ^\\S+\\s+[TtYyPpEe]{4} -> Done\r\n  ^.+ -> Error\r\n\r\nDone\r\n
       \ ^.*"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 31
   fields:
     deleted: false
@@ -986,7 +986,7 @@
       \ ^VTP\\s[o,O]perating\\s[m,M]ode\\s+:\\s${MODE}\r\n  ^Maximum\\sVLANs\\s[s,S]upported\\s[l,L]ocally\\s+:\\s${MAX_VLANS}\r\n
       \ ^Number\\sof\\sexisting\\sVLANs\\s+:\\s${EXISTING_VLAN_COUNT}\r\n  ^Configuration\\s[r,R]evision\\s+:\\s${REVISION_NUMBER}
       -> Record\r\n  ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 32
   fields:
     deleted: false
@@ -1015,7 +1015,7 @@
       priority is\\s+${MASTER_PRIORITY}\\s*$$\r\n  ^\\s+Master Advertisement interval
       is\\s+${MASTER_ADV_INTERVAL}\r\n  ^\\s+Master Down interval is\\s+${MASTER_DOWN_INTERVAL}\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 33
   fields:
     deleted: false
@@ -1032,7 +1032,7 @@
       \ ^Default\\s*domain\\s*is\\s*${DEFAULT_DOMAIN}\r\n  ^Name\\s*servers\\s*are\\s*${NAME_SERVERS}\r\n
       \ ^Local\\s*cache\\s*entries:\\s*${LOCAL_CACHE_ENTRIES}\r\n  ^Dynamic\\s*cache\\s*entries:\\s*${DYNAMIC_CACHE_ENTRIES}\r\n
       \ ^Load\\s+for\\s+\r\n  ^Time\\s+source\\s+is\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 34
   fields:
     deleted: false
@@ -1052,7 +1052,7 @@
       \ ^${BGP_NEIGH}\\s+\\S+\\s+${NEIGH_AS}(?:\\s+\\S+\\s+){5}${UP_DOWN}\\s+${STATE_PFXRCD}\\s*$$
       -> Record\r\n  ^Total number\\s+of\\s+neighbors\\s+\\d*\\s*$$\r\n  ^\\s*$$\r\n
       \ ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 35
   fields:
     deleted: false
@@ -1068,7 +1068,7 @@
       MAC (\\S+)\r\nValue INTERFACE (.*)\r\n\r\nStart\r\n  ^${ADDRESS}\\s+${AGE}\\s+${MAC}\\s+${INTERFACE}
       -> Record\r\n  ^Address\\s+Age(min)\\s+Hardware\\s+Addr\\s+Interface\\s*$$\r\n
       \ ^\\s*\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 36
   fields:
     deleted: false
@@ -1097,7 +1097,7 @@
       \ ^Slave\\s*:\\s+${HA_SLAVE_UNIT_NAME}\\s*,\\s+${HA_SLAVE_UNIT_SERIAL},\\s+(|HA)\\s*cluster\\s+index\\s+=\\s+${HA_SLAVE_UNIT_INDEX}\r\n
       \ ^number\\s+of\\s+vcluster:\\s+\\d+\r\n  ^vcluster\\s+\\d+:\r\n  ^(Master|Slave)\\s*:\\s+\\S+,\\s+(operating\\s+cluster\\s+index|HA\\s+operating\\s+index)\\s+=\\s+\\d+
       -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 37
   fields:
     deleted: false
@@ -1116,7 +1116,7 @@
       \ ^\\s+ipv6:\\s+${IPV6}/${IPV6NETMASK}$$\r\n  ^\\s+status:\\s+${STATUS}$$\r\n
       \ ^\\s+speed:\\s+${SPEED}(|Mbps)\\s+\\(Duplex:\\s+${DUPLEX}\\)$$ -> Record\r\n
       \ ^\\s+speed:\\s+${SPEED}$$ -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 38
   fields:
     deleted: false
@@ -1150,7 +1150,7 @@
       -> Record\r\n  ^name:\\s+${NAME}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s*$$
       -> Record\r\n  ^name:\\s+${NAME}\\s+mode:\\s+${MODE}\\s+management-ip:\\s+${MANAGEMENT_IP}\\s+${MANAGEMENT_NETMASK}\\s+ip:\\s+${IP}\\s+${NETMASK}\\s+status:\\s+${STATUS}\\s+netbios-forward:\\s+${NETBIOS_FORWARD}\\s+type:\\s+${TYPE}\\s+netflow-sampler:\\s+${NETFLOW_SAMPLER}\\s+sflow-sampler:\\s+${SFLOW_SAMPLER}\\s+src-check:\\s+${SRC_CHECK}\\s+explicit-web-proxy:\\s+${EXPLICIT_WEB_PROXY}\\s+explicit-ftp-proxy:\\s+${EXPLICIT_FTP_PROXY}\\s+proxy-captive-portal:\\s+${PROXY_CAPTIVE_PORTAL}\\s+wccp:\\s+${WCCP}\\s+drop-overlapped-fragment:\\s+${DROP_OVERLAPPED_FRAGMENT}\\s+drop-fragment:\\s+${DROP_FRAGMENT}\\s*$$
       -> Record\r\n  ^\\s*$$\r\n  ^. -> Error"
-- model: devices.devicetypetemplate
+- model: inventory.devicetypetemplate
   pk: 39
   fields:
     deleted: false

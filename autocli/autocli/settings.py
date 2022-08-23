@@ -48,12 +48,12 @@ INSTALLED_APPS = [
     # 'system.administration.apps.AdministrationConfig',
     'system.settings.apps.SettingsConfig',
 
-    # AutoCLI inventory apps:
-    'inventory.automation.apps.AutomationConfig',
-    'inventory.datasets.apps.DatasetsConfig',
-    'inventory.devices.apps.DevicesConfig',
-    'inventory.tags.apps.TagsConfig',
-    'inventory.updates.apps.UpdatesConfig',
+    # AutoCLI network apps:
+    'network.automation.apps.AutomationConfig',
+    'network.datasets.apps.DatasetsConfig',
+    'network.inventory.apps.DevicesConfig',
+    'network.tags.apps.TagsConfig',
+    'network.updates.apps.UpdatesConfig',
 
     # AutoCLI messages apps:
     'messages.notifications.apps.NotificationsConfig',
@@ -199,11 +199,11 @@ JAZZMIN_UI_TWEAKS = {
 
 # Change log models:
 CHANGE_LOG_MODELS = [
-    ('devices', 'Device'),
-    ('devices', 'DeviceType'),
-    ('devices', 'DeviceTypeTemplate'),
-    ('devices', 'Group'),
-    ('devices', 'Credential'),
+    ('inventory', 'Device'),
+    ('inventory', 'DeviceType'),
+    ('inventory', 'DeviceTypeTemplate'),
+    ('inventory', 'Group'),
+    ('inventory', 'Credential'),
     ('tags', 'Tag'),
 ]
 

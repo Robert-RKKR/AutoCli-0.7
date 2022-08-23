@@ -3,7 +3,7 @@ from django.test import TransactionTestCase
 
 # Application import:
 from messages.notifications.notification import Notification
-from inventory.devices.models.device import Device
+from network.inventory.models.device import Device
 
 
 # Test classes:
