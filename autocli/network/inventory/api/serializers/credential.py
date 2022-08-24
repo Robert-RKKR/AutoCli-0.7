@@ -6,18 +6,20 @@ from network.all.base_api.base_serializer import BaseSerializer
 
 # Model import:
 from network.inventory.models.credential import Credential
-from network.inventory.models.device import Device
 
 # Other serializer import:
-from .device_simple import SimpleDeviceSerializer
+from .simple_device import SimpleDeviceSerializer
 
 
 # Serializer class:
 class CredentialSerializer(BaseSerializer):
 
+    # Object URL definition:
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:credential-detail'
+        view_name='api-inventory:credential-detail',
+        read_only=False,
     )
+    # Object relation definition:
     devices = SimpleDeviceSerializer(
         many=True,
         read_only=True,

@@ -8,27 +8,32 @@ from network.all.base_api.base_serializer import BaseSerializer
 from network.inventory.models.group import Group
 
 # Other serializer import:
-from .credential import CredentialSerializer
-
-# Other serializer import:
-from .device_simple import SimpleDeviceSerializer
+from .simple_device import SimpleDeviceSerializer
+from .simple_credential import SimpleCredentialSerializer
 
 
 # Serializer class:
 class GroupSerializer(BaseSerializer):
 
+    # Object URL definition:
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:group-detail'
+        view_name='api-inventory:group-detail',
+        read_only=False,
     )
-    credential = CredentialSerializer(
+    # Object relation definition:
+    credential = SimpleCredentialSerializer(
         many=False,
         read_only=True,
+        required=False,
     )
     devices = SimpleDeviceSerializer(
         many=True,
         read_only=True,
+        required=False,
     )
-    root_folder = serializers.StringRelatedField(many=False)
+    root_folder = serializers.StringRelatedField(
+        many=False
+    )
 
     class Meta:
 

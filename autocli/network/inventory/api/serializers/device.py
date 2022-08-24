@@ -4,25 +4,30 @@ from rest_framework import serializers
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
 
-# Other serializer import:
-from .device_type import DeviceTypeSerializer
-from .credential import CredentialSerializer
-
 # Model import:
 from network.inventory.models.device import Device
+
+# Other serializer import:
+from .simple_device_type import SimpleDeviceTypeSerializer
+from .simple_credential import SimpleCredentialSerializer
 
 
 # Serializer class:
 class DeviceSerializer(BaseSerializer):
 
+    # Object URL definition:
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:device-detail'
+        view_name='api-inventory:device-detail',
+        read_only=False,
     )
-    credential = CredentialSerializer(
-        many=False
+    # Object relation definition:
+    device_type = SimpleDeviceTypeSerializer(
+        many=False,
+        required=False,
     )
-    device_type = DeviceTypeSerializer(
-        many=False
+    credential = SimpleCredentialSerializer(
+        many=False,
+        required=False,
     )
 
     class Meta:

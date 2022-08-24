@@ -5,34 +5,34 @@ from rest_framework import serializers
 from network.all.base_api.base_serializer import BaseSerializer
 
 # Model import:
-from network.inventory.models.device_type import DeviceType
-
-# Other serializer import:
-from .simple_device import SimpleDeviceSerializer
+from network.inventory.models.group import Group
 
 
 # Serializer class:
-class DeviceTypeSerializer(BaseSerializer):
+class SimpleGroupSerializer(BaseSerializer):
 
     # Object URL definition:
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:device_type-detail',
+        view_name='api-inventory:group-detail',
         read_only=False,
     )
     # Object relation definition:
-    devices = SimpleDeviceSerializer(
-        many=True,
+    credential = serializers.StringRelatedField(
+        many=False,
         read_only=True,
     )
-    # devices = serializers.HyperlinkedRelatedField(
-    #     many=True,
-    #     read_only=True,
-    #     view_name='api-inventory:device-detail',
-    # )
+    devices = serializers.StringRelatedField(
+        many=False,
+        read_only=True,
+    )
+    root_folder = serializers.StringRelatedField(
+        many=False,
+        read_only=True,
+    )
 
     class Meta:
 
-        model = DeviceType
+        model = Group
         fields = [
             'pk',
             'url',
@@ -42,8 +42,14 @@ class DeviceTypeSerializer(BaseSerializer):
             'updated',
             'name',
             'description',
-            'netmiko_name',
+            'root_folder',
             'devices',
+            'ssh_port',
+            'https_port',
+            'credential',
+            'secret',
+            'token',
+            'certificate',
         ]
         read_only_fields = [
             'root',

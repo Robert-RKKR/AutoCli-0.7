@@ -32,7 +32,7 @@ class Device(DataTimeModel, StatusModel, IdentificationModel):
         verbose_name_plural = 'Devices'
 
         # Default ordering:
-        ordering = ['name']
+        ordering = ['-pk']
 
     # Validators:
     hostname_validator = HostnameValueValidator()
@@ -70,6 +70,7 @@ class Device(DataTimeModel, StatusModel, IdentificationModel):
     # Corelation witch device type model:
     device_type = models.ForeignKey(
         DeviceType,
+        related_name='devices',
         verbose_name='Device type',
         help_text='Type of network device system.',
         on_delete=models.CASCADE,
