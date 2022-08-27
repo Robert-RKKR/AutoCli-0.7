@@ -27,21 +27,11 @@ class SimpleDeviceTypeTemplateSerializer(BaseSerializer):
     class Meta:
 
         model = DeviceTypeTemplate
-        fields = [
-            'pk',
-            'url',
-            'root',
-            'active',
-            'created',
-            'updated',
+        fields = BaseSerializer.base_fields + [
             'special',
             'vrf',
             'device_type',
             'command',
             'sfm_expression',
         ]
-        read_only_fields = [
-            'root',
-            'created',
-            'updated',
-        ]
+        read_only_fields = BaseSerializer.base_read_only_fields

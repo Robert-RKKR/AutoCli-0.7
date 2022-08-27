@@ -20,19 +20,9 @@ class SimpleDeviceTypeSerializer(BaseSerializer):
     class Meta:
 
         model = DeviceType
-        fields = [
-            'pk',
-            'url',
-            'root',
-            'active',
-            'created',
-            'updated',
+        fields = BaseSerializer.base_fields + [
             'name',
             'description',
             'netmiko_name',
         ]
-        read_only_fields = [
-            'root',
-            'created',
-            'updated',
-        ]
+        read_only_fields = BaseSerializer.base_read_only_fields

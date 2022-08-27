@@ -33,13 +33,7 @@ class DeviceSerializer(BaseSerializer):
     class Meta:
 
         model = Device
-        fields = [
-            'pk',
-            'url',
-            'root',
-            'active',
-            'created',
-            'updated',
+        fields = BaseSerializer.base_fields + [
             'name',
             'description',
             'hostname',
@@ -53,10 +47,4 @@ class DeviceSerializer(BaseSerializer):
             'token',
             'certificate',
         ]
-        read_only_fields = [
-            'root',
-            'created',
-            'updated',
-            'ssh_status',
-            'https_status',
-        ]
+        read_only_fields = BaseSerializer.base_read_only_fields

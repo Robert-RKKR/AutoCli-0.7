@@ -20,19 +20,9 @@ class SimpleCredentialSerializer(BaseSerializer):
     class Meta:
 
         model = Credential
-        fields = [
-            'pk',
-            'url',
-            'root',
-            'active',
-            'created',
-            'updated',
+        fields = BaseSerializer.base_fields + [
             'name',
             'description',
             'password',
         ]
-        read_only_fields = [
-            'root',
-            'created',
-            'updated',
-        ]
+        read_only_fields = BaseSerializer.base_read_only_fields

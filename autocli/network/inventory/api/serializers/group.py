@@ -38,13 +38,7 @@ class GroupSerializer(BaseSerializer):
     class Meta:
 
         model = Group
-        fields = [
-            'pk',
-            'url',
-            'root',
-            'active',
-            'created',
-            'updated',
+        fields = BaseSerializer.base_fields + [
             'name',
             'description',
             'root_folder',
@@ -56,8 +50,4 @@ class GroupSerializer(BaseSerializer):
             'token',
             'certificate',
         ]
-        read_only_fields = [
-            'root',
-            'created',
-            'updated',
-        ]
+        read_only_fields = BaseSerializer.base_read_only_fields

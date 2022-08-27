@@ -5,4 +5,18 @@ from rest_framework import serializers
 # Base serializer:
 class BaseSerializer(serializers.HyperlinkedModelSerializer):
 
-    pass
+    base_fields = [
+        'pk',
+        'url',
+        'root',
+        'created',
+        'updated',
+        'active',
+    ]
+    base_read_only_fields = [
+        'pk',
+        'url',
+        'root',
+        'created',
+        'updated',
+    ]
