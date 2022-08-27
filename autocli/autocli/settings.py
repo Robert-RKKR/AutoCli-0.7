@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-velu4t6^w34z=kzx2%j2emu7qfeovi1j4iiy-c8h-&#u&9gvkv
 # SECURITY WARNING:
 DEBUG = True
 ALLOWED_HOSTS = []
+LOGGER_DEBUG = True
 
 # Application definition:
 INSTALLED_APPS = [

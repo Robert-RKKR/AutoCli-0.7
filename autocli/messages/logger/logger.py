@@ -83,7 +83,7 @@ class Logger:
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        if settings.DEBUG:
+        if settings.LOGGER_DEBUG:
             return self._run(**kwargs)
 
     def error(self, message: str, **kwargs):
@@ -114,7 +114,7 @@ class Logger:
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        if settings.DEBUG:
+        if settings.LOGGER_DEBUG:
             return self._run(**kwargs)
 
     def warning(self, message: str, **kwargs):
@@ -145,7 +145,7 @@ class Logger:
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        if settings.DEBUG:
+        if settings.LOGGER_DEBUG:
             return self._run(**kwargs)
 
     def info(self, message: str, **kwargs):
@@ -176,7 +176,7 @@ class Logger:
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        if settings.DEBUG:
+        if settings.LOGGER_DEBUG:
             return self._run(**kwargs)
 
     def debug(self, message: str, **kwargs):
@@ -207,7 +207,7 @@ class Logger:
         kwargs['message'] = message
 
         # Run process of log and details log creation:
-        if settings.DEBUG:
+        if settings.LOGGER_DEBUG:
             return self._run(**kwargs)
 
     def _verification(self, **kwargs):
