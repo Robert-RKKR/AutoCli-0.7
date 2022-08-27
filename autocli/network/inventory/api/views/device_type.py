@@ -11,17 +11,23 @@ from network.inventory.models.device_type import DeviceType
 from ..serializers.simple_device_type import SimpleDeviceTypeSerializer
 from ..serializers.device_type import DeviceTypeSerializer
 
+# Base mode view set import:
+from network.all.base_api.base_modelviewset import BaseModelViewSet
 
-class DeviceTypeView(viewsets.ModelViewSet):
+
+# ViewSet model classes:
+class DeviceTypeView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.
     """
     queryset = DeviceType.objects.all()
-    serializer_class = DeviceTypeSerializer
     pagination_class = BaseSmallPaginator
+    # Serializer classes:
+    serializer_class = DeviceTypeSerializer
+    single_serializer_class = SimpleDeviceTypeSerializer
 
 
-class SimpleDeviceTypeView(viewsets.ModelViewSet):
+class SimpleDeviceTypeView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.
     """

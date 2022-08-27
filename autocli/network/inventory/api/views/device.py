@@ -11,20 +11,23 @@ from network.inventory.models.device import Device
 from ..serializers.device import DeviceSerializer
 from ..serializers.simple_device import SimpleDeviceSerializer
 
-
+# Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet
 
+
+# ViewSet model classes:
 class DeviceView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.
     """
     queryset = Device.objects.all()
-    serializer_class = DeviceSerializer
     pagination_class = BaseSmallPaginator
-    create_serializer_class = SimpleDeviceSerializer
+    # Serializer classes:
+    serializer_class = DeviceSerializer
+    single_serializer_class = SimpleDeviceSerializer
 
 
-class SimpleDeviceView(viewsets.ModelViewSet):
+class SimpleDeviceView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.
     """

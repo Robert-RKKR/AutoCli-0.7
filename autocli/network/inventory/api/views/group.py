@@ -14,17 +14,23 @@ from network.inventory.models.group import Group
 from ..serializers.simple_group import SimpleGroupSerializer
 from ..serializers.group import GroupSerializer
 
+# Base mode view set import:
+from network.all.base_api.base_modelviewset import BaseModelViewSet
 
-class GroupView(viewsets.ModelViewSet):
+
+# ViewSet model classes:
+class GroupView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.
     """
     queryset = Group.objects.all()
-    serializer_class = GroupSerializer
     pagination_class = BaseSmallPaginator
+    # Serializer classes:
+    serializer_class = GroupSerializer
+    single_serializer_class = SimpleGroupSerializer
 
 
-class SimpleGroupView(viewsets.ModelViewSet):
+class SimpleGroupView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.
     """

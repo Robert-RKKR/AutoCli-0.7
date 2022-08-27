@@ -49,6 +49,7 @@ class DeviceTypeTemplate(DataTimeModel, StatusModel):
     # Device type corelation:
     device_type = models.ForeignKey(
         DeviceType,
+        related_name='device_type_templates',
         verbose_name='Device type',
         help_text='Type of network device system.',
         on_delete=models.PROTECT,

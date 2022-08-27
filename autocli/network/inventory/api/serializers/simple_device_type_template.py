@@ -6,29 +6,27 @@ from network.all.base_api.base_serializer import BaseSerializer
 
 # Model import:
 from network.inventory.models.device_type import DeviceType
-from network.inventory.models.credential import Credential
-from network.inventory.models.device import Device
+
+# Model import:
+from network.inventory.models.device_type_template import DeviceTypeTemplate
 
 
 # Serializer class:
-class SimpleDeviceSerializer(BaseSerializer):
+class SimpleDeviceTypeTemplateSerializer(BaseSerializer):
 
     # Object URL definition:
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:device-detail',
+        view_name='api-inventory:device_type_template-detail',
         read_only=False,
     )
     # Object relation definition:
-    credential = serializers.PrimaryKeyRelatedField(
-        queryset=Credential.objects.all()
-    )
     device_type = serializers.PrimaryKeyRelatedField(
         queryset=DeviceType.objects.all()
     )
 
     class Meta:
 
-        model = Device
+        model = DeviceTypeTemplate
         fields = [
             'pk',
             'url',
@@ -36,16 +34,14 @@ class SimpleDeviceSerializer(BaseSerializer):
             'active',
             'created',
             'updated',
-            'name',
-            'description',
-            'hostname',
-            'ssh_port',
-            'https_port',
+            'special',
+            'vrf',
             'device_type',
-            'ssh_status',
-            'https_status',
-            'credential',
-            'secret',
-            'token',
-            'certificate',
+            'command',
+            'sfm_expression',
+        ]
+        read_only_fields = [
+            'root',
+            'created',
+            'updated',
         ]

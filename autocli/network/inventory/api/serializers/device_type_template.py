@@ -5,34 +5,29 @@ from rest_framework import serializers
 from network.all.base_api.base_serializer import BaseSerializer
 
 # Model import:
-from network.inventory.models.device_type import DeviceType
+from network.inventory.models.device_type_template import DeviceTypeTemplate
 
 # Other serializer import:
-from .simple_device import SimpleDeviceSerializer
-from .simple_device_type_template import SimpleDeviceTypeTemplateSerializer
+from .simple_device_type import SimpleDeviceTypeSerializer
 
 
 # Serializer class:
-class DeviceTypeSerializer(BaseSerializer):
+class DeviceTypeTemplateSerializer(BaseSerializer):
 
     # Object URL definition:
     url = serializers.HyperlinkedIdentityField(
-        view_name='api-inventory:device_type-detail',
+        view_name='api-inventory:device_type_template-detail',
         read_only=False,
     )
     # Object relation definition:
-    devices = SimpleDeviceSerializer(
-        many=True,
-        read_only=True,
-    )
-    device_type_templates = SimpleDeviceTypeTemplateSerializer(
+    device_type = SimpleDeviceTypeSerializer(
         many=True,
         read_only=True,
     )
 
     class Meta:
 
-        model = DeviceType
+        model = DeviceTypeTemplate
         fields = [
             'pk',
             'url',
@@ -40,11 +35,11 @@ class DeviceTypeSerializer(BaseSerializer):
             'active',
             'created',
             'updated',
-            'name',
-            'description',
-            'netmiko_name',
-            'devices',
-            'device_type_templates',
+            'special',
+            'vrf',
+            'device_type',
+            'command',
+            'sfm_expression',
         ]
         read_only_fields = [
             'root',

@@ -5,7 +5,12 @@ from rest_framework import serializers
 from network.all.base_api.base_serializer import BaseSerializer
 
 # Model import:
+from network.inventory.models.credential import Credential
+from network.inventory.models.device import Device
 from network.inventory.models.group import Group
+
+# Other serializer import:
+from .simple_device import SimpleDeviceSerializer
 
 
 # Serializer class:
@@ -17,17 +22,20 @@ class SimpleGroupSerializer(BaseSerializer):
         read_only=False,
     )
     # Object relation definition:
-    credential = serializers.StringRelatedField(
-        many=False,
-        read_only=True,
+    credential = serializers.PrimaryKeyRelatedField(
+        queryset=Credential.objects.all(),
+        required=False,
     )
-    devices = serializers.StringRelatedField(
-        many=False,
-        read_only=True,
+    devices_id = serializers.PrimaryKeyRelatedField(
+        queryset=Device.objects.all(),
+        source='devices',
+        many=True,
+        read_only=False,
+        required=False,
     )
-    root_folder = serializers.StringRelatedField(
-        many=False,
-        read_only=True,
+    root_folder = serializers.PrimaryKeyRelatedField(
+        queryset=Group.objects.all(),
+        required=False,
     )
 
     class Meta:
@@ -43,7 +51,7 @@ class SimpleGroupSerializer(BaseSerializer):
             'name',
             'description',
             'root_folder',
-            'devices',
+            'devices_id',
             'ssh_port',
             'https_port',
             'credential',
