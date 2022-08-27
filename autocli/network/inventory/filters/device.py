@@ -15,16 +15,17 @@ class DeviceFilter(BaseFilter):
 
         model = Device
         fields = {
-            'name': ['exact'],
-            'description': ['exact'],
-            'hostname': ['exact'],
-            'ssh_port': ['exact'],
-            'https_port': ['exact'],
+            'id': ['exact', 'contains'],
+            'active': ['exact'],
+            'name': ['exact', 'contains'],
+            'description': ['exact', 'contains'],
+            'hostname': ['exact', 'contains'],
+            'ssh_port': ['exact', 'contains', 'lt', 'gt'],
+            'https_port': ['exact', 'contains', 'lt', 'gt'],
             'device_type': ['exact'],
             'ssh_status': ['exact'],
             'https_status': ['exact'],
             'credential': ['exact'],
-            'secret': ['exact'],
             'token': ['exact'],
             'certificate': ['exact'],
         }

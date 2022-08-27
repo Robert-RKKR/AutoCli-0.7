@@ -1,6 +1,3 @@
-# Django rest framework filters import:
-from django_filters.rest_framework import DjangoFilterBackend
-
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
 
@@ -14,6 +11,9 @@ from ..serializers.simple_device import SimpleDeviceSerializer
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet
 
+# Filter set class import:
+from network.inventory.filters.device import DeviceFilter
+
 
 # ViewSet model classes:
 class DeviceView(BaseModelViewSet):
@@ -26,9 +26,7 @@ class DeviceView(BaseModelViewSet):
     serializer_class = DeviceSerializer
     single_serializer_class = SimpleDeviceSerializer
     # Django rest framework filters:
-    filterset_fields = BaseModelViewSet.base_filterset_fields + [
-        'name'
-    ]
+    filterset_class = DeviceFilter
     search_fields = BaseModelViewSet.base_search_fields + [
         'name',
         'description',
@@ -48,3 +46,12 @@ class SimpleDeviceView(BaseModelViewSet):
     serializer_class = SimpleDeviceSerializer
     pagination_class = BaseSmallPaginator
     # Django rest framework filters:
+    filterset_class = DeviceFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'hostname'
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'hostname',
+    ]
