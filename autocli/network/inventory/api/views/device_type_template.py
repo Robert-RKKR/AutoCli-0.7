@@ -23,8 +23,8 @@ class DeviceTypeTemplateView(BaseModelViewSet):
     queryset = DeviceTypeTemplate.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
-    serializer_class = SimpleDeviceTypeTemplateSerializer
-    single_serializer_class = DeviceTypeTemplateSerializer
+    serializer_class = DeviceTypeTemplateSerializer
+    single_serializer_class = SimpleDeviceTypeTemplateSerializer
 
 
 class SimpleDeviceTypeTemplateView(BaseModelViewSet):

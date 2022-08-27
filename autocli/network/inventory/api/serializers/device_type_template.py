@@ -21,7 +21,7 @@ class DeviceTypeTemplateSerializer(BaseSerializer):
     )
     # Object relation definition:
     device_type = SimpleDeviceTypeSerializer(
-        many=True,
+        many=False,
         read_only=True,
     )
 
@@ -31,8 +31,8 @@ class DeviceTypeTemplateSerializer(BaseSerializer):
         fields = BaseSerializer.base_fields + [
             'special',
             'vrf',
-            'device_type',
             'command',
             'sfm_expression',
+            'device_type',
         ]
         read_only_fields = BaseSerializer.base_read_only_fields

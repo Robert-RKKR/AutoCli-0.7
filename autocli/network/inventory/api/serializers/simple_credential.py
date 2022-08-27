@@ -22,6 +22,7 @@ class SimpleCredentialSerializer(BaseSerializer):
         model = Credential
         fields = BaseSerializer.base_fields + [
             'name',
+            'username',
             'description',
             'password',
         ]

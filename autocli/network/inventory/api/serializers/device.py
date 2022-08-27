@@ -23,11 +23,11 @@ class DeviceSerializer(BaseSerializer):
     # Object relation definition:
     device_type = SimpleDeviceTypeSerializer(
         many=False,
-        required=False,
+        read_only=True,
     )
     credential = SimpleCredentialSerializer(
         many=False,
-        required=False,
+        read_only=True,
     )
 
     class Meta:

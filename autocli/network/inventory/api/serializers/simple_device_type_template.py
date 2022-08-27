@@ -30,8 +30,8 @@ class SimpleDeviceTypeTemplateSerializer(BaseSerializer):
         fields = BaseSerializer.base_fields + [
             'special',
             'vrf',
-            'device_type',
             'command',
             'sfm_expression',
+            'device_type',
         ]
         read_only_fields = BaseSerializer.base_read_only_fields

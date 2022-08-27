@@ -24,15 +24,14 @@ class GroupSerializer(BaseSerializer):
     credential = SimpleCredentialSerializer(
         many=False,
         read_only=True,
-        required=False,
     )
     devices = SimpleDeviceSerializer(
         many=True,
         read_only=True,
-        required=False,
     )
     root_folder = serializers.StringRelatedField(
-        many=False
+        many=False,
+        read_only=True,
     )
 
     class Meta:
@@ -41,13 +40,13 @@ class GroupSerializer(BaseSerializer):
         fields = BaseSerializer.base_fields + [
             'name',
             'description',
-            'root_folder',
-            'devices',
             'ssh_port',
             'https_port',
-            'credential',
             'secret',
             'token',
             'certificate',
+            'root_folder',
+            'credential',
+            'devices',
         ]
         read_only_fields = BaseSerializer.base_read_only_fields
