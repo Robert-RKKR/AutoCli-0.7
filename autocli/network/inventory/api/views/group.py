@@ -1,5 +1,7 @@
 # Rest framework import:
-from rest_framework import viewsets
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import DjangoModelPermissions
 
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
@@ -28,6 +30,9 @@ class GroupView(BaseModelViewSet):
     # Serializer classes:
     serializer_class = GroupSerializer
     single_serializer_class = SimpleGroupSerializer
+    # Authentication and permissions:
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [DjangoModelPermissions]
 
 
 class SimpleGroupView(BaseModelViewSet):
@@ -37,3 +42,6 @@ class SimpleGroupView(BaseModelViewSet):
     queryset = Group.objects.all()
     serializer_class = SimpleGroupSerializer
     pagination_class = BaseSmallPaginator
+    # Authentication and permissions:
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [DjangoModelPermissions]

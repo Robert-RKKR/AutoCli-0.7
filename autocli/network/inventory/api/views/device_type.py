@@ -1,6 +1,7 @@
 # Rest framework import:
-from rest_framework import viewsets
-
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import DjangoModelPermissions
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
 
@@ -25,6 +26,9 @@ class DeviceTypeView(BaseModelViewSet):
     # Serializer classes:
     serializer_class = DeviceTypeSerializer
     single_serializer_class = SimpleDeviceTypeSerializer
+    # Authentication and permissions:
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [DjangoModelPermissions]
 
 
 class SimpleDeviceTypeView(BaseModelViewSet):
@@ -34,3 +38,6 @@ class SimpleDeviceTypeView(BaseModelViewSet):
     queryset = DeviceType.objects.all()
     serializer_class = SimpleDeviceTypeSerializer
     pagination_class = BaseSmallPaginator
+    # Authentication and permissions:
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [DjangoModelPermissions]

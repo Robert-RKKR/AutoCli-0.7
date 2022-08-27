@@ -40,11 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Celery and channels pps:
+    # Celery and channels:
     'django_celery_beat',
     'channels',
+
+    # Django rest framework:
     'django_filters',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # AutoCLI system apps:
     # 'system.administration.apps.AdministrationConfig',
@@ -212,4 +215,12 @@ CHANGE_LOG_MODELS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissions',
+    ],
 }

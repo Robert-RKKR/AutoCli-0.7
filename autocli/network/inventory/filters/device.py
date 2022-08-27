@@ -14,3 +14,17 @@ class DeviceFilter(BaseFilter):
     class Meta:
 
         model = Device
+        fields = {
+            'name': ['exact'],
+            'description': ['exact'],
+            'hostname': ['exact'],
+            'ssh_port': ['exact'],
+            'https_port': ['exact'],
+            'device_type': ['exact'],
+            'ssh_status': ['exact'],
+            'https_status': ['exact'],
+            'credential': ['exact'],
+            'secret': ['exact'],
+            'token': ['exact'],
+            'certificate': ['exact'],
+        }
