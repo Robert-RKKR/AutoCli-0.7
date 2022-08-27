@@ -33,6 +33,10 @@ class GroupSerializer(BaseSerializer):
         many=False,
         read_only=True,
     )
+    child_folders = serializers.StringRelatedField(
+        many=True,
+        read_only=True,
+    )
 
     class Meta:
 
@@ -45,8 +49,9 @@ class GroupSerializer(BaseSerializer):
             'secret',
             'token',
             'certificate',
-            'root_folder',
             'credential',
             'devices',
+            'root_folder',
+            'child_folders',
         ]
         read_only_fields = BaseSerializer.base_read_only_fields

@@ -33,6 +33,7 @@ class Group(DataTimeModel, StatusModel, IdentificationModel):
     # Corelation witch other folder model:
     root_folder = models.ForeignKey(
         'self',
+        related_name='child_folders',
         verbose_name='Root folder',
         help_text='The parent folder to witch the current folder belongs.',
         on_delete=models.PROTECT,

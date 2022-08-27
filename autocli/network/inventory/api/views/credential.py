@@ -1,8 +1,3 @@
-# Rest framework import:
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import DjangoModelPermissions
-
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
 
@@ -20,16 +15,14 @@ from network.all.base_api.base_modelviewset import BaseModelViewSet
 # ViewSet model classes:
 class CredentialView(BaseModelViewSet):
     """
-    A simple ViewSet for viewing and editing accounts.
+    A ViewSet for viewing and editing accounts.
     """
     queryset = Credential.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
     serializer_class = CredentialSerializer
     single_serializer_class = SimpleCredentialSerializer
-    # Authentication and permissions:
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
-    permission_classes = [DjangoModelPermissions]
+    # Django rest framework filters:
 
 
 class SimpleCredentialView(BaseModelViewSet):
@@ -39,6 +32,4 @@ class SimpleCredentialView(BaseModelViewSet):
     queryset = Credential.objects.all()
     serializer_class = SimpleCredentialSerializer
     pagination_class = BaseSmallPaginator
-    # Authentication and permissions:
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
-    permission_classes = [DjangoModelPermissions]
+    # Django rest framework filters:

@@ -1,12 +1,31 @@
 # Rest framework import:
 from rest_framework import viewsets
 
+# Rest framework import:
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import DjangoModelPermissions
+from rest_framework.filters import OrderingFilter
+from rest_framework.filters import SearchFilter
+
+# Django rest framework filters import:
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 # Base ModelViewSet model:
 class BaseModelViewSet(viewsets.ModelViewSet):
     """
     Xxx.
     """
+
+    # Authentication and permissions:
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [DjangoModelPermissions]
+    # Django rest framework filters:
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    base_filterset_fields = ['id']
+    base_search_fields = ['id']
+    base_ordering_fields = ['id']
 
     def get_own_serializer_class(self, many=True):
 

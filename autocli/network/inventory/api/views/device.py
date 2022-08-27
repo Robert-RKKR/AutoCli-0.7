@@ -1,7 +1,5 @@
-# Rest framework import:
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import DjangoModelPermissions
+# Django rest framework filters import:
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
@@ -20,16 +18,26 @@ from network.all.base_api.base_modelviewset import BaseModelViewSet
 # ViewSet model classes:
 class DeviceView(BaseModelViewSet):
     """
-    A simple ViewSet for viewing and editing accounts.
+    A ViewSet for viewing and editing accounts.
     """
     queryset = Device.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
     serializer_class = DeviceSerializer
     single_serializer_class = SimpleDeviceSerializer
-    # Authentication and permissions:
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
-    permission_classes = [DjangoModelPermissions]
+    # Django rest framework filters:
+    filterset_fields = BaseModelViewSet.base_filterset_fields + [
+        'name'
+    ]
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+        'hostname'
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'hostname'
+    ]
 
 
 class SimpleDeviceView(BaseModelViewSet):
@@ -39,6 +47,4 @@ class SimpleDeviceView(BaseModelViewSet):
     queryset = Device.objects.all()
     serializer_class = SimpleDeviceSerializer
     pagination_class = BaseSmallPaginator
-    # Authentication and permissions:
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
-    permission_classes = [DjangoModelPermissions]
+    # Django rest framework filters:
