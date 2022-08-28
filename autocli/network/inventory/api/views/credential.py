@@ -15,7 +15,7 @@ from network.all.base_api.base_modelviewset import BaseModelViewSet
 # ViewSet model classes:
 class CredentialView(BaseModelViewSet):
     """
-    A ViewSet for viewing and editing accounts.
+    A ViewSet for viewing and editing object/s.
     """
     queryset = Credential.objects.all()
     pagination_class = BaseSmallPaginator
@@ -27,7 +27,7 @@ class CredentialView(BaseModelViewSet):
 
 class SimpleCredentialView(BaseModelViewSet):
     """
-    A simple ViewSet for viewing and editing accounts.
+    A simple ViewSet for viewing and editing object/s.
     """
     queryset = Credential.objects.all()
     serializer_class = SimpleCredentialSerializer

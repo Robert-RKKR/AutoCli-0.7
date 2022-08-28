@@ -15,7 +15,7 @@ from network.all.base_api.base_modelviewset import BaseModelViewSet
 # ViewSet model classes:
 class DeviceTypeTemplateView(BaseModelViewSet):
     """
-    A ViewSet for viewing and editing accounts.
+    A ViewSet for viewing and editing object/s.
     """
     queryset = DeviceTypeTemplate.objects.all()
     pagination_class = BaseSmallPaginator
@@ -27,7 +27,7 @@ class DeviceTypeTemplateView(BaseModelViewSet):
 
 class SimpleDeviceTypeTemplateView(BaseModelViewSet):
     """
-    A simple ViewSet for viewing and editing accounts.
+    A simple ViewSet for viewing and editing object/s.
     """
     queryset = DeviceTypeTemplate.objects.all()
     serializer_class = DeviceTypeTemplateSerializer

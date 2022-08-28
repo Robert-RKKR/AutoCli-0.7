@@ -18,7 +18,7 @@ from network.inventory.filters.device import DeviceFilter
 # ViewSet model classes:
 class DeviceView(BaseModelViewSet):
     """
-    A ViewSet for viewing and editing accounts.
+    A ViewSet for viewing and editing object/s.
     """
     queryset = Device.objects.all()
     pagination_class = BaseSmallPaginator
@@ -40,7 +40,7 @@ class DeviceView(BaseModelViewSet):
 
 class SimpleDeviceView(BaseModelViewSet):
     """
-    A simple ViewSet for viewing and editing accounts.
+    A simple ViewSet for viewing and editing object/s.
     """
     queryset = Device.objects.all()
     serializer_class = SimpleDeviceSerializer
