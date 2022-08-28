@@ -16,4 +16,5 @@ class CredentialFilter(BaseFilter):
             'active': ['exact'],
             'name': ['exact', 'contains'],
             'description': ['exact', 'contains'],
+            'username': ['exact', 'contains'],
         }

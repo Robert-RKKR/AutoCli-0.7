@@ -16,4 +16,10 @@ class GroupFilter(BaseFilter):
             'active': ['exact'],
             'name': ['exact', 'contains'],
             'description': ['exact', 'contains'],
+            'root_folder': ['exact'],
+            'devices': ['contains'],
+            'ssh_port': ['exact', 'contains', 'lt', 'gt'],
+            'https_port': ['exact', 'contains', 'lt', 'gt'],
+            'credential': ['exact'],
+            'certificate': ['exact'],
         }

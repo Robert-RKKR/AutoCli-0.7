@@ -16,4 +16,5 @@ class DeviceTypeFilter(BaseFilter):
             'active': ['exact'],
             'name': ['exact', 'contains'],
             'description': ['exact', 'contains'],
+            'netmiko_name': ['exact', 'contains'],
         }

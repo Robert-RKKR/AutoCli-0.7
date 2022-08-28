@@ -14,4 +14,8 @@ class DeviceTypeTemplateFilter(BaseFilter):
         fields = {
             'id': ['exact', 'contains'],
             'active': ['exact'],
+            'special': ['exact'],
+            'vrf': ['exact'],
+            'command': ['exact', 'contains'],
+            'sfm_expression': ['exact', 'contains'],
         }
