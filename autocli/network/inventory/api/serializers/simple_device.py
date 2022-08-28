@@ -1,5 +1,6 @@
 # Rest framework import:
-from rest_framework import serializers
+from rest_framework.serializers import HyperlinkedIdentityField
+from rest_framework.serializers import PrimaryKeyRelatedField
 
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
@@ -14,16 +15,22 @@ from network.inventory.models.device import Device
 class SimpleDeviceSerializer(BaseSerializer):
 
     # Object URL definition:
-    url = serializers.HyperlinkedIdentityField(
+    url = HyperlinkedIdentityField(
         view_name='api-inventory:device-detail',
         read_only=False,
     )
     # Object relation definition:
-    credential = serializers.PrimaryKeyRelatedField(
-        queryset=Credential.objects.all()
+    device_type = PrimaryKeyRelatedField(
+        queryset=DeviceType.objects.all(),
+        required=False,
+        allow_null=True,
+        help_text='Type of network device system.',
     )
-    device_type = serializers.PrimaryKeyRelatedField(
-        queryset=DeviceType.objects.all()
+    credential = PrimaryKeyRelatedField(
+        queryset=Credential.objects.all(),
+        required=False,
+        allow_null=True,
+        help_text='Credential needed to establish SSH / HTTPS connection.',
     )
 
     class Meta:
@@ -43,4 +50,7 @@ class SimpleDeviceSerializer(BaseSerializer):
             'token',
             'certificate',
         ]
-        read_only_fields = BaseSerializer.base_read_only_fields
+        read_only_fields = BaseSerializer.base_read_only_fields + [
+            'ssh_status',
+            'https_status',
+        ]

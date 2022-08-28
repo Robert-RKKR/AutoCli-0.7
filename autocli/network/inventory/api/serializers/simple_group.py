@@ -1,5 +1,6 @@
 # Rest framework import:
-from rest_framework import serializers
+from rest_framework.serializers import HyperlinkedIdentityField
+from rest_framework.serializers import PrimaryKeyRelatedField
 
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
@@ -9,33 +10,33 @@ from network.inventory.models.credential import Credential
 from network.inventory.models.device import Device
 from network.inventory.models.group import Group
 
-# Other serializer import:
-from .simple_device import SimpleDeviceSerializer
-
 
 # Serializer class:
 class SimpleGroupSerializer(BaseSerializer):
 
     # Object URL definition:
-    url = serializers.HyperlinkedIdentityField(
+    url = HyperlinkedIdentityField(
         view_name='api-inventory:group-detail',
         read_only=False,
     )
     # Object relation definition:
-    credential = serializers.PrimaryKeyRelatedField(
+    credential = PrimaryKeyRelatedField(
         queryset=Credential.objects.all(),
         required=False,
+        allow_null=True,
     )
-    devices_id = serializers.PrimaryKeyRelatedField(
+    devices_id = PrimaryKeyRelatedField(
         queryset=Device.objects.all(),
         source='devices',
         many=True,
         read_only=False,
         required=False,
+        allow_null=True,
     )
-    root_folder = serializers.PrimaryKeyRelatedField(
+    root_folder = PrimaryKeyRelatedField(
         queryset=Group.objects.all(),
         required=False,
+        allow_null=True,
     )
 
     class Meta:

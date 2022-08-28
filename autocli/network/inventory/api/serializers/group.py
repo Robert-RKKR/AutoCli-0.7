@@ -1,5 +1,6 @@
 # Rest framework import:
-from rest_framework import serializers
+from rest_framework.serializers import HyperlinkedIdentityField
+from rest_framework.serializers import StringRelatedField
 
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
@@ -16,7 +17,7 @@ from .simple_credential import SimpleCredentialSerializer
 class GroupSerializer(BaseSerializer):
 
     # Object URL definition:
-    url = serializers.HyperlinkedIdentityField(
+    url = HyperlinkedIdentityField(
         view_name='api-inventory:group-detail',
         read_only=False,
     )
@@ -29,11 +30,11 @@ class GroupSerializer(BaseSerializer):
         many=True,
         read_only=True,
     )
-    root_folder = serializers.StringRelatedField(
+    root_folder = StringRelatedField(
         many=False,
         read_only=True,
     )
-    child_folders = serializers.StringRelatedField(
+    child_folders = StringRelatedField(
         many=True,
         read_only=True,
     )

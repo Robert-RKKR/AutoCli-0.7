@@ -1,5 +1,5 @@
 # Rest framework import:
-from rest_framework import serializers
+from rest_framework.serializers import HyperlinkedIdentityField
 
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
@@ -12,7 +12,7 @@ from network.inventory.models.device_type import DeviceType
 class SimpleDeviceTypeSerializer(BaseSerializer):
 
     # Object URL definition:
-    url = serializers.HyperlinkedIdentityField(
+    url = HyperlinkedIdentityField(
         view_name='api-inventory:device_type-detail',
         read_only=False,
     )
