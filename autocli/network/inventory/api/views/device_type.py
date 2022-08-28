@@ -11,6 +11,9 @@ from ..serializers.device_type import DeviceTypeSerializer
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet
 
+# Filter set class import:
+from network.inventory.filters.device_type import DeviceTypeFilter
+
 
 # ViewSet model classes:
 class DeviceTypeView(BaseModelViewSet):
@@ -23,6 +26,16 @@ class DeviceTypeView(BaseModelViewSet):
     serializer_class = DeviceTypeSerializer
     single_serializer_class = SimpleDeviceTypeSerializer
     # Django rest framework filters:
+    filterset_class = DeviceTypeFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+        'netmiko_name',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'netmiko_name',
+    ]
 
 
 class SimpleDeviceTypeView(BaseModelViewSet):
@@ -33,3 +46,13 @@ class SimpleDeviceTypeView(BaseModelViewSet):
     serializer_class = SimpleDeviceTypeSerializer
     pagination_class = BaseSmallPaginator
     # Django rest framework filters:
+    filterset_class = DeviceTypeFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+        'netmiko_name',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'netmiko_name',
+    ]

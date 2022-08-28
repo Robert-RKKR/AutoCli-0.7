@@ -14,6 +14,9 @@ from ..serializers.group import GroupSerializer
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet
 
+# Filter set class import:
+from network.inventory.filters.group import GroupFilter
+
 
 # ViewSet model classes:
 class GroupView(BaseModelViewSet):
@@ -25,6 +28,16 @@ class GroupView(BaseModelViewSet):
     # Serializer classes:
     serializer_class = GroupSerializer
     single_serializer_class = SimpleGroupSerializer
+    # Django rest framework filters:
+    filterset_class = GroupFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'root_folder',
+    ]
 
 
 class SimpleGroupView(BaseModelViewSet):
@@ -35,3 +48,12 @@ class SimpleGroupView(BaseModelViewSet):
     serializer_class = SimpleGroupSerializer
     pagination_class = BaseSmallPaginator
     # Django rest framework filters:
+    filterset_class = GroupFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'root_folder',
+    ]

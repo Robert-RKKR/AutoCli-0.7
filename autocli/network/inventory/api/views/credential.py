@@ -11,6 +11,9 @@ from ..serializers.credential import CredentialSerializer
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet
 
+# Filter set class import:
+from network.inventory.filters.credential import CredentialFilter
+
 
 # ViewSet model classes:
 class CredentialView(BaseModelViewSet):
@@ -23,6 +26,17 @@ class CredentialView(BaseModelViewSet):
     serializer_class = CredentialSerializer
     single_serializer_class = SimpleCredentialSerializer
     # Django rest framework filters:
+    filterset_class = CredentialFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+        'username',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'hostname',
+        'username',
+    ]
 
 
 class SimpleCredentialView(BaseModelViewSet):
@@ -33,3 +47,14 @@ class SimpleCredentialView(BaseModelViewSet):
     serializer_class = SimpleCredentialSerializer
     pagination_class = BaseSmallPaginator
     # Django rest framework filters:
+    filterset_class = CredentialFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'name',
+        'description',
+        'username',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'name',
+        'hostname',
+        'username',
+    ]

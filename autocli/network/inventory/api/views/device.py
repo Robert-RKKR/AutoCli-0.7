@@ -30,11 +30,11 @@ class DeviceView(BaseModelViewSet):
     search_fields = BaseModelViewSet.base_search_fields + [
         'name',
         'description',
-        'hostname'
+        'hostname',
     ]
     ordering_fields = BaseModelViewSet.base_ordering_fields + [
         'name',
-        'hostname'
+        'hostname',
     ]
 
 
@@ -49,7 +49,8 @@ class SimpleDeviceView(BaseModelViewSet):
     filterset_class = DeviceFilter
     search_fields = BaseModelViewSet.base_search_fields + [
         'name',
-        'hostname'
+        'description',
+        'hostname',
     ]
     ordering_fields = BaseModelViewSet.base_ordering_fields + [
         'name',

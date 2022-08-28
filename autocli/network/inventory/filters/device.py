@@ -1,6 +1,3 @@
-# Django import:
-import django_filters
-
 # Base filter import:
 from network.all.base_model.filters.base_filter import BaseFilter
 

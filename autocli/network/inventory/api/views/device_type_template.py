@@ -11,6 +11,9 @@ from ..serializers.device_type_template import DeviceTypeTemplateSerializer
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet
 
+# Filter set class import:
+from network.inventory.filters.device_type_template import DeviceTypeTemplateFilter
+
 
 # ViewSet model classes:
 class DeviceTypeTemplateView(BaseModelViewSet):
@@ -23,6 +26,15 @@ class DeviceTypeTemplateView(BaseModelViewSet):
     serializer_class = DeviceTypeTemplateSerializer
     single_serializer_class = SimpleDeviceTypeTemplateSerializer
     # Django rest framework filters:
+    filterset_class = DeviceTypeTemplateFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'command',
+        'sfm_expression',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'vrf',
+        'special',
+    ]
 
 
 class SimpleDeviceTypeTemplateView(BaseModelViewSet):
@@ -32,5 +44,13 @@ class SimpleDeviceTypeTemplateView(BaseModelViewSet):
     queryset = DeviceTypeTemplate.objects.all()
     serializer_class = DeviceTypeTemplateSerializer
     pagination_class = BaseSmallPaginator
-    # Authentication and permissions:
     # Django rest framework filters:
+    filterset_class = DeviceTypeTemplateFilter
+    search_fields = BaseModelViewSet.base_search_fields + [
+        'command',
+        'sfm_expression',
+    ]
+    ordering_fields = BaseModelViewSet.base_ordering_fields + [
+        'vrf',
+        'special',
+    ]
