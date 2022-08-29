@@ -20,6 +20,7 @@ class CredentialView(BaseModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
+    # Basic API view parameters:
     queryset = Credential.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
@@ -43,9 +44,14 @@ class SimpleCredentialView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing object/s.
     """
+    # Execute API view from Swagger schema:
+    exclude_from_schema = True
+    swagger_schema = None
+    # Basic API view parameters:
     queryset = Credential.objects.all()
-    serializer_class = SimpleCredentialSerializer
     pagination_class = BaseSmallPaginator
+    # Serializer classes:
+    serializer_class = SimpleCredentialSerializer
     # Django rest framework filters:
     filterset_class = CredentialFilter
     search_fields = BaseModelViewSet.base_search_fields + [

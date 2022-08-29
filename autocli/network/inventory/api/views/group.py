@@ -23,6 +23,7 @@ class GroupView(BaseModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
+    # Basic API view parameters:
     queryset = Group.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
@@ -44,9 +45,14 @@ class SimpleGroupView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing object/s.
     """
+    # Execute API view from Swagger schema:
+    exclude_from_schema = True
+    swagger_schema = None
+    # Basic API view parameters:
     queryset = Group.objects.all()
-    serializer_class = SimpleGroupSerializer
     pagination_class = BaseSmallPaginator
+    # Serializer classes:
+    serializer_class = SimpleGroupSerializer
     # Django rest framework filters:
     filterset_class = GroupFilter
     search_fields = BaseModelViewSet.base_search_fields + [

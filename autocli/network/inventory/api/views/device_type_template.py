@@ -20,6 +20,7 @@ class DeviceTypeTemplateView(BaseModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
+    # Basic API view parameters:
     queryset = DeviceTypeTemplate.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
@@ -41,9 +42,14 @@ class SimpleDeviceTypeTemplateView(BaseModelViewSet):
     """
     A simple ViewSet for viewing and editing object/s.
     """
+    # Execute API view from Swagger schema:
+    exclude_from_schema = True
+    swagger_schema = None
+    # Basic API view parameters:
     queryset = DeviceTypeTemplate.objects.all()
-    serializer_class = DeviceTypeTemplateSerializer
     pagination_class = BaseSmallPaginator
+    # Serializer classes:
+    serializer_class = DeviceTypeTemplateSerializer
     # Django rest framework filters:
     filterset_class = DeviceTypeTemplateFilter
     search_fields = BaseModelViewSet.base_search_fields + [
