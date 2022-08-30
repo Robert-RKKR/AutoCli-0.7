@@ -16,7 +16,7 @@ from system.settings.settings import collect_setting
 
 
 # Main connection class:
-class BaseConnection:
+class Connection:
     """
     Basic connection class.
     
@@ -56,7 +56,7 @@ class BaseConnection:
         device: Device,
         task_id: str = None,
         repeat_connection: int = 3,
-        repeat_connection_time: int = 2
+        repeat_connection_time: int = 2,
     ) -> None:
         """
         Parameters:
@@ -67,6 +67,8 @@ class BaseConnection:
             Specifies the Celery task ID value, that will be added to logs messages.
         repeat_connection: Integer
             Specifies how many times the network connection will be retried.
+        repeat_connection_time: Integer
+            Determines how long the network connection will be attempted.
         """
 
         # Verify if the specified device variable is a valid Device object:
@@ -97,12 +99,70 @@ class BaseConnection:
         else:
             raise TypeError('The provided device variable must be a valid object of the Device class.')
 
-    def _validate_provided_data(self, data, isclass, ifnot):
+        # Validate provided data:
+        self._validate_provided_data(task_id, repeat_connection, repeat_connection_time)
+
+        # Connection status declaration:
+        self.connection_status = None
+
+        # Execution timer declaration:
+        self.execution_time = None
+
+        # Session timer declaration:
+        self.connection_timer = None
+
+        # Device supported declaration:
+        if self.device_type:
+            if self.device_type.name == 'Unsupported':
+                self.supported_device = False
+            else:
+                self.supported_device = True
+        else:
+            self.supported_device = None
+
+    def __repr__(self) -> str:
+        """ Connection class representation. """
+        return f'<Class connection ({self.device_name}/{self.device_hostname})>'
+
+    def __enter__(self) -> 'Connection':
+        
+        pass
+
+    def __exit__(self):
+
+        pass
+
+    def start_connection(self):
+         """
+         Start a new SSH connection.
+         """
+    
+    def close_connection(self):
+        """ 
+        End current SSH connection.
+        """
+
+    def _validate_provided_data(self, task_id, repeat_connection, repeat_connection_time):
         """
         """
 
-        if data is None or isinstance(data, isclass):
-            return data
+        # Verify if the specified taks_id variable is a string:
+        if task_id is None or isinstance(task_id, str):
+            # Celery task ID declaration:
+            self.task_id = task_id
         else:
-            message = f''
-            raise TypeError(message)
+            raise TypeError('The provided task ID variable must be a string.')
+
+        # Verify if the specified repeat connection variable is a integer:
+        if repeat_connection is None or isinstance(repeat_connection, int):
+            # Celery task ID declaration:
+            self.repeat_connection = repeat_connection
+        else:
+            raise TypeError('The provided repeat connection variable must be a integer.')
+
+        # Verify if the specified repeat connection time variable is a integer:
+        if repeat_connection_time is None or isinstance(repeat_connection_time, int):
+            # Celery task ID declaration:
+            self.repeat_connection_time = repeat_connection_time
+        else:
+            raise TypeError('The provided repeat connection variable must be a integer.')
