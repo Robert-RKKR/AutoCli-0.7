@@ -208,12 +208,17 @@ JAZZMIN_UI_TWEAKS = {
 
 # Change log models:
 CHANGE_LOG_MODELS = [
+    # Inventory models:
     ('inventory', 'Device'),
     ('inventory', 'DeviceType'),
     ('inventory', 'DeviceTypeTemplate'),
     ('inventory', 'Group'),
     ('inventory', 'Credential'),
+    # Tag model:
     ('tags', 'Tag'),
+    # Settings models:
+    ('settings', 'UserSetting'),
+    ('settings', 'Setting'),
 ]
 
 # API:

@@ -31,12 +31,16 @@ class UserSetting(models.Model):
         help_text='Default username used by AutoCli for SSH connections.',
         max_length=64,
         default='cisco',
+        null=True,
+        blank=True,
     )
     default_password = models.CharField(
         verbose_name='Default password',
         help_text='Default password used by AutoCli for SSH connections.',
         max_length=64,
         default='!Cisco@123',
+        null=True,
+        blank=True,
     )
 
     # Model representation:

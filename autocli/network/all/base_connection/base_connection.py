@@ -11,6 +11,9 @@ from messages.logger.logger import Logger
 # Device model import:
 from network.inventory.models.device import Device
 
+# Collect settings function import:
+from system.settings.settings import collect_setting
+
 
 # Main connection class:
 class BaseConnection:
@@ -80,7 +83,13 @@ class BaseConnection:
                 self.device_object = device
 
                 # Collect user data:
-                #
+                if device.credential is None:
+                    # Use default user data:
+                    self.device_username = collect_setting('default_username', default='admin')
+                    self.device_password = collect_setting('default_password', default='password')
+                else: # Collect username and password from credential Model:
+                    self.device_username = device.credential.username
+                    self.device_password = device.credential.password
 
             except:
                 raise TypeError('Provided device object is not compatible with connection class.')
