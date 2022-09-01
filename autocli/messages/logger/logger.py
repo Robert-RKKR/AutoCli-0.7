@@ -179,37 +179,6 @@ class Logger:
         if settings.LOGGER_DEBUG:
             return self._run(**kwargs)
 
-    def debug(self, message: str, **kwargs):
-        """
-        Create a new log based on the following data:
-
-        Parameters:
-        -----------------
-        message: string
-            Logging message string value.
-        kwargs: dictionary
-            It takes the following values:
-                -code_id: ID indicating the location of the log call in the code.
-                -task_id: ID of the task associated with the log.
-                -execution: Log task completion time.
-                -Information about content:
-                    -option I:
-                        -app_name: Model application name.
-                        -model_name: Model name.
-                        -object_id: ID of log related object.
-                    -Option II:
-                        -object: correlated object.
-            All additional values will be used to create log extension objects.
-        """
-
-        # Add data to kwargs dictionary:
-        kwargs['severity'] = DEBUG
-        kwargs['message'] = message
-
-        # Run process of log and details log creation:
-        if settings.LOGGER_DEBUG:
-            return self._run(**kwargs)
-
     def _verification(self, **kwargs):
         """ Provided data verification. """
 

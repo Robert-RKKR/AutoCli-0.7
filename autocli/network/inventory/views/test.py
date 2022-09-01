@@ -20,7 +20,10 @@ def test(request):
         'output': 'Welcome!',
     }
 
-    # connection = Connection()
+    device = Device.objects.get(pk=1)
+
+    with Connection(device) as connection:
+        print(connection)
 
     data['output'] = collect_setting('default_username')
     

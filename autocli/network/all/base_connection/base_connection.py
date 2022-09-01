@@ -14,6 +14,9 @@ from network.inventory.models.device import Device
 # Collect settings function import:
 from system.settings.settings import collect_setting
 
+# Logger class initiation:
+logger = Logger('SSH Netconf connection')
+
 
 # Main connection class:
 class Connection:
@@ -102,12 +105,9 @@ class Connection:
         # Validate provided data:
         self._validate_provided_data(task_id, repeat_connection, repeat_connection_time)
 
-        # Connection status declaration:
+        # Connection declarations:
         self.connection_status = None
-
-        # Execution timer declaration:
-        self.execution_time = None
-
+        self.connection = None
         # Session timer declaration:
         self.connection_timer = None
 
@@ -125,22 +125,69 @@ class Connection:
         return f'<Class connection ({self.device_name}/{self.device_hostname})>'
 
     def __enter__(self) -> 'Connection':
+        """
+        Use Connection class with python with command:
+
+        with Connection(device) as connection:
+            print(connection)
+
+        """
         
-        pass
+        try: # Try to start SSH connection:
+            self.start_connection()
+        except:
+            # In case of failure, return connection status:
+            return self.connection_status
+        else:
+            # in case of success, return connection:
+            return self.connection
 
-    def __exit__(self):
+    def __exit__(self,
+        exc_type,
+        exc_value,
+        exc_traceback,
+    ):
 
-        pass
+        self.close_connection()
 
     def start_connection(self):
-         """
-         Start a new SSH connection.
-         """
+        """
+        Start a new SSH connection.
+        """
+
+        # Check if device need autodetect process:
+        if self.supported_device is None:
+            logger.info(f'Device type of device: {self.device_name}, must be discovered.',
+                code_id='45366876978213248573975',
+                execution=self.connection_timer,
+                object=self.device_object,
+            )
+            # Update device type based on information collected via SSH protocol:
+            self.update_device_type()
+            # Connect to network device:
+            self._ssh_connect()
+        # Check connection status:
+        elif not self.connection_status:
+            self._ssh_connect()
+
+        # Start connection timer if connected successfully:
+        if self.connection_status:
+            logger.info(
+                f'SSH connection to device: {self.device_name}, has been established.',
+                self.task_id, self.device_name)
+            # Start session timer:
+            self._start_connection_timer()
+            return self
+        else:
+            return False
     
     def close_connection(self):
         """ 
         End current SSH connection.
         """
+
+        # End connection timer:
+        self._end_connection_timer()
 
     def _validate_provided_data(self, task_id, repeat_connection, repeat_connection_time):
         """
@@ -166,3 +213,50 @@ class Connection:
             self.repeat_connection_time = repeat_connection_time
         else:
             raise TypeError('The provided repeat connection variable must be a integer.')
+
+    def _start_execution_timer(self):
+        """
+        Start command execution time.
+        Method will return start time value.
+        """
+
+        # Start clock count:
+        return time.perf_counter()
+
+    def _end_execution_timer(self, start_time):
+        """
+        End command execution time counting.
+        Method will return end time value.
+        """
+
+        # Finish clock count & method execution time:
+        finish_time = time.perf_counter()
+        execution_time = round(finish_time - start_time, 5)
+
+        # Return end execution time:
+        return execution_time
+
+    def _start_connection_timer(self):
+        """
+        Start connection time counting.
+        """
+
+        # Start clock count:
+        self.connection_timer = time.perf_counter()
+
+    def _end_connection_timer(self):
+        """
+        End connection time counting, and log result.
+        """
+
+        # Finish clock count & method execution time:
+        finish_time = time.perf_counter()
+        self.connection_timer = round(finish_time - self.connection_timer, 5)
+
+        # Log time of SSH session:
+        logger.info(f'SSH session was active for {self.connection_timer} seconds.',
+            code_id='233453674245342543646765',
+            task_id=self.task_id,
+            execution=self.connection_timer,
+            object=self.device_object,
+        )
