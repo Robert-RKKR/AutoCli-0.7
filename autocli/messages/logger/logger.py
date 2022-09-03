@@ -185,7 +185,7 @@ class Logger:
         # Verify if the code_id variable is a valid sting:
         if kwargs.get('code_id', False):        
             if isinstance(kwargs['code_id'], str):
-                if len(kwargs['code_id']) > 64:
+                if len(kwargs['code_id']) > 32:
                     raise ValueError('The provided code ID variable is to long (Allowed max 64 signs).')
             else:
                 raise TypeError('The provided code ID variable must be string.')
@@ -201,7 +201,7 @@ class Logger:
         # Verify if the task_id variable is a valid sting:
         if kwargs.get('message', False):        
             if isinstance(kwargs['message'], str):
-                if len(kwargs['message']) > 64:
+                if len(kwargs['message']) > 512:
                     raise ValueError('The provided message variable is to long (Allowed max 64 signs).')
             else:
                 raise TypeError('The provided message variable must be string.')
@@ -234,8 +234,8 @@ class Logger:
         # Collect all log data:
         self.log_data = {
             'application': self.application,
-            'app_name': kwargs.get('app_name', None),
-            'model_name': kwargs.get('model_name', None),
+            'app_name': kwargs.get('app_name', 'None'),
+            'model_name': kwargs.get('model_name', 'None'),
             'object_id': kwargs.get('object_id', None),
             'code_id': kwargs.get('code_id', None),
             'task_id': kwargs.get('task_id', None),

@@ -9,6 +9,7 @@ from messages.notifications.notification import Notification
 from network.inventory.models.credential import Credential
 from network.inventory.models.device_type_template import DeviceTypeTemplate
 from messages.logger.models.log import Log
+from messages.logger.logger import Logger
 from network.all.base_connection.base_connection import BaseConnection
 from system.settings.settings import collect_setting
 
@@ -20,12 +21,15 @@ def test(request):
         'output': 'Welcome!',
     }
 
+    logger = Logger('Test page')
+    log = logger.critical('================')
+
     device = Device.objects.get(pk=1)
 
     with BaseConnection(device) as connection:
         print(connection)
 
-    data['output'] = collect_setting('default_username')
+    data['output'] = log
     
     # GET method:
     return render(request, 'test.html', data)

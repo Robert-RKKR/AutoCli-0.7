@@ -4,7 +4,6 @@ __version__ = '1.2'
 
 # Python Import:
 import time
-import sys
 
 # Netmiko Import:
 from netmiko.exceptions import AuthenticationException
@@ -149,12 +148,9 @@ class BaseConnection:
         try: # Try to start SSH connection:
             response = self.start_connection()
             if not response:
-                raise
+                return False
         except:
-            if self.__exit__(*sys.exc_info()):
-                pass
-            else:
-                raise
+                return False
         else:
             # In case of success,
             # return Connection class object:
@@ -205,7 +201,7 @@ class BaseConnection:
         
         else: # Log that connection is already establish:
             logger.warning('Connection is already established.',
-                code_id='20189872935982539885436854956290',
+                code_id='58397698345748759427958743978654',
                 execution=self.connection_timer,
                 object=self.device_object)
             # Return Connection class object:
@@ -223,7 +219,7 @@ class BaseConnection:
                 self.connection.disconnect()
             except: # Log that connection is already ended:
                 logger.warning('Connection is already ended.',
-                    code_id='20189872935982539885436854956290',
+                    code_id='35743659348567486946754794595654',
                     execution=self.connection_timer,
                     object=self.device_object)
             else:
@@ -234,12 +230,7 @@ class BaseConnection:
                     object=self.device_object)
             finally:
                 # End connection timer:
-                self._end_connection_timer(logger)
-        else: # Log that connection is already ended:
-            logger.warning('Connection is already ended.',
-                code_id='20189872935982539885436854956290',
-                execution=self.connection_timer,
-                object=self.device_object)
+                self._end_connection_timer()
 
     def update_device_type(self) -> str:
         """
@@ -252,14 +243,14 @@ class BaseConnection:
         """
 
         # Log beginning of network device type checking process:
-        logger.info(f'Started acquiring information about the type '\
+        logger.info(f'Started acquiring information about the device type '\
             f'of device: {self.device_name}:{self.device_hostname}.',
             code_id='45987897427586734579937923758345',
             execution=self.connection_timer,
             object=self.device_object)
 
         # Connect to device to check device type, using SSH protocol:
-        discovered_device_type_name = self._ssh_connect(autodetect=True)
+        discovered_device_type_name = self._ssh_connect(autodetect=True).strip()
 
         if discovered_device_type_name:
 
@@ -281,6 +272,8 @@ class BaseConnection:
                         code_id='04930574037590847092843985739209',
                         execution=self.connection_timer,
                         object=self.device_object)
+                # Return False:
+                return False
             else:
                 # Log successful device type collection:
                 logger.info(f'Device: {self.device_name}:{self.device_hostname} '\
@@ -291,11 +284,11 @@ class BaseConnection:
                 # Change supported value to supported:
                 self.supported_device = True
                 # Change current device type to new one:
-                self.device.device_type = device_type_object
+                self.device_object.device_type = device_type_object
                 self.device_type = device_type_object
 
                 try: # Try to update device type object:
-                    self.device.save(update_fields=['device_type']) 
+                    self.device_object.save(update_fields=['device_type']) 
                 except: # Return exception if there is a problem during
                     # the update of the device type object:
                     logger.critical(f'Exception occurs, durning device type update '\
@@ -303,8 +296,6 @@ class BaseConnection:
                         code_id='45778589346798743750765946045895',
                         execution=self.connection_timer,
                         object=self.device_object)
-                    # Return collected device type name:
-                    return discovered_device_type_name
                 else:
                     logger.info(f'Device type of device: {self.device_name}: '\
                         f'{self.device_hostname} has been updated.',
@@ -312,9 +303,13 @@ class BaseConnection:
                         execution=self.connection_timer,
                         object=self.device_object)
 
+                # Return collected device type name:
+                return discovered_device_type_name
+
         else:
 
-            # If connection attempt was unsuccessful, return False:
+            # If connection attempt was unsuccessful,
+            # return False:
             return False
 
     def _validate_provided_data(self, task_id, repeat_connection, repeat_connection_time):

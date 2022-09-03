@@ -41,7 +41,7 @@ class Log(BaseModel):
     code_id = models.CharField(
         verbose_name='Code ID',
         help_text='ID indicating the location of the log call in the code.',
-        max_length=64,
+        max_length=32,
         null=True,
         blank=True,
     )
@@ -64,7 +64,7 @@ class Log(BaseModel):
     message = models.CharField(
         verbose_name='Message',
         help_text='Log message.',
-        max_length=128,
+        max_length=512,
     )
     execution = models.FloatField(
         verbose_name='Execution time',
