@@ -18,7 +18,7 @@ from inventory.models.device_type_template_model import DeviceTypeTemplate
 from inventory.models.device_type_model import DeviceType
 
 # Connection Import:
-from .connection import Connection
+from .fesfesfes import Connection
 
 # Logger import:
 from logger.logger import Logger

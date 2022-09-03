@@ -10,7 +10,7 @@ from network.inventory.models.credential import Credential
 from network.inventory.models.device_type_template import DeviceTypeTemplate
 from messages.logger.models.log import Log
 from messages.logger.logger import Logger
-from network.all.base_connection.base_connection import BaseConnection
+from network.all.base_connection.connection import Connection
 from system.settings.settings import collect_setting
 
 def test(request):
@@ -26,10 +26,8 @@ def test(request):
 
     device = Device.objects.get(pk=1)
 
-    with BaseConnection(device) as connection:
-        print(connection)
-
-    data['output'] = log
+    with Connection(device) as con:
+        data['output'] = con.send_enable('show version')
     
     # GET method:
     return render(request, 'test.html', data)
