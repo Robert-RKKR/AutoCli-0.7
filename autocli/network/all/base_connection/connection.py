@@ -170,7 +170,7 @@ class Connection:
 
         Return:
         --------
-            Connection class object.
+        Connection class object.
         """
 
         # Check connection status:
@@ -248,7 +248,7 @@ class Connection:
 
         Return:
         --------
-            Collected device type name.
+        Collected device type name.
         """
 
         # Log beginning of network device type checking process:
@@ -361,7 +361,7 @@ class Connection:
             # Finish clock count & method execution time:
             execution_time = self._end_execution_timer(start_time)
             # Log time of command/s execution:
-            logger.info(f'Execution of "{commands}" command/s '\
+            logger.info(f'Execution of "{commands}" enabled command/s '\
                 f'taken {execution_time} seconds.',
                 code_id='4038784967958o756763487543645645',
                 execution=execution_time,
@@ -401,6 +401,36 @@ class Connection:
             # Raise exception:
             raise TypeError('The provided command/s variable must be a string or list.')
 
+        # Check connection status:
+        if self.connection_status:
+
+            # Start clock count:
+            start_time = self._start_execution_timer()
+
+            # Collect data from device:
+            return_data = self._config_command_execution(commands)
+
+            # Finish clock count & method execution time:
+            execution_time = self._end_execution_timer(start_time)
+            # Log time of command/s execution:
+            logger.info(f'Execution of "{commands}" configuration command/s '\
+                f'taken {execution_time} seconds.',
+                code_id='45837565869734945824578465374589',
+                execution=execution_time,
+                object=self.device_object)
+
+            # Return data:
+            return return_data
+
+        # If connection is not active,
+        # inform that the command/s cannot be sent:
+        else:
+            logger.error(f'Command/s could not be executed because SSH '\
+                f'connection with device: {self.device_name}:'\
+                f'{self.device_hostname}, is not active.',
+                code_id='43565892742368562758284832947343',
+                object=self.device_object)
+
     def send_enabled_dict(self, commands: str or list, fsm_template = False) -> dict:
         """
         """
@@ -415,11 +445,11 @@ class Connection:
 
     def _enabled_command_execution(self, command: str) -> str:
         """
-        Enabled CLI command execution.
+        Enabled command execution.
         """
         
         # Log start of command execution: 
-        logger.error(f'The process of execution a new CLI command "{command}" has '\
+        logger.info(f'The process of execution a new enabled command "{command}" has '\
             f'been started on device: {self.device_name}:{self.device_hostname}.',
             code_id='48376895768937458999702748593454',
             object=self.device_object)
@@ -431,7 +461,7 @@ class Connection:
         except UnboundLocalError as error:
             # Log information about the error of the sent command:
             logger.error(f'An error occurred during sending a CLI '\
-                f'command "{command}" to the device: '\
+                f'enabled command "{command}" to the device: '\
                 f'{self.device_name}:{self.device_hostname}\n{error}',
                 code_id='48376895768937458999702748573456',
                 object=self.device_object)
@@ -440,7 +470,7 @@ class Connection:
         except OSError as error:
             # Log information about the error of the sent command:
             logger.error(f'An error occurred during sending a CLI '\
-                f'command "{command}" to the device: '\
+                f'enabled command "{command}" to the device: '\
                 f'{self.device_name}:{self.device_hostname}\n{error}',
                 code_id='48376895768937458999702748526427',
                 object=self.device_object)
@@ -449,7 +479,7 @@ class Connection:
         except TypeError as error:
             # Log information about the error of the sent command:
             logger.error(f'An error occurred during sending a CLI '\
-                f'command "{command}" to the device: '\
+                f'enabled command "{command}" to the device: '\
                 f'{self.device_name}:{self.device_hostname}\n{error}',
                 code_id='48376895768937458999702748557246',
                 object=self.device_object)
@@ -458,7 +488,7 @@ class Connection:
 
         else:
             # Log end of command execution:
-            logger.info(f'CLI command "{command}" has been sent to '\
+            logger.info(f'Enabled command "{command}" has been sent to '\
                 f'{self.device_name}:{self.device_hostname}.',
                 code_id='34753968794278589347307485934645',
                 object=self.device_object)
@@ -468,13 +498,59 @@ class Connection:
 
     def _config_command_execution(self, command: str) -> str:
         """
-        Configuration CLI command execution.
+        Configuration command execution.
         """
+        
+        # Log start of command execution: 
+        logger.info(f'The process of execution a new configuration command "{command}" has '\
+            f'been started on device: {self.device_name}:{self.device_hostname}.',
+            code_id='34567895768937458999702748593454',
+            object=self.device_object)
 
-        pass
+        try: # Try to execute provided CLI command:
+            command_output = self.connection.send_config_set(command)
+        
+        except UnboundLocalError as error:
+            # Log information about the error of the sent command:
+            logger.error(f'An error occurred during sending a CLI '\
+                f'configuration command "{command}" to the device: '\
+                f'{self.device_name}:{self.device_hostname}\n{error}',
+                code_id='26745895768937458999702748573456',
+                object=self.device_object)
+            # Return False:
+            return False
+        except OSError as error:
+            # Log information about the error of the sent command:
+            logger.error(f'An error occurred during sending a CLI '\
+                f'configuration command "{command}" to the device: '\
+                f'{self.device_name}:{self.device_hostname}\n{error}',
+                code_id='26745895768937458999702748526427',
+                object=self.device_object)
+            # Return False:
+            return False
+        except TypeError as error:
+            # Log information about the error of the sent command:
+            logger.error(f'An error occurred during sending a CLI '\
+                f'configuration command "{command}" to the device: '\
+                f'{self.device_name}:{self.device_hostname}\n{error}',
+                code_id='26745895768937458999702748557246',
+                object=self.device_object)
+            # Return False:
+            return False
+
+        else:
+            # Log end of command execution:
+            logger.info(f'Configuration command "{command}" has been sent to '\
+                f'{self.device_name}:{self.device_hostname}.',
+                code_id='26745968794278589347307485934645',
+                object=self.device_object)
+            
+            # Return data:
+            return command_output
 
     def _validate_provided_data(self, task_id, repeat_connection, repeat_connection_time):
         """
+        Validate provided data.
         """
 
         # Verify if the specified taks_id variable is a string:
@@ -504,7 +580,7 @@ class Connection:
 
         Return:
         --------
-            Method will return start time value.
+        Method will return start time value.
         """
 
         # Start clock count:
@@ -516,7 +592,7 @@ class Connection:
 
         Return:
         --------
-            Method will return execution end time value.
+        Method will return execution end time value.
         """
 
         # Finish clock count & method execution time:
@@ -540,7 +616,7 @@ class Connection:
 
         Return:
         --------
-            Method will return connection end time value.
+        Method will return connection end time value.
         """
 
         # Check if connection timer is set up:

@@ -27,7 +27,12 @@ def test(request):
     device = Device.objects.get(pk=1)
 
     with Connection(device) as con:
-        data['output'] = con.send_enable('show version')
+        data['output'] = con.send_enable([
+            'show version',
+            'show ip route',
+            'show ip access-list',
+            'show psp'
+        ])
     
     # GET method:
     return render(request, 'test.html', data)
