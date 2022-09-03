@@ -9,7 +9,7 @@ from messages.notifications.notification import Notification
 from network.inventory.models.credential import Credential
 from network.inventory.models.device_type_template import DeviceTypeTemplate
 from messages.logger.models.log import Log
-from network.all.base_connection.base_connection import Connection
+from network.all.base_connection.base_connection import BaseConnection
 from system.settings.settings import collect_setting
 
 def test(request):
@@ -22,7 +22,7 @@ def test(request):
 
     device = Device.objects.get(pk=1)
 
-    with Connection(device) as connection:
+    with BaseConnection(device) as connection:
         print(connection)
 
     data['output'] = collect_setting('default_username')
