@@ -6,5 +6,6 @@ from system.settings.models.user_setting import UserSetting
 from system.settings.models.setting import Setting
 
 
+# Admin classes:
 admin.site.register(UserSetting)
 admin.site.register(Setting)

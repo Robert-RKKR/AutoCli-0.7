@@ -66,13 +66,13 @@ class DeviceTypeTemplate(DataTimeModel, StatusModel):
         help_text='SFM expression used to check if CLI command/s output is correct.',
     )
 
-    # Model representation:
+    # object representation:
     def __repr__(self) -> str:
-        return f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
+        return f'{self.pk}: {self.command.capitalize()}'
 
     def __str__(self) -> str:
-        return  f'{self.pk}: {self.device_type}/{self.command.capitalize()}'
+        return  f'{self.pk}: {self.command.capitalize()}'
 
     # Natural key representation:
     def natural_key(self):
-        return f'{self.device_type}/{self.command.capitalize()}'
+        return str(self.command.capitalize())

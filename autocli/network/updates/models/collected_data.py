@@ -1,5 +1,4 @@
 # Django import:
-import imp
 from django.db import models
 
 # Basic models import:

@@ -59,8 +59,8 @@ INSTALLED_APPS = [
     'network.automation.apps.AutomationConfig',
     'network.datasets.apps.DatasetsConfig',
     'network.inventory.apps.DevicesConfig',
-    'network.tags.apps.TagsConfig',
     'network.updates.apps.UpdatesConfig',
+    'network.tags.apps.TagsConfig',
 
     # AutoCLI messages apps:
     'messages.notifications.apps.NotificationsConfig',
