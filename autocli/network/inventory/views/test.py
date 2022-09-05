@@ -27,12 +27,17 @@ def test(request):
     device = Device.objects.get(pk=1)
 
     with Connection(device) as con:
-        data['output'] = con.send_enabled_dict([
+        output = con.send_enabled_dict([
             'show version',
             'show ip route',
             'show ip access-list',
-            'show psp'
+            'show psp',
+            'show cdp neighbors detail',
+            'show clock',
+            'show network'
         ])
+
+    data['output'] = json.dumps(output)
     
     # GET method:
     return render(request, 'test.html', data)

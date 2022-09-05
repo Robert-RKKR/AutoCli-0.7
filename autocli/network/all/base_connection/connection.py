@@ -28,42 +28,37 @@ from system.settings.settings import collect_setting
 # Logger class initiation:
 logger = Logger('SSH Netconf connection')
 
+INVALID = [
+    'invalid input detected',
+    'cdp is not enabled',
+]
+
 
 # Main connection class:
 class Connection:
     """
-    Basic connection class.
+    Class to SSH connection.
     
-    Attributes:
+    Methods:
     -----------------
-    device_name:
-        Xxx.
-    device_hostname:
-        Xxx.
-    device_ssh_port:
-        Xxx.
-    device_https_port:
-        Xxx.
-    device_certificate:
-        Xxx.
-    device_username:
-        Xxx.
-    device_password:
-        Xxx.
-    device_type:
-        Xxx.
-    connection_status:
-        Xxx.
-    execution_time:
-        Xxx.
-    connection_timer:
-        Xxx.
-    supported_device:
-        Xxx.
-    repeat_connection:
-        Xxx.
-    repeat_connection_time:
-        Xxx.
+    start_connection:
+        Start SSH connection with provided device.
+    end_connection:
+        End current SSH connection.
+    test_connection:
+        Test connection to provided device.
+    update_device_type:
+        Update provide device type.
+    send_enable:
+        Send enabled command/s to provided device,
+        returns cli command/s output.
+    send_enabled_dict:
+        Send enabled command/s to provided device,
+        returns cli output and processed command/s data.
+    send_config:
+        Send configuration command/s to provided device.
+    send_config_dict:
+        Not implemented yet.
     """
 
     def __init__(self,
@@ -463,16 +458,24 @@ class Connection:
 
             # Collect command data:
             command_output = commands_output[command_name]
-            # Process collected command output:
-            processed_data = self._process_command_output_to_dictionary(
-                command_name, command_output)
-            # Prepare return data:
-            data = {
-                'command_name': command_name,
-                'command_output': command_output,
-                'processed_data': processed_data['output'],
-                'processed_error': processed_data['error'],
-            }
+            # Check if command output is valid:
+            if command_output:
+                # Process collected command output:
+                processed_data = self._process_command_output_to_dictionary(
+                    command_name.strip(), command_output)
+                # Prepare return data:
+                data = {
+                    'command_name': command_name,
+                    'command_output': command_output,
+                    'processed_data': processed_data['output'],
+                    'processed_error': processed_data['error']}
+            else:
+                # Prepare return data:
+                data = {
+                    'command_name': command_name,
+                    'command_output': False,
+                    'processed_data': False,
+                    'processed_error': 'Command output was not received.'}
             # Add collected data to return data:
             return_data[command_name] = data
 
@@ -534,6 +537,11 @@ class Connection:
                 f'{self.device_name}:{self.device_hostname}.',
                 code_id='34753968794278589347307485934645',
                 object=self.device_object)
+
+            # Check if command output is valid:
+            for invalid in INVALID:
+                if command_output is None or invalid in command_output.lower():
+                    return False
             
             # Return data:
             return command_output
@@ -846,7 +854,8 @@ class Connection:
             return_data['output'] = False
             return_data['error'] = f'Provided command "{command}" is not supported.'
             # Log unsupported command:
-            logger.warning(f'Provided command "{command}" is not supported.',
+            logger.warning(f'Provided command "{command}" is not '\
+                'supported by any SFM available template.',
                 code_id='43768438673692697486247856873464',
                 object=self.device_object)
         else:
