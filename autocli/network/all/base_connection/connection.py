@@ -3,7 +3,9 @@ __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '3.1'
 
 # Python Import:
+import textfsm
 import time
+import io
 
 # Netmiko Import:
 from netmiko.exceptions import AuthenticationException
@@ -16,6 +18,7 @@ from paramiko import ssh_exception
 from messages.logger.logger import Logger
 
 # Device model import:
+from network.inventory.models.device_type_template import DeviceTypeTemplate
 from network.inventory.models.device_type import DeviceType
 from network.inventory.models.device import Device
 
@@ -330,7 +333,7 @@ class Connection:
 
         Return:
         --------
-        String containing command/s output.
+        Dictionary containing command/s output.
         """
 
         # Check if provided command variable is valid string or list:
@@ -343,7 +346,7 @@ class Connection:
 
             # Start clock count:
             start_time = self._start_execution_timer()
-            # Collect data from device:
+            # Declare return data dictionary:
             return_data = {}
 
             # First option: command is string:
@@ -431,17 +434,56 @@ class Connection:
                 code_id='43565892742368562758284832947343',
                 object=self.device_object)
 
-    def send_enabled_dict(self, commands: str or list, fsm_template = False) -> dict:
+    def send_enabled_dict(self, commands: str or list) -> dict:
         """
-        """
+        Retrieves a string or list containing network CLI command/s,
+        and sends them to a network device using SSH protocol.
+        Collected commands are process to receive dictionary output,
+        based on Device type templates.
+        ! Usable only with enable levels commend/s.
         
-        pass
+        Parameters:
+        -----------------
+        commands: String
+            Provided device object, to establish a SSH connection.
+        commands: List
+            Provided device object, to establish a SSH connection.
+
+        Return:
+        --------
+        Dictionary containing command/s output and process data.
+        """
+
+        # Declare return data dictionary:
+        return_data = {}
+        # Collect command/s output:
+        commands_output = self.send_enable(commands)
+        # Iterate thu collected command/s outputs:
+        for command_name in commands_output:
+
+            # Collect command data:
+            command_output = commands_output[command_name]
+            # Process collected command output:
+            processed_data = self._process_command_output_to_dictionary(
+                command_name, command_output)
+            # Prepare return data:
+            data = {
+                'command_name': command_name,
+                'command_output': command_output,
+                'processed_data': processed_data['output'],
+                'processed_error': processed_data['error'],
+            }
+            # Add collected data to return data:
+            return_data[command_name] = data
+
+        # Return collected data:
+        return return_data
 
     def send_config_dict(self, commands: str or list, fsm_template = False) -> dict:
         """
         """
-        
-        pass
+
+        print('Unsupported')
 
     def _enabled_command_execution(self, command: str) -> str:
         """
@@ -776,3 +818,73 @@ class Connection:
 
             # Return connection status:
             return self.connection_status
+
+    def _process_command_output_to_dictionary(self, command = str, command_output = str) -> list:
+        """
+        Convert commands output to dictionary based on Text FSM templates.
+        """
+
+        # Log start of the command process:
+        logger.info(f'SFM process on command "{command}" collected from device: '\
+            f'{self.device_name}:{self.device_hostname}, has been started.',
+            code_id='49537874598379083278974524899254',
+            object=self.device_object)
+
+        # FSM result list declaration:
+        fsm_result = []
+        # Return data declaration:
+        return_data = {
+            'output': None,
+            'error': None,
+        }
+        # Try to Collect fsm template:
+        try:
+            fsm_template_object = DeviceTypeTemplate.objects.get(
+                command=command, device_type=self.device_type)
+        except:
+            # Return False value:
+            return_data['output'] = False
+            return_data['error'] = f'Provided command "{command}" is not supported.'
+            # Log unsupported command:
+            logger.warning(f'Provided command "{command}" is not supported.',
+                code_id='43768438673692697486247856873464',
+                object=self.device_object)
+        else:
+            # Collect data from template object:
+            fsm_template = fsm_template_object.sfm_expression
+            template_as_file = io.StringIO(fsm_template)
+            try: # Try to parse collected data from Text FSM:
+                fsm = textfsm.TextFSM(template_as_file)
+                result = fsm.ParseText(command_output)
+                # Create one or many dict from Text FSM result:
+                for value in result:
+                    fsm_result.append(dict(zip(fsm.header, value)))
+            except textfsm.TextFSMTemplateError as error:
+                # Log error during Text FSM process:
+                logger.error(f'Error occurred during SFM operation on device: '\
+                    f'{self.device_name}:{self.device_hostname}\n{error}',
+                    code_id='43527880467579473896025095748654',
+                    object=self.device_object)
+                # Return False value:
+                return_data['output'] = False
+                return_data['error'] = str(error)
+            except textfsm.TextFSMError as error:
+                # Log error during Text FSM process:
+                logger.error(f'Error occurred during SFM operation on device: '\
+                    f'{self.device_name}:{self.device_hostname}\n{error}',
+                    code_id='54628976579063784736097753945645',
+                    object=self.device_object)
+                # Return False value:
+                return_data['output'] = False
+                return_data['error'] = str(error)
+            else:
+                logger.info(f'SFM process on command "{command}" collected from '\
+                    f'device: {self.device_name}:{self.device_hostname}, has been accomplish.',
+                    code_id='54897698547687354069975809474056',
+                    object=self.device_object)
+                # Return FSM process output:
+                return_data['output'] = fsm_result
+                return_data['error'] = False
+        
+        # Return collected data
+        return return_data

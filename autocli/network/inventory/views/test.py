@@ -27,7 +27,7 @@ def test(request):
     device = Device.objects.get(pk=1)
 
     with Connection(device) as con:
-        data['output'] = con.send_enable([
+        data['output'] = con.send_enabled_dict([
             'show version',
             'show ip route',
             'show ip access-list',
