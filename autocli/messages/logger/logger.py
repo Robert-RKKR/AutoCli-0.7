@@ -219,11 +219,12 @@ class Logger:
 
         # Collect content type object if app_name and model_name was provided:
         if kwargs.get('object', False):
-            # Collect app and model name based on object information:
-            kwargs['app_name'] = kwargs['object'].__class__._meta.app_label
-            kwargs['model_name'] = kwargs['object'].__class__.__name__
-            # Collect object ID:
-            kwargs['object_id'] = kwargs['object'].id
+            if isinstance(kwargs['object'], object):
+                # Collect app and model name based on object information:
+                kwargs['app_name'] = kwargs['object'].__class__._meta.app_label
+                kwargs['model_name'] = kwargs['object'].__class__.__name__
+                # Collect object ID:
+                kwargs['object_id'] = kwargs['object'].id
 
         # Create new log based on provided data:
         return self._create_log(**kwargs)

@@ -17,8 +17,13 @@ class Notification:
 
     Methods:
     --------
-    xxx:
-        xxx
+    channel_notification:
+        Send notifications only through the channel.
+    database_notification:
+        Save notifications to the database only.
+    send:
+        Send notifications through the channel and
+        save them to database.
     """
 
     # Channels registration:

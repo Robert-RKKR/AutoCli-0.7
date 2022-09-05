@@ -26,7 +26,7 @@ from network.inventory.models.device import Device
 from system.settings.settings import collect_setting
 
 # Logger class initiation:
-logger = Logger('SSH Netconf connection')
+logger = Logger('SSH connection')
 
 INVALID = [
     'invalid input detected',
@@ -540,7 +540,15 @@ class Connection:
 
             # Check if command output is valid:
             for invalid in INVALID:
+                # If command output contains invalid string or is None,
+                # return False and send log:
                 if command_output is None or invalid in command_output.lower():
+                    # Log invalid command output:
+                    logger.info(f'Enabled command "{command}" send to '\
+                        f'{self.device_name}:{self.device_hostname} '\
+                        'return no data or return invalid response.',
+                        code_id='34753968794278589347307485934645',
+                        object=self.device_object)
                     return False
             
             # Return data:
