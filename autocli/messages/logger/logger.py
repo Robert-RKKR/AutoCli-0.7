@@ -2,9 +2,11 @@
 __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '2.0'
 
+# Django import:
+from django.db.models import Model
+
 # Application model Import:
 from messages.logger.models.log import Log
-
 
 # Settings import:
 from django.conf import settings
@@ -68,13 +70,7 @@ class Logger:
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
-                -Information about content:
-                    -option I:
-                        -app_name: Model application name.
-                        -model_name: Model name.
-                        -object_id: ID of log related object.
-                    -Option II:
-                        -object: correlated object.
+                -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -99,13 +95,7 @@ class Logger:
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
-                -Information about content:
-                    -option I:
-                        -app_name: Model application name.
-                        -model_name: Model name.
-                        -object_id: ID of log related object.
-                    -Option II:
-                        -object: correlated object.
+                -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -130,13 +120,7 @@ class Logger:
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
-                -Information about content:
-                    -option I:
-                        -app_name: Model application name.
-                        -model_name: Model name.
-                        -object_id: ID of log related object.
-                    -Option II:
-                        -object: correlated object.
+                -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -161,13 +145,7 @@ class Logger:
                 -code_id: ID indicating the location of the log call in the code.
                 -task_id: ID of the task associated with the log.
                 -execution: Log task completion time.
-                -Information about content:
-                    -option I:
-                        -app_name: Model application name.
-                        -model_name: Model name.
-                        -object_id: ID of log related object.
-                    -Option II:
-                        -object: correlated object.
+                -object: correlated object.
             All additional values will be used to create log extension objects.
         """
 
@@ -180,7 +158,9 @@ class Logger:
             return self._run(**kwargs)
 
     def _verification(self, **kwargs):
-        """ Provided data verification. """
+        """
+        Provided data verification.
+        """
 
         # Verify if the code_id variable is a valid sting:
         if kwargs.get('code_id', False):        
@@ -212,25 +192,32 @@ class Logger:
                 raise TypeError('The provided message variable must be float.')
     
     def _run(self, **kwargs):
-        """ Run process of log and details log creation. """
+        """
+        Run process of log and details log creation.
+        """
 
         # Verify provided data:
         self._verification(**kwargs)
 
         # Collect content type object if app_name and model_name was provided:
         if kwargs.get('object', False):
-            if isinstance(kwargs['object'], object):
+            # Check if provided object is valid:
+            if isinstance(kwargs['object'], Model):
                 # Collect app and model name based on object information:
                 kwargs['app_name'] = kwargs['object'].__class__._meta.app_label
                 kwargs['model_name'] = kwargs['object'].__class__.__name__
                 # Collect object ID:
                 kwargs['object_id'] = kwargs['object'].id
+            else: # If object is not valid raise TypeError:
+                raise TypeError('Provided object id not a valid Django object.')
 
         # Create new log based on provided data:
         return self._create_log(**kwargs)
 
     def _create_log(self, **kwargs):
-        """ Create new log in Database. """
+        """
+        Create new log in Database.
+        """
 
         # Collect all log data:
         self.log_data = {

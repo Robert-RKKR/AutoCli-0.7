@@ -22,10 +22,6 @@ class BaseTask(Task):
     public = True
     task_id = 'None'
 
-    # Correlated object data:
-    corelate_object = None
-    corelate_object_name = None
-
     # Task identity attributes:
     description = ''
     name = 'default'
@@ -74,7 +70,6 @@ class BaseTask(Task):
             'seconds to complete.',
             code_id='84759346593467895673945000757890',
             task_id=self.task_id,
-            execution=self.execution_timer,
-            object=self.corelate_object_name)
+            execution=self.execution_timer)
         # Return execution timer value:
         return self.execution_timer

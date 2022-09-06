@@ -2,6 +2,9 @@
 __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '1.0'
 
+# Django import:
+from django.db.models import Model
+
 # Channels import:
 from channels.layers import get_channel_layer
 
@@ -40,27 +43,29 @@ class Notification:
         kwargs: dictionary
             It takes the following values:
                 -type (Int): Type of notification.
-            -Information about content:
-                -option I:
-                    -app_name (Str): Model application name.
-                    -model_name (Str): Model name.
-                    -object_id (Int): ID of log related object.
-                -Option II:
-                    -object (Device object): correlated object.
+                -object (Device object): Correlated object.
+                -notification (Str): Notification channel name.
         """
 
+        # Verify provided data:
+        self._verification(**kwargs)
+
+        # Check if object was provided:
         if kwargs.get('object', False):
-            correlated_object = kwargs['object']
-            async_to_sync(self.channel_layer.group_send)('notifications', {
-                'type': 'send_collect',
-                'message': message,
-                'app_name': correlated_object.__class__._meta.app_label,
-                'model_name': correlated_object.__class__.__name__,
-                'object_id': correlated_object.pk,
-                'link': 'None'
-            })
-        else:
-            async_to_sync(self.channel_layer.group_send)('notifications', {
+            # Check if provided object is valid:
+            if isinstance(kwargs['object'], Model):
+                correlated_object = kwargs['object']
+                async_to_sync(self.channel_layer.group_send)(kwargs['notification'], {
+                    'type': 'send_collect',
+                    'message': message,
+                    'app_name': correlated_object.__class__._meta.app_label,
+                    'model_name': correlated_object.__class__.__name__,
+                    'object_id': correlated_object.pk,
+                    'link': 'None'})
+            else:
+                raise TypeError('Provided object id not a valid Django object.')
+        else: # If object is not valid raise TypeError:
+            async_to_sync(self.channel_layer.group_send)(kwargs['notification'], {
                 'type': 'send_collect',
                 'message': message,
             })
@@ -76,26 +81,25 @@ class Notification:
         kwargs: dictionary
             It takes the following values:
                 -type (Int): Type of notification.
-            -Information about content:
-                -option I:
-                    -app_name (Str): Model application name.
-                    -model_name (Str): Model name.
-                    -object_id (Int): ID of log related object.
-                -Option II:
-                    -object (Device object): correlated object.
+                -object (Device object): Correlated object.
         """
 
         # Verify provided data:
         self._verification(**kwargs)
 
-        # Collect content type object if app_name and model_name was provided:
+        # Check if object was provided:
         if kwargs.get('object', False):
-            correlated_object = kwargs['object']
-            # Collect app and model name based on object information:
-            kwargs['app_name'] = correlated_object.__class__._meta.app_label
-            kwargs['model_name'] = correlated_object.__class__.__name__
-            # Collect object ID:
-            kwargs['object_id'] = correlated_object.id
+            # Check if provided object is valid:
+            if isinstance(kwargs['object'], Model):
+                correlated_object = kwargs['object']
+                # Collect app and model name based on object information:
+                kwargs['app_name'] = correlated_object.__class__._meta.app_label
+                kwargs['model_name'] = correlated_object.__class__.__name__
+                # Collect object ID:
+                kwargs['object_id'] = correlated_object.id
+            else: # If object is not valid raise TypeError:
+                raise TypeError('Provided object id not a valid Django object.')
+        
         # Try to create notification:
         try:
             notification = NotificationModel.objects.create(
@@ -103,8 +107,7 @@ class Notification:
                 model_name=kwargs.get('model_name', None),
                 object_id=kwargs.get('object_id', None),
                 type=kwargs.get('type', 0),
-                message=message,
-            )
+                message=message)
         except:
             return False
         else:
@@ -121,20 +124,17 @@ class Notification:
         kwargs: dictionary
             It takes the following values:
                 -type (Int): Type of notification.
-            -Information about content:
-                -option I:
-                    -app_name (Str): Model application name.
-                    -model_name (Str): Model name.
-                    -object_id (Int): ID of log related object.
-                -Option II:
-                    -object (Device object): correlated object.
+                -object (Device object): Correlated object.
+                -notification (Str): Notification channel name.
         """
 
         self.channel_notification(message, **kwargs)
         return self.database_notification(message, **kwargs)
 
     def _verification(self, **kwargs):
-        """ Provided data verification. """
+        """
+        Provided data verification.
+        """
 
         # Verify if the task_id variable is a valid sting:
         if kwargs.get('message', False):        
@@ -148,3 +148,10 @@ class Notification:
         if kwargs.get('type', False):        
             if not isinstance(kwargs['type'], int):
                 raise TypeError('The provided type variable must be integer.')
+
+        # Verify if the type variable is a valid sting:
+        if kwargs.get('notification', False):        
+            if not isinstance(kwargs['notification'], str):
+                raise TypeError('The provided notification variable must be string.')
+        else:
+            kwargs['notification'] = 'notification'
