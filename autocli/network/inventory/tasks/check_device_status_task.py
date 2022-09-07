@@ -2,19 +2,19 @@
 __author__ = 'Robert Tadeusz Kucharski'
 __version__ = '2.1'
 
-# Python Import:
+# Python import:
 import threading
 
-# Base task Import:
+# Base task import:
 from network.all.base_task.base_task import BaseTask
 
-# Connection class Import:
+# Connection class import:
 from network.all.base_connection.connection import Connection
 
 # Device model import:
 from network.inventory.models.device import Device
 
-# Celery application Import:
+# Celery application import:
 from autocli.celery import app
 
 
@@ -37,28 +37,16 @@ class CheckDeviceStatus(BaseTask):
     message_name = 'Check device status'
     queue = 'status_check'
 
-    def _run(self, pk, *args, **kwargs):
+    def _run(self, pk: int or str or list, *args, **kwargs) -> None:
 
         # Define status values:
         self.active_devices = 0
-        self.all_devices = 0
 
-        # Try to collect all device objects based on provided pk value:
-        try:
-            if isinstance(pk, int):
-                collected_devices = Device.objects.filter(pk=pk)
-            elif isinstance(pk, list):
-                collected_devices = Device.objects.filter(pk__in=pk)
-            elif pk == 'all':
-                collected_devices = Device.objects.all()
-            else:
-                raise TypeError('Provided PK value is not a integer, list or "all" string.')
-        except:
-            # Log status update: 
-            self.logger.warning(f'Error occurs during device collection (PK/s = {pk}).',
-                code_id='48753847937689738679838884734686')
-        else:
-            # Collect all operation timer:
+        # Collect device/s based on provided pk value/s:
+        collected_devices = self._collect_device_objects(pk)
+       
+        if collected_devices:
+            # Start execution timer:
             self._start_execution_timer()
             # Define threads list:
             threads = list()
@@ -76,16 +64,44 @@ class CheckDeviceStatus(BaseTask):
             # Wait to end of all threads execution:
             for index, thread in enumerate(threads):
                 thread.join()
-            # Summary of the operations execution:
-            end_operation = self._end_execution_timer()
+            # Summary of the operations time execution:
+            operation_time = self._end_execution_timer()
             # Log end of process:
             self.logger.info(f'Status verification process '\
                 f'has been completed, {self.active_devices} device/s '\
-                f'from {self.all_devices}, is active. '\
-                f'Process take {end_operation} seconds.',
+                f'from {len(collected_devices)}, is active. '\
+                f'Process take {operation_time} seconds.',
                 code_id='48753847937689738679838884754565')
 
-    def _check_device_status(self, device):
+    def _collect_device_objects(self, pk) -> Device:
+        """
+        Collect device/s based on provided pk value/s.
+        """
+
+        # Try to collect all device objects based on provided pk value:
+        try:
+            if isinstance(pk, int):
+                collected_devices = Device.objects.filter(pk=pk)
+            elif isinstance(pk, list):
+                collected_devices = Device.objects.filter(pk__in=pk)
+            elif pk == 'all':
+                collected_devices = Device.objects.all()
+            else:
+                raise TypeError('Provided PK value is not a integer, list or "all" string.')
+        except:
+            # Log status update: 
+            self.logger.warning(f'Error occurs during device collection (PK/s = {pk}).',
+                code_id='48753847937689738679838884734686')
+            # Return False:
+            return False
+        else:
+            # Return collected device/s:
+            return collected_devices
+
+    def _check_device_status(self, device) -> None:
+        """
+        Check status of provided device (SSH).
+        """
 
         # Declare change value:
         changed = False
@@ -105,7 +121,6 @@ class CheckDeviceStatus(BaseTask):
                 changed = True
             # Change status values:
             self.active_devices += 1
-            self.all_devices += 1
             # Prepare message:
             message = f'SSH status of device {device_name} was checked, device is active.'
         else:
@@ -113,8 +128,6 @@ class CheckDeviceStatus(BaseTask):
             if device.ssh_status is True:
                 device.ssh_status = False
                 changed = True
-            # Change status values:
-            self.all_devices += 1
             # Prepare message:
             message = f'SSH status of device {device_name} was checked, device is not active.'
         # Update device object:

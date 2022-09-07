@@ -53,13 +53,19 @@ class ChangeLog(BaseModel):
         blank=True,
     )
 
-    # Action and source:
+    # Action and change message:
     action = models.IntegerField(
         verbose_name='Change log action',
         help_text='The action that was performed on a given model.',
         choices=ACTION,
         default=0,
     )
+    # message = models.JSONField(
+    #     verbose_name='Simple change notification',
+    #     help_text='JSON object representation after changes was made, and saved to database.',
+    #     null=True,
+    #     blank=True,
+    # )
 
     # Change details:
     after = models.JSONField(

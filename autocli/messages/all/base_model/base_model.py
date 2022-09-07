@@ -32,11 +32,15 @@ class BaseModel(models.Model):
         verbose_name='Object application name',
         help_text='Name of the object application.',
         max_length=64,
+        null=True,
+        blank=True,
     )
     model_name = models.CharField(
         verbose_name='Object model name',
         help_text='Name of the object model.',
         max_length=64,
+        null=True,
+        blank=True,
     )
     object_id = models.IntegerField(
         verbose_name='Object ID',
