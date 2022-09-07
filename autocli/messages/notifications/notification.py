@@ -29,6 +29,24 @@ class Notification:
         save them to database.
     """
 
+    def __init__(self, application: str = '--NoName--') -> None:
+        """
+        Notification application activity.
+        """
+
+        # Verify if the application variable is a valid sting:
+        if isinstance(application, str):
+            if len(application) <= 64:
+                self.application = application
+            else:
+                raise ValueError('The provided application variable is to long (Allowed max 64 signs).')
+        else:
+            raise TypeError('The provided application variable must be string.')
+
+        # Log data:
+        self.log_data = None
+
+
     # Channels registration:
     channel_layer = get_channel_layer()
 
@@ -61,6 +79,7 @@ class Notification:
                     'app_name': correlated_object.__class__._meta.app_label,
                     'model_name': correlated_object.__class__.__name__,
                     'object_id': correlated_object.pk,
+                    'application': self.application,
                     'link': 'None'})
             else:
                 raise TypeError('Provided object id not a valid Django object.')
@@ -107,6 +126,7 @@ class Notification:
                 model_name=kwargs.get('model_name', None),
                 object_id=kwargs.get('object_id', None),
                 type=kwargs.get('type', 0),
+                application=self.application,
                 message=message)
         except:
             return False

@@ -9,7 +9,7 @@ from messages.notifications.models.notification import Notification
 class NotificationAdmin(admin.ModelAdmin):
 
     list_display = (
-        'pk', 'timestamp', 'object_id', 'type', 'message',
+        'pk', 'timestamp', 'object_id', 'app_name', 'model_name', 'type', 'application', 'message',
     )
     list_filter = (
         'app_name', 'model_name', 'type',
@@ -20,7 +20,7 @@ class NotificationAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('type',)
+            'fields': ('type', 'application',)
         }),
         ('Change object information', {
             'classes': ('wide', 'extrapretty',),

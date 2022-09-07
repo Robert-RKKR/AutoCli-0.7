@@ -28,16 +28,16 @@ class BaseTask(Task):
     queue = 'rkkr'
 
     # Define logger name:
-    logger_name = 'BaseTask'
+    message_name = 'BaseTask'
 
     # Timer:
     execution_timer = None
 
     def run(self, *args, **kwargs) -> None:
         # Logger initialization:
-        self.logger = Logger(self.logger_name)
+        self.logger = Logger(self.message_name)
         # Notification initialization:
-        self.notification = Notification()
+        self.notification = Notification(self.message_name)
         # Collect process ID:
         self.task_id = self.request.id
         # Run task in delay:

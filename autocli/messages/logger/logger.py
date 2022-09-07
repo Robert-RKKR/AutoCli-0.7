@@ -43,7 +43,9 @@ class Logger:
     """
 
     def __init__(self, application: str = '--NoName--') -> None:
-        """ Log application activity. """
+        """
+        Log application activity.
+        """
 
         # Verify if the application variable is a valid sting:
         if isinstance(application, str):

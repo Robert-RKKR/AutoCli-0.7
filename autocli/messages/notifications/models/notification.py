@@ -9,15 +9,16 @@ from messages.notifications.managers.notification import NotificationManager
 
 # Constants:
 TYPE = (
-    (1, 'CRITICAL'),
-    (2, 'ERROR'),
-    (3, 'WARNING'),
-    (4, 'INFO'),
-    (5, 'DEBUG'),
+    (0, 'Unknown'),
+    (1, 'Critical'),
+    (2, 'Error'),
+    (3, 'Warning'),
+    (4, 'Info'),
+    (5, 'Debug'),
 )
 
 
-# Logger models:
+# Notification models:
 class Notification(BaseModel):
 
     class Meta:
@@ -37,9 +38,15 @@ class Notification(BaseModel):
         verbose_name='Notification type',
         help_text='Type of notification message.',
         choices=TYPE,
+        default=4,
     )
 
-    # Notification data:
+    # Notification main data:
+    application = models.CharField(
+        verbose_name='Application',
+        help_text='Name of the application which triggered the notification.',
+        max_length=64,
+    )
     message = models.CharField(
         verbose_name='Message',
         help_text='Notification message.',

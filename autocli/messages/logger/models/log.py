@@ -32,7 +32,7 @@ class Log(BaseModel):
     # Model objects manager:
     objects = LogManager()
 
-    # Log corelation:
+    # Log main data:
     application = models.CharField(
         verbose_name='Application',
         help_text='Name of the application which triggered the log.',

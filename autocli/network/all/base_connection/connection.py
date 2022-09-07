@@ -232,9 +232,9 @@ class Connection:
         """
 
         # Start a new SSH connection:
-        connection = self.start_connection()
+        device_type = self._ssh_connect(autodetect=True)
         # Return connection status:
-        if connection:
+        if device_type:
             return True
         else:
             return False
@@ -256,7 +256,8 @@ class Connection:
             object=self.device_object)
 
         # Connect to device to check device type, using SSH protocol:
-        discovered_device_type_name = self._ssh_connect(autodetect=True).strip()
+        discovered_device_type_name = self._ssh_connect(autodetect=True)
+        discovered_device_type_name = str(discovered_device_type_name).strip()
 
         if discovered_device_type_name:
 
@@ -535,7 +536,7 @@ class Connection:
             # Log end of command execution:
             logger.info(f'Enabled command "{command}" has been sent to '\
                 f'{self.device_name}:{self.device_hostname}.',
-                code_id='34753968794278589347307485934645',
+                code_id='45937576967845796874673497346456',
                 object=self.device_object)
 
             # Check if command output is valid:

@@ -25,7 +25,7 @@ def test(request):
     logger = Logger('Test page')
     log = logger.critical('================')
 
-    data['output'] = CheckDeviceStatus(1)
+    data['output'] = CheckDeviceStatus('all')
 
     device = Device.objects.get(pk=1)
 
