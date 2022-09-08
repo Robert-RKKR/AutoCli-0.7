@@ -25,22 +25,22 @@ def test(request):
     logger = Logger('Test page')
     log = logger.critical('================')
 
-    data['output'] = CheckDeviceStatus('all')
+    # data['output'] = CheckDeviceStatus('all')
 
     device = Device.objects.get(pk=1)
 
-    # with Connection(device) as con:
-    #     output = con.send_enabled_dict([
-    #         'show version',
-    #         'show ip route',
-    #         'show ip access-list',
-    #         'show psp',
-    #         'show cdp neighbors detail',
-    #         'show clock',
-    #         'show network'
-    #     ])
+    with Connection(device) as con:
+        output = con.send_enabled_dict([
+            'show version',
+            'show ip route',
+            'show ip access-list',
+            'show psp',
+            'show cdp neighbors detail',
+            'show clock',
+            'show network'
+        ])
 
-    # data['output'] = json.dumps(output)
+    data['output'] = json.dumps(output)
     
     # GET method:
     return render(request, 'test.html', data)

@@ -80,7 +80,7 @@ class Connection:
             Determines how long the network connection will be attempted.
         """
 
-        # Verify if the specified device variable is a valid Device object:
+        # Verify if the provided device variable is a valid Device object:
         if isinstance(device, Device):
             try:
                 # Collect basic device data:
@@ -97,8 +97,10 @@ class Connection:
                 # Collect user data:
                 if self.device_credential is None:
                     # Use default user data:
-                    self.device_username = collect_setting('default_username', default='admin')
-                    self.device_password = collect_setting('default_password', default='password')
+                    self.device_username = collect_setting(
+                        'default_username', default='admin')
+                    self.device_password = collect_setting(
+                        'default_password', default='password')
                 else: # Collect username and password from credential Model:
                     self.device_username = self.device_credential.username
                     self.device_password = self.device_credential.password
@@ -113,12 +115,14 @@ class Connection:
                     self.supported_device = None
 
             except:
-                raise TypeError('Provided device object is not compatible with connection class.')
+                raise TypeError('Provided device object is not compatible '\
+                    'with connection class.')
 
         else:
-            raise TypeError('The provided device variable must be a valid object of the Device class.')
+            raise TypeError('The provided device variable must be a '\
+                'valid object of the Device class.')
 
-        # Validate other provided data:
+        # Validation of the other provided data:
         self._validate_provided_data(task_id, repeat_connection, repeat_connection_time)
 
         # Connection declarations:
@@ -135,8 +139,8 @@ class Connection:
         """
         Use Connection class with python with command:
 
-        with Connection(device) as connection:
-            print(connection)
+        with Connection(device) as con:
+            output = con.send_enable('show version')
 
         Return:
         --------
@@ -488,6 +492,13 @@ class Connection:
         """
 
         print('Unsupported')
+
+    def execute_device_type_templates(self) -> dict:
+        """
+        Xxx.
+        """
+
+        pass
 
     def _enabled_command_execution(self, command: str) -> str:
         """

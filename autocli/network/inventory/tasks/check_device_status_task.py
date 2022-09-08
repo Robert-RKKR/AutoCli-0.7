@@ -133,7 +133,7 @@ class CheckDeviceStatus(BaseTask):
         # Update device object:
         if changed:
             device.save(update_fields=['ssh_status'])
-        # Send notification:
+        # Send user notification:
         self.notification.send(message, object=device, notification=self.queue)
         # Log status update:
         self.logger.info(message,
