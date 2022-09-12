@@ -49,7 +49,7 @@ class Connections():
         for device in devices:
             # Verify if the provided device variable is a valid Device object:
             if isinstance(device, Device):
-                # Create Connection clas object:
+                # Create Connection class object:
                 connection = Connection(device, self.task_id,
                     repeat_connection, repeat_connection_time)
                 # Device data dictionary:
@@ -81,11 +81,9 @@ class Connections():
         """
         
         try: # Try to start SSH connection:
-            response = self.start_connection()
-            if not response:
-                return False
+            self.start_connection()
         except:
-                return False
+            return False
         else:
             # In case of success,
             # return Connection class object:
@@ -123,7 +121,7 @@ class Connections():
 
         with concurrent.futures.ThreadPoolExecutor(
             max_workers=collect_setting('max_workers', default=10)) as executor:
-            # Run connection execution function in Thread Pools withprovided devices:
+            # Run connection execution function in Thread Pools with provided devices:
             executor.map(end_connection_execution, self.devices_data)
 
     def send_enable(self, commands: str or list) -> dict:
@@ -144,7 +142,7 @@ class Connections():
         Dictionary containing command/s output.
         """
 
-        # Declar final data output:
+        # Declare final data output:
         output_data = {}
 
         def send_enable_threadpoolexecutor(device_name):
@@ -184,7 +182,7 @@ class Connections():
         String containing command/s output.
         """
 
-        # Declar final data output:
+        # Declare final data output:
         output_data = {}
 
         def send_enable_threadpoolexecutor(device_name):
@@ -227,7 +225,7 @@ class Connections():
         Dictionary containing command/s output and process data.
         """
 
-        # Declar final data output:
+        # Declare final data output:
         output_data = {}
 
         def send_enable_threadpoolexecutor(device_name):

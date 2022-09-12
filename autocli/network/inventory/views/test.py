@@ -11,6 +11,7 @@ from network.inventory.models.device_type_template import DeviceTypeTemplate
 from messages.logger.models.log import Log
 from messages.logger.logger import Logger
 from network.all.base_connection.connection import Connection
+from network.all.base_connection.connections import Connections
 from system.settings.settings import collect_setting
 from network.inventory.tasks.check_device_status_task import CheckDeviceStatus
 
@@ -28,8 +29,21 @@ def test(request):
     # data['output'] = CheckDeviceStatus('all')
 
     device = Device.objects.get(pk=1)
+    devices = Device.objects.filter(pk__in=[1, 22])
+    all_devices = Device.objects.all()
 
-    with Connection(device) as con:
+    # with Connection(device) as con:
+    #     output = con.send_enabled_dict([
+    #         'show version',
+    #         'show ip route',
+    #         'show ip access-list',
+    #         'show psp',
+    #         'show cdp neighbors detail',
+    #         'show clock',
+    #         'show network'
+    #     ])
+
+    with Connections(devices) as con:
         output = con.send_enabled_dict([
             'show version',
             'show ip route',

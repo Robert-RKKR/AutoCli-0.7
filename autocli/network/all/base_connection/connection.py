@@ -458,31 +458,34 @@ class Connection:
         return_data = {}
         # Collect command/s output:
         commands_output = self.send_enable(commands)
-        # Iterate thu collected command/s outputs:
-        for command_name in commands_output:
+        try:
+            # Iterate thu collected command/s outputs:
+            for command_name in commands_output:
 
-            # Collect command data:
-            command_output = commands_output[command_name]
-            # Check if command output is valid:
-            if command_output:
-                # Process collected command output:
-                processed_data = self._process_command_output_to_dictionary(
-                    command_name.strip(), command_output)
-                # Prepare return data:
-                data = {
-                    'command_name': command_name,
-                    'command_output': command_output,
-                    'processed_data': processed_data['output'],
-                    'processed_error': processed_data['error']}
-            else:
-                # Prepare return data:
-                data = {
-                    'command_name': command_name,
-                    'command_output': False,
-                    'processed_data': False,
-                    'processed_error': 'Command output was not received.'}
-            # Add collected data to return data:
-            return_data[command_name] = data
+                # Collect command data:
+                command_output = commands_output[command_name]
+                # Check if command output is valid:
+                if command_output:
+                    # Process collected command output:
+                    processed_data = self._process_command_output_to_dictionary(
+                        command_name.strip(), command_output)
+                    # Prepare return data:
+                    data = {
+                        'command_name': command_name,
+                        'command_output': command_output,
+                        'processed_data': processed_data['output'],
+                        'processed_error': processed_data['error']}
+                else:
+                    # Prepare return data:
+                    data = {
+                        'command_name': command_name,
+                        'command_output': False,
+                        'processed_data': False,
+                        'processed_error': 'Command output was not received.'}
+                # Add collected data to return data:
+                return_data[command_name] = data
+        except:
+            return False
 
         # Return collected data:
         return return_data
