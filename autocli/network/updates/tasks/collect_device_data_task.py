@@ -12,7 +12,6 @@ from network.updates.models.update import Update
 # Device model import:
 from network.inventory.models.device import Device
 
-
 # Django exception import:
 from django.db import IntegrityError
 
@@ -165,7 +164,7 @@ class CollectDeviceDataTask(BaseTask):
                 result_status = False
 
             try: # Try to create single device collected data object:
-                DeviceCollectedData.objects.create(
+                CollectedData.objects.create(
                     # Update corelation:
                     device_update=update_object,
                     # Collected command data:
@@ -219,7 +218,7 @@ class CollectDeviceDataTask(BaseTask):
         new_update_object = None
 
         try: # Try to create new update object:
-            new_update_object = DeviceUpdate.objects.create(
+            new_update_object = Update.objects.create(
                 device=collected_device_object, status=0)
         except IntegrityError as error:
             self.logger.warning(

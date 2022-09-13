@@ -23,7 +23,7 @@ class Connections():
     def __init__(self,
         devices: list,
         task_id: str = None,
-        repeat_connection: int = 3,
+        repeat_connection: int = 2,
         repeat_connection_time: int = 2,
     ) -> None:
         """
@@ -155,7 +155,7 @@ class Connections():
 
         with concurrent.futures.ThreadPoolExecutor(
             max_workers=collect_setting('max_workers', default=10)) as executor:
-            # Run send_enabled method for all network devices and collect respone:
+            # Run send_enabled method for all network devices and collect response:
             for result in executor.map(send_enable_threadpoolexecutor,
                 self.devices_data):
                 # Add output to final data output:
@@ -195,7 +195,7 @@ class Connections():
 
         with concurrent.futures.ThreadPoolExecutor(
             max_workers=collect_setting('max_workers', default=10)) as executor:
-            # Run send_enabled method for all network devices and collect respone:
+            # Run send_enabled method for all network devices and collect response:
             for result in executor.map(send_enable_threadpoolexecutor,
                 self.devices_data):
                 # Add output to final data output:
@@ -204,7 +204,6 @@ class Connections():
         # Return output data:
         return output_data
 
-    
     def send_enabled_dict(self, commands: str or list) -> dict:
         """
         Retrieves a string or list containing network CLI command/s,
@@ -238,7 +237,7 @@ class Connections():
 
         with concurrent.futures.ThreadPoolExecutor(
             max_workers=collect_setting('max_workers', default=10)) as executor:
-            # Run send_enabled method for all network devices and collect respone:
+            # Run send_enabled method for all network devices and collect response:
             for result in executor.map(send_enable_threadpoolexecutor,
                 self.devices_data):
                 # Add output to final data output:

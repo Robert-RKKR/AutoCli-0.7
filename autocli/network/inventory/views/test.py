@@ -44,7 +44,7 @@ def test(request):
     #     ])
 
     with Connections(devices) as con:
-        output = con.send_enabled_dict([
+        output = con.send_enable([
             'show version',
             'show ip route',
             'show ip access-list',
