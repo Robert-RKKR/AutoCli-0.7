@@ -18,6 +18,32 @@ from system.settings.settings import collect_setting
 # Connections class:
 class Connections():
     """
+    The class uses an SSH connection to connect to the
+    multiple devices and perform available operations.
+    
+    Methods:
+    -----------------
+    start_connection:
+        Start SSH connection with provided devices.
+    end_connection:
+        End current SSH connection.
+    test_connection:
+        Test connection to provided devices.
+    update_device_type:
+        Update provide devices type.
+    send_enable:
+        Send enabled command/s to provided devices,
+        returns cli command/s output.
+    send_enabled_dict:
+        Send enabled command/s to provided devices,
+        returns cli output and processed command/s data.
+    send_config:
+        Send configuration command/s to provided devices.
+    execute_device_type_templates:
+        Run all devices type template. available for provided
+        devices. returns cli output and processed command/s data.
+    send_config_dict:
+        Not implemented yet.
     """
 
     def __init__(self,
@@ -232,6 +258,37 @@ class Connections():
             connection = self.devices_data[device_name]['connection']
             # Run send_enabled method:
             output = connection.send_enabled_dict(commands)
+            # Return output data:
+            return {device_name: output}
+
+        with concurrent.futures.ThreadPoolExecutor(
+            max_workers=collect_setting('max_workers', default=10)) as executor:
+            # Run send_enabled method for all network devices and collect response:
+            for result in executor.map(send_enable_threadpoolexecutor,
+                self.devices_data):
+                # Add output to final data output:
+                output_data.update(result)
+
+        # Return output data:
+        return output_data
+
+    def execute_device_type_templates(self) -> dict:
+        """
+        Collects all device type templates commands,
+        and sends them to a network device using SSH protocol.
+        Collected commands are process to receive dictionary output,
+        based on Device type templates.
+        ! Usable only with enable levels commend/s.
+        """
+
+        # Declare final data output:
+        output_data = {}
+
+        def send_enable_threadpoolexecutor(device_name):
+            # Collect connection class object:
+            connection = self.devices_data[device_name]['connection']
+            # Run send_enabled method:
+            output = connection.execute_device_type_templates()
             # Return output data:
             return {device_name: output}
 

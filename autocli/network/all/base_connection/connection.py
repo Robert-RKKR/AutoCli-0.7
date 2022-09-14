@@ -37,7 +37,8 @@ INVALID = [
 # Main connection class:
 class Connection:
     """
-    Class to SSH connection.
+    The class uses an SSH connection to connect to the
+    device and perform available operations.
     
     Methods:
     -----------------
@@ -57,6 +58,9 @@ class Connection:
         returns cli output and processed command/s data.
     send_config:
         Send configuration command/s to provided device.
+    execute_device_type_templates:
+        Run all device type template. available for provided
+        device. returns cli output and processed command/s data.
     send_config_dict:
         Not implemented yet.
     """
@@ -433,8 +437,7 @@ class Connection:
         # inform that the command/s cannot be sent:
         else:
             logger.error(f'Command/s could not be executed because SSH '\
-                f'connection with device: {self.device_name}:'\
-                f'{self.device_hostname}, is not active.',
+                f'connection with device: {self.device_repr} is not active.',
                 code_id='43565892742368562758284832947343',
                 object=self.device_object)
 
@@ -502,10 +505,25 @@ class Connection:
 
     def execute_device_type_templates(self) -> dict:
         """
-        Xxx.
+        Collects all device type templates commands,
+        and sends them to a network device using SSH protocol.
+        Collected commands are process to receive dictionary output,
+        based on Device type templates.
+        ! Usable only with enable levels commend/s.
         """
 
-        pass
+        # Define data output:
+        output_data = []
+        # Collect all device type templates:
+        all_device_type_templates = DeviceTypeTemplate.objects.filter(
+            device_type=self.device_type)
+        
+        # Itterate thru all collected templates:
+        for device_type_templates in all_device_type_templates:
+            output_data.append(self._enabled_command_execution(
+                command=device_type_templates.command))
+        # Return data output:
+        return output_data
 
     def _enabled_command_execution(self, command: str) -> str:
         """
@@ -625,7 +643,7 @@ class Connection:
             # Return data:
             return command_output
 
-    def _validate_provided_data(self, task_id, repeat_connection, repeat_connection_time):
+    def _validate_provided_data(self, task_id, repeat_connection, repeat_connection_time) -> None:
         """
         Validate provided data.
         """
@@ -739,7 +757,7 @@ class Connection:
 
         Return:
         --------
-        The type of network device.
+        The type of network device or connection status.
         """
 
         def log_connection_exception(connection_attempt, error):
@@ -755,7 +773,7 @@ class Connection:
                 # Change connection status to False.
                 self.connection_status = False
                 # Return False:
-                return False
+                return self.connection_status
             else: # Log authentication exception:
                 logger.error(f'Error occurred during SSH connection to device:'\
                     f' {self.device_repr} '\
@@ -849,7 +867,7 @@ class Connection:
                         self.connection = False
                         return device_type
                     else: # Return connection:
-                        return self.connection
+                        return self.connection_status
 
             # Return connection status:
             return self.connection_status
