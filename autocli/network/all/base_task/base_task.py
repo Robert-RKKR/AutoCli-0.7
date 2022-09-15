@@ -73,3 +73,9 @@ class BaseTask(Task):
             execution=self.execution_timer)
         # Return execution timer value:
         return self.execution_timer
+
+    def _check_output_status(self, output) -> bool:
+        if output == {} or output == [] or output is None or output is False:
+            return False
+        else:
+            return True

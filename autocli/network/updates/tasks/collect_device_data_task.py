@@ -75,7 +75,7 @@ class CollectDeviceDataTask(BaseTask):
                     update_object = self._create_update_object(device)
                     # (Step: 4) Save collected data, into device collected dada object:
                     if update_object:
-                        output = self._save_to_device_collected_data(collected_data, update_object)
+                        output = self._save_to_device_collected_data(collected_data, update_object, device)
                         # Check output status:
                         if output:
                             # Raise successes command counter:
@@ -93,7 +93,7 @@ class CollectDeviceDataTask(BaseTask):
                     # Create message:
                     message = f'Data could not be collected from device {device_name}.'
                     # Log end of process:
-                    self.logger.info(message, self.task_id, object=device,
+                    self.logger.info(message, object=device,
                         code_id='58769376897345897428975345436546')
                     # Send user notification:
                     self.notification.send(message, object=device,
@@ -118,8 +118,7 @@ class CollectDeviceDataTask(BaseTask):
                 # Create fails of data collection process message:
                 message = f'Process of collecting information from all requested devices fails.'
             # Log end of process:
-            self.logger.info(message, self.task_id,
-                code_id='48937458976893789679358237597436')
+            self.logger.info(message, code_id='48937458976893789679358237597436')
             # Send user notification:
             self.notification.send(message,
                 notification=self.queue)
@@ -136,7 +135,7 @@ class CollectDeviceDataTask(BaseTask):
         # Return successful variable:
         return successful
 
-    def _save_to_device_collected_data(self, collected_data, update_object):
+    def _save_to_device_collected_data(self, collected_data, update_object, device):
         """
         Save collected data to collect device data object.
         """
@@ -144,14 +143,14 @@ class CollectDeviceDataTask(BaseTask):
         # Defiant counts values:
         commands_count = len(collected_data)
         successes_command = 0
-
         # Iterate thru all collected commands:
         for single_command_output in collected_data:
-
             # Collect command data:
-            command_name = single_command_output['command']
-            command_raw_data = single_command_output['command_output']
-            command_processed_data = single_command_output['processed_output']
+            command_data = collected_data[single_command_output]
+            # Collect command data:
+            command_name = command_data['command_name']
+            command_raw_data = command_data['command_output']
+            command_processed_data = command_data['processed_data']
             # Collect collected data status:
             raw_data_status = self._check_output_status(command_raw_data)
             processed_data_status = self._check_output_status(command_processed_data)
@@ -166,7 +165,7 @@ class CollectDeviceDataTask(BaseTask):
             try: # Try to create single device collected data object:
                 CollectedData.objects.create(
                     # Update corelation:
-                    device_update=update_object,
+                    update=update_object,
                     # Collected command data:
                     command_name=command_name,
                     command_raw_data=command_raw_data,
@@ -178,38 +177,37 @@ class CollectDeviceDataTask(BaseTask):
                 )
             except IntegrityError as error:
                 # Log fails of data collection process:
-                self.logger.warning(
-                    f'Process of creating device collected data object fails,'\
-                    f' on device {self.corelate_object_name}.\n{error}',
-                    self.task_id, self.corelate_object_name)
+                self.logger.warning(f'Process of creating device collected data object fails,'\
+                    f' on device {device.name}.\n{error}',
+                    code_id='38537459873486754845960739345664',
+                    object=device)
                 # Return False value
                 return False
             
-        # Create message:
-        message = f'Successfully collected {successes_command} output/s '\
-        f'outputs from {commands_count} command/s, on device {self.corelate_object_name}. '\
-        f'Execution time {self.execution_timer} seconds.'
         # Send message to channel:
-        self.send_message(message, self.queue)
+        self.notification.send(f'Successfully collected {successes_command} output/s '\
+            f'from {commands_count} command/s, on device {device.name}. '\
+            f'Execution time {self.execution_timer} seconds.',
+            notification=self.queue)
 
         # Log end of collected data saving process:
         if successes_command > 0:
-            self.logger.info(
-                f'Process of collecting information from {self.corelate_object_name} '\
+            self.logger.info(f'Process of collecting information from {device.name} '\
                 f'has been accomplish (Collected {successes_command} '
                 f'\outputs from {commands_count} commands). '\
                 f'Execution time {self.execution_timer} seconds.',
-                self.task_id, self.corelate_object_name, True)
+                code_id='38537459873486754845960739456456',
+                object=device)
             return True
         else:
-            self.logger.warning(
-                f'Process of collecting information from '
-                f'\{self.corelate_object_name} has failed. '\
+            self.logger.warning(f'Process of collecting information from '
+                f'\{device.name} has failed. '\
                 f'Execution time {self.execution_timer} seconds.',
-                self.task_id, self.corelate_object_name, True)
+                code_id='38537459873486754556465465464566',
+                object=device)
             return False
 
-    def _create_update_object(self, collected_device_object):
+    def _create_update_object(self, device):
         """
         Create a new Device update object.
         """
@@ -219,12 +217,12 @@ class CollectDeviceDataTask(BaseTask):
 
         try: # Try to create new update object:
             new_update_object = Update.objects.create(
-                device=collected_device_object, status=0)
+                device=device, status=0)
         except IntegrityError as error:
-            self.logger.warning(
-                f'Process of creating device update object fails,'\
-                f' on device {self.corelate_object_name}.\n{error}',
-                self.task_id, self.corelate_object_name)
+            self.logger.warning(f'Process of creating device update object fails,'\
+                f' on device {device.name}.\n{error}',
+                code_id='38537459873486754845960739846464',
+                    object=device)
             # Change update object variable to False:
             new_update_object = False
 

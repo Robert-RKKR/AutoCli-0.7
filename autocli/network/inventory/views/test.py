@@ -14,6 +14,7 @@ from network.all.base_connection.connection import Connection
 from network.all.base_connection.connections import Connections
 from system.settings.settings import collect_setting
 from network.inventory.tasks.check_device_status_task import CheckDeviceStatus
+from network.updates.tasks.collect_device_data_task import CollectDeviceDataTask
 
 def test(request):
 
@@ -26,7 +27,7 @@ def test(request):
     logger = Logger('Test page')
     log = logger.critical('================')
 
-    # data['output'] = CheckDeviceStatus('all')
+    data['output'] = CollectDeviceDataTask([1, 22])
 
     device = Device.objects.get(pk=1)
     devices = Device.objects.filter(pk__in=[1, 22])
@@ -43,18 +44,21 @@ def test(request):
     #         'show network'
     #     ])
 
-    with Connections(devices) as con:
-        output = con.send_enable([
-            'show version',
-            'show ip route',
-            'show ip access-list',
-            'show psp',
-            'show cdp neighbors detail',
-            'show clock',
-            'show network'
-        ])
+    # with Connections(devices) as con:
+    #     output = con.send_enable([
+    #         'show version',
+    #         'show ip route',
+    #         'show ip access-list',
+    #         'show psp',
+    #         'show cdp neighbors detail',
+    #         'show clock',
+    #         'show network'
+    #     ])
 
-    data['output'] = json.dumps(output)
+    # with Connections(devices) as con:
+    #     output = con.execute_device_type_templates()
+
+    # data['output'] = json.dumps(output)
     
     # GET method:
     return render(request, 'test.html', data)

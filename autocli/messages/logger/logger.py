@@ -183,8 +183,9 @@ class Logger:
         # Verify if the task_id variable is a valid sting:
         if kwargs.get('message', False):        
             if isinstance(kwargs['message'], str):
-                if len(kwargs['message']) > 512:
-                    raise ValueError('The provided message variable is to long (Allowed max 64 signs).')
+                # if len(kwargs['message']) > 2048:
+                #     raise ValueError('The provided message variable is to long (Allowed max 2048 signs).')
+                kwargs['message'] = kwargs['message'][0:2047]
             else:
                 raise TypeError('The provided message variable must be string.')
 

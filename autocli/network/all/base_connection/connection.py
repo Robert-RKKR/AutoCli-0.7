@@ -31,6 +31,8 @@ logger = Logger('SSH connection')
 INVALID = [
     'invalid input detected',
     'cdp is not enabled',
+    'incomplete command',
+    'no spanning tree instance exists'
 ]
 
 
@@ -185,7 +187,7 @@ class Connection:
             
             # Check if device need autodetect device type:
             if self.supported_device is None:
-                logger.info(f'Device type of the device: {self.device_name}, must be discovered.',
+                logger.info(f'Device type of the device: {self.device_repr}, must be discovered.',
                     code_id='45366876978216757567883248573975',
                     object=self.device_object)
                 # Update device type based on information collected via SSH protocol:
@@ -206,7 +208,8 @@ class Connection:
                 return False
         
         else: # Log that connection is already establish:
-            logger.warning('Connection is already established.',
+            logger.warning(f'Connection to device: {self.device_repr} '\
+                'is already established.',
                 code_id='58397698345748759427958743978654',
                 object=self.device_object)
             # Return Connection class object:
@@ -513,17 +516,24 @@ class Connection:
         """
 
         # Define data output:
-        output_data = []
+        output_data = None
+        # Define command list:
+        commands = []
         # Collect all device type templates:
         all_device_type_templates = DeviceTypeTemplate.objects.filter(
-            device_type=self.device_type)
-        
-        # Itterate thru all collected templates:
+            device_type=self.device_type,
+            special=False,
+            vrf=False)
+        # Iterate thru all collected templates:
         for device_type_templates in all_device_type_templates:
-            output_data.append(self._enabled_command_execution(
-                command=device_type_templates.command))
-        # Return data output:
-        return output_data
+            commands.append(device_type_templates.command)
+        # Send all collected commands to device:
+        output_data = self.send_enabled_dict(commands)
+        # Return data output or False if data output list is empty:
+        if output_data:
+            return output_data
+        else: # If data output list is empty, return False:
+            return False
 
     def _enabled_command_execution(self, command: str) -> str:
         """

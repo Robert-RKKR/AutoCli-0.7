@@ -64,7 +64,7 @@ class Log(BaseModel):
     message = models.CharField(
         verbose_name='Message',
         help_text='Log message.',
-        max_length=512,
+        max_length=2048,
     )
     execution = models.FloatField(
         verbose_name='Execution time',
