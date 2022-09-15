@@ -8,14 +8,14 @@ from messages.changes.models.change_log import ChangeLog
 from messages.changes.api.serializers.change_log import ChangeLogSerializer
 
 # Paginator import:
-from network.all.base_api.base_pagination import BaseSmallPaginator
+from network.all.base_api.base_pagination import BaseMediumPaginator
 
 
 # All Change Log views:
 class ChangeLogListAPI(generics.ListAPIView):
     queryset = ChangeLog.objects.all()
     serializer_class = ChangeLogSerializer
-    pagination_class = BaseSmallPaginator
+    pagination_class = BaseMediumPaginator
 
 
 class ChangeLogRetrieveAPI(generics.RetrieveAPIView):

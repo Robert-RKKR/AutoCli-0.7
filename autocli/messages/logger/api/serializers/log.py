@@ -5,24 +5,26 @@ from rest_framework.serializers import HyperlinkedIdentityField
 from messages.all.base_api.base_serializer import BaseSerializer
 
 # Models import:
-from messages.changes.models.change_log import ChangeLog
+from messages.logger.models.log import Log
 
 
 # Serializer class:
-class ChangeLogSerializer(BaseSerializer):
+class LogSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-changes:change_log',
+        view_name='api-log:log',
         read_only=False,
     )
 
     class Meta:
 
-        model = ChangeLog
+        model = Log
         fields = BaseSerializer.base_fields + [
-            'object_representation',
-            'administrator',
-            'action',
-            'after',
+            'application',
+            'code_id',
+            'task_id',
+            'severity',
+            'message',
+            'execution',
         ]

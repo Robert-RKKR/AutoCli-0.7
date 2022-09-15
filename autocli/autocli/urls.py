@@ -43,12 +43,13 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),
 
-    # Network/inventory API view registration:
+    # Network API view registration:
     path('api-inventory/', include('network.inventory.api.urls')),
 
-    # Network/inventory view registration:
+    # Network view registration:
     path('network/test/', include('network.inventory.urls')),
 
-    # Messages/changes API view registration:
+    # Messages API view registration:
     path('api-changes/', include('messages.changes.api.urls')),
+    path('api-log/', include('messages.logger.api.urls')),
 ]
