@@ -34,7 +34,7 @@ class CheckDeviceStatus(BaseTask):
 
     name = 'Check device status'
     description = 'Check status of device/s, using SSH / HTTPS protocol.'
-    message_name = 'Check device status'
+    message_name = 'CheckDeviceStatus'
     queue = 'status_check'
 
     def _run(self, pk: int or str or list, *args, **kwargs) -> None:

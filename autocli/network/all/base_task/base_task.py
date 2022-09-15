@@ -27,11 +27,8 @@ class BaseTask(Task):
     name = 'default'
     queue = 'rkkr'
 
-    # Define logger name:
+    # Define logger / notification name:
     message_name = 'BaseTask'
-
-    # Timer:
-    execution_timer = None
 
     def run(self, *args, **kwargs) -> None:
         # Logger initialization:
@@ -46,33 +43,23 @@ class BaseTask(Task):
     def _run(self, *args, **kwargs) -> bool:
         return True
 
-    def _start_execution_timer(self) -> float:
+    def _start_timer(self) -> float:
         """
         Start task execution time counting.
         """
 
-        # Start clock count:
-        self.execution_timer = time.perf_counter()
         # Return execution timer value:
-        return self.execution_timer
+        return time.perf_counter()
 
-    def _end_execution_timer(self) -> float:
+    def _end_timer(self, start_time) -> float:
         """
         End task execution time counting.
         """
 
         # Finish clock count & method execution time:
         finish_time = time.perf_counter()
-        self.execution_timer = round(finish_time - self.execution_timer, 5)
-
-        # Log time of SSH session:
-        self.logger.info(f'The {self.name} task took {self.execution_timer} '\
-            'seconds to complete.',
-            code_id='84759346593467895673945000757890',
-            task_id=self.task_id,
-            execution=self.execution_timer)
         # Return execution timer value:
-        return self.execution_timer
+        return round(finish_time - start_time, 5)
 
     def _check_output_status(self, output) -> bool:
         if output == {} or output == [] or output is None or output is False:

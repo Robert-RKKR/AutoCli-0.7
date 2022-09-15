@@ -45,7 +45,7 @@ class CollectDeviceDataTask(BaseTask):
 
     name = 'Collect device data'
     description = 'Collect data from specified device or devices, using SSH protocol.'
-    logger_name = 'Collect device data'
+    message_name = 'CollectDeviceDataTask'
     queue = 'collect_data'
     
     def _run(self, pk: int or str or list, *args, **kwargs) -> None:
@@ -58,12 +58,12 @@ class CollectDeviceDataTask(BaseTask):
         if collected_devices:
 
             # Start execution timer:
-            self._start_execution_timer()
+            start_execution_time = self._start_timer()
             # Iterate thru all collected device objects:
             for device in collected_devices:
                 
                 # Start single operation clock counter:
-                self._start_execution_timer()
+                start_operation_time = self._start_timer()
                 # Collect device data:
                 device_name = device.name
                 # (Step: 2) Collect data from devices using SSH protocol:
@@ -75,7 +75,9 @@ class CollectDeviceDataTask(BaseTask):
                     update_object = self._create_update_object(device)
                     # (Step: 4) Save collected data, into device collected dada object:
                     if update_object:
-                        output = self._save_to_device_collected_data(collected_data, update_object, device)
+                        output = self._save_data_to_device_collected_data(
+                            collected_data, update_object, device,
+                            start_operation_time)
                         # Check output status:
                         if output:
                             # Raise successes command counter:
@@ -100,34 +102,24 @@ class CollectDeviceDataTask(BaseTask):
                         notification=self.queue)
 
             # Summary of the operations time execution:
-            operation_time = self._end_execution_timer()
+            end_execution_time = self._end_timer(start_execution_time)
             # Create summary message:
-            if successful == 1:
+            if successful > 0:
                 # Create summary data collection process message:
                 message = f'Process of collecting information from all requested devices '\
-                f'has been accomplish (Successfully collected data from {successful} '\
-                f'device out of {len(collected_devices)} requested device, '\
-                f'in {operation_time} seconds).'
-            elif successful > 1:
-                # Create summary data collection process message:
-                message = f'Process of collecting information from all requested devices '\
-                f'has been accomplish (Successfully collected data from {successful} '\
-                f'devices out of {len(collected_devices)} requested devices, '\
-                f'in {operation_time} seconds).'
-            else:
-                # Create fails of data collection process message:
+                f'has been accomplish successfully (Data was collected from: {successful} '\
+                f'device/s out of: {len(collected_devices)} device/s, '\
+                f'in {end_execution_time} seconds).'
+            else: # Create fails of data collection process message:
                 message = f'Process of collecting information from all requested devices fails.'
-            # Log end of process:
-            self.logger.info(message, code_id='48937458976893789679358237597436')
+            # Log end of collection process:
+            self.logger.info(message, code_id='48937458976893789679358237597436',
+                execution=end_execution_time)
             # Send user notification:
             self.notification.send(message,
                 notification=self.queue)
 
         else:
-            # Log data collection error:
-            self.logger.warning('An error occurred during attempt '\
-                'to collect provided device/s, based on PK.',
-                code_id='38537459873486754845960739847534')
             # Send user notification:
             self.notification.send('An error occurred during data collection.',
                 notification=self.queue)
@@ -135,7 +127,11 @@ class CollectDeviceDataTask(BaseTask):
         # Return successful variable:
         return successful
 
-    def _save_to_device_collected_data(self, collected_data, update_object, device):
+    def _save_data_to_device_collected_data(self,
+        collected_data,
+        update_object,
+        device,
+        start_operation_time) -> bool:
         """
         Save collected data to collect device data object.
         """
@@ -183,31 +179,30 @@ class CollectDeviceDataTask(BaseTask):
                     object=device)
                 # Return False value
                 return False
-            
-        # Send message to channel:
-        self.notification.send(f'Successfully collected {successes_command} output/s '\
-            f'from {commands_count} command/s, on device {device.name}. '\
-            f'Execution time {self.execution_timer} seconds.',
-            notification=self.queue)
+
+        # End operation timer:
+        end_operation_time = self._end_timer(start_operation_time)
 
         # Log end of collected data saving process:
         if successes_command > 0:
-            self.logger.info(f'Process of collecting information from {device.name} '\
-                f'has been accomplish (Collected {successes_command} '
-                f'\outputs from {commands_count} commands). '\
-                f'Execution time {self.execution_timer} seconds.',
+            self.logger.info(f'Process of collecting data from {device.name} '\
+                f'has been accomplish (Data was collected from: {successes_command} '
+                f'commands outputs out of: {commands_count} commands). '\
+                f'Execution time take: {end_operation_time} seconds.',
                 code_id='38537459873486754845960739456456',
+                execution=end_operation_time,
                 object=device)
             return True
         else:
-            self.logger.warning(f'Process of collecting information from '
+            self.logger.warning(f'Process of collecting data from '
                 f'\{device.name} has failed. '\
-                f'Execution time {self.execution_timer} seconds.',
+                f'Execution time take: {end_operation_time} seconds.',
                 code_id='38537459873486754556465465464566',
+                execution=end_operation_time,
                 object=device)
             return False
 
-    def _create_update_object(self, device):
+    def _create_update_object(self, device) -> Update:
         """
         Create a new Device update object.
         """
@@ -229,7 +224,7 @@ class CollectDeviceDataTask(BaseTask):
         # Return new update object:
         return new_update_object
 
-    def _collect_data_from_device(self, device):
+    def _collect_data_from_device(self, device) -> dict:
         """
         Collect data from device using SSH protocol (NetCon class).
         """
