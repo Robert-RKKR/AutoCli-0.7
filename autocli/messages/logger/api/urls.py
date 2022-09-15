@@ -6,7 +6,7 @@ from .views.log import LogRetrieveAPI
 from .views.log import LogListAPI
 
 # App name registration:
-app_name = 'api-log'
+app_name = 'api-logger'
 
 urlpatterns = [
     path('log/<int:pk>', LogRetrieveAPI.as_view(), name='log'),

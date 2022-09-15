@@ -23,7 +23,7 @@ class Snapshot(DataTimeModel, StatusModel, IdentificationModel):
         verbose_name_plural = 'Snapshots'
 
         # Default ordering:
-        ordering = ['name']
+        ordering = ['-id']
 
     # Model objects manager:
     objects = CredentialManager()

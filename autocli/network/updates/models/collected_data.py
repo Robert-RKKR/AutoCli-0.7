@@ -25,7 +25,7 @@ class CollectedData(DataTimeModel, StatusModel):
         verbose_name_plural = 'Collected data'
 
         # Default ordering:
-        ordering = ['id']
+        ordering = ['-id']
 
     # Model objects manager:
     objects = CredentialManager()

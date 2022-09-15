@@ -33,7 +33,7 @@ class Update(DataTimeModel, StatusModel):
         verbose_name_plural = 'Update'
 
         # Default ordering:
-        ordering = ['id']
+        ordering = ['-id']
 
     # Model objects manager:
     objects = CredentialManager()

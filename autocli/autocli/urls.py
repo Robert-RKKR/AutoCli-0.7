@@ -45,6 +45,7 @@ urlpatterns = [
 
     # Network API view registration:
     path('api-inventory/', include('network.inventory.api.urls')),
+    path('api-updates/', include('network.updates.api.urls')),
 
     # Network view registration:
     path('network/test/', include('network.inventory.urls')),

@@ -5,7 +5,7 @@ from rest_framework.serializers import PrimaryKeyRelatedField
 # Base serializer import:
 from network.all.base_api.base_serializer import BaseSerializer
 
-# Model import:
+# Related model import:
 from network.inventory.models.device_type import DeviceType
 
 # Model import:
