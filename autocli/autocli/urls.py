@@ -50,6 +50,7 @@ urlpatterns = [
     path('network/test/', include('network.inventory.urls')),
 
     # Messages API view registration:
+    path('api-notification/', include('messages.notifications.api.urls')),
     path('api-changes/', include('messages.changes.api.urls')),
     path('api-log/', include('messages.logger.api.urls')),
 ]

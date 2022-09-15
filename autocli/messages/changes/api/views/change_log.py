@@ -8,7 +8,7 @@ from messages.changes.models.change_log import ChangeLog
 from messages.changes.api.serializers.change_log import ChangeLogSerializer
 
 # Paginator import:
-from network.all.base_api.base_pagination import BaseMediumPaginator
+from messages.all.base_api.base_pagination import BaseMediumPaginator
 
 
 # All Change Log views:

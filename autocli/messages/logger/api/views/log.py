@@ -8,7 +8,7 @@ from messages.logger.models.log import Log
 from messages.logger.api.serializers.log import LogSerializer
 
 # Paginator import:
-from network.all.base_api.base_pagination import BaseLargePaginator
+from messages.all.base_api.base_pagination import BaseLargePaginator
 
 
 # All Change Log views:
