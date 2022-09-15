@@ -1,0 +1,3 @@
+class APIViewTestCases:
+
+    pass

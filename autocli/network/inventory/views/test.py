@@ -1,9 +1,5 @@
-# Django Import:
 from django.shortcuts import render
 from django.core.serializers import serialize
-import json
-
-# Application model Import:
 from network.inventory.models.device import Device
 from messages.notifications.notification import Notification
 from network.inventory.models.credential import Credential
@@ -25,7 +21,7 @@ def test(request):
     }
 
     logger = Logger('Test page')
-    log = logger.critical('================')
+    log = logger.critical('================================')
 
     data['output'] = CollectDeviceDataTask([1, 22])
     # data['output'] = CheckDeviceStatus([1, 22])

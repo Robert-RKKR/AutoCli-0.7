@@ -60,12 +60,6 @@ class ChangeLog(BaseModel):
         choices=ACTION,
         default=0,
     )
-    # message = models.JSONField(
-    #     verbose_name='Simple change notification',
-    #     help_text='JSON object representation after changes was made, and saved to database.',
-    #     null=True,
-    #     blank=True,
-    # )
 
     # Change details:
     after = models.JSONField(

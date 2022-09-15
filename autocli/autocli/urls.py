@@ -20,9 +20,7 @@ schema_view = get_schema_view(
         title="AutoCLI API documentation",
         default_version='v0.1',
         description="Welcome to the AutoCLI network automation tool API",
-        # terms_of_service="https://www.jaseci.org",
         contact=openapi.Contact(email="robert.kucharski.rkkr@gmail.com"),
-        # license=openapi.License(name="Awesome IP"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
@@ -32,9 +30,6 @@ schema_view = get_schema_view(
 urlpatterns = [
     # Django admin registration:
     path('admin/', admin.site.urls),
-
-    # Network/inventory view registration:
-    path('network/test/', include('network.inventory.urls')),
 
     # Main API views registration:
     path('api/token-auth/', obtain_auth_token),
@@ -50,4 +45,10 @@ urlpatterns = [
 
     # Network/inventory API view registration:
     path('api-inventory/', include('network.inventory.api.urls')),
+
+    # Network/inventory view registration:
+    path('network/test/', include('network.inventory.urls')),
+
+    # Messages/changes API view registration:
+    path('api-changes/', include('messages.changes.api.urls')),
 ]
