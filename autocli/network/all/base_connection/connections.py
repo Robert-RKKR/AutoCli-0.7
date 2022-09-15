@@ -133,7 +133,7 @@ class Connections():
 
         with concurrent.futures.ThreadPoolExecutor(
             max_workers=collect_setting('max_workers', default=10)) as executor:
-            # Run connection execution function in Thread Pools withprovided devices:
+            # Run connection execution function in Thread Pools with provided devices:
             executor.map(start_connection_threadpoolexecutor, self.devices_data)
 
     def end_connection(self) -> None:

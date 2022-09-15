@@ -32,7 +32,9 @@ INVALID = [
     'invalid input detected',
     'cdp is not enabled',
     'incomplete command',
-    'no spanning tree instance exists'
+    'no spanning tree instance exists',
+    'lldp is not enabled',
+    'snmp agent not enabled'
 ]
 
 

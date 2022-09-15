@@ -28,6 +28,7 @@ def test(request):
     log = logger.critical('================')
 
     data['output'] = CollectDeviceDataTask([1, 22])
+    # data['output'] = CheckDeviceStatus([1, 22])
 
     device = Device.objects.get(pk=1)
     devices = Device.objects.filter(pk__in=[1, 22])

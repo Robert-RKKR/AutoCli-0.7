@@ -47,7 +47,7 @@ class CheckDeviceStatus(BaseTask):
        
         if collected_devices:
             # Start execution timer:
-            self._start_execution_timer()
+            start_execution_time = self._start_timer()
             # Define threads list:
             threads = list()
             # Iterate thru all collected device objects:
@@ -65,13 +65,14 @@ class CheckDeviceStatus(BaseTask):
             for index, thread in enumerate(threads):
                 thread.join()
             # Summary of the operations time execution:
-            operation_time = self._end_execution_timer()
+            end_execution_time = self._end_timer(start_execution_time)
             # Log end of process:
             self.logger.info(f'Status verification process '\
                 f'has been completed, {self.active_devices} device/s '\
                 f'from {len(collected_devices)}, is active. '\
-                f'Process take {operation_time} seconds.',
-                code_id='48753847937689738679838884754565')
+                f'Process take {end_execution_time} seconds.',
+                code_id='48753847937689738679838884754565',
+                execution=end_execution_time)
 
     def _collect_device_objects(self, pk) -> Device:
         """
