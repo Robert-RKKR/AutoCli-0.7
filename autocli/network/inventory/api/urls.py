@@ -7,7 +7,6 @@ from network.inventory.api.views.device_type import DeviceTypeView
 from network.inventory.api.views.credential import CredentialView
 from network.inventory.api.views.device import DeviceView
 from network.inventory.api.views.group import GroupView
-from network.inventory.api.views.root import InventoryRootView
 
 # Simple view import:
 from network.inventory.api.views.device_type_template import SimpleDeviceTypeTemplateView

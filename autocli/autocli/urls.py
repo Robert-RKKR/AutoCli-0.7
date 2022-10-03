@@ -32,26 +32,27 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Main API views registration:
-    path('api/token-auth/', obtain_auth_token),
     path('api/', APIRootView.as_view(), name='api-root'),
+    path('api-admin/token-auth/', obtain_auth_token),
 
     # API documentation views registration:
     re_path(r'^doc(?P<format>\.json|\.yaml)$',
             schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('doc/', schema_view.with_ui('swagger', cache_timeout=0),
+    path('api-admin/doc/', schema_view.with_ui('swagger', cache_timeout=0),
          name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
+    path('api-admin/redoc/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),
 
     # Network API view registration:
     path('api-inventory/', include('network.inventory.api.urls')),
     path('api-updates/', include('network.updates.api.urls')),
 
-    # Network view registration:
-    path('network/test/', include('network.inventory.urls')),
-
     # Messages API view registration:
     path('api-notification/', include('messages.notifications.api.urls')),
     path('api-changes/', include('messages.changes.api.urls')),
     path('api-log/', include('messages.logger.api.urls')),
+
+
+    # Network view registration:
+    path('network/test/', include('network.inventory.urls')),
 ]
