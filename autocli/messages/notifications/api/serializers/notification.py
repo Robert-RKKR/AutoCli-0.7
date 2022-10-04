@@ -13,7 +13,7 @@ class NotificationSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-notifications:notification',
+        view_name='api-notifications:notifications-detail',
         read_only=False,
     )
 

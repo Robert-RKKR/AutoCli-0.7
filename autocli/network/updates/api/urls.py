@@ -1,16 +1,10 @@
-# Django Import:
-from django.urls import path
-
 # Root view import:
 from network.updates.api.views.root import UpdatesRootView
 
 # View import:
-from .views.collected_data import CollectedDataRetrieveAPI
-from .views.collected_data import CollectedDataListAPI
-from .views.snapshot import SnapshotRetrieveAPI
-from .views.snapshot import SnapshotListAPI
-from .views.update import UpdateRetrieveAPI
-from .views.update import UpdateListAPI
+from .views.collected_data import CollectedDataView
+from .views.snapshot import SnapshotView
+from .views.update import UpdateView
 
 # Base default route import:
 from network.all.base_api.base_default_router import BaseDefaultRouter
@@ -24,14 +18,10 @@ app_name = 'api-updates'
 # Root api view route registration:
 router.APIRootView = UpdatesRootView
 
-urlpatterns = [
-    path('collected_data/<int:pk>', CollectedDataRetrieveAPI.as_view(), name='collected_data'),
-    path('collected_dates/', CollectedDataListAPI.as_view(), name='collected_dates'),
-    path('snapshot/<int:pk>', SnapshotRetrieveAPI.as_view(), name='snapshot'),
-    path('snapshots/', SnapshotListAPI.as_view(), name='snapshots'),
-    path('update/<int:pk>', UpdateRetrieveAPI.as_view(), name='update'),
-    path('updates/', UpdateListAPI.as_view(), name='updates'),
-]
+# Standard view route registration:
+router.register(r'collected_data', CollectedDataView, basename='collected_data')
+router.register(r'snapshot', SnapshotView, basename='snapshot')
+router.register(r'update', UpdateView, basename='update')
 
 # Add urlpatterns:
-urlpatterns += router.urls
+urlpatterns = router.urls

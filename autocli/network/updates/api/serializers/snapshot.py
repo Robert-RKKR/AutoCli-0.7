@@ -13,7 +13,7 @@ class SnapshotSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-updates:snapshot',
+        view_name='api-updates:snapshot-detail',
         read_only=False,
     )
 

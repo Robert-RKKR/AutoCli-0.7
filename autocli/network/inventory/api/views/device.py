@@ -5,8 +5,8 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 from network.inventory.models.device import Device
 
 # Serializer import:
-from ..serializers.device import DeviceSerializer
 from ..serializers.simple_device import SimpleDeviceSerializer
+from ..serializers.device import DeviceSerializer
 
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseModelViewSet

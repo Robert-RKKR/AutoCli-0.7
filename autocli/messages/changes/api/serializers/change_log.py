@@ -13,7 +13,7 @@ class ChangeLogSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-changes:change_log',
+        view_name='api-changes:change_log-detail',
         read_only=False,
     )
 

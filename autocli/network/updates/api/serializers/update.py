@@ -17,7 +17,7 @@ class UpdateSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-updates:update',
+        view_name='api-updates:update-detail',
         read_only=False,
     )
     # Object relation definition:

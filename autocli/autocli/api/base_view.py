@@ -21,4 +21,7 @@ class APIRootView(APIView):
         return Response({
             'inventory': reverse('api-inventory:api-root', request=request, format=format),
             'updates': reverse('api-updates:api-root', request=request, format=format),
+            'changes': reverse('api-changes:api-root', request=request, format=format),
+            'logger': reverse('api-logger:api-root', request=request, format=format),
+            'notifications': reverse('api-notifications:api-root', request=request, format=format),
         })

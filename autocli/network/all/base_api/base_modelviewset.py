@@ -1,5 +1,6 @@
 # Rest framework import:
 from rest_framework import viewsets
+from rest_framework import mixins
 
 # Rest framework import:
 from rest_framework.authentication import SessionAuthentication
@@ -15,7 +16,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 # Base ModelViewSet model:
 class BaseModelViewSet(viewsets.ModelViewSet):
     """
-    Xxx.
+    Base ModelViewSet model.
     """
 
     # Authentication and permissions:
@@ -60,3 +61,21 @@ class BaseModelViewSet(viewsets.ModelViewSet):
         self.serializer_class = self.get_own_serializer_class(many=True)
         return viewsets.ModelViewSet.retrieve(self, *args, **kwargs)
 
+
+# Read only Base ModelViewSet model:
+class BaseRoModelViewSet(
+    viewsets.GenericViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin):
+    """
+    Base Read only ModelViewSet model.
+    """
+    # Authentication and permissions:
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [DjangoModelPermissions]
+
+    # Django rest framework filters:
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    base_search_fields = ['id']
+    base_ordering_fields = ['id', 'created', 'updated', 'active', 'root']

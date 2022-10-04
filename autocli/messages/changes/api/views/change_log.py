@@ -1,6 +1,3 @@
-# Rest Django import:
-from rest_framework import generics
-
 # Models import:
 from messages.changes.models.change_log import ChangeLog
 
@@ -10,14 +7,28 @@ from messages.changes.api.serializers.change_log import ChangeLogSerializer
 # Paginator import:
 from messages.all.base_api.base_pagination import BaseMediumPaginator
 
+# Base mode view set import:
+from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
-# All Change Log views:
-class ChangeLogListAPI(generics.ListAPIView):
+
+# ViewSet model classes:
+class ChangeLogView(BaseRoModelViewSet):
+    """
+    A ViewSet for viewing and editing object/s.
+    """
+    # Basic API view parameters:
     queryset = ChangeLog.objects.all()
-    serializer_class = ChangeLogSerializer
     pagination_class = BaseMediumPaginator
-
-
-class ChangeLogRetrieveAPI(generics.RetrieveAPIView):
-    queryset = ChangeLog.objects.all()
+    # Serializer classes:
     serializer_class = ChangeLogSerializer
+    # Django rest framework filters:
+    # filterset_class = CredentialFilter
+    search_fields = BaseRoModelViewSet.base_search_fields + [
+        'after',
+        'object_representation'
+    ]
+    ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
+        'app_name',
+        'model_name',
+        'action'
+    ]

@@ -13,7 +13,7 @@ class LogSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-logger:log',
+        view_name='api-logger:log-detail',
         read_only=False,
     )
 

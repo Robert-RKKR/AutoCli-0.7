@@ -1,14 +1,23 @@
-# Django Import:
-from django.urls import path
+# Root view import:
+from messages.changes.api.views.root import ChangeLogRootView
 
 # View import:
-from .views.change_log import ChangeLogRetrieveAPI
-from .views.change_log import ChangeLogListAPI
+from .views.change_log import ChangeLogView
+
+# Base default route import:
+from network.all.base_api.base_default_router import BaseDefaultRouter
+
+# Register router:
+router = BaseDefaultRouter()
 
 # App name registration:
 app_name = 'api-changes'
 
-urlpatterns = [
-    path('change_log/<int:pk>', ChangeLogRetrieveAPI.as_view(), name='change_log'),
-    path('change_logs/', ChangeLogListAPI.as_view(), name='change_logs'),
-]
+# Root api view route registration:
+router.APIRootView = ChangeLogRootView
+
+# Standard view route registration:
+router.register(r'change_log', ChangeLogView, basename='change_log')
+
+# Add urlpatterns:
+urlpatterns = router.urls
