@@ -8,6 +8,9 @@ from network.all.base_model.models.status import StatusModel
 # manager import:
 from network.inventory.managers.credential import CredentialManager
 
+# Other models Import:
+from network.updates.models.update import Update
+
 
 # Device data model:
 class DeviceData(DataTimeModel, StatusModel):
@@ -26,8 +29,16 @@ class DeviceData(DataTimeModel, StatusModel):
 
     # Model objects manager:
     objects = CredentialManager()
+    
+    # Corelation witch device model:
+    update = models.ForeignKey(
+        Update,
+        verbose_name='Update model',
+        help_text='Correlated update model.',
+        on_delete=models.CASCADE,
+    )
 
-    # VERSION - ALL:
+    # SHOW VERSION - ALL:
     VERSION = models.CharField(max_length=32, null=True, blank=True)
     UPTIME = models.CharField(max_length=64, null=True, blank=True)
     HOSTNAME = models.CharField(max_length=128, null=True, blank=True)
@@ -38,7 +49,7 @@ class DeviceData(DataTimeModel, StatusModel):
     SERIAL = models.CharField(max_length=32, null=True, blank=True)
     SERIAL_LIST = models.JSONField(null=True, blank=True)
 
-    # VERSION - ASA:
+    # SHOW VERSION - ASA:
     LICENSE_MODE = models.CharField(max_length=32, null=True, blank=True)
     LICENSE_STATE = models.CharField(max_length=32, null=True, blank=True)
     MAX_INTF = models.CharField(max_length=32, null=True, blank=True)
@@ -46,7 +57,7 @@ class DeviceData(DataTimeModel, StatusModel):
     FAILOVER = models.CharField(max_length=32, null=True, blank=True)
     CLUSTER = models.CharField(max_length=32, null=True, blank=True)
 
-    # VERSION - IOS:
+    # SHOW VERSION - IOS:
     UPTIME_YEARS = models.CharField(max_length=32, null=True, blank=True)
     UPTIME_WEEKS = models.CharField(max_length=32, null=True, blank=True)
     UPTIME_DAYS = models.CharField(max_length=32, null=True, blank=True)
@@ -54,3 +65,11 @@ class DeviceData(DataTimeModel, StatusModel):
     UPTIME_MINUTES = models.CharField(max_length=32, null=True, blank=True)
     CONFIG_REGISTER = models.CharField(max_length=128, null=True, blank=True)
     MAC_LIST = models.JSONField(null=True, blank=True)
+
+    # SHOW CLOCK - ALL:
+    TIME = models.CharField(max_length=32, null=True, blank=True)
+    TIMEZONE = models.CharField(max_length=32, null=True, blank=True)
+    DAYWEEK = models.CharField(max_length=16, null=True, blank=True)
+    MONTH = models.CharField(max_length=16, null=True, blank=True)
+    DAY = models.CharField(max_length=16, null=True, blank=True)
+    YEAR = models.CharField(max_length=16, null=True, blank=True)

@@ -29,7 +29,6 @@ class CollectedData(DataTimeModel, StatusModel):
 
     # Model objects manager:
     objects = CredentialManager()
-
     
     # Corelation witch device model:
     update = models.ForeignKey(
