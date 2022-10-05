@@ -27,20 +27,30 @@ class DeviceData(DataTimeModel, StatusModel):
     # Model objects manager:
     objects = CredentialManager()
 
-    # Basic device data:
-    VERSION = models.CharField(max_length=64, null=True, blank=True)
-    ROMMON = models.CharField(max_length=64, null=True, blank=True)
+    # VERSION - ALL:
+    VERSION = models.CharField(max_length=32, null=True, blank=True)
+    UPTIME = models.CharField(max_length=64, null=True, blank=True)
     HOSTNAME = models.CharField(max_length=128, null=True, blank=True)
-    UPTIME = models.CharField(max_length=128, null=True, blank=True)
+    HARDWARE = models.CharField(max_length=128, null=True, blank=True)
+    HARDWARE_LIST = models.JSONField(null=True, blank=True)
+    IMAGE = models.CharField(max_length=128, null=True, blank=True)
+    RELOAD_REASON = models.CharField(max_length=128, null=True, blank=True)
+    SERIAL = models.CharField(max_length=32, null=True, blank=True)
+    SERIAL_LIST = models.JSONField(null=True, blank=True)
+
+    # VERSION - ASA:
+    LICENSE_MODE = models.CharField(max_length=32, null=True, blank=True)
+    LICENSE_STATE = models.CharField(max_length=32, null=True, blank=True)
+    MAX_INTF = models.CharField(max_length=32, null=True, blank=True)
+    MAX_VLANS = models.CharField(max_length=32, null=True, blank=True)
+    FAILOVER = models.CharField(max_length=32, null=True, blank=True)
+    CLUSTER = models.CharField(max_length=32, null=True, blank=True)
+
+    # VERSION - IOS:
     UPTIME_YEARS = models.CharField(max_length=32, null=True, blank=True)
     UPTIME_WEEKS = models.CharField(max_length=32, null=True, blank=True)
     UPTIME_DAYS = models.CharField(max_length=32, null=True, blank=True)
     UPTIME_HOURS = models.CharField(max_length=32, null=True, blank=True)
     UPTIME_MINUTES = models.CharField(max_length=32, null=True, blank=True)
-    RELOAD_REASON = models.CharField(max_length=128, null=True, blank=True)
-    RUNNING_IMAGE = models.CharField(max_length=128, null=True, blank=True)
     CONFIG_REGISTER = models.CharField(max_length=128, null=True, blank=True)
-    RESTARTED = models.CharField(max_length=128, null=True, blank=True)
-    MAC = models.JSONField(null=True, blank=True)
-    HARDWARE = models.JSONField(null=True, blank=True)
-    SERIAL = models.JSONField(null=True, blank=True)
+    MAC_LIST = models.JSONField(null=True, blank=True)
