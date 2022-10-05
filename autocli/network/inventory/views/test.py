@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.core.serializers import serialize
 from network.inventory.models.device import Device
@@ -23,23 +24,23 @@ def test(request):
     logger = Logger('Test page')
     log = logger.critical('================================')
 
-    data['output'] = CollectDeviceDataTask([1, 22])
+    # data['output'] = CollectDeviceDataTask([1, 22])
     # data['output'] = CheckDeviceStatus([1, 22])
 
     device = Device.objects.get(pk=1)
-    devices = Device.objects.filter(pk__in=[1, 22])
-    all_devices = Device.objects.all()
+    # devices = Device.objects.filter(pk__in=[1, 22])
+    # all_devices = Device.objects.all()
 
-    # with Connection(device) as con:
-    #     output = con.send_enabled_dict([
-    #         'show version',
-    #         'show ip route',
-    #         'show ip access-list',
-    #         'show psp',
-    #         'show cdp neighbors detail',
-    #         'show clock',
-    #         'show network'
-    #     ])
+    with Connection(device) as con:
+        output = con.send_enabled_dict([
+            'show version',
+            # 'show ip route',
+            # 'show ip access-list',
+            # 'show psp',
+            # 'show cdp neighbors detail',
+            # 'show clock',
+            # 'show network'
+        ])
 
     # with Connections(devices) as con:
     #     output = con.send_enable([
@@ -55,7 +56,7 @@ def test(request):
     # with Connections(devices) as con:
     #     output = con.execute_device_type_templates()
 
-    # data['output'] = json.dumps(output)
+    data['output'] = json.dumps(output)
     
     # GET method:
     return render(request, 'test.html', data)
