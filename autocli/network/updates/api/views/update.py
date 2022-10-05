@@ -10,6 +10,9 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
+# Filter import:
+from network.updates.filters.update import UpdateFilter
+
 
 # ViewSet model classes:
 class UpdateView(BaseRoModelViewSet):
@@ -22,7 +25,7 @@ class UpdateView(BaseRoModelViewSet):
     # Serializer classes:
     serializer_class = UpdateSerializer
     # Django rest framework filters:
-    # filterset_class = CredentialFilter
+    filterset_class = UpdateFilter
     ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
         'device',
         'snapshot',

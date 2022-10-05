@@ -12,9 +12,9 @@ class DeviceTypeFilter(BaseFilter):
 
         model = DeviceType
         fields = {
-            'id': ['exact', 'contains'],
+            'id': ['exact', 'icontains'],
             'active': ['exact'],
-            'name': ['exact', 'contains'],
-            'description': ['exact', 'contains'],
-            'netmiko_name': ['exact', 'contains'],
+            'name': ['exact', 'icontains'],
+            'description': ['exact', 'icontains'],
+            'netmiko_name': ['exact', 'icontains'],
         }

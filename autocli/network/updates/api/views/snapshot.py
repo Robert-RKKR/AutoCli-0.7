@@ -10,6 +10,9 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
+# Filter import:
+from network.updates.filters.snapshot import SnapshotFilter
+
 
 # ViewSet model classes:
 class SnapshotView(BaseRoModelViewSet):
@@ -22,10 +25,4 @@ class SnapshotView(BaseRoModelViewSet):
     # Serializer classes:
     serializer_class = SnapshotSerializer
     # Django rest framework filters:
-    # filterset_class = CredentialFilter
-    # search_fields = BaseRoModelViewSet.base_search_fields + [
-    #     'name'
-    # ]
-    # ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
-    #     'name'
-    # ]
+    filterset_class = SnapshotFilter

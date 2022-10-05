@@ -8,7 +8,7 @@ from django.urls import path
 from .views.log import LogView
 
 # Base default route import:
-from network.all.base_api.base_default_router import BaseDefaultRouter
+from messages.all.base_api.base_default_router import BaseDefaultRouter
 
 # Register router:
 router = BaseDefaultRouter()

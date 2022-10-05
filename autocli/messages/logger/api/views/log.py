@@ -11,7 +11,10 @@ from messages.logger.api.serializers.log import LogSerializer
 from messages.all.base_api.base_pagination import BaseLargePaginator
 
 # Base mode view set import:
-from network.all.base_api.base_modelviewset import BaseRoModelViewSet
+from messages.all.base_api.base_modelviewset import BaseRoModelViewSet
+
+# Filter import:
+from messages.logger.filters.log import LogFilter
 
 
 # ViewSet model classes:
@@ -25,7 +28,7 @@ class LogView(BaseRoModelViewSet):
     # Serializer classes:
     serializer_class = LogSerializer
     # Django rest framework filters:
-    # filterset_class = CredentialFilter
+    filterset_class = LogFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'message'
     ]

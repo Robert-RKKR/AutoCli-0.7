@@ -10,6 +10,9 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 # Base mode view set import:
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
+# Filter import:
+from network.updates.filters.collected_data import CollectedDataFilter
+
 
 # ViewSet model classes:
 class CollectedDataView(BaseRoModelViewSet):
@@ -22,7 +25,7 @@ class CollectedDataView(BaseRoModelViewSet):
     # Serializer classes:
     serializer_class = CollectedDataSerializer
     # Django rest framework filters:
-    # filterset_class = CredentialFilter
+    filterset_class = CollectedDataFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'command_name',
         'command_raw_data',

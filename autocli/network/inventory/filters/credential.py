@@ -12,9 +12,9 @@ class CredentialFilter(BaseFilter):
 
         model = Credential
         fields = {
-            'id': ['exact', 'contains'],
+            'id': ['exact', 'icontains'],
             'active': ['exact'],
-            'name': ['exact', 'contains'],
-            'description': ['exact', 'contains'],
-            'username': ['exact', 'contains'],
+            'name': ['exact', 'icontains'],
+            'description': ['exact', 'icontains'],
+            'username': ['exact', 'icontains'],
         }

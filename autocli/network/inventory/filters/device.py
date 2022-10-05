@@ -12,13 +12,13 @@ class DeviceFilter(BaseFilter):
 
         model = Device
         fields = {
-            'id': ['exact', 'contains'],
+            'id': ['exact', 'icontains'],
             'active': ['exact'],
-            'name': ['exact', 'contains'],
-            'description': ['exact', 'contains'],
-            'hostname': ['exact', 'contains'],
-            'ssh_port': ['exact', 'contains', 'lt', 'gt'],
-            'https_port': ['exact', 'contains', 'lt', 'gt'],
+            'name': ['exact', 'icontains'],
+            'description': ['exact', 'icontains'],
+            'hostname': ['exact', 'icontains'],
+            'ssh_port': ['exact', 'icontains', 'lt', 'gt'],
+            'https_port': ['exact', 'icontains', 'lt', 'gt'],
             'device_type': ['exact'],
             'ssh_status': ['exact'],
             'https_status': ['exact'],

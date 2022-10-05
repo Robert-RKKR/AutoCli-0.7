@@ -8,7 +8,10 @@ from messages.changes.api.serializers.change_log import ChangeLogSerializer
 from messages.all.base_api.base_pagination import BaseMediumPaginator
 
 # Base mode view set import:
-from network.all.base_api.base_modelviewset import BaseRoModelViewSet
+from messages.all.base_api.base_modelviewset import BaseRoModelViewSet
+
+# Filter import:
+from messages.changes.filters.change_log import ChangeLogFilter
 
 
 # ViewSet model classes:
@@ -22,7 +25,7 @@ class ChangeLogView(BaseRoModelViewSet):
     # Serializer classes:
     serializer_class = ChangeLogSerializer
     # Django rest framework filters:
-    # filterset_class = CredentialFilter
+    filterset_class = ChangeLogFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'after',
         'object_representation'

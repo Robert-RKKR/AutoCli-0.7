@@ -11,7 +11,10 @@ from messages.notifications.api.serializers.notification import NotificationSeri
 from messages.all.base_api.base_pagination import BaseMediumPaginator
 
 # Base mode view set import:
-from network.all.base_api.base_modelviewset import BaseRoModelViewSet
+from messages.all.base_api.base_modelviewset import BaseRoModelViewSet
+
+# Filter import:
+from messages.notifications.filters.notification import NotificationFilter
 
 
 # ViewSet model classes:
@@ -25,7 +28,7 @@ class NotificationView(BaseRoModelViewSet):
     # Serializer classes:
     serializer_class = NotificationSerializer
     # Django rest framework filters:
-    # filterset_class = CredentialFilter
+    filterset_class = NotificationFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'message'
     ]

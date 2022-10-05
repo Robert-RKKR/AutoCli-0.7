@@ -12,10 +12,10 @@ class DeviceTypeTemplateFilter(BaseFilter):
 
         model = DeviceTypeTemplate
         fields = {
-            'id': ['exact', 'contains'],
+            'id': ['exact', 'icontains'],
             'active': ['exact'],
             'special': ['exact'],
             'vrf': ['exact'],
-            'command': ['exact', 'contains'],
-            'sfm_expression': ['exact', 'contains'],
+            'command': ['exact', 'icontains'],
+            'sfm_expression': ['exact', 'icontains'],
         }

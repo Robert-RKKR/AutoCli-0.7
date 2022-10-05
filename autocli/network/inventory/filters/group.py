@@ -12,14 +12,14 @@ class GroupFilter(BaseFilter):
 
         model = Group
         fields = {
-            'id': ['exact', 'contains'],
+            'id': ['exact', 'icontains'],
             'active': ['exact'],
-            'name': ['exact', 'contains'],
-            'description': ['exact', 'contains'],
+            'name': ['exact', 'icontains'],
+            'description': ['exact', 'icontains'],
             'root_folder': ['exact'],
             'devices': ['exact'],
-            'ssh_port': ['exact', 'contains', 'lt', 'gt'],
-            'https_port': ['exact', 'contains', 'lt', 'gt'],
+            'ssh_port': ['exact', 'icontains', 'lt', 'gt'],
+            'https_port': ['exact', 'icontains', 'lt', 'gt'],
             'credential': ['exact'],
             'certificate': ['exact'],
         }
