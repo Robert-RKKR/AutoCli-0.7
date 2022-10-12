@@ -11,6 +11,15 @@ from network.inventory.models.device_type import DeviceType
 # manager import:
 from network.inventory.managers.device_type_template import DeviceTypeTemplateManager
 
+# Constants declaration:
+DEVICE_DATA = (
+    (0, 'None'),
+    (1, 'Device data'),
+    (2, 'Interface data'),
+    (3, 'Routing data'),
+    (4, 'Access list data')
+)
+
 
 # Device type template model:
 class DeviceTypeTemplate(DataTimeModel, StatusModel):
@@ -60,6 +69,12 @@ class DeviceTypeTemplate(DataTimeModel, StatusModel):
         verbose_name='CLI command',
         help_text='CLI command that will be executed on network device.',
         max_length=64,
+    )
+    device_data_corelation = models.IntegerField(
+        verbose_name='Update status',
+        help_text='Device update status.',
+        choices=DEVICE_DATA,
+        default=0,
     )
     sfm_expression = models.TextField(
         verbose_name='SFM expression',

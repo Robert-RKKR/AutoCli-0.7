@@ -17,10 +17,10 @@ from network.inventory.models.group import Group
 class DeviceTypeTemplateAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'active', 'special', 'vrf', 'device_type', 'command',
+        'pk', 'active', 'special', 'vrf', 'device_type', 'command', 'device_data_corelation',
     )
     list_filter = (
-        'active', 'special', 'vrf', 'device_type',
+        'active', 'special', 'vrf', 'device_type', 'device_data_corelation',
     )
     search_fields = (
         'command',
@@ -32,7 +32,7 @@ class DeviceTypeTemplateAdmin(BaseAdmin):
         }),
         ('Template information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('device_type', 'command', 'sfm_expression',),
+            'fields': ('device_type', 'command', 'device_data_corelation', 'sfm_expression',),
         }),
     )
 

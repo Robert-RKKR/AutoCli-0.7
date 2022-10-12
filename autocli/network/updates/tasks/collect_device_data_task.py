@@ -118,15 +118,15 @@ class CollectDeviceDataTask(BaseTask):
                 if output:
                     # Raise successes command counter:
                     self.successful += 1
-                # update device update model status:
-                update_object.status = 1
-                update_object.result_status = True
-                update_object.save(update_fields=['status', 'result_status'])
-            else:
-                # update device update model status:
-                update_object.status = 2
-                update_object.result_status = False
-                update_object.save(update_fields=['status', 'result_status'])
+                    # update device update model status (Positive):
+                    update_object.status = 1
+                    update_object.result_status = True
+                    update_object.save(update_fields=['status', 'result_status'])
+                else:
+                    # update device update model status (Negative):
+                    update_object.status = 2
+                    update_object.result_status = False
+                    update_object.save(update_fields=['status', 'result_status'])
         else:
             # Create message:
             message = f'Data could not be collected from device {device_name}.'
