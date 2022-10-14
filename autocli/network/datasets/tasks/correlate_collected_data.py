@@ -9,7 +9,6 @@ import concurrent.futures
 from network.all.base_task.base_task import BaseTask
 
 # Update models import:
-from network.updates.models.collected_data import CollectedData
 from network.updates.models.update import Update
 
 # Device model import:
@@ -59,6 +58,11 @@ DEVICE_DATA_COORRELATE = (
 # Test taks class:
 class CorrelateCollectedDataTask(BaseTask):
     """
+    Steps to follow:
+    1. Collect lasted updates for all available devices.
+    2. Collect all collected data based on collected updates.
+    3. Convert collected data into device models.
+    celery -A autocli worker -Q collect_data -l INFO
     
     """
 
@@ -70,6 +74,15 @@ class CorrelateCollectedDataTask(BaseTask):
     def _run(self, *args, **kwargs) -> None:
 
         pass
+
+    def _collect_updates(self) -> Update:
+        """
+        """
+
+        # Collect lasted updates for all available devices:
+        updates = Update.objects.filter(
+            'https://stackoverflow.com/questions/2411559/how-do-i-query-sql-for-a-latest-record-date-for-each-user'
+        )
         
 # Task registration:
 CorrelateCollectedDataTask = app.register_task(CorrelateCollectedDataTask())
