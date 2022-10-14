@@ -15,7 +15,7 @@ from network.datasets.filters.etherchannel_data import EtherchannelDataFilter
 
 
 # ViewSet model classes:
-class DEtherchannelDataView(BaseRoModelViewSet):
+class EtherchannelDataView(BaseRoModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """

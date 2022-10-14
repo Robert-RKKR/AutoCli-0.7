@@ -15,7 +15,7 @@ from network.datasets.filters.router_data import RouterDataFilter
 
 
 # ViewSet model classes:
-class DataView(BaseRoModelViewSet):
+class RouterDataView(BaseRoModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """

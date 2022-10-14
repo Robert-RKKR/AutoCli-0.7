@@ -16,7 +16,7 @@ class MacTableDataSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-updates:collected_data-detail',
+        view_name='api-datasets:mac_table_data-detail',
         read_only=False,
     )
     # Object relation definition:

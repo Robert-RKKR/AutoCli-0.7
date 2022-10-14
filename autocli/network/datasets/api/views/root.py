@@ -3,9 +3,9 @@ from rest_framework.routers import APIRootView
 
 
 # Root API view:
-class UpdatesRootView(APIRootView):
+class DatasetsRootView(APIRootView):
     """
-    Updates API root view.
+    Datasets API root view.
     """
     def get_view_name(self):
-        return 'api-updates'
+        return 'api-datasets'

@@ -16,7 +16,7 @@ class ArpTableDataSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
-        view_name='api-updates:collected_data-detail',
+        view_name='api-datasets:arp_table_data-detail',
         read_only=False,
     )
     # Object relation definition:
