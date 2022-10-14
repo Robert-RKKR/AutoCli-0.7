@@ -31,4 +31,5 @@ class UpdateView(BaseRoModelViewSet):
         'snapshot',
         'status',
         'result_status',
+        'correlated',
     ]

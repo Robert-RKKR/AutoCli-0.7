@@ -59,7 +59,7 @@ class SnapshotAdmin(BaseAdmin):
 class UpdateAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'active', 'device', 'snapshot', 'result_status',
+        'pk', 'active', 'device', 'snapshot', 'correlated', 'result_status',
     )
     list_filter = (
         'active', 'snapshot', 'result_status', 'device',
@@ -67,6 +67,6 @@ class UpdateAdmin(BaseAdmin):
     fieldsets = (
         ('Basic information', {
             'classes': ('wide', 'extrapretty',),
-            'fields': ('active', 'device', 'snapshot', 'result_status',)
+            'fields': ('active', 'device', 'snapshot', 'result_status', 'correlated',)
         }),
     )

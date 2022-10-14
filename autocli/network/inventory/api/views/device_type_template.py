@@ -55,8 +55,10 @@ class SimpleDeviceTypeTemplateView(BaseModelViewSet):
     search_fields = BaseModelViewSet.base_search_fields + [
         'command',
         'sfm_expression',
+        'device_data_corelation',
     ]
     ordering_fields = BaseModelViewSet.base_ordering_fields + [
         'vrf',
         'special',
+        'device_data_corelation',
     ]

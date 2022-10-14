@@ -17,4 +17,5 @@ class UpdateFilter(BaseFilter):
             'device': ['exact'],
             'snapshot': ['exact'],
             'status': ['exact'],
+            'correlated': ['exact'],
         }

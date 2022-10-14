@@ -18,4 +18,5 @@ class DeviceTypeTemplateFilter(BaseFilter):
             'vrf': ['exact'],
             'command': ['exact', 'icontains'],
             'sfm_expression': ['exact', 'icontains'],
+            'device_data_corelation': ['exact', 'icontains'],
         }

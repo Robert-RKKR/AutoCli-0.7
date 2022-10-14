@@ -66,3 +66,8 @@ class Update(DataTimeModel, StatusModel):
         help_text='A positive result means that all commands updates was collected.',
         default=False,
     )
+    correlated = models.BooleanField(
+        verbose_name='Correlated',
+        help_text='Correlated with all collected data models.',
+        default=False,
+    )

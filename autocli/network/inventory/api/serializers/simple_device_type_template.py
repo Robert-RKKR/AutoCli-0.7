@@ -34,5 +34,6 @@ class SimpleDeviceTypeTemplateSerializer(BaseSerializer):
             'command',
             'sfm_expression',
             'device_type',
+            'device_data_corelation',
         ]
         read_only_fields = BaseSerializer.base_read_only_fields

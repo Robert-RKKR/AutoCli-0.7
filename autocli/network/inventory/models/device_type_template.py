@@ -79,8 +79,8 @@ class DeviceTypeTemplate(DataTimeModel, StatusModel):
         max_length=64,
     )
     device_data_corelation = models.IntegerField(
-        verbose_name='Update status',
-        help_text='Device update status.',
+        verbose_name='Correlated device data model',
+        help_text='Correlated device data model.',
         choices=DEVICE_DATA,
         default=0,
     )

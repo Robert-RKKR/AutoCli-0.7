@@ -39,4 +39,5 @@ class UpdateSerializer(BaseSerializer):
             'snapshot',
             'status',
             'result_status',
+            'correlated',
         ]
