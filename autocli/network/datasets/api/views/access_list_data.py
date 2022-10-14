@@ -1,8 +1,8 @@
 # Models import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.access_list_data import AccessListData
 
 # Serializer import:
-from ..serializers.XXX import XXX
+from ..serializers.access_list_data import AccessListDataSerializer
 
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
@@ -11,21 +11,21 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
 # Filter import:
-from network.datasets.filters.XXX import XXX
+from network.datasets.filters.access_list_data import AccessListDataFilter
 
 
 # ViewSet model classes:
-class DataView(BaseRoModelViewSet):
+class AccessListDataView(BaseRoModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
     # Basic API view parameters:
-    queryset = XXX.objects.all()
+    queryset = AccessListData.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
-    serializer_class = XXX
+    serializer_class = AccessListDataSerializer
     # Django rest framework filters:
-    filterset_class = XXX
+    filterset_class = AccessListDataFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'XXX',
     ]

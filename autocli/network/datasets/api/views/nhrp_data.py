@@ -1,8 +1,8 @@
 # Models import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.nhrp_data import NhrpData
 
 # Serializer import:
-from ..serializers.XXX import XXX
+from ..serializers.nhrp_data import NhrpDataSerializer
 
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
@@ -11,21 +11,21 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
 # Filter import:
-from network.datasets.filters.XXX import XXX
+from network.datasets.filters.nhrp_data import NhrpDataFilter
 
 
 # ViewSet model classes:
-class DataView(BaseRoModelViewSet):
+class NhrpDataView(BaseRoModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
     # Basic API view parameters:
-    queryset = XXX.objects.all()
+    queryset = NhrpData.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
-    serializer_class = XXX
+    serializer_class = NhrpDataSerializer
     # Django rest framework filters:
-    filterset_class = XXX
+    filterset_class = NhrpDataFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'XXX',
     ]

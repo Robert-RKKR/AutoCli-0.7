@@ -1,8 +1,8 @@
 # Models import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.environment_data import EnvironmentData
 
 # Serializer import:
-from ..serializers.XXX import XXX
+from ..serializers.environment_data import EnvironmentDataSerializer
 
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
@@ -11,21 +11,21 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
 # Filter import:
-from network.datasets.filters.XXX import XXX
+from network.datasets.filters.environment_data import EnvironmentDataFilter
 
 
 # ViewSet model classes:
-class DataView(BaseRoModelViewSet):
+class EnvironmentDataView(BaseRoModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
     # Basic API view parameters:
-    queryset = XXX.objects.all()
+    queryset = EnvironmentData.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
-    serializer_class = XXX
+    serializer_class = EnvironmentDataSerializer
     # Django rest framework filters:
-    filterset_class = XXX
+    filterset_class = EnvironmentDataFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'XXX',
     ]

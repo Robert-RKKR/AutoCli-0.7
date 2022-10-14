@@ -2,15 +2,15 @@
 from network.all.base_model.filters.base_filter import BaseFilter
 
 # Model import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.access_list_data import AccessListData
 
 
 # Filters:
-class Filter(BaseFilter):
+class AccessListDataFilter(BaseFilter):
 
     class Meta:
 
-        model = XXX
+        model = AccessListData
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],

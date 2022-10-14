@@ -2,15 +2,15 @@
 from network.all.base_model.filters.base_filter import BaseFilter
 
 # Model import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.nhrp_data import NhrpData
 
 
 # Filters:
-class Filter(BaseFilter):
+class NhrpDataFilter(BaseFilter):
 
     class Meta:
 
-        model = XXX
+        model = NhrpData
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],

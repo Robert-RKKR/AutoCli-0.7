@@ -2,15 +2,15 @@
 from network.all.base_model.filters.base_filter import BaseFilter
 
 # Model import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.device_data import DeviceData
 
 
 # Filters:
-class Filter(BaseFilter):
+class DeviceDataFilter(BaseFilter):
 
     class Meta:
 
-        model = XXX
+        model = DeviceData
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],

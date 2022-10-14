@@ -2,15 +2,15 @@
 from network.all.base_model.filters.base_filter import BaseFilter
 
 # Model import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.neighbor_data import NeighborData
 
 
 # Filters:
-class Filter(BaseFilter):
+class NeighborDataFilter(BaseFilter):
 
     class Meta:
 
-        model = XXX
+        model = NeighborData
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],

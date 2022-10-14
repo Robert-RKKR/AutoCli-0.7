@@ -5,14 +5,14 @@ from rest_framework.serializers import HyperlinkedIdentityField
 from network.all.base_api.base_serializer import BaseSerializer
 
 # Models import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.access_list_data import AccessListData
 
 # Other serializer import:
-from network.updates.models.update import UpdateSerializer
+from network.updates.api.serializers.update import UpdateSerializer
 
 
 # Serializer class:
-class Serializer(BaseSerializer):
+class AccessListDataSerializer(BaseSerializer):
 
     # Object URL definition:
     url = HyperlinkedIdentityField(
@@ -27,7 +27,7 @@ class Serializer(BaseSerializer):
 
     class Meta:
 
-        model = XXX
+        model = AccessListData
         fields = BaseSerializer.base_fields + [
             'update',
             'XXX',

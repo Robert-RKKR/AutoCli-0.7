@@ -1,8 +1,8 @@
 # Models import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.device_data import DeviceData
 
 # Serializer import:
-from ..serializers.XXX import XXX
+from ..serializers.device_data import DeviceDataSerializer
 
 # Paginator import:
 from network.all.base_api.base_pagination import BaseSmallPaginator
@@ -11,21 +11,21 @@ from network.all.base_api.base_pagination import BaseSmallPaginator
 from network.all.base_api.base_modelviewset import BaseRoModelViewSet
 
 # Filter import:
-from network.datasets.filters.XXX import XXX
+from network.datasets.filters.device_data import DeviceDataFilter
 
 
 # ViewSet model classes:
-class DataView(BaseRoModelViewSet):
+class DeviceDataView(BaseRoModelViewSet):
     """
     A ViewSet for viewing and editing object/s.
     """
     # Basic API view parameters:
-    queryset = XXX.objects.all()
+    queryset = DeviceData.objects.all()
     pagination_class = BaseSmallPaginator
     # Serializer classes:
-    serializer_class = XXX
+    serializer_class = DeviceDataSerializer
     # Django rest framework filters:
-    filterset_class = XXX
+    filterset_class = DeviceDataFilter
     search_fields = BaseRoModelViewSet.base_search_fields + [
         'XXX',
     ]

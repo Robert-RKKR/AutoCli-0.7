@@ -2,15 +2,15 @@
 from network.all.base_model.filters.base_filter import BaseFilter
 
 # Model import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.dmvpn_data import DmvpnData
 
 
 # Filters:
-class Filter(BaseFilter):
+class DmvpnDataFilter(BaseFilter):
 
     class Meta:
 
-        model = XXX
+        model = DmvpnData
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],

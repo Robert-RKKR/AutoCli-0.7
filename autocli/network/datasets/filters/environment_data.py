@@ -2,15 +2,15 @@
 from network.all.base_model.filters.base_filter import BaseFilter
 
 # Model import:
-from network.datasets.models.XXX import XXX
+from network.datasets.models.environment_data import EnvironmentData
 
 
 # Filters:
-class Filter(BaseFilter):
+class EnvironmentDataFilter(BaseFilter):
 
     class Meta:
 
-        model = XXX
+        model = EnvironmentData
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],
