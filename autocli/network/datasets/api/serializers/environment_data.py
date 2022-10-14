@@ -30,5 +30,4 @@ class EnvironmentDataSerializer(BaseSerializer):
         model = EnvironmentData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

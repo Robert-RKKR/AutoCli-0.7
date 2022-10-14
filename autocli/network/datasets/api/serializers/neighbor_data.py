@@ -30,5 +30,4 @@ class NeighborDataSerializer(BaseSerializer):
         model = NeighborData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

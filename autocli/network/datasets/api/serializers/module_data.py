@@ -30,5 +30,4 @@ class ModuleDataSerializer(BaseSerializer):
         model = ModuleData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

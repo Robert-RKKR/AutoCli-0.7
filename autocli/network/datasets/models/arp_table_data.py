@@ -42,7 +42,7 @@ class ArpTableData(DataTimeModel, StatusModel):
     )
 
     # ARP table information:
-    Protocol = models.CharField(max_length=32, null=True, blank=True)
+    protocol = models.CharField(max_length=32, null=True, blank=True)
     address = models.CharField(max_length=32, null=True, blank=True)
     age = models.CharField(max_length=32, null=True, blank=True)
     mac = models.CharField(max_length=32, null=True, blank=True)

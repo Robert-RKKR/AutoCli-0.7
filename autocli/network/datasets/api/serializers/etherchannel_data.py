@@ -30,5 +30,4 @@ class EtherchannelDataSerializer(BaseSerializer):
         model = EtherchannelData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

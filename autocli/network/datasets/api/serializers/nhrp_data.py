@@ -30,5 +30,4 @@ class NhrpDataSerializer(BaseSerializer):
         model = NhrpData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

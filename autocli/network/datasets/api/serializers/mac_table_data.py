@@ -30,5 +30,12 @@ class MacTableDataSerializer(BaseSerializer):
         model = MacTableData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
+            'vlan',
+            'mac',
+            'type',
+            'age',
+            'secure',
+            'ntfy',
+            'ports',
+            'ports_list',
         ]

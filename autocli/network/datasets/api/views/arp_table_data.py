@@ -26,10 +26,6 @@ class ArpTableDataView(BaseRoModelViewSet):
     serializer_class = ArpTableDataSerializer
     # Django rest framework filters:
     filterset_class = ArpTableDataFilter
-    search_fields = BaseRoModelViewSet.base_search_fields + [
-        'XXX',
-    ]
     ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
         'update',
-        'XXX',
     ]

@@ -30,5 +30,8 @@ class AccessListDataSerializer(BaseSerializer):
         model = AccessListData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
+            'sn',
+            'type',
+            'interface',
+            'interface_direction',
         ]

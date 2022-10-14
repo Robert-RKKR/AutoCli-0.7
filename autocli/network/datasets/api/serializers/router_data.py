@@ -30,5 +30,4 @@ class RouterDataSerializer(BaseSerializer):
         model = RouterData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

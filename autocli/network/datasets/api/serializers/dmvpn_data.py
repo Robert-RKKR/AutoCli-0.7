@@ -30,5 +30,4 @@ class DmvpnDataSerializer(BaseSerializer):
         model = DmvpnData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

@@ -26,10 +26,6 @@ class DmvpnDataView(BaseRoModelViewSet):
     serializer_class = DmvpnDataSerializer
     # Django rest framework filters:
     filterset_class = DmvpnDataFilter
-    search_fields = BaseRoModelViewSet.base_search_fields + [
-        'XXX',
-    ]
     ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
         'update',
-        'XXX',
     ]

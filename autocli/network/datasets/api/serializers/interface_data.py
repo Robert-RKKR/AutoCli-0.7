@@ -30,5 +30,4 @@ class InterfaceDataSerializer(BaseSerializer):
         model = InterfaceData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
         ]

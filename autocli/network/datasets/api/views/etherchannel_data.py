@@ -26,10 +26,6 @@ class EtherchannelDataView(BaseRoModelViewSet):
     serializer_class = EtherchannelDataSerializer
     # Django rest framework filters:
     filterset_class = EtherchannelDataFilter
-    search_fields = BaseRoModelViewSet.base_search_fields + [
-        'XXX',
-    ]
     ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
         'update',
-        'XXX',
     ]

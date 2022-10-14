@@ -30,5 +30,12 @@ class ArpTableDataSerializer(BaseSerializer):
         model = ArpTableData
         fields = BaseSerializer.base_fields + [
             'update',
-            'XXX',
+            'protocol',
+            'address',
+            'age',
+            'mac',
+            'type',
+            'interface',
+            'physical_interface',
+            'cpu',
         ]

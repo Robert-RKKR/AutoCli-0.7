@@ -26,10 +26,6 @@ class AccessListDataView(BaseRoModelViewSet):
     serializer_class = AccessListDataSerializer
     # Django rest framework filters:
     filterset_class = AccessListDataFilter
-    search_fields = BaseRoModelViewSet.base_search_fields + [
-        'XXX',
-    ]
     ordering_fields = BaseRoModelViewSet.base_ordering_fields + [
         'update',
-        'XXX',
     ]
