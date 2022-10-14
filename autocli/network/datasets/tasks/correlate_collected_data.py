@@ -9,6 +9,7 @@ import concurrent.futures
 from network.all.base_task.base_task import BaseTask
 
 # Update models import:
+from network.updates.models.collected_data import CollectedData
 from network.updates.models.update import Update
 
 # Device model import:
@@ -79,10 +80,30 @@ class CorrelateCollectedDataTask(BaseTask):
         """
         """
 
-        # Collect lasted updates for all available devices:
-        updates = Update.objects.filter(
-            'https://stackoverflow.com/questions/2411559/how-do-i-query-sql-for-a-latest-record-date-for-each-user'
-        )
+        # Updates list:
+        all_updates = []
+        # Collect all unique devices:
+        devices = Update.objects.order_by().values('device').distinct()
+        # Iterate thru all collected devices:
+        for device in devices:
+            # Collect lasted update for provided device:
+            update = Update.objects.filter(
+                device=device
+            ).latest('created')
+            all_updates.append(update)
+        # Return all collected updates list:
+        return all_updates
+
+    def _collect_collected_data(self, update) -> CollectedData:
+        """
+        """
+
+        # All collected data:
+        all_collected_data = CollectedData.objects.filter(
+            update=update,
+            result_status=True)
+        # Return all collected data:
+        return all_collected_data
         
 # Task registration:
 CorrelateCollectedDataTask = app.register_task(CorrelateCollectedDataTask())

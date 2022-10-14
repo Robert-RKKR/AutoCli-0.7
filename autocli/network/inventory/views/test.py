@@ -25,7 +25,7 @@ def test(request):
     logger = Logger('Test page')
     log = logger.critical('================================')
 
-    data['output'] = CollectDeviceDataTask([1])
+    # data['output'] = CollectDeviceDataTask([1])
     # data['output'] = CheckDeviceStatus([1, 22])
 
     device = Device.objects.get(pk=1)
@@ -57,10 +57,10 @@ def test(request):
     # with Connections(devices) as con:
     #     output = con.execute_device_type_templates()
 
-    criteria = Update.objects.filter(
-        device=device,
-        snapshot=None
-    ).order_by('id')
+    criteria = Update.objects.order_by().values('device').distinct()
+    # Update.objects.filter(
+    #     device=device,
+    # ).latest('created')
 
     # to_delete.delete()
 
