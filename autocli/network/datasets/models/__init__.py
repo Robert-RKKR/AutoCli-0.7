@@ -1,4 +1,4 @@
-# Application Import:
+# Application import:
 from .access_list_data import AccessListData
 from .arp_table_data import ArpTableData
 from .device_data import DeviceData

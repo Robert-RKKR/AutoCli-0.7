@@ -14,10 +14,18 @@ from network.inventory.managers.device_type_template import DeviceTypeTemplateMa
 # Constants declaration:
 DEVICE_DATA = (
     (0, 'None'),
-    (1, 'Device data'),
-    (2, 'Interface data'),
-    (3, 'Routing data'),
-    (4, 'Access list data')
+    (1, 'Access list data'),
+    (2, 'ARP table data'),
+    (3, 'Device data'),
+    (4, 'DMVPN data'),
+    (5, 'Environment data'),
+    (6, 'Etherchannel data'),
+    (7, 'Interface data'),
+    (8, 'MAC table data'),
+    (9, 'Module data'),
+    (10, 'Neighbor data'),
+    (11, 'NHRP data'),
+    (12, 'Router data'),
 )
 
 
