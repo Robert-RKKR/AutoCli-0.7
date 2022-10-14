@@ -12,18 +12,18 @@ from network.all.base_task.base_task import BaseTask
 from network.updates.models.update import Update
 
 # Device model import:
-from .access_list_data import AccessListData
-from .arp_table_data import ArpTableData
-from .device_data import DeviceData
-from .dmvpn_data import DmvpnData
-from .environment_data import EnvironmentData
-from .etherchannel_data import EtherchannelData
-from .interface_data import InterfaceData
-from .mac_table_data import MacTableData
-from .module_data import ModuleData
-from .neighbor_data import NeighborData
-from .nhrp_data import NhrpData
-from .router_data import RouterData
+from network.datasets.models.access_list_data import AccessListData
+from network.datasets.models.arp_table_data import ArpTableData
+from network.datasets.models.device_data import DeviceData
+from network.datasets.models.dmvpn_data import DmvpnData
+from network.datasets.models.environment_data import EnvironmentData
+from network.datasets.models.etherchannel_data import EtherchannelData
+from network.datasets.models.interface_data import InterfaceData
+from network.datasets.models.mac_table_data import MacTableData
+from network.datasets.models.module_data import ModuleData
+from network.datasets.models.neighbor_data import NeighborData
+from network.datasets.models.nhrp_data import NhrpData
+from network.datasets.models.router_data import RouterData
 
 # Django exception import:
 from django.db import IntegrityError
@@ -38,7 +38,7 @@ from system.settings.settings import collect_setting
 from autocli.celery import app
 
 # Template type to device models:
-DEVICE_DATA_COORRELATE = (
+DEVICE_DATA_CORRELATE = (
     (0, 'None', None),
     (1, 'Access list data', AccessListData),
     (2, 'ARP table data', ArpTableData),

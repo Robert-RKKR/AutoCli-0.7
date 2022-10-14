@@ -14,5 +14,4 @@ class EnvironmentDataFilter(BaseFilter):
         fields = {
             'id': ['exact', 'icontains'],
             'active': ['exact'],
-            'XXX': ['exact', 'icontains'],
         }

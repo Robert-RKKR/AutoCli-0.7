@@ -6,7 +6,7 @@ from .views.access_list_data import AccessListDataView
 from .views.arp_table_data import ArpTableDataView
 from .views.device_data import DeviceDataView
 from .views.dmvpn_data import DmvpnDataView
-from .views.environment_data import EnvironmentDataDataView
+from .views.environment_data import EnvironmentDataView
 from .views.etherchannel_data import EtherchannelDataView
 from .views.interface_data import InterfaceDataView
 from .views.mac_table_data import MacTableDataView
@@ -32,7 +32,7 @@ router.register(r'access_list_data', AccessListDataView, basename='access_list_d
 router.register(r'arp_table_data', ArpTableDataView, basename='arp_table_data')
 router.register(r'device_data', DeviceDataView, basename='device_data')
 router.register(r'dmvpn_data', DmvpnDataView, basename='dmvpn_data')
-router.register(r'environment_data', EnvironmentDataDataView, basename='environment_data')
+router.register(r'environment_data', EnvironmentDataView, basename='environment_data')
 router.register(r'etherchannel_data', EtherchannelDataView, basename='etherchannel_data')
 router.register(r'interface_data', InterfaceDataView, basename='interface_data')
 router.register(r'mac_table_data', MacTableDataView, basename='mac_table_data')
