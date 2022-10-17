@@ -13,6 +13,8 @@ from system.settings.settings import collect_setting
 from network.inventory.tasks.check_device_status_task import CheckDeviceStatus
 from network.updates.tasks.collect_device_data_task import CollectDeviceDataTask
 from network.updates.models.update import Update
+from network.datasets.tasks.correlate_collected_data import CorrelateCollectedDataTask
+from network.datasets.models.device_data import DeviceData
 
 def test(request):
 
@@ -25,7 +27,9 @@ def test(request):
     logger = Logger('Test page')
     log = logger.critical('================================')
 
-    # data['output'] = CollectDeviceDataTask([1])
+    
+    data['output'] = CollectDeviceDataTask([1])
+    data['output'] = CorrelateCollectedDataTask()
     # data['output'] = CheckDeviceStatus([1, 22])
 
     device = Device.objects.get(pk=1)
@@ -57,7 +61,11 @@ def test(request):
     # with Connections(devices) as con:
     #     output = con.execute_device_type_templates()
 
-    criteria = Update.objects.order_by().values('device').distinct()
+    # devices = Update.objects.order_by().values('device').distinct()
+    # criteria = Update.objects.filter(
+    #                 device=devices[0]['device'],
+    #                 correlated=False
+    #             ).latest('created')
     # Update.objects.filter(
     #     device=device,
     # ).latest('created')
@@ -65,7 +73,7 @@ def test(request):
     # to_delete.delete()
 
     # data['output'] = json.dumps(output)
-    data['output'] = criteria
+    # data['output'] = criteria
     
     # GET method:
     return render(request, 'test.html', data)

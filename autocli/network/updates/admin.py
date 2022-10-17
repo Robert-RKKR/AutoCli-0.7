@@ -15,7 +15,7 @@ from network.updates.models.update import Update
 class CollectedDataAdmin(BaseAdmin):
 
     list_display = (
-        'pk', 'active', 'result_status', 'raw_data_status', 'processed_data_status', 'update',
+        'pk', 'active', 'result_status', 'raw_data_status', 'processed_data_status', 'update', 'command_name',
     )
     list_filter = (
         'active', 'result_status', 'raw_data_status', 'processed_data_status',
