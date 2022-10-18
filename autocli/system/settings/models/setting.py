@@ -72,6 +72,13 @@ class Setting(models.Model):
         null=True,
         blank=True,
     )
+    history_length = models.SmallIntegerField(
+        verbose_name='Default history length',
+        help_text='Number of updates stored in the database (Without snapshot).',
+        default=10,
+        null=True,
+        blank=True,
+    )
 
     # Model representation:
     def __str__(self) -> str:
