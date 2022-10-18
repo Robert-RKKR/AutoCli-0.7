@@ -59,25 +59,24 @@ class Setting(models.Model):
     default_username = models.CharField(
         verbose_name='Default username',
         help_text='Default username used by AutoCli for SSH connections.',
-        max_length=64,
-        default='cisco',
-        null=True,
-        blank=True,
+        max_length=124,
+        default='cisco'
     )
     default_password = models.CharField(
         verbose_name='Default password',
         help_text='Default password used by AutoCli for SSH connections.',
-        max_length=64,
-        default='!Cisco@123',
-        null=True,
-        blank=True,
+        max_length=124,
+        default='!Cisco@123'
     )
     history_length = models.SmallIntegerField(
-        verbose_name='Default history length',
+        verbose_name='History length',
         help_text='Number of updates stored in the database (Without snapshot).',
-        default=10,
-        null=True,
-        blank=True,
+        default=10
+    )
+    max_workers = models.SmallIntegerField(
+        verbose_name='Max number of workers',
+        help_text='Amount of simultaneous SSH network connections.',
+        default=10
     )
 
     # Model representation:

@@ -33,10 +33,10 @@ class Credential(DataTimeModel, StatusModel, IdentificationModel):
     username = models.CharField(
         verbose_name='Username',
         help_text='Local / remote user name.',
-        max_length=64,
+        max_length=124,
     )
     password = models.CharField(
         verbose_name='Password',
         help_text='Local / remote user password.',
-        max_length=64,
+        max_length=124,
     )
